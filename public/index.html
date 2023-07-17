@@ -27,6 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/range.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Arsha
@@ -108,11 +109,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Tu Asistente Contable OnDemand</h1>
-          <h2>Somos tu asistente contable 24 horas que necesitas, 
-            pagando solo lo que necesitas</h2>
+          <h1>Tu Data Entry OnDemand</h1>
+          <h2>Nos encargamos de hacer el trabajo que no queres hacer</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started scrollto">Comenzar</a>
+            <a href="#presupuesto" class="btn-get-started scrollto">Comenzar</a>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
@@ -163,6 +163,101 @@
     <!-- End Cliens Section -->
 
     <!-- ======= About Us Section ======= -->
+  <!-- ======= Upload Section ======= -->
+  <section id="presupuesto" class="presupuesto">
+    <div class="container" data-aos="fade-up">
+  
+      <div class="section-title">
+        <h2>Presupuesto</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <form id="presupuesto-form">
+            <div class="mb-3">
+              <label for="cantidad-archivos" class="form-label">Cantidad de archivos:</label>
+              <input type="range" class="form-range" id="cantidad-archivos" name="cantidad-archivos" min="1" max="5000" value="1000">
+              <span id="cantidad-archivos-value">1000</span>
+            </div>
+            
+            <div class="mb-3">
+              <label for="cantidad-filas" class="form-label">Cantidad de filas por documento:</label>
+              <div class="btn-group" role="group" aria-label="Cantidad de filas">
+                <button type="button" class="filas btn btn-secondary active" onclick="updateFilas('1')" id="filas-1">1</button>
+                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('2-5')" id="filas-2-5">2-5</button>
+                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('6-10')" id="filas-6-10">6-10</button>
+                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('11-20')" id="filas-11-20">11-20</button>
+                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('+20')" id="filas-+20">+20</button>
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="cantidad-campos" class="form-label">Cantidad de campos por fila:</label>
+              <div class="btn-group" role="group" aria-label="Cantidad de campos">
+                <button type="button" class="campos btn btn-secondary active" onclick="updateCampos('1-5')" id="campos-1-5">1-5</button>
+                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('6-10')" id="campos-6-10">6-10</button>
+                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('11-20')" id="campos-11-20">11-20</button>
+                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('+20')" id="campos-+20">+20</button>
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="tipos-archivos" class="form-label">Tipos de archivos:</label>
+              <div class="btn-group" role="group" aria-label="Tipos de archivos">
+                <button type="button" class="tipos btn btn-secondary  active" onclick="updateTipo('Facturas','facturas')" id="tipos-facturas">Facturas</button>
+                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Legajos','legajos')" id="tipos-legajos">Legajos</button>
+                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Listado de precios','listado')" id="tipos-listado">Listado de precios</button>
+                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Historias Clinica','historia')" id="tipos-historia">Historias Clínica</button>
+                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Otro','otro')" id="tipos-otro">Otro</button>
+              </div>
+            </div>
+          </form>
+        </div>
+  
+        <div class="col-lg-6">
+          <div id="presupuesto-resultado" class="mt-4">
+            <h3>Presupuesto:</h3>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Cantidad de archivos:</td>
+                  <td><span id="cantidad-archivos-value-2">1000</span></td>
+                </tr>
+                <tr>
+                  <td>Filas:</td>
+                  <td><span id="filas-value">1</span></td>
+                </tr>
+                <tr>
+                  <td>Campos:</td>
+                  <td><span id="campos-value">1-5</span></td>
+                </tr>
+                <tr>
+                  <td>Tipo:</td>
+                  <td><span id="tipos-archivos-value">Facturas</span></td>
+                </tr>
+                <tr>
+                  <td><b>Precio por unidad:</b></td>
+                  <td><b>$<span id="precio-unidad"></span></b></td>
+                </tr>
+                <tr>
+                  <td><b>Descuento por cantidad:</b></td>
+                  <td><b><span id="descuento-cantidad"></span></b></td>
+                </tr>
+                <tr>
+                  <td><b>Total estimado:</b></td>
+                  <td><b>$<span id="precio-total"></span></b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+  
+    </div>
+  </section>
+  
+
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -858,6 +953,148 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    const cantidadArchivosInput = document.getElementById('cantidad-archivos');
+const cantidadArchivosValue = document.getElementById('cantidad-archivos-value');
+const cantidadArchivos2Value = document.getElementById('cantidad-archivos-value-2');
+
+cantidadArchivosInput.addEventListener('input', function() {
+  cantidadArchivosValue.textContent = cantidadArchivosInput.value;
+  cantidadArchivos2Value.textContent = cantidadArchivosInput.value;
+  updatePrespuesto()
+});
+
+ function updateTipo(value, id) {
+  const tipoValue = document.getElementById('tipos-archivos-value');
+  const button = document.getElementById('tipos-'+id);
+  tipoValue.textContent = value;
+  resaltarBotonSeleccionado('tipos', button)
+  updatePrespuesto()
+ }
+
+ function updateFilas(value) {
+  const filasValue = document.getElementById('filas-value');
+  const button = document.getElementById('filas-'+value);
+  filasValue.textContent = value;
+  resaltarBotonSeleccionado('filas', button)
+  updatePrespuesto()
+ }
+
+ function updateCampos(value) {
+  const camposValue = document.getElementById('campos-value');
+  const button = document.getElementById('campos-'+value);
+  camposValue.textContent = value;
+  resaltarBotonSeleccionado('campos', button)
+  updatePrespuesto()
+ }
+ const cantidadFilasButtons = document.querySelectorAll('#cantidad-filas button');
+const cantidadCamposButtons = document.querySelectorAll('#cantidad-campos button');
+const tiposArchivosButtons = document.querySelectorAll('#tipos-archivos button');
+const filasValue = document.getElementById('filas-value');
+const camposValue = document.getElementById('campos-value');
+const tiposArchivosValue = document.getElementById('tipos-archivos-value');
+
+function resaltarBotonSeleccionado(buttonsId, button) {
+  const buttons = document.querySelectorAll('.'+buttonsId);
+  
+  buttons.forEach(function(button) {
+      buttons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+    });
+  
+  button.classList.add('active');  
+}
+
+function updatePrespuesto() {
+  
+  cantidadArchivos = document.getElementById('cantidad-archivos').value;
+  precioUnidad = document.getElementById('precio-unidad');
+  descuentoCantidad = document.getElementById('descuento-cantidad');
+  precioTotal = document.getElementById('precio-total');
+
+
+  precio = calcularPrecio().toFixed(0)
+  descuento = descuentoPorCantidad()
+  descuentoCantidad.textContent = (descuento * 100)
+  descuentoCantidad.textContent =   descuentoCantidad.textContent+'%'
+  precioUnidad.textContent = precio;
+  precioTotalAux = ((1 - descuento) * precio * cantidadArchivos).toFixed(0)
+  const precioTotalFormateado = precioTotalAux.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega el punto separador de miles
+
+  precioTotal.textContent = precioTotalFormateado;
+
+
+}
+
+
+function descuentoPorCantidad() {
+  
+  const cantidadArchivos = document.getElementById('cantidad-archivos').value;
+  if (cantidadArchivos <= 100) {
+    return 0;
+  }
+
+  if (cantidadArchivos <= 1000) {
+    return 0.1;
+  }
+
+  if (cantidadArchivos <= 2000) {
+    return 0.15;
+  }
+
+  if (cantidadArchivos <= 3000) {
+    return 0.20;
+  }
+
+  if (cantidadArchivos <= 4000) {
+    return 0.25;
+  }
+
+  if (cantidadArchivos <= 5000) {
+    return 0.3;
+  }
+
+  return 0;
+}
+
+function calcularPrecio() {
+  
+  const filasValue = document.getElementById('filas-value').textContent;
+  const camposValue = document.getElementById('campos-value').textContent;
+  const tiposArchivosValue = document.getElementById('tipos-archivos-value').textContent;
+  
+  filasMap = {
+    '1': 1,
+    '2-5': 1.2,
+    '6-10': 1.4,
+    '11-20': 1.8,
+    '+20': 2
+  }
+  
+  camposMap = {
+    '1-5': 1,
+    '6-10': 1.2,
+    '11-20': 1.4,
+    '+20': 1.8
+  }
+
+  tiposMap = {
+    'Facturas': 1,
+    'Legajos': 1.2,
+    'Listado de precios': 1.4,
+    'Historias Clínica': 1.8,
+    'Otro': 2
+  }
+
+  const valorUnitario = 100;  
+  let coeficiente = tiposMap[tiposArchivosValue] * camposMap[camposValue] * filasMap[filasValue]
+  return valorUnitario * coeficiente
+  
+}
+
+  updatePrespuesto()
+  </script>
 </body>
 
 </html>

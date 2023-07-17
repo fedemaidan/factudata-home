@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Estilo CSS para que tu control deslizante tenga la estética adecuada. */
+        .slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Estimación de presupuesto</h1>
+        <p>Seleccione el rango de su presupuesto:</p>
+
+        <div class="slider">
+            <input type="range" min="100" max="10000" value="1000" class="slider" id="myRange">
+        </div>
+
+        <p>Presupuesto estimado: $<span id="demo"></span></p>
+    </section>
+
+    <script>
+        /* Script de JavaScript para manejar el cambio de valor en el control deslizante. */
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>
+</body>
+</html>

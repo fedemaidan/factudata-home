@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+        <title>Calculadora de presupuesto</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .option-group {
+                margin-bottom: 20px;
+            }
+            .option-group label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .option-group .option {
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Calculadora de presupuesto</h1>
+        
+        <div class="option-group">
+            <label for="file-count">Cantidad de archivos:</label>
+            <input type="range" id="file-count" name="file-count" min="1" max="5000">
+        </div>
+        
+        <div class="option-group">
+            <label>Cantidad de filas por documento:</label>
+            <button class="option">1</button>
+            <button class="option">2-5</button>
+            <button class="option">6-10</button>
+            <button class="option">10-20</button>
+            <button class="option">+20</button>
+        </div>
+        
+        <div class="option-group">
+            <label>Cantidad de campos por fila:</label>
+            <button class="option">1-5</button>
+            <button class="option">5-10</button>
+            <button class="option">10-20</button>
+            <button class="option">+20</button>
+        </div>
+        
+        <div class="option-group">
+            <label>Tipos de archivos:</label>
+            <button class="option">Facturas</button>
+            <button class="option">Legajos</button>
+            <button class="option">Listado de precios</button>
+            <button class="option">Historias Clinica</button>
+        </div>
+        
+        <button>Calcular presupuesto</button>
+        
+    </body>
+</html>
