@@ -110,9 +110,11 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Tu Data Entry OnDemand</h1>
-          <h2>Nos encargamos de hacer el trabajo que no queres hacer</h2>
+          <h2>Garantizamos el 
+            ingreso de datos de una manera agil y segura, ahorrándote tiempo y costos
+          </h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#presupuesto" class="btn-get-started scrollto">Comenzar</a>
+            <a href="#presupuesto" class="btn-get-started scrollto">Prespuestar</a>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
@@ -164,103 +166,8 @@
 
     <!-- ======= About Us Section ======= -->
   <!-- ======= Upload Section ======= -->
-  <section id="presupuesto" class="presupuesto">
-    <div class="container" data-aos="fade-up">
   
-
-      <div class="row">
-        <div class="col-lg-6">
-          
-      <div class="section-title">
-        <h2>Arma tu prespuesto</h2>
-      </div>
-          <form id="presupuesto-form">
-            <div class="mb-3">
-              <label for="cantidad-archivos" class="form-label">Cantidad de archivos:</label>
-              <input type="range" class="form-range" id="cantidad-archivos" name="cantidad-archivos" min="1" max="5000" value="1000">
-              <span id="cantidad-archivos-value">1000</span>
-            </div>
-            
-            <div class="mb-3">
-              <label for="cantidad-filas" class="form-label">Cantidad de filas por documento:</label>
-              <div class="btn-group" role="group" aria-label="Cantidad de filas">
-                <button type="button" class="filas btn btn-secondary active" onclick="updateFilas('1')" id="filas-1">1</button>
-                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('2-5')" id="filas-2-5">2-5</button>
-                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('6-10')" id="filas-6-10">6-10</button>
-                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('11-20')" id="filas-11-20">11-20</button>
-                <button type="button" class="filas btn btn-secondary" onclick="updateFilas('+20')" id="filas-+20">+20</button>
-              </div>
-            </div>
-  
-            <div class="mb-3">
-              <label for="cantidad-campos" class="form-label">Cantidad de campos por fila:</label>
-              <div class="btn-group" role="group" aria-label="Cantidad de campos">
-                <button type="button" class="campos btn btn-secondary active" onclick="updateCampos('1-5')" id="campos-1-5">1-5</button>
-                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('6-10')" id="campos-6-10">6-10</button>
-                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('11-20')" id="campos-11-20">11-20</button>
-                <button type="button" class="campos btn btn-secondary" onclick="updateCampos('+20')" id="campos-+20">+20</button>
-              </div>
-            </div>
-  
-            <div class="mb-3">
-              <label for="tipos-archivos" class="form-label">Tipos de archivos:</label>
-              <div class="btn-group" role="group" aria-label="Tipos de archivos">
-                <button type="button" class="tipos btn btn-secondary  active" onclick="updateTipo('Facturas','facturas')" id="tipos-facturas">Facturas</button>
-                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Legajos','legajos')" id="tipos-legajos">Legajos</button>
-                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Listado de precios','listado')" id="tipos-listado">Listado de precios</button>
-                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Historias Clinica','historia')" id="tipos-historia">Historias Clínica</button>
-                <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Otro','otro')" id="tipos-otro">Otro</button>
-              </div>
-            </div>
-          </form>
-        </div>
-  
-        <div class="col-lg-6">
-          <div id="presupuesto-resultado" class="mt-4">
-            <br><br><br>
-            <h3>Estimado</h3>
-            
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>Cantidad de archivos:</td>
-                  <td><span id="cantidad-archivos-value-2">1000</span></td>
-                </tr>
-                <tr>
-                  <td>Filas:</td>
-                  <td><span id="filas-value">1</span></td>
-                </tr>
-                <tr>
-                  <td>Campos:</td>
-                  <td><span id="campos-value">1-5</span></td>
-                </tr>
-                <tr>
-                  <td>Tipo:</td>
-                  <td><span id="tipos-archivos-value">Facturas</span></td>
-                </tr>
-                <tr>
-                  <td><b>Precio por unidad:</b></td>
-                  <td><b>$<span id="precio-unidad"></span></b></td>
-                </tr>
-                <tr>
-                  <td><b>Descuento por cantidad:</b></td>
-                  <td><b><span id="descuento-cantidad"></span></b></td>
-                </tr>
-                <tr>
-                  <td><b>Total estimado:</b></td>
-                  <td><b>$<span id="precio-total"></span></b></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        
-      </div>
-  
-    </div>
-  </section>
-  
-
+<!-- 
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -271,8 +178,7 @@
         <div class="row content">
           <div class="col-lg-6">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Somos un grupo de profesionales de diferentes ramas con un mismo objetivo: agilizar el procesamiento de información de nuestros documentos
             </p>
             <ul>
               <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
@@ -291,65 +197,15 @@
         </div>
 
       </div>
-    </section><!-- End About Us Section -->
+    </section>
+     -->
+    <!-- End About Us Section -->
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us section-bg">
-      <div class="container-fluid" data-aos="fade-up">
-
-        <div class="row">
-
-          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-            <div class="content">
-              <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-              </p>
-            </div>
-
-            <div class="accordion-list">
-              <ul>
-                <li>
-                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                    <p>
-                      Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                    </p>
-                  </div>
-                </li>
-
-                <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                    <p>
-                      Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                    </p>
-                  </div>
-                </li>
-
-                <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                    <p>
-                      Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                    </p>
-                  </div>
-                </li>
-
-              </ul>
-            </div>
-
-          </div>
-
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
+    
 
     <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills">
+    <!-- <section id="skills" class="skills">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -398,48 +254,50 @@
           </div>
         </div>
 
-      </div>
-    </section><!-- End Skills Section -->
-
+      </div> 
+    </section>-->
+    
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Servicios</h2>
         </div>
 
         <div class="row">
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="">Cargamos tu información para que sea mucho mas fácil tu trabajo</a></h4>
+              <p>
+                Digitalizamos tus datos para que puedas utilizarlos cuando sean necesarios. Trabajamos con listados, legajos, facturas o todo lo que necesites. 
+                
+              </p>
             </div>
           </div>
 
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspici</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <h4><a href="">Brindamos tus documentos en el formato que necesites</a></h4>
+              <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
             </div>
           </div>
 
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4><a href="">Reducimos los tiempo de procesamiento</a></h4>
+              <!-- <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p> -->
             </div>
           </div>
 
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-layer"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="">Utilizamos inteligencia artificial y humana para hacer un trabajo mas eficiente</a></h4>
+              <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> -->
             </div>
           </div>
 
@@ -447,6 +305,161 @@
 
       </div>
     </section><!-- End Services Section -->
+
+    
+    <!-- End Skills Section -->
+
+    <section id="presupuesto" class="presupuesto">
+      <div class="container" data-aos="fade-up">
+    
+  
+        <div class="row">
+          <div class="col-lg-6">
+            
+        <div class="section-title">
+          <h2>Arma tu prespuesto</h2>
+        </div>
+            <form id="presupuesto-form">
+              <div class="mb-3">
+                <label for="cantidad-archivos" class="form-label">Cantidad de archivos:</label>
+                <input type="range" class="form-range" id="cantidad-archivos" name="cantidad-archivos" min="1" max="5000" value="1000">
+                <span id="cantidad-archivos-value">1000</span>
+              </div>
+              
+              <div class="mb-3">
+                <label for="cantidad-filas" class="form-label">Cantidad de filas por documento:</label>
+                <div class="btn-group" role="group" aria-label="Cantidad de filas">
+                  <button type="button" class="filas btn btn-secondary active" onclick="updateFilas('1')" id="filas-1">1</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('2-5')" id="filas-2-5">2-5</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('6-10')" id="filas-6-10">6-10</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('11-20')" id="filas-11-20">11-20</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('+20')" id="filas-+20">+20</button>
+                </div>
+              </div>
+    
+              <div class="mb-3">
+                <label for="cantidad-campos" class="form-label">Cantidad de campos por fila:</label>
+                <div class="btn-group" role="group" aria-label="Cantidad de campos">
+                  <button type="button" class="campos btn btn-secondary active" onclick="updateCampos('1-5')" id="campos-1-5">1-5</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('6-10')" id="campos-6-10">6-10</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('11-20')" id="campos-11-20">11-20</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('+20')" id="campos-+20">+20</button>
+                </div>
+              </div>
+    
+              <div class="mb-3">
+                <label for="tipos-archivos" class="form-label">Tipos de archivos:</label>
+                <div class="btn-group" role="group" aria-label="Tipos de archivos">
+                  <button type="button" class="tipos btn btn-secondary  active" onclick="updateTipo('Facturas','facturas')" id="tipos-facturas">Facturas</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Legajos','legajos')" id="tipos-legajos">Legajos</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Listado de precios','listado')" id="tipos-listado">Listado de precios</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Historias Clinica','historia')" id="tipos-historia">Historias Clínica</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Otro','otro')" id="tipos-otro">Otro</button>
+                </div>
+              </div>
+            </form>
+          </div>
+    
+          <div class="col-lg-6">
+            <div id="presupuesto-resultado" class="mt-4">
+              <br><br><br>
+              <h3>Estimado</h3>
+              
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Cantidad de archivos:</td>
+                    <td><span id="cantidad-archivos-value-2">1000</span></td>
+                  </tr>
+                  <tr>
+                    <td>Filas:</td>
+                    <td><span id="filas-value">1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Campos:</td>
+                    <td><span id="campos-value">1-5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Tipo:</td>
+                    <td><span id="tipos-archivos-value">Facturas</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Precio por unidad:</b></td>
+                    <td><b>$<span id="precio-unidad"></span></b></td>
+                  </tr>
+                  <tr>
+                    <td><b>Descuento por cantidad:</b></td>
+                    <td><b><span id="descuento-cantidad"></span></b></td>
+                  </tr>
+                  <tr>
+                    <td><b>Total estimado:</b></td>
+                    <td><b>$<span id="precio-total"></span></b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        </div>
+    
+      </div>
+    </section>
+    <section id="why-us" class="why-us section-bg">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="content">
+              <!-- <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3> -->
+              <!-- <h3>PregunXtas frecuentes</h3> -->
+              <!-- <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p> -->
+            </div>
+
+            <div class="accordion-list">
+              <ul>
+                <li>
+                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">
+                    <!-- <span>01</span>  -->
+                    ¿Quienes somos? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                    <p>
+                      Somos un grupo de profesionales de diferentes ramas con un mismo objetivo: agilizar el procesamiento de información de nuestros documentos
+                    </p>
+                  </div>
+                </li>
+
+                <!-- <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> ¿Qué hacemos? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Procesamos tu información para que sea mucho mas fácil tu trabajo. 
+                    </p>
+                  </div>
+                </li>
+
+                <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                    </p>
+                  </div>
+                </li> -->
+
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
