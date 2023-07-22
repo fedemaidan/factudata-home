@@ -108,6 +108,48 @@
     onscroll(document, toggleBacktotop)
   }
   }
+  const contactButton = select('#contactButton');
+  if (contactButton) {
+    const originalButtonText = contactButton.textContent;
+    on('click', '#contactButton', function(e) {
+      e.preventDefault();
+
+      // Cambiar el texto del botón a "Enviando..."
+      contactButton.textContent = 'Enviando...';
+
+      // Obtener los datos del formulario
+      const name = select('#name').value;
+      const phone = select('#numero').value;
+
+      // Realizar la solicitud al servidor
+      fetch('https://script.google.com/macros/s/AKfycby1dqPMnj9LiUb1nWQ5Qd-L4IZnALf25ifrmfLYRfDiWYxXFHEMS9bZRVomaJVXRxGbJg/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`
+      })
+        // .then(response => response.json())
+        .then(response => {
+          // Restaurar el texto original del botón
+          contactButton.textContent = originalButtonText;
+          // Mostrar el mensaje de éxito o error en un alert o notificación
+          
+          if (response.ok) {
+            alert('Datos guardados correctamente. Gracias por contactarnos.');
+          } else {
+            alert('Hubo un error al guardar los datos. Por favor, inténtalo nuevamente.');
+          }
+        })
+        .catch(error => {
+          console.error('Error al enviar el formulario:', error);
+          // Restaurar el texto original del botón en caso de error
+          contactButton.textContent = originalButtonText;
+          // Mostrar un mensaje de error en un alert o notificación
+          alert('Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.');
+        });
+    });
+  }
 
   /**
    * Mobile nav toggle
