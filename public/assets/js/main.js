@@ -120,33 +120,67 @@
       // Obtener los datos del formulario
       const name = select('#name').value;
       const phone = select('#numero').value;
+      const email = select('#email').value;
+      const contactPreference = select('#contactPreference').value;
+      const errorMessage = document.getElementById("error-message");
+      const successMessage = document.getElementById("success-message");
+
+      if (contactPreference === "email" && email.trim() === "") {
+        errorMessage.textContent = "Por favor, ingrese su dirección de correo electrónico.";
+        errorMessage.style.display = "block"; // Mostrar el mensaje de error
+        contactButton.textContent = originalButtonText;
+        successMessage.style.display = "none";
+        return; // Detener el envío del formulario
+      }
+
+      if (contactPreference === "phone" && phone.trim() === "") {
+        errorMessage.textContent = "Por favor, ingrese su número de contacto.";
+        errorMessage.style.display = "block"; // Mostrar el mensaje de error
+        contactButton.textContent = originalButtonText;
+        successMessage.style.display = "none";
+        return; // Detener el envío del formulario
+      }
+
+      if (contactPreference === "indistinto" && phone.trim() === "" && email.trim() === "" ) {
+        errorMessage.textContent = "Por favor, ingrese su dirección de correo electrónico o número de contacto";
+        errorMessage.style.display = "block"; // Mostrar el mensaje de error
+        contactButton.textContent = originalButtonText;
+        successMessage.style.display = "none";
+        return; // Detener el envío del formulario
+      }
 
       // Realizar la solicitud al servidor
-      fetch('https://script.google.com/macros/s/AKfycby1dqPMnj9LiUb1nWQ5Qd-L4IZnALf25ifrmfLYRfDiWYxXFHEMS9bZRVomaJVXRxGbJg/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbzGGxx8ScHPPrZ5oSRS5lTJ8OS9nIMTZc_iC8vC05ivslZY9dqion2yipNBQFp7pRtkPw/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`
+        body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}&contactPreference=${encodeURIComponent(contactPreference)}`
       })
-        // .then(response => response.json())
         .then(response => {
           // Restaurar el texto original del botón
           contactButton.textContent = originalButtonText;
           // Mostrar el mensaje de éxito o error en un alert o notificación
           
           if (response.ok) {
-            alert('Datos guardados correctamente. Gracias por contactarnos.');
+            successMessage.textContent = "Su pedido fue envíado, lo contactaremos pronto.";
+            successMessage.style.display = "block"; // Mostrar el mensaje de error
+            errorMessage.style.display = "none";
           } else {
-            alert('Hubo un error al guardar los datos. Por favor, inténtalo nuevamente.');
+            errorMessage.textContent = "Error al enviar el formulario";
+            errorMessage.style.display = "block"; // Mostrar el mensaje de error
+            successMessage.display = "none";
           }
         })
         .catch(error => {
           console.error('Error al enviar el formulario:', error);
           // Restaurar el texto original del botón en caso de error
+          errorMessage.textContent = "Error al enviar el formulario";
+          errorMessage.style.display = "block"; // Mostrar el mensaje de error
           contactButton.textContent = originalButtonText;
+          successMessage.display = "none";
+          
           // Mostrar un mensaje de error en un alert o notificación
-          alert('Hubo un error al enviar el formulario. Por favor, inténtalo nuevamente.');
         });
     });
   }
