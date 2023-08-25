@@ -108,6 +108,47 @@
     onscroll(document, toggleBacktotop)
   }
   }
+
+  const suscribiteButton = select('#suscribiteButton');
+
+  if (suscribiteButton) {
+    const originalButtonText = suscribiteButton.textContent;
+
+    on('click', '#suscribiteButton', function(e) {
+      e.preventDefault();
+      suscribiteButton.textContent = "Enviando...";
+    const email = select('#email-suscribite').value;
+    console.log(email)
+    fetch('https://script.google.com/macros/s/AKfycbzGGxx8ScHPPrZ5oSRS5lTJ8OS9nIMTZc_iC8vC05ivslZY9dqion2yipNBQFp7pRtkPw/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `name=suscribite&email=${encodeURIComponent(email)}&contactPreference=email`
+      })
+        .then(response => {
+        suscribiteButton.textContent = originalButtonText;
+        
+        if (response.ok) {
+          alert("Te contactaremos pronto.");
+        } else {
+          alert("Error al enviar el formulario");
+        }
+      })
+      .catch(error => {
+        console.error('Error al enviar el formulario:', error);
+        // Restaurar el texto original del botón en caso de error
+        errorMessage.textContent = "Error al enviar el formulario";
+        errorMessage.style.display = "block"; // Mostrar el mensaje de error
+        contactButton.textContent = originalButtonText;
+        successMessage.display = "none";
+        
+        // Mostrar un mensaje de error en un alert o notificación
+      });
+  });
+
+}
+
   const contactButton = select('#contactButton');
   if (contactButton) {
     const originalButtonText = contactButton.textContent;
