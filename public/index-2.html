@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Sorbydata</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/range.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Arsha
+  * Updated: May 30 2023 with Bootstrap v5.3.0
+  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDZYWr3jGf1WM6Wry1YJU67plv16lcAWeA",
+    authDomain: "factudata-home.firebaseapp.com",
+    projectId: "factudata-home",
+    storageBucket: "factudata-home.appspot.com",
+    messagingSenderId: "214267828048",
+    appId: "1:214267828048:web:43df2ccd8830ca1ec17e55",
+    measurementId: "G-H1G436VC5Q"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Sorbydata</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <!-- <li><a class="nav-link scrollto active" href="#hero">Home</a></li> -->
+          <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
+          <li><a class="nav-link   scrollto" href="#presupuesto">Presupuesto</a></li>
+          <li><a class="nav-link scrollto" href="#why-us">Sobre nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+          <li><a class="getstarted scrollto" href="https://admin.factudata.com.ar/">Comenzar</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Tu asistente OnDemand</h1>
+          <h2> 
+            ¿Cansado de extraer datos manualmente de cada factura? Hace que las facturas trabajen por vos. 
+          </h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="#presupuesto" class="btn-get-started scrollto">Presupuestar</a>
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+    
+    
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Servicios</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-book-open"></i></div>
+              <h4><a href="">Libro IVA</a></h4>
+              <p>
+                Solo tenes que pasarnos las facturas y te devolvemos un excel con todo el trabajo listo para subir a la AFIP. 
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-bar-chart-square"></i></div>
+              <h4><a href="">Control de gastos</a></h4>
+              <p>
+                Subí una foto de todos los tickets que tu empresa gasta y te devolvemos un excel a medida para vos con todos los gastos
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4><a href="">Y mucho más!</a></h4>
+              <p>
+                También brindamos servicios para cualquier tipo de documentos. 
+              </p>
+            </div>
+          </div>
+          <!-- <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-layer"></i></div>
+              <h4><a href="">Utilizamos inteligencia artificial y humana para hacer un trabajo mas eficiente</a></h4>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> 
+            </div>
+          </div> -->
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    
+    <!-- End Skills Section -->
+
+    <section id="presupuesto" class="presupuesto">
+      <div class="container" data-aos="fade-up">
+    
+  
+        <div class="row">
+          <div class="col-lg-6">
+            
+        <div class="section-title">
+          <h2>Arma tu prespuesto</h2>
+        </div>
+            <form id="presupuesto-form">
+              <div class="mb-3">
+                <label for="cantidad-archivos" class="form-label">Cantidad de archivos:</label>
+                <input type="range" class="form-range" id="cantidad-archivos" name="cantidad-archivos" min="1" max="5000" value="1000">
+                <span id="cantidad-archivos-value">1000</span>
+              </div>
+              
+              <div class="mb-3">
+                <label for="cantidad-filas" class="form-label">Cantidad de filas por documento:</label>
+                <div class="btn-group" role="group" aria-label="Cantidad de filas">
+                  <button type="button" class="filas btn btn-secondary active" onclick="updateFilas('1')" id="filas-1">1</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('2-5')" id="filas-2-5">2-5</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('6-10')" id="filas-6-10">6-10</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('11-20')" id="filas-11-20">11-20</button>
+                  <button type="button" class="filas btn btn-secondary" onclick="updateFilas('+20')" id="filas-+20">+20</button>
+                </div>
+              </div>
+    
+              <div class="mb-3">
+                <label for="cantidad-campos" class="form-label">Cantidad de campos por fila:</label>
+                <div class="btn-group" role="group" aria-label="Cantidad de campos">
+                  <button type="button" class="campos btn btn-secondary active" onclick="updateCampos('1-5')" id="campos-1-5">1-5</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('6-10')" id="campos-6-10">6-10</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('11-20')" id="campos-11-20">11-20</button>
+                  <button type="button" class="campos btn btn-secondary" onclick="updateCampos('+20')" id="campos-+20">+20</button>
+                </div>
+              </div>
+    
+              <div class="mb-3">
+                <label for="tipos-archivos" class="form-label">Tipos de archivos:</label>
+                <div class="btn-group" role="group" aria-label="Tipos de archivos">
+                  <button type="button" class="tipos btn btn-secondary  active" onclick="updateTipo('Facturas','facturas')" id="tipos-facturas">Facturas</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Legajos','legajos')" id="tipos-legajos">Legajos</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Listado de precios','listado')" id="tipos-listado">Listado de precios</button>
+                  <button type="button" class="tipos btn btn-secondary" onclick="updateTipo('Otro','otro')" id="tipos-otro">Otro</button>
+                </div>
+              </div>
+            </form>
+          </div>
+    
+          <div class="col-lg-6">
+            <div id="presupuesto-resultado" class="mt-4">
+              <br><br><br>
+              <h3>Estimado</h3>
+              
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Cantidad de archivos:</td>
+                    <td><span id="cantidad-archivos-value-2">1000</span></td>
+                  </tr>
+                  <tr>
+                    <td>Filas:</td>
+                    <td><span id="filas-value">1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Campos:</td>
+                    <td><span id="campos-value">1-5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Tipo:</td>
+                    <td><span id="tipos-archivos-value">Facturas</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Precio por unidad:</b></td>
+                    <td><b>$<span id="precio-unidad"></span></b></td>
+                  </tr>
+                  <tr>
+                    <td><b>Descuento por cantidad:</b></td>
+                    <td><b><span id="descuento-cantidad"></span></b></td>
+                  </tr>
+                  <tr>
+                    <td><b>Total estimado:</b></td>
+                    <td><b>$<span id="precio-total"></span></b></td>
+                  </tr>
+                </tbody>
+              </table>            
+                <a href="https://admin.factudata.com.ar/" class="comenzar">Comenzar</a>
+            </div>
+          </div>
+          
+        </div>
+    
+      </div>
+    </section>
+    <section id="why-us" class="why-us section-bg">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="accordion-list">
+              <ul>
+                <li>
+                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">
+                    <span>01</span> 
+                    ¿Qué hacemos? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                    <p>
+                      Nos encargamos de estandarizar todas la información que tenes en imágenes y la convertimos en un formato para que sea mucho mas fácil tu trabajo
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> ¿Cómo lo hacemos? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Utilizamos una combinación entre la inteligencia artificial y humana para hacer un trabajo mas eficiente y libre de errores.
+                    </p>
+                  </div>
+                </li>
+
+                <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> ¿Por qué lo hacemos? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Queremos ayudar a las empresas a focalizarse en la parte del trabajo más importante, mientras nosotros nos encaramos del trabajo más aburrido.
+                    </p>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <!-- <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row">
+          <div class="col-lg-9 text-center text-lg-start">
+            <h3>Call To Action</h3>
+            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="col-lg-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Call To Action</a>
+          </div>
+        </div>
+
+      </div>
+    </section> -->
+    <!-- End Cta Section -->
+
+  </main><!-- End #main -->
+
+  <section id="contact" class="contact">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Quiero que me contacten</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
+          <form method="post" role="form" class="php-email-form" id="contact-form">
+            <div class="row">
+              <div class="form-group col-md-2">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" class="form-control" id="name" required="">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="name">Número</label>
+                <input type="tel" class="form-control" name="phone" id="numero" required>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="name">Mail</label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="contactPreference">Preferencia de contacto</label>
+                <select class="form-control" name="contactPreference" id="contactPreference" required>
+                  <option value="indistinto">Indistinto</option>
+                  <option value="email">Correo Electrónico</option>
+                  <option value="phone">Teléfono</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <br>
+                <button type="button" 
+                 id="contactButton">Quiero que me contacten</button>
+              </div>
+            </div>
+            
+          <div id="error-message" style="display: none; color: red;">
+          </div>
+          <div id="success-message" style="display: none; color: blue;">
+          </div>
+          </form>
+        </div>
+    </div>
+  </section>
+
+
+  <div id="preloader"></div>
+  <a href="#presupuesto-resultado" class="back-to-top d-flex align-items-center justify-content-center">Ver estimado</a>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const cantidadArchivosInput = document.getElementById('cantidad-archivos');
+const cantidadArchivosValue = document.getElementById('cantidad-archivos-value');
+const cantidadArchivos2Value = document.getElementById('cantidad-archivos-value-2');
+
+cantidadArchivosInput.addEventListener('input', function() {
+  cantidadArchivosValue.textContent = cantidadArchivosInput.value;
+  cantidadArchivos2Value.textContent = cantidadArchivosInput.value;
+  updatePrespuesto()
+});
+
+ function updateTipo(value, id) {
+  const tipoValue = document.getElementById('tipos-archivos-value');
+  const button = document.getElementById('tipos-'+id);
+  tipoValue.textContent = value;
+  resaltarBotonSeleccionado('tipos', button)
+  updatePrespuesto()
+ }
+
+ function updateFilas(value) {
+  const filasValue = document.getElementById('filas-value');
+  const button = document.getElementById('filas-'+value);
+  filasValue.textContent = value;
+  resaltarBotonSeleccionado('filas', button)
+  updatePrespuesto()
+ }
+
+ function updateCampos(value) {
+  const camposValue = document.getElementById('campos-value');
+  const button = document.getElementById('campos-'+value);
+  camposValue.textContent = value;
+  resaltarBotonSeleccionado('campos', button)
+  updatePrespuesto()
+ }
+ const cantidadFilasButtons = document.querySelectorAll('#cantidad-filas button');
+const cantidadCamposButtons = document.querySelectorAll('#cantidad-campos button');
+const tiposArchivosButtons = document.querySelectorAll('#tipos-archivos button');
+const filasValue = document.getElementById('filas-value');
+const camposValue = document.getElementById('campos-value');
+const tiposArchivosValue = document.getElementById('tipos-archivos-value');
+
+function resaltarBotonSeleccionado(buttonsId, button) {
+  const buttons = document.querySelectorAll('.'+buttonsId);
+  
+  buttons.forEach(function(button) {
+      buttons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+    });
+  
+  button.classList.add('active');  
+}
+
+function updatePrespuesto() {
+  
+  cantidadArchivos = document.getElementById('cantidad-archivos').value;
+  precioUnidad = document.getElementById('precio-unidad');
+  descuentoCantidad = document.getElementById('descuento-cantidad');
+  precioTotal = document.getElementById('precio-total');
+
+
+  precio = calcularPrecio().toFixed(0)
+  descuento = descuentoPorCantidad()
+  descuentoCantidad.textContent = (descuento * 100)
+  descuentoCantidad.textContent =   descuentoCantidad.textContent+'%'
+  precioUnidad.textContent = precio;
+  precioTotalAux = ((1 - descuento) * precio * cantidadArchivos).toFixed(0)
+  const precioTotalFormateado = precioTotalAux.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega el punto separador de miles
+
+  precioTotal.textContent = precioTotalFormateado;
+
+
+}
+
+
+function descuentoPorCantidad() {
+  
+  const cantidadArchivos = document.getElementById('cantidad-archivos').value;
+  if (cantidadArchivos <= 100) {
+    return 0;
+  }
+
+  if (cantidadArchivos <= 1000) {
+    return 0.1;
+  }
+
+  if (cantidadArchivos <= 2000) {
+    return 0.15;
+  }
+
+  if (cantidadArchivos <= 3000) {
+    return 0.20;
+  }
+
+  if (cantidadArchivos <= 4000) {
+    return 0.25;
+  }
+
+  if (cantidadArchivos <= 5000) {
+    return 0.3;
+  }
+
+  return 0;
+}
+
+function calcularPrecio() {
+  
+  const filasValue = document.getElementById('filas-value').textContent;
+  const camposValue = document.getElementById('campos-value').textContent;
+  const tiposArchivosValue = document.getElementById('tipos-archivos-value').textContent;
+  
+  filasMap = {
+    '1': 1,
+    '2-5': 1.2,
+    '6-10': 1.4,
+    '11-20': 1.8,
+    '+20': 2
+  }
+  
+  camposMap = {
+    '1-5': 1,
+    '6-10': 1.2,
+    '11-20': 1.4,
+    '+20': 1.8
+  }
+
+  tiposMap = {
+    'Facturas': 1,
+    'Legajos': 1.2,
+    'Listado de precios': 1.4,
+    'Historias Clinica': 1.8,
+    'Otro': 2
+  }
+
+  const valorUnitario = 100;  
+  let coeficiente = tiposMap[tiposArchivosValue] * camposMap[camposValue] * filasMap[filasValue]
+  return valorUnitario * coeficiente
+  
+}
+
+  updatePrespuesto()
+  
+  </script>
+</body>
+
