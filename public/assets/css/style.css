@@ -476,6 +476,28 @@ h6 {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
+@media (max-width: 1500px) {
+  #hero {
+    height: 100vh;
+    text-align: center;
+  }
+
+  #hero .animated {
+    animation: none;
+  }
+
+  #hero .hero-img {
+    text-align: center;
+  }
+
+  #hero .hero-img img {
+    width: 85%;
+    text-align: center;
+
+  }
+}
+
+
 @media (max-width: 991px) {
   #hero {
     height: 100vh;
