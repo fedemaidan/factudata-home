@@ -28,20 +28,13 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Updated: May 30 2023 with Bootstrap v5.3.0
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
   <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -59,7 +52,13 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  
+ 
+  document.querySelector('#proba-sorby').addEventListener('click', function(e) {
+    const analytics = getAnalytics(app);
+    logEvent(analytics, 'go_to_admin', { name: 'proba_sorby'});
+});
+
 </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
@@ -91,7 +90,8 @@
         <h1>¡Decile adiós al data entry!</h1>
         <h2>Procesamos la información de tus facturas para que dediques tu tiempo a potenciar tu negocio.</h2>
         <div class="d-flex justify-content-center justify-content-lg-start">
-          <a href="https://admin.sorbydata.com/" class="btn-get-started scrollto">¡Probá Sorby!</a>
+          <!-- <a href="https://admin.sorbydata.com/" class="btn-get-started scrollto">¡Probá Sorby!</a> -->
+          <a href="https://admin.sorbydata.com/" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
           <a href="https://www.youtube.com/watch?v=WzBASk56GOk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>¿Cómo usar Sorby?</span></a>
         </div>
       </div>
@@ -397,153 +397,11 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-    const cantidadArchivosInput = document.getElementById('cantidad-archivos');
-const cantidadArchivosValue = document.getElementById('cantidad-archivos-value');
-const cantidadArchivos2Value = document.getElementById('cantidad-archivos-value-2');
-
-cantidadArchivosInput.addEventListener('input', function() {
-  cantidadArchivosValue.textContent = cantidadArchivosInput.value;
-  cantidadArchivos2Value.textContent = cantidadArchivosInput.value;
-  updatePrespuesto()
-});
-
- function updateTipo(value, id) {
-  const tipoValue = document.getElementById('tipos-archivos-value');
-  const button = document.getElementById('tipos-'+id);
-  tipoValue.textContent = value;
-  resaltarBotonSeleccionado('tipos', button)
-  updatePrespuesto()
- }
-
- function updateFilas(value) {
-  const filasValue = document.getElementById('filas-value');
-  const button = document.getElementById('filas-'+value);
-  filasValue.textContent = value;
-  resaltarBotonSeleccionado('filas', button)
-  updatePrespuesto()
- }
-
- function updateCampos(value) {
-  const camposValue = document.getElementById('campos-value');
-  const button = document.getElementById('campos-'+value);
-  camposValue.textContent = value;
-  resaltarBotonSeleccionado('campos', button)
-  updatePrespuesto()
- }
- const cantidadFilasButtons = document.querySelectorAll('#cantidad-filas button');
-const cantidadCamposButtons = document.querySelectorAll('#cantidad-campos button');
-const tiposArchivosButtons = document.querySelectorAll('#tipos-archivos button');
-const filasValue = document.getElementById('filas-value');
-const camposValue = document.getElementById('campos-value');
-const tiposArchivosValue = document.getElementById('tipos-archivos-value');
-
-function resaltarBotonSeleccionado(buttonsId, button) {
-  const buttons = document.querySelectorAll('.'+buttonsId);
+    
   
-  buttons.forEach(function(button) {
-      buttons.forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-    });
-  
-  button.classList.add('active');  
-}
-
-function updatePrespuesto() {
-  
-  cantidadArchivos = document.getElementById('cantidad-archivos').value;
-  precioUnidad = document.getElementById('precio-unidad');
-  descuentoCantidad = document.getElementById('descuento-cantidad');
-  precioTotal = document.getElementById('precio-total');
-
-
-  precio = calcularPrecio().toFixed(0)
-  descuento = descuentoPorCantidad()
-  descuentoCantidad.textContent = (descuento * 100)
-  descuentoCantidad.textContent =   descuentoCantidad.textContent+'%'
-  precioUnidad.textContent = precio;
-  precioTotalAux = ((1 - descuento) * precio * cantidadArchivos).toFixed(0)
-  const precioTotalFormateado = precioTotalAux.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Agrega el punto separador de miles
-
-  precioTotal.textContent = precioTotalFormateado;
-
-
-}
-
-
-function descuentoPorCantidad() {
-  
-  const cantidadArchivos = document.getElementById('cantidad-archivos').value;
-  if (cantidadArchivos <= 100) {
-    return 0;
-  }
-
-  if (cantidadArchivos <= 1000) {
-    return 0.1;
-  }
-
-  if (cantidadArchivos <= 2000) {
-    return 0.15;
-  }
-
-  if (cantidadArchivos <= 3000) {
-    return 0.20;
-  }
-
-  if (cantidadArchivos <= 4000) {
-    return 0.25;
-  }
-
-  if (cantidadArchivos <= 5000) {
-    return 0.3;
-  }
-
-  return 0;
-}
-
-function calcularPrecio() {
-  
-  const filasValue = document.getElementById('filas-value').textContent;
-  const camposValue = document.getElementById('campos-value').textContent;
-  const tiposArchivosValue = document.getElementById('tipos-archivos-value').textContent;
-  
-  filasMap = {
-    '1': 1,
-    '2-5': 1.2,
-    '6-10': 1.4,
-    '11-20': 1.8,
-    '+20': 2
-  }
-  
-  camposMap = {
-    '1-5': 1,
-    '6-10': 1.2,
-    '11-20': 1.4,
-    '+20': 1.8
-  }
-
-  tiposMap = {
-    'Facturas': 1,
-    'Legajos': 1.2,
-    'Listado de precios': 1.4,
-    'Historias Clinica': 1.8,
-    'Otro': 2
-  }
-
-  const valorUnitario = 100;  
-  let coeficiente = tiposMap[tiposArchivosValue] * camposMap[camposValue] * filasMap[filasValue]
-  return valorUnitario * coeficiente
-  
-}
-
-  updatePrespuesto()
-  
-  </script>
-
 </body>
 
 </html>
