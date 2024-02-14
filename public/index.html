@@ -76,9 +76,9 @@
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
           <li><a class="nav-link scrollto" href="#why-us">¿Por qué usar Sorby?</a></li>
-          <li><a class="nav-link scrollto active" href="#pricing">Precios</a></li>
-	  <li><a class="nav-link scrollto" href="#contact">Contactanos</a></li>
-    <li style="margin-left: 10px"><a class="btn-get-started nav-link scrollto" href="https://admin.sorbydata.com/">Login</a></li>
+          <!-- <li><a class="nav-link scrollto active" href="#pricing">Precios</a></li> -->
+	  
+    <li style="margin-left: 10px"><a class="btn-get-started nav-link scrollto" href="lista.html">Registrate gratis</a></li>
 	
         
     </div>
@@ -89,12 +89,12 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-        <h1>¡Que Sorby trabaje por vos!</h1>
-        <h2>Automatizamos las tareas más aburridas de tu estudio contable, como el procesamiento de facturas o la generación de VEPs, para que puedas enfocarte en lo que realmente importa.</h2>
+        <h1>¡Rinde los gastos al instante y sin papel!</h1>
+        <h2>Registra todo tipo de gastos, incluidos viajes, kilometraje y viaticos. Extrae automáticamente los datos de los recibos con nuestra aplicación móvil y deja de guardar los tickets en los bolsillos.</h2>
         <div class="d-flex justify-content-center justify-content-lg-start">
           <!-- <a href="https://admin.sorbydata.com/" class="btn-get-started scrollto">¡Probá Sorby!</a> -->
-          <a href="https://admin.sorbydata.com/" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
-          <a href="https://youtu.be/SUvSZH8YeNU" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>¿Por qué usar Sorby?</span></a>
+          <a href="lista.html" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
+          <!-- <a href="https://youtu.be/SUvSZH8YeNU" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>¿Por qué usar Sorby?</span></a> -->
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -104,22 +104,33 @@
   </div>
 </section>
 <!-- End Hero -->
-<!-- ======= Services Section ======= -->
 <section id="services" class="services section-bg">
   <div class="container" data-aos="fade-up">
+<div class="section-title">
+  <h2>Servicios</h2>
+  <ul class="nav nav-tabs" id="serviceTabs">
+    <li class="nav-item">
+      <h3><a class="nav-link active" data-bs-toggle="tab" href="#employees">Para Empleados</a></h3>
+    </li>
+    <li class="nav-item">
+      <h3><a class="nav-link" data-bs-toggle="tab" href="#businessOwners">Para Dueños de Negocios</a></h3>
+    </li>
+    <li class="nav-item">
+      <h3><a class="nav-link" data-bs-toggle="tab" href="#accountants">Para Contadores</a></h3>
+    </li>
+  </ul>  
+</div>
 
-    <div class="section-title">
-      <h2>Servicios</h2>
-    </div>
-
+<div class="tab-content" id="serviceTabsContent">
+  <div class="tab-pane fade show active" id="employees">
     <div class="row">
 
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
         <div class="icon-box">
-          <div class="icon"><i class="bx bx-book-open"></i></div>
-          <h4><a href="">Comprobantes</a></h4>
+          <div class="icon"><i class="bi bi-receipt"></i></div>
+          <h4><a href="">Agregá el gasto</a></h4>
           <p>
-            Solo tenes que pasarnos tus facturas y te devolvemos un excel con todo el trabajo listo para subir a la AFIP. 
+            Carga tu tiket con la aplicación móvil o directo en la web
           </p>
         </div>
       </div>
@@ -127,9 +138,87 @@
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
         <div class="icon-box">
           <div class="icon"><i class="bx bx-file"></i></div>
-          <h4><a href="">VEPs</a></h4>
+          <h4><a href="">Creá el reporte</a></h4>
           <p>
-            Generamos automaticamente los VEPs de todos tus clientes
+            Genera automáticamente informes de gastos para reembolso.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-currency-dollar"></i></div>
+          <h4><a href="">Obtené el reembolso</a></h4>
+          <p>
+            Una vez aprobado, recibí un reembolso directamente en tu cuenta. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="businessOwners">
+    <div class="row">
+
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="">Recibir Gastos</a></h4>
+          <p>
+            Establezca límites de categoría y/o politicas de gastos. Permita que los empleados envíen gastos escaneando recibos o ingresándolos manualmente.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-bookmark-check"></i></div>
+          <h4><a href="">Aprobar Reportes</a></h4>
+          <p>
+            Revise los reportes de gastos en un lugar y apruebe los gastos con un solo clic.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-currency-dollar"></i></div>
+          <h4><a href="">Reembolsar Gasto</a></h4>
+          <p>
+            Reembolsa a los empleados directamente a través de la app.
+          </p>
+        </div>
+      </div>   
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-bar-chart-square"></i></div>
+          <h4><a href="">Optimizá tus gastos</a></h4>
+          <p>
+            Aprovecha la información detallada para analizar y detectar oportunidades en tus gastos.
+          </p>
+        </div>
+      </div>   
+    </div>
+  </div>
+  <div class="tab-pane fade" id="accountants">
+    <div class="row">
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="">Recibir Gastos</a></h4>
+          <p>
+            Establezca límites de categoría y/o politicas de gastos. Permita que los empleados envíen gastos escaneando recibos o ingresándolos manualmente.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-bookmark-check"></i></div>
+          <h4><a href="">Aprobar Reportes</a></h4>
+          <p>
+            Revise los reportes de gastos en un lugar y apruebe los gastos con un solo clic.
           </p>
         </div>
       </div>
@@ -137,75 +226,19 @@
       <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
           <div class="icon"><i class="bx bx-bar-chart-square"></i></div>
-          <h4><a href="">Y mucho más!</a></h4>
+          <h4><a href="">Importar a software de contabilidad</a></h4>
           <p>
-            También brindamos servicios para cualquier tipo de documentos. 
+            Dedique un 75% menos de tiempo a los gastos conciliando datos de gastos e importando entradas automáticamente a los sistemas contables y/o de gestión.
           </p>
         </div>
-      </div>
-      <!-- <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-        <div class="icon-box">
-          <div class="icon"><i class="bx bx-layer"></i></div>
-          <h4><a href="">Utilizamos inteligencia artificial y humana para hacer un trabajo mas eficiente</a></h4>
-          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> 
-        </div>
-      </div> -->
-
-    </div>
+      </div>  
+  </div>
+</div>
+  </div>
+</section>
 
   </div>
 </section><!-- End Services Section -->
-
-<main id="main">
-  <!-- Clients Section -->
-  <!-- Contenido de la sección de clientes -->
-  <!-- End Clients Section -->
-
-  <!-- Resto del contenido del "main" -->
-</main>
-<section id="compatibility" class="compatibility">
-  <div class="container" data-aos="fade-up">
-
-    <div class="section-title">
-      <h2>Compatibilidad con Sistemas Contables</h2>
-      <p>Nuestro servicio es compatible con una variedad de sistemas contables y estamos preparados para adaptarnos a las necesidades de tu negocio.</p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="icon-box" style="text-align: center;">
-          <i class="ri-stack-line" style="color: #ffbb2c;"></i>
-          <h3>Xubio</h3>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-        <div class="icon-box" style="text-align: center;">
-          <i class="ri-palette-line" style="color: #5578ff;"></i>
-          <h3>Tango</h3>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-        <div class="icon-box" style="text-align: center;">
-          <i class="ri-command-line" style="color: #e80368;"></i>
-          <h3>SOS-Contador</h3>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-        <div class="icon-box" style="text-align: center;">
-          <i class="ri-fingerprint-line" style="color: #e361ff;"></i>
-          <h3>Colppy</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <p class="text-center mt-4">¿Usas un sistema diferente? <strong>Contáctanos</strong> y haremos lo necesario para garantizar la compatibilidad con tu sistema contable.</p>
-      </div>
-    </div>
-
-  </div>
-</section><!-- End Compatibility Section -->
 
 
     <!-- ======= Why Us Section ======= -->
@@ -218,45 +251,50 @@
 
             <div class="content">
               <h3><strong>¿Por qué me sirve usar Sorby?</strong></h3>
-              <p>
-                No más data entry: decile adiós a la carga manual de datos.
-              </p>
             </div>
 
             <div class="accordion-list">
               <ul>
                 <li>
-                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span>Escalá tu negocio <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span>Ahorrá tiempo <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                     <p>
-                      El tiempo ganado te va a permitir distribuir mejor tus recursos y apostar a un crecimiento real de tu negocio.
-                    </p>
+                      El proceso de la rendición de gastos te puede ahorrar hasta el 50% del tiempo en comparación de la manera tradicional.                    </p>
                   </div>
                 </li>
 
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Gestión eficaz de tus recursos <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Simplifica procesos <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                     <p>
-                      Gestioná de manera eficaz tus períodos de alta demanda y minimiza los tiempos ociosos durante las épocas de menor actividad.
-                    </p>
+                      Agilizá el proceso de auditoría al detectar recibos duplicados, garantizar tipos de cambio correctos y verificar automáticamente las transacciones con las políticas de la empresa.                    </p>
                   </div>
                 </li>
 
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Potenciá tu creatividad <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Recupero de facturas <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                     <p>
-                       Liberate de las tareas aburridas y repetitivas. ¡Sorby se encarga! 
+                      Incrementá hasta un 90% los comprobantes fiscales
                     </p>
                   </div>
                 </li>
                
                 <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span>Gastás lo que necesitás y sin ataduras <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span>Sin papel <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                   <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
                     <p>
-                      Pagás por lo que usas. Usás el servicio cuando querés
+                      El proceso de rendición de gastos se hace completamente digital, por lo que es muy importante el ahorro en papel que se genera
+                    </p>
+                  </div></li>
+                <li>
+                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>05</span>Tiempos de reembolso <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                    <p>
+                      Mejorá los tiempos de reembolso a tus empleados sin afectar la calidad de la revisión. 
+                    </p>
+                  </div>
+                </li>
               </ul>
             </div>
 
@@ -273,127 +311,7 @@
 
    <!-- ======= Compatibility Section ======= -->
 
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Precio</h2>
-          <p><strong>Hay un paquete pensado para la etapa profesional en la que te encontrás: elegilo.</strong></p>
-          <p>Una <strong>unidad</strong> equivale a una factura o VEP</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
-            <div class="box">
-              <h3>Sorby Gratuito</h3>
-              <h4><sup>$</sup>0<span>Hasta 20 unidades: ¡Gratis!</span></h4>
-              <ul>
-<li style="margin-left: 35px;"><strong>¡Probá Sorby!</strong></li>
-                <li><i class="bx bx-check"></i>Totalmente gratuito</li>
-                <li><i class="bx bx-check"></i>Descubrí los beneficios de utilizar nuestro servicio</li>
-                <li><i class="bx bx-check"></i>Las unidades que no uses las podés dejar como crédito</li>
-              </ul>
-<a href="https://admin.sorbydata.com/" class="buy-btn" style="margin-top: 40px; margin-left: 40px">Comenzar</a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 mt-3 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-            <div class="box">
-              <h3>Sorby Independiente</h3>
-              <h4><sup>$</sup>40.000<span>Hasta 400 unidades</span></h4>
-              <ul>
-                <li><i class="bx bx-check"></i> $100 por unidad</li>
-                <li><i class="bx bx-check"></i> Profesionales independientes & emprendedores iniciales</li>
-                <li><i class="bx bx-check"></i>Las unidades que no uses las podés dejar como crédito</li>
-                <li><i class="bx bx-check"></i>Atención personalizada de nuestro equipo técnico</li>
-              </ul>
-<a href="https://admin.sorbydata.com/" class="buy-btn" style="margin-left: 40px;">Comenzar</a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 mt-3 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-            <div class="box">
-              <h3>Sorby Avanzado</h3>
-              <h4><sup>$</sup>200.000<span>Hasta 2500 unidades</span></h4>
-              <ul>
-                <li><i class="bx bx-check"></i> $80 por unidad</li>
-                <li><i class="bx bx-check"></i>Profesionales & emprendedores avanzados</li>
-                <li><i class="bx bx-check"></i>Las unidades que no uses las podés dejar como crédito</li>
-                <li><i class="bx bx-check"></i>Atención personalizada de nuestro equipo técnico</li>
-              </ul>
-<a href="https://admin.sorbydata.com/" class="buy-btn" style="margin-left: 40px;">Comenzar</a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 mt-3 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-            <div class="box">
-              <h3>Sorby Pro</h3>
-              <h4><sup>$</sup>420.000<span>Hasta 6000 unidades</span></h4>
-              <ul>
-<li><i class="bx bx-check"></i> $70 por unidad</li>
-<li><i class="bx bx-check"></i>Profesionales de alto rendimiento & Pymes</li>
-<li style="margin-top: 15px;"><i class="bx bx-check"></i>Las unidades que no uses las podés dejar como crédito</li>
-<li style="margin-top: 5px;"><i class="bx bx-check"></i>Atención personalizada de nuestro equipo técnico</li>
-
-              </ul>
-<a href="https://admin.sorbydata.com/" class="buy-btn" style="margin-top: 0px; margin-left: 40px;">Comenzar</a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Pricing Section -->
    
-    <section id="contact" class="contact">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
-  
-        <div class="section-title">
-          <h2>Quiero que me contacten</h2>
-        </div>
-  
-        <div class="row">
-          <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form method="post" role="form" class="php-email-form" id="contact-form">
-              <div class="row">
-                <div class="form-group col-md-2">
-                  <label for="name">Nombre</label>
-                  <input type="text" name="name" class="form-control" id="name" required="">
-                </div>
-                <div class="form-group col-md-2">
-                  <label for="name">Número</label>
-                  <input type="tel" class="form-control" name="phone" id="numero" required>
-                </div>
-                <div class="form-group col-md-2">
-                  <label for="name">Mail</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="contactPreference">Preferencia de contacto</label>
-                  <select class="form-control" name="contactPreference" id="contactPreference" required>
-                    <option value="indistinto">Indistinto</option>
-                    <option value="email">Correo Electrónico</option>
-                    <option value="phone">Teléfono</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-2">
-                  <br>
-                  <button type="button" 
-                   id="contactButton">Quiero que me contacten</button>
-                </div>
-              </div>
-              
-            <div id="error-message" style="display: none; color: red;">
-            </div>
-            <div id="success-message" style="display: none; color: blue;">
-            </div>
-            </form>
-          </div>
-      </div>
-    </section>
-  
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -417,8 +335,8 @@
             <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#services">Servicios</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#why-us">¿Por qué usar Sorby?</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Precios</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contactanos</a></li>
+            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Precios</a></li> -->
+            
           </ul>
         </div>
 
@@ -451,6 +369,16 @@
   
 </footer><!-- End Footer -->
 
+<script>
+
+$(document).ready(function(){
+  $('#myTab a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+})
+
+</script>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

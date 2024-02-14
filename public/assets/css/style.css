@@ -160,6 +160,8 @@ h6 {
   max-height: 40px;
 }
 
+
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -1920,4 +1922,35 @@ section {
 }
 .whatsapp_float img {
     margin-top: 10px;
+}
+
+/* Estilos para el título de la sección y las pestañas */
+.section-title h2 {
+  color: #305A72; /* Cambie al color deseado para el título de la sección */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para las pestañas */
+#serviceTabs {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+#serviceTabs .nav-item {
+  margin: 0 0.5rem; /* Agrega un pequeño espacio entre las pestañas */
+}
+
+#serviceTabs .nav-link {
+  color: #707070; /* Color de las pestañas inactivas */
+  background-color: transparent;
+  border: none;
+  font-size: 2rem; /* Ajuste el tamaño de fuente según sea necesario */
+}
+
+#serviceTabs .nav-link.active {
+  color: #305A72; /* Color para la pestaña activa */
+  border-bottom: 3px solid #305A72; /* Subrayado para la pestaña activa */
 }

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SorbyData</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon3.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    input[type="email"] {
+  width: 100%; /* Establece el ancho del input al 100% del contenedor padre */
+  padding: 10px; /* Agrega algo de padding para que el texto no esté justo al borde */
+  margin-bottom: 20px; /* Asegura que haya espacio entre el input y el siguiente elemento */
+  border: 1px solid #ccc; /* Añade un borde ligero al input */
+  border-radius: 5px; /* Opcional: agrega bordes redondeados al input */
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadEl = document.querySelector('#load');
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      // // The Firebase SDK is initialized and available here!
+      //
+      // firebase.auth().onAuthStateChanged(user => { });
+      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      // firebase.firestore().doc('/foo/bar').get().then(() => { });
+      // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+      // firebase.messaging().requestPermission().then(() => { });
+      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      // firebase.analytics(); // call to activate
+      // firebase.analytics().logEvent('login_completed');
+      // firebase.performance(); // call to activate
+      //
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      try {
+        let app = firebase.app();
+        let features = [
+          'auth', 
+          'database', 
+          'firestore',
+          'functions',
+          'messaging', 
+          'storage', 
+          'analytics', 
+          'remoteConfig',
+          'performance',
+        ].filter(feature => typeof app[feature] === 'function');
+        loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+      } catch (e) {
+        console.error(e);
+        loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      }
+    });
+  </script> -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto">
+    <a href="index.html">
+        <!-- <img src="assets/img/logo2.png" alt="Sorby Logo" class="img-fluid" style="width: 100px; height: 400px;"> -->
+        SorbyData
+    </a>
+</h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          
+          <!-- <li><a class="nav-link scrollto" href="#why-us">¿Por qué usar Sorby?</a></li> -->
+          
+	  <!-- <li><a class="nav-link scrollto" href="#contact">Contactanos</a></li> -->
+    <!-- <li style="margin-left: 10px"><a class="btn-get-started nav-link scrollto" href="https://admin.sorbydata.com/">Login</a></li> -->
+	
+        
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+            <h1>¡Bienvenido a Sorbydata!</h1>
+          <h2>Unéte a nuestra lista de espera y serás de los primeros en enterarte una vez que lancemos.</h2>
+        
+                <div class="d-flex justify-content-center justify-content-lg-start">
+
+                <form id="myForm" action="https://hooks.zapier.com/hooks/catch/17189200/3qi4c0j/"
+      method="post"
+      enctype="application/x-www-form-urlencoded">
+  <!-- Tus campos de formulario aquí -->
+  <div class="form-group col-md-12">
+    <br> 
+    <input type="hidden" class="form-control" name="tipo" id="tipo" value="SorbyData">
+    <input type="email" class="form-control" name="email" id="email" required style="width: 100%;" placeholder="Ingrese su email...">
+  </div>
+  <div class="form-group col-md-12">
+    <br>
+    <input type="button" id="submitForm"  class="form-control" value="Comenzar">
+  </div>
+  <div id="error-message" style="display: none; color: red;"></div>
+  <div id="success-message" style="display: none; color: white;"></div>
+</form>
+
+<script>
+  document.getElementById('submitForm').addEventListener('click', function(e) {
+    e.preventDefault(); // Detiene la acción predeterminada del formulario
+    var formData = new FormData(document.getElementById('myForm'));
+
+    fetch('https://hooks.zapier.com/hooks/catch/17189200/3qi4c0j/', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {response.json()})
+    .then(data => {
+      console.log(data);
+      // Puedes mostrar un mensaje de éxito o manejar la respuesta como quieras
+      
+      document.getElementById('success-message').style.display = 'block';
+      document.getElementById('success-message').textContent = 'Gracias por sumarte! Ante cualquier duda podes contactarnos a info@sorbydata.com';
+    })
+    .catch(error => {
+      console.error(error);
+      // Manejar el error
+      document.getElementById('error-message').style.display = 'block';
+      document.getElementById('error-message').textContent = 'Hubo un error al enviar tus datos.';
+    });
+  });
+</script>
+
+                  
+                <!-- <a href="#lista-de-espera" class="btn-get-started scrollto">Ingresa tu email</a> -->
+              </div>      
+        </div>
+        <!-- Aquí podrías agregar una imagen o cualquier otro contenido gráfico que consideres apropiado -->
+          </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Lista de Espera Section ======= -->
+  
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+    
+  <a href="https://wa.me/5491159259544?text=Hola, ¿Qué tal? Me gustaría saber más de Sorby." class="whatsapp_float" target="_blank">
+    <img src="assets/img/whatsapp.png" alt="Contacto WhatsApp" style="width:50px;height:50px;">
+  </a>
+
+  <!-- <script src="assets/js/pureconter-vanilla.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+  
+</body>
+
+</html>
