@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "factudata-home",
     "public": "public",
     "ignore": [
       "firebase.json",

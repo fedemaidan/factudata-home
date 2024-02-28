@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16467648345"> </script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16467648345'); </script>
-
   <!-- Google Tag Manager -->
+
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16467648345"> </script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16467648345'); </script>
+
 
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 
@@ -17,6 +18,8 @@
   })(window,document,'script','dataLayer','GTM-595NXMJJ');</script>
   
   <!-- End Google Tag Manager -->
+  
+  
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -130,8 +133,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-            <h1>¡Bienvenido a Sorbydata!</h1>
-          <h2>Unéte a nuestra lista de espera y serás de los primeros en enterarte una vez que lancemos.</h2>
+            <h1>¡Gracias por sumarte a Sorbydata!</h1>
+          <h2>Serás de los primeros en enterarte cuando lancemos nuestra primer versión.</h2>
         
                 <div class="d-flex justify-content-center justify-content-lg-start">
 
@@ -139,7 +142,7 @@
       method="post"
       enctype="application/x-www-form-urlencoded">
   <!-- Tus campos de formulario aquí -->
-  <div class="form-group col-md-12">
+  <!-- <div class="form-group col-md-12">
     <br> 
     <input type="hidden" class="form-control" name="tipo" id="tipo" value="SorbyData">
     <input type="email" class="form-control" name="email" id="email" required style="width: 100%;" placeholder="Ingrese su email...">
@@ -149,7 +152,7 @@
     <input type="button" id="submitForm"  class="form-control" value="Comenzar">
   </div>
   <div id="error-message" style="display: none; color: red;"></div>
-  <div id="success-message" style="display: none; color: white;"></div>
+  <div id="success-message" style="display: block;"></div> -->
 </form>
 
 <script>
@@ -164,8 +167,8 @@
     .then(response => {response.json()})
     .then(data => {
       console.log(data);
-      window.location.href = 'https://sorbydata.com/lista_add.html';
-
+      // Puedes mostrar un mensaje de éxito o manejar la respuesta como quieras
+      
       document.getElementById('success-message').style.display = 'block';
       document.getElementById('success-message').textContent = 'Gracias por sumarte! Ante cualquier duda podes contactarnos a info@sorbydata.com';
     })
