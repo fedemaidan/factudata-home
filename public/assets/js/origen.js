@@ -1,4 +1,4 @@
-// Función para obtener los parámetros de la URL
+// FunciÃ³n para obtener los parÃ¡metros de la URL
 function getURLParameter(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -6,80 +6,104 @@ function getURLParameter(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// Matriz de mensajes [source][campaign]  ==> IMPORTANTE: si bien no es obligatorio la cantidad de campañas por sources si lo es que exista un mensaje "default" para evitar problemas.
+// Matriz de mensajes
 const mensajes = {
     "google": {
-        "default": "¡Bienvenido desde Google! Gestioná las cajas de tu constructora con WhatsApp",
-        "Sorby_Leads_Search_NB": "¡Bienvenido desde Google! Descubrí cómo gestionar mejor tu negocio",
-        "Sorby_Leads_Search_Brand": "¡Bienvenido desde Google! Te ayudamos a mejorar tus finanzas."
+        "default": {
+            "titulo": "Gestiona tus obras con WhatsApp y Google Sheets",
+            "descripcion": "RegistrÃ¡ los ingresos y egresos de tus obras a travÃ©s de Whatsapp y visualizÃ¡ en tiempo real tus costos totales en Google Sheets."
+        },
+        "Sorby_Leads_Search_NB": {
+            "titulo": "Calcula materiales para la construcciÃ³n en 1 minuto",
+            "descripcion": "ObtÃ©n una lista precisa de materiales con precios actualizados y optimiza tu presupuesto con WhatsApp."
+        },
+        "Sorby_Leads_Search_Brand": {
+            "titulo": "Gestiona tus obras con WhatsApp y Google Sheets",
+            "descripcion": "Registra los ingresos y egresos de tus obras a travÃ©s de WhatsApp y visualiza en tiempo real tus costos totales en Google Sheets."
+        }
     },
     "Meta": {
-        "default": "¡Bienvenido desde Facebook! Gestioná las cajas de tu constructora con WhatsApp",
-        "6617261256854": "¡Hola desde Facebook Ads! Sorby tiene la mejor solución para tu constructora.",
-        "campaña2": "¡Te vimos en Facebook! Descubre cómo Sorby puede ayudarte."
+        "default": {
+            "titulo": "Gestiona tus obras con WhatsApp y Google Sheets",
+            "descripcion": "Registra los ingresos y egresos de tus obras a travÃ©s de WhatsApp y visualiza en tiempo real tus costos totales en Google Sheets."
+        },
+        "6617261256854": {
+            "titulo": "Gestiona tus obras con WhatsApp y Google Sheets",
+            "descripcion": "Registra y administra los movimientos de tus obras con facilidad y consulta los costos en tiempo real."
+        }
     },
     "instagram": {
-        "default": "¡Bienvenido desde Instagram! Gestioná las cajas de tu constructora con WhatsApp",
-        "campaña1": "¡Hola desde Instagram Ads! Te mostramos cómo mejorar tu negocio.",
-        "campaña2": "¡Viste Sorby en Instagram! Descubre cómo podemos ayudarte."
+        "default": {
+            "titulo": "Gestiona tus obras con WhatsApp y Google Sheets",
+            "descripcion": "Utiliza WhatsApp para registrar ingresos y egresos y consulta en Google Sheets los costos actualizados."
+        }
     }
 };
 
-// Función para actualizar el contenido dependiendo de la fuente y campaña 
 function actualizarContenido() {
-    var source = getURLParameter('utm_source') || "default"; //Si estos son nulos procede a asignar default para evitar conflictos
-    var campaign = getURLParameter('utm_campaign') || "default";//
+    var source = getURLParameter('utm_source') || "default";
+    var campaign = getURLParameter('utm_campaign') || "default";
 
-    var title = document.getElementById("hero-title"); //Referencia al sector del body a modificar por su ID
-    var description = document.getElementById("hero-description");//
+    var title = document.getElementById("hero-title");
+    var description = document.getElementById("hero-description");
 
-    // Determinar mensaje según source y campaign (Explicacion debajo)
-    var mensaje = (mensajes[source] && mensajes[source][campaign]) ? mensajes[source][campaign] : (mensajes[source] ? mensajes[source]["default"] : "¡Bienvenido! Gestioná tu negocio con WhatsApp.");
+    var mensaje = (mensajes[source] && mensajes[source][campaign])
+        ? mensajes[source][campaign]
+        : (mensajes[source] ? mensajes[source]["default"] : { "titulo": "GestionÃ¡ las cajas de tu constructora con whatsapp", "descripcion": "RegistrÃ¡ los ingresos y egresos de tus obras a travÃ©s de Whatsapp y visualizÃ¡ en tiempo real tus costos totales en Google Sheets." });
+
     //este es el mas complejo
     /*
-    1ra Condicion: mensajes[source] && mensajes[source][campaign]) => ¿hay una fuente (source) y dentro de ella la campaña (campaign) con los parametros de ingresados ?
-    2da condicion: mensajes[source] ? mensajes[source]["default"] : "¡Bienvenido! Gestioná tu negocio con WhatsApp."; => Verifica solo la fuente y la campaña utiliza el default, de no encontrar ni siquiera el source usara el mensaje predeterminado.
+    1ra Condicion: mensajes[source] && mensajes[source][campaign]) => Â¿hay una fuente (source) y dentro de ella la campaÃ±a (campaign) con los parametros de ingresados ?
+    2da condicion: mensajes[source] ? mensajes[source]["default"] : "Â¡Bienvenido! GestionÃ¡ tu negocio con WhatsApp."; => Verifica solo la fuente y la campaÃ±a utiliza el default, de no encontrar ni siquiera el source usara el mensaje predeterminado.
     */
 
-    // Actualizar contenido
-    if (title) title.textContent = mensaje;
-    if (description) description.textContent = "Gracias por visitar nuestro sitio. Registrá los ingresos y egresos de tus obras a través de WhatsApp y visualizá en tiempo real tus costos en Google Sheets.";
+    if (title) title.textContent = mensaje.titulo;
+    if (description) description.textContent = mensaje.descripcion;
 }
 
-// Función para actualizar el enlace de WhatsApp
 function actualizarEnlaceWhatsApp() {
     var source = getURLParameter('utm_source') || "default";
     var campaign = getURLParameter('utm_campaign') || "default";
-    var botonWhatsApp = document.getElementById("proba-sorby");
+    var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
+    var mensajePredeterminado = "Hola, quiero empezar con Sorby";
 
-    if (botonWhatsApp) {
-        var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
-        var mensajePredeterminado = "Hola, quiero empezar con Sorby";
-
-        switch (source) {
-            case "google":
-                mensajePredeterminado = "Hola, vengo de Google (" + campaign + "), quiero saber más sobre Sorby!";
-                break;
-            case "Meta":
-                mensajePredeterminado = "¡Hola! Vi Sorby en Facebook (" + campaign + ") y quiero más info.";
-                break;
-            case "instagram":
-                mensajePredeterminado = "Hola, llegué desde Instagram (" + campaign + "), ¿me cuentas más?";
-                break;
-            default:
-                mensajePredeterminado = "Hola, quiero conocer Sorby.";
-        }
-        botonWhatsApp.href = baseURL + encodeURIComponent(mensajePredeterminado);
+    switch (source) {
+        case "google":
+            if (campaign === "Sorby_Leads_Search_NB") {
+                mensajePredeterminado = "Hola, quiero probar Sorby";
+            } else if (campaign === "Sorby_Leads_Search_Brand") {
+                mensajePredeterminado = "Hola, quiero probar Sorby.";
+            }
+            break;
+        case "Meta":
+            if (campaign === "6617261256854") {
+                mensajePredeterminado = "Hola, quiero probar SorbyData";
+            }
+            break;
+        case "instagram":
+            mensajePredeterminado = "Hola, quiero conocer Sorby.";
+            break;
+        default:
+            mensajePredeterminado = "Hola, quiero conocer Sorby.";
     }
+
+    var enlacesWhatsApp = [
+        document.getElementById("proba-sorby"),
+        document.getElementById("registrateBtn"),
+        document.querySelector(".whatsapp_float")
+    ];
+
+    enlacesWhatsApp.forEach(function (enlace) {
+        if (enlace) {
+            enlace.href = baseURL + encodeURIComponent(mensajePredeterminado);
+        }
+    });
 }
 
-// Función para enviar datos a medida que llegan (pendiente de implementación final)
 function enviarDatos(source, campaign) {
     console.log("Enviando datos:", { source, campaign });
-    // Aquí puedes agregar el envío a un servidor o almacenamiento
 }
 
-// Ejecutar funciones al cargar el documento
 document.addEventListener("DOMContentLoaded", function () {
     var source = getURLParameter('utm_source') || "default";
     var campaign = getURLParameter('utm_campaign') || "default";
@@ -88,3 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarEnlaceWhatsApp();
     enviarDatos(source, campaign);
 });
+
+
+
+//Gracias por visitar nuestro sitio. RegistrÃ¡ los ingresos y egresos de tus obras a travÃ©s de WhatsApp y visualizÃ¡ en tiempo real tus costos en Google Sheets.
+// Actualizar contenido //Calcula los materiales y sus costos de tus obras utilizando solo whatsapp
