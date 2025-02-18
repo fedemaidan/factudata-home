@@ -9,7 +9,7 @@ function getURLParameter(name) {
 // Matriz de mensajes
 const mensajes = {
     "Sorby_Leads_Search_NB": {
-        "titulo": "Calcula materiales para la construcción en 1 minuto",
+        "titulo": "Calculá materiales para la construcción en 1 minuto",
         "descripcion": "Obtén una lista precisa de materiales con precios actualizados y optimiza tu presupuesto con WhatsApp."
     },
     "Sorby_Leads_Search_Brand": {
