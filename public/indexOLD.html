@@ -49,9 +49,8 @@
     <link href="assets/img/favicon3.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts --> 
-    <link rel="stylesheet" href="/assets/fonts/fontsorby.css">
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -133,19 +132,22 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 d-flex flex-column justify-content-center pt-12 pt-lg-0 order-2 order-lg-12">
-                    <!-- Eliminado el atributo data-aos="fade-up" -->
-                    <h1 id="hero-title">Gestioná las cajas de tu constructora con whatsapp</h1>
-                    <h2 id="hero-description">Registrá los ingresos y egresos de tus obras a través de Whatsapp y visualizá en tiempo real tus costos totales en Google Sheets.</h2>
-
+                <div class="col-lg-12 d-flex flex-column justify-content-center pt-12 pt-lg-0 order-2 order-lg-12" data-aos="fade-up" data-aos-delay="200">
+                    <h1 id="hero-title">Gestioná las cajas de tu constructora con whatsapp</h1> <!--CAMBIO de referencia al ID creado hero-title-->
+                    <h2 id="hero-description">Registrá los ingresos y egresos de tus obras a través de Whatsapp y visualizá en tiempo real tus costos totales en Google Sheets.</h2><!--CAMBIO de referencia al ID creado hero-title-->
                     <div class="d-flex justify-content-center justify-content-lg-start">
+                        <!-- <a href="https://admin.sorbydata.com/" class="btn-get-started scrollto">¡Probá Sorby!</a> -->
                         <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
                         <a href="https://www.youtube.com/watch?v=p_wVV9ENjzA" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Qué es Sorby en 40 segundos </span></a>
                     </div>
                 </div>
+                <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/img/h_verde.svg" class="img-fluid animated" alt="" style="margin-top: -100px; width: 85%;">
+                </div> -->
             </div>
         </div>
     </section>
+
     <!-- End Hero -->
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
@@ -394,6 +396,7 @@
             <p>Consulta por planes a medida.</p>
         </div>
     </section><!-- End Pricing Section -->
+    
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -480,6 +483,8 @@
     <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" class="whatsapp_float" target="_blank">
         <img src="assets/img/whatsapp.png" alt="Contacto WhatsApp" style="width:50px;height:50px;">
     </a>
+
+
     <!-- Lectura de fuente de origen y modificacion de mensajes de bienvenida y texto de mensaje WP-->
     <script src="assets/js/origen.js" charset="UTF-8"></script>
 </body>
