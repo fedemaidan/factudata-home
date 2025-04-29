@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16467648345"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'AW-16467648345');</script>
+   
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-595NXMJJ');</script>
+
+    <!-- End Google Tag Manager -->
+    <!-- Meta Pixel Code -->
+    <!-- Borrado el 23/4 por ale -->
+    <!-- End Meta Pixel Code -->
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="facebook-domain-verification" content="bhyz3ywqp7uj9uwsa4gz35hdk7uak4" />
+    <title>Sorby Data</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon3.png" rel="icon">
+
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="/assets/fonts/fontsorby.css">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-595NXMJJ"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZYWr3jGf1WM6Wry1YJU67plv16lcAWeA",
+            authDomain: "factudata-home.firebaseapp.com",
+            projectId: "factudata-home",
+            storageBucket: "factudata-home.appspot.com",
+            messagingSenderId: "214267828048",
+            appId: "1:214267828048:web:43df2ccd8830ca1ec17e55",
+            measurementId: "G-H1G436VC5Q"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+
+        document.querySelector('#proba-sorby').addEventListener('click', function (e) {
+            const analytics = getAnalytics(app);
+            logEvent(analytics, 'go_to_admin', { name: 'proba_sorby' });
+        });
+
+    </script>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto">
+                <a href="https://sorbydata.com/">
+                    <img src="assets/img/logo2.png" alt="Sorby Logo" class="img-fluid" style="width: 100px; height: 400px;">
+                </a>
+            </h1>
+
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="https://sorbydata.com/empresas.html">Empresas</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
+                    <li><a class="nav-link scrollto" href="#why-us">¿Por qué usar Sorby?</a></li>
+                    <li><a class="nav-link scrollto active" href="#pricing">Precios</a></li>
+
+                    <li style="margin-left: 10px"><a id="registrateBtn" class="btn-get-started nav-link scrollto" href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar">Registrate gratis</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 d-flex flex-column justify-content-center pt-12 pt-lg-0 order-2 order-lg-12">
+                    <!-- Eliminado el atributo data-aos="fade-up" -->
+                    <h1 id="hero-title">Gestioná las cajas de tu constructora con whatsapp</h1>
+                    <h2 id="hero-description">Registrá los ingresos y egresos de tus obras a través de Whatsapp y visualizá en tiempo real tus costos totales en Google Sheets.</h2>
+
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
+                        <a href="https://www.youtube.com/watch?v=p_wVV9ENjzA" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Qué es Sorby en 40 segundos </span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero -->
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Servicios</h2>
+                <!--  <ul class="nav nav-tabs" id="serviceTabs">
+                    <li class="nav-item">
+                      <h3><a class="nav-link active" data-bs-toggle="tab" href="#employees">Soy empleado</a></h3>
+                    </li>
+                    <li class="nav-item">
+                      <h3><a class="nav-link" data-bs-toggle="tab" href="#businessOwners">Soy dueño</a></h3>
+                    </li>
+                    <li class="nav-item">
+                      <h3><a class="nav-link" data-bs-toggle="tab" href="#accountants">Contador/Finanzas</a></h3>
+                    </li>
+                  </ul>-->
+            </div>
+
+            <div class="tab-content" id="serviceTabsContent">
+                <div class="tab-pane fade show active" id="employees">
+
+                    <div class="row">
+
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-whatsapp"></i></div>
+                                <h4><a href="">Guardá tus comprobantes con whatsapp</a></h4>
+                                <p>
+                                    Registrá tus comprobantes solo envíando un whatsapp. Sorby se encarga del resto.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-receipt"></i></div>
+                                <h4><a href="">Extraemos los datos del comprobante automáticamente</a></h4>
+                                <p>
+                                    Utilizando IA extraemos los datos que vos necesites del comprobante automáticamente.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-bookmark-check"></i></div>
+                                <h4><a href="">Controlá tus gastos en tiempo real</a></h4>
+                                <p>
+                                    Visualiza en tiempo real el costo del proyecto en nuestra app y mantené sincronzadas automáticamente las planillas de Google Sheets que vos quieras.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                          <img style="width: 70%; height: auto; padding: 10px; border-radius: 20px;" src="assets/img/sorby_chat.png"/>
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="businessOwners">
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-bookmark-check"></i></div>
+                                <h4><a href="">Automatizá el control de los gastos</a></h4>
+                                <p>
+                                    Establezca límites de categoría y/o politicas de gastos y Sorby se encarga de validar que se cumplan automáticamente.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-emoji-smile"></i></div>
+                                <h4><a href="">Equipo enfocado</a></h4>
+                                <p>
+                                    Evitá que tu equipo pierda el tiempo en ejecutar tareas innecesariamente.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-x-circle"></i></div>
+                                <h4><a href="">Detectá irregularidades</a></h4>
+                                <p>
+                                    Sorby detecta automáticamente situaciones irregulares para ayudarte a tener un control eficiente.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                            <img style="width: 100%; height: auto; padding: 10px; border-radius: 20px;" src="assets/img/dashboard.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="accountants">
+                    <div class="row">
+
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-currency-dollar"></i></div>
+                                <h4><a href="">IVA automático</a></h4>
+                                <p>
+                                    Discrimina el IVA automáticamente con Sorby.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-bookmark-check"></i></div>
+                                <h4><a href="">Factura A</a></h4>
+                                <p>
+                                    Mejora tu eficiencia fiscal utilizando todos los comprobantes para reducir el pago de IVA y Ganancias validando automaticamente que la factura esté bien hecha a nombre de la empresa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                            <img style="width: 70%; height: auto; padding: 10px; border-radius: 20px;" src="assets/img/logo-afip.jpg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    </div>
+    </section><!-- End Services Section -->
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us section-bg" style="padding-top: 0px; padding-bottom: 0px;">
+        <div class="container-fluid aos-init aos-animate" data-aos="fade-up">
+
+            <div class="row">
+
+                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+                    <div class="content">
+                        <h3><strong>¿Por qué me sirve usar Sorby?</strong></h3>
+                    </div>
+
+                    <div class="accordion-list">
+                        <ul>
+                            <li>
+                                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span>Ahorrá tiempo <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                                    <p>
+                                        Ayuda a tu equipo a concentrarse en lo importante y que no pierdan más tiempo cargando comprobantes.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Mantené a tus clientes contentos <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                                    <p>
+                                        Sabemos los difícil que es ganarte la confianza de tus clientes. Por eso, es importante cuidar la relación fomentando la transparencia. Con Sorby sincronizamos una carpeta de Google Drive donde quedan alojados los comprobantes del proyecto y un Google Sheets con todos los movimientos que registres.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Cuidá las finanzas de tus obras <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                                    <p>
+                                        Siempre tendrás visibilidad en tiempo real del costo de tu proyecto valorizado en dólares, pesos o el índice CAC.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span>Sin papel <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                                    <p>
+                                        Estando en medio de una obra es tedioso andar guardando papeles, por eso con Sorby el proceso de carga de comprobantes se hace completamente digital para asegurarnos que no perdemos ningun comprobante.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/skills.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+                 -->
+                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/m_verde.svg");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+
+            </div>
+
+        </div>
+    </section><!-- End Why Us Section -->
+    <!-- ======= Compatibility Section ======= -->
+    <section id="pricing" class="pricing">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Planes de Suscripción</h2>
+                <p>Costo de implementación: 2 cuotas de tu plan.</p>
+                <p><b>Pago anual: Aprovecha el pago anual para acceder a un descuento del 10% y te bonificamos el costo de implementación</b></p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="box">
+                        <h3>Básico</h3>
+                        <h4><sup>$</sup>200.000<span>por mes</span></h4>
+                        <ul>
+                            <li><i class="bx bx-check"></i> Hasta 5 obras y 5 usuarios</li>
+                            <li><i class="bx bx-check"></i> Gestión de caja a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Gestión de notas de pedido a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+                            <li><i class="bx bx-check"></i> Planillas estándar (no modificables)</li>
+                            <li><i class="bx bx-check"></i> Soporte vía bot de WhatsApp</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Comenzar</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="box featured">
+                        <h3>Intermedio</h3>
+                        <h4><sup>$</sup>300.000<span>por mes</span></h4>
+                        <ul>
+                            <li><i class="bx bx-check"></i> Hasta 10 obras y 10 usuarios</li>
+                            <li><i class="bx bx-check"></i> Gestión de caja a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Gestión de notas de pedido a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+                            <li><i class="bx bx-check"></i> Soporte personalizado directo por WhatsApp con un humano</li>
+                            <li><i class="bx bx-check"></i> Personalización de plantillas</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Comenzar</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                    <div class="box">
+                        <h3>Premium</h3>
+                        <h4><sup>$</sup>500.000<span>por mes</span></h4>
+                        <ul>
+                            <li><i class="bx bx-check"></i> Hasta 20 obras y 20 usuarios</li>
+                            <li><i class="bx bx-check"></i> Gestión de caja a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Gestión de notas de pedido a través de WhatsApp</li>
+                            <li><i class="bx bx-check"></i> Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+                            <li><i class="bx bx-check"></i> Personalización de plantillas</li>
+                            <li><i class="bx bx-check"></i> Integración con sistemas ERP</li>
+                            <li><i class="bx bx-check"></i> Soporte personalizado directo por WhatsApp con un humano</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Comenzar</a>
+                    </div>
+                </div>
+            </div>
+            <p>Consulta por planes a medida.</p>
+        </div>
+    </section><!-- End Pricing Section -->
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Sorby Data</h3>
+                        <p>
+                            Avenida Del Libertador 1010 <br>
+                            Vicente López<br>
+                            Argentina <br><br>
+                            <strong>Email:</strong> info@sorbydata.com<br>
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Información Útil</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://sorbydata.com/empresas">Para empresas</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#services">Servicios</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#why-us">¿Por qué usar Sorby?</a></li>
+                            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Precios</a></li> -->
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links" style="display: none;">
+                        <!-- Agregué "style="display: none;"" aquí para ocultar este bloque -->
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Nuestras Redes Sociales</h4>
+                        <p>Tenemos más info para darte. ¡Seguinos!</p>
+                        <div class="social-links mt-3">
+                            <!-- <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a> -->
+                            <a href="https://www.instagram.com/sorbydata/?igshid=NjIwNzIyMDk2Mg%3D%3D" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/99806846/admin/feed/posts/?feedType=following" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </footer><!-- End Footer -->
+
+    <script>
+
+        $(document).ready(function () {
+            $('#myTab a').on('click', function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        })
+
+    </script>
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" class="whatsapp_float" target="_blank">
+        <img src="assets/img/whatsapp.png" alt="Contacto WhatsApp" style="width:50px;height:50px;">
+    </a>
+    <!-- Lectura de fuente de origen y modificacion de mensajes de bienvenida y texto de mensaje WP-->
+    <script src="assets/js/origen.js" charset="UTF-8"></script>
+</body>
+
+</html>
