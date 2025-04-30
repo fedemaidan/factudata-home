@@ -117,10 +117,14 @@
                     <li><a class="nav-link scrollto" href="#why-us">¿Por qué usar Sorby?</a></li>
                     <li><a class="nav-link scrollto active" href="#pricing">Precios</a></li>
 
-                    <li style="margin-left: 10px"><a id="registrateBtn" class="btn-get-started nav-link scrollto" href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar">Registrate gratis</a></li>
+                    <li style="margin-left: 10px">
+                        <a id="registrateBtn" class="btn-get-started nav-link scrollto" href="#cliente-form">Registrate gratis</a>
+                    </li>
+
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-
+            </nav>
         </div>
     </header><!-- End Header -->
     <!-- ======= Hero Section ======= -->
@@ -133,7 +137,7 @@
                     <h2 id="hero-description">Registrá los ingresos y egresos de tus obras a través de Whatsapp y visualizá en tiempo real tus costos totales en Google Sheets.</h2>
 
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
+                        <a href="#cliente-form" class="btn-get-started scrollto">¡Probá Sorby!</a>
                         <a href="https://www.youtube.com/watch?v=p_wVV9ENjzA" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Qué es Sorby en 40 segundos </span></a>
                     </div>
                 </div>
@@ -388,6 +392,19 @@
             <p>Consulta por planes a medida.</p>
         </div>
     </section><!-- End Pricing Section -->
+    <!-- Begin client form Section-->
+    <section id="cliente-formulario">
+        <form id="cliente-form">
+            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono (obligatorio)" required>
+            <input type="email" name="mail" id="mail" placeholder="Mail (opcional)">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre (opcional)">
+        </form>
+
+        <!-- Botón fuera del formulario -->
+        <button id="enviarFormulario">Enviar</button>
+    </section>
+    <!-- end client form Section-->
+
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -471,11 +488,13 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
-    <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" class="whatsapp_float" target="_blank">
+    <a href="#cliente-form" class="whatsapp_float" id="whatsappBtn">
         <img src="assets/img/whatsapp.png" alt="Contacto WhatsApp" style="width:50px;height:50px;">
     </a>
+
     <!-- Lectura de fuente de origen y modificacion de mensajes de bienvenida y texto de mensaje WP-->
-    <script src="assets/js/origen.js" charset="UTF-8"></script>
+    <!-- <script src="assets/js/origen.js" charset="UTF-8"></script> -->
+    <script src="assets/js/cliHandler.js"></script>
 </body>
 
-</html>
+    </html>

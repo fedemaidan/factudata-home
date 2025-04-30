@@ -1954,3 +1954,45 @@ section {
   color: #305A72; /* Color para la pestaña activa */
   border-bottom: 3px solid #305A72; /* Subrayado para la pestaña activa */
 }
+
+/* form de datos del cliente*/
+#cliente-formulario {
+    background-color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+}
+
+#cliente-form input {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0.5rem auto;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s ease;
+}
+
+    #cliente-form input:focus {
+        border-color: #49c2f0;
+        outline: none;
+    }
+
+#enviarFormulario {
+    background-color: #49c2f0;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+    #enviarFormulario:hover {
+        background-color: #3aa9d6;
+    }

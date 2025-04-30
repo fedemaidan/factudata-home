@@ -81,7 +81,6 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-
         document.querySelector('#proba-sorby').addEventListener('click', function (e) {
             const analytics = getAnalytics(app);
             logEvent(analytics, 'go_to_admin', { name: 'proba_sorby' });
@@ -123,7 +122,7 @@
                     <h2 id="hero-description">Registrá los ingresos y egresos de tus obras a través de Whatsapp y visualizá en tiempo real tus costos totales en Google Sheets.</h2>
 
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="https://api.whatsapp.com/send?phone=5491128233360&text=Sorby,%20quiero%20comenzar" target="_blank" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
+                        <a href="#cliente-form" class="btn-get-started scrollto" id="proba-sorby">¡Probá Sorby!</a>
                         <a href="https://www.youtube.com/watch?v=p_wVV9ENjzA" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Qué es Sorby en 40 segundos </span></a>
                     </div>
                 </div>
