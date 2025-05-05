@@ -16,18 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const mail = document.getElementById("mail").value.trim();
     const nombre = document.getElementById("nombre").value.trim();
     const fbclid = new URLSearchParams(window.location.search).get("fbclid");
-
+    const utm_campaign = new URLSearchParams(window.location.search).get("utm_campaign");
+    
     const datos = {
         telefono,
         mail,
         nombre,
-        fbclid
+        fbclid,
+        utm_campaign
     };
 
     console.log("Enviando datos a la API:", datos);
 
     try {
-        const response = await fetch("https://api.staging.sorbydata.com/api", {
+        const response = await fetch("http://localhost:3000/api/CliFormPag", {
         method: "POST",
     headers: {
         "Content-Type": "application/json"
