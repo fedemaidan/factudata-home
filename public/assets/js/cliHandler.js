@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Enviando datos a la API:", datos);
 
     try {
-        const response = await fetch("http://localhost:3000/api/CliFormPag", {
+        const response = await fetch("https://api-sorbydata.up.railway.app/api/CliFormPag", {
         method: "POST",
     headers: {
         "Content-Type": "application/json"

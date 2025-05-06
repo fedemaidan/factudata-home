@@ -393,16 +393,17 @@
         </div>
     </section><!-- End Pricing Section -->
     <!-- Begin client form Section-->
-    <section id="cliente-formulario">
-        <form id="cliente-form">
-            <input type="tel" name="telefono" id="telefono" placeholder="Teléfono (obligatorio)" required>
-            <input type="email" name="mail" id="mail" placeholder="Mail (opcional)">
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre (opcional)">
-        </form>
-
-        <!-- Botón fuera del formulario -->
-        <button id="enviarFormulario">Enviar</button>
-    </section>
+    <section id="cliente-formulario" style="display: flex; justify-content: center; padding: 2rem;">
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 400px; width: 100%;">
+          <!-- título va acá -->
+          <form id="cliente-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <input type="tel" autocomplete="tel"  name="telefono" id="telefono" placeholder="📞 Teléfono (obligatorio)" required class="form-control">
+            <input type="email" autocomplete="email"  name="mail" id="mail" placeholder="📧 Mail (opcional)" class="form-control">
+            <input type="text" name="nombre" autocomplete="name" id="nombre" placeholder="👤 Nombre (opcional)" class="form-control">
+            <button id="enviarFormulario" class="btn btn-primary" style="margin-top: 1rem;">Enviar</button>
+          </form>
+        </div>
+      </section>
     <!-- end client form Section-->
 
     </main><!-- End #main -->
