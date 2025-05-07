@@ -38,23 +38,25 @@ function actualizarContenido() {
 }
 
 function actualizarEnlaceWhatsApp() {
-    var campaign = getURLParameter('utm_campaign') || "default";
-    var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
+    var campaign = getURLParameter('utm_campaign') || "";
+    var fbclid = getURLParameter('fbclid') || "";
+    // var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
+    var baseURL = "http://api-sorbydata.up.railway.app/api/lead/redirect_whatsapp?fbclid="+fbclid+"&utm_campaign=" + campaign;
     var mensajePredeterminado = "Hola, quiero empezar con Sorby";
 
-    switch (campaign) {
-        case "Sorby_Leads_Search_NB":
-            mensajePredeterminado = "Hola, quiero probar Sorby";
-            break;
-        case "Sorby_Leads_Search_Brand":
-            mensajePredeterminado = "Hola, quiero probar Sorby.";
-            break;
-        case "6617261256854":
-            mensajePredeterminado = "Hola, quiero probar SorbyData";
-            break;
-        default:
-            mensajePredeterminado = "Hola, quiero conocer Sorby.";
-    }
+    // switch (campaign) {
+    //     case "Sorby_Leads_Search_NB":
+    //         mensajePredeterminado = "Hola, quiero probar Sorby";
+    //         break;
+    //     case "Sorby_Leads_Search_Brand":
+    //         mensajePredeterminado = "Hola, quiero probar Sorby.";
+    //         break;
+    //     case "6617261256854":
+    //         mensajePredeterminado = "Hola, quiero probar SorbyData";
+    //         break;
+    //     default:
+    //         mensajePredeterminado = "Hola, quiero conocer Sorby.";
+    // }
 
     var enlacesWhatsApp = [
         document.getElementById("proba-sorby"),
@@ -64,7 +66,8 @@ function actualizarEnlaceWhatsApp() {
 
     enlacesWhatsApp.forEach(function (enlace) {
         if (enlace) {
-            enlace.href = baseURL + encodeURIComponent(mensajePredeterminado);
+            // enlace.href = baseURL + encodeURIComponent(mensajePredeterminado);
+            enlace.href = baseURL
         }
     });
 }
