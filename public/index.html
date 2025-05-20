@@ -40,7 +40,6 @@
     <!-- End Google Tag Manager -->
     <!-- Meta Pixel Code -->
     <script>
-        const externalId = sha256("549112345678"); 
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
@@ -51,9 +50,7 @@
             s.parentNode.insertBefore(t, s);
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '564852612609427', {
-            external_id: externalId,
-        });
+        fbq('init', '564852612609427');
         fbq('track', 'PageView');
     </script>
     <noscript>
