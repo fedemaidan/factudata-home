@@ -6,6 +6,14 @@ function getURLParameter(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+
 // Matriz de mensajes
 const mensajes = {
     "Sorby_Leads_Search_NB": {
@@ -40,8 +48,11 @@ function actualizarContenido() {
 function actualizarEnlaceWhatsApp() {
     var campaign = getURLParameter('utm_campaign') || "";
     var fbclid = getURLParameter('fbclid') || "";
+    const fbp = getCookie('_fbp') || "";
+    const userAgent = navigator.userAgent;
+
     // var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
-    var baseURL = "http://api-sorbydata.up.railway.app/api/lead/redirect_whatsapp?fbclid="+fbclid+"&utm_campaign=" + campaign;
+    var baseURL = "http://api-sorbydata.up.railway.app/api/lead/redirect_whatsapp?fbclid="+fbclid+"&utm_campaign=" + campaign + "&fbp=" + fbp + "&userAgent=" + userAgent;
     var mensajePredeterminado = "Hola, quiero empezar con Sorby";
 
     // switch (campaign) {
