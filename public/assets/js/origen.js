@@ -52,7 +52,7 @@ function actualizarEnlaceWhatsApp() {
     const userAgent = navigator.userAgent;
 
     // var baseURL = "https://api.whatsapp.com/send?phone=5491128233360&text=";
-    var baseURL = "http://api-sorbydata.up.railway.app/api/lead/redirect_whatsapp?fbclid="+fbclid+"&utm_campaign=" + campaign + "&fbp=" + fbp + "&userAgent=" + userAgent;
+    var baseURL = "http://137.184.68.197:3004/api/lead/redirect_whatsapp?fbclid="+fbclid+"&utm_campaign=" + campaign + "&fbp=" + fbp + "&userAgent=" + userAgent;
     var mensajePredeterminado = "Hola, quiero empezar con Sorby";
 
     // switch (campaign) {
