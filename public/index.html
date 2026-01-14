@@ -744,6 +744,11 @@ const menuToggle = document.querySelector('.menu-toggle');
         if (parts.length === 2) return parts.pop().split(';').shift();
         return null;
       }
+
+      function setCookie(name, value, days = 90) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+      }
     
       function actualizarEnlaceWhatsApp() {
         const campaign = getURLParameter('utm_campaign') || "";
