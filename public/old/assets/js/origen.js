@@ -45,7 +45,7 @@ function actualizarContenido() {
     if (description) description.textContent = mensaje.descripcion;
 }
 
-function actualizarEnlaceWhatsApp() {
+function actualizarEnlaceWhatsApp2) {
     var campaign = getURLParameter('utm_campaign') || "";
     var fbclid = getURLParameter('fbclid') || "";
     const fbp = getCookie('_fbp') || "";
