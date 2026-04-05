@@ -350,7 +350,7 @@
 
         <div class="plan" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
           <img src="img/plan-avanzado.png" alt="">
-          <h4>Plan Avanzado</h4>
+          <h4>Plan Intermedio</h4>
           <p class="plan-desc">Empresas que tienen equipos en calle y necesitan mejorar la comunicación entre obras y administración.</p>
           <p class="precio">$375.000 <span>/mes</span></p>
           <ul>
@@ -765,9 +765,129 @@ const menuToggle = document.querySelector('.menu-toggle');
     
         const redirectURL = `http://137.184.68.197:3051/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
         
+        // const redirectURL = `http://localhost:3003/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
+
+        // Propagar variante del A/B test para atribución
+        // Prioridad: cookie (sesiones reales) → window._sbVariante (modo QA con ?sb_variante=)
+        const varianteAB = getCookie('sb_lp_variante') || window._sbVariante || '';
+        const finalURL = varianteAB ? redirectURL + `&variante=${encodeURIComponent(varianteAB)}` : redirectURL;
+        
         // Abrir en la misma ventana para garantizar que el redirect se complete
+        window.location.href = finalURL;
+      }
+
+      function irACalendario(event) {
+        event.preventDefault();
+
+        var campaign = getURLParameter('utm_campaign') || "";
+        var fbclid = getURLParameter('fbclid') || "";
+        var fbp = getCookie('_fbp') || "";
+        var userAgent = navigator.userAgent;
+        var fbc = getCookie('_fbc') || "";
+
+        if (!fbc && fbclid) {
+          fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+          setCookie('_fbc', fbc);
+        }
+
+        // GTM — misma señal de tracking que el botón de WhatsApp
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'ir_a_calendario', variante: 'B', test: 'landing_agenda_directo' });
+
+        var redirectURL = 'https://api.sorbydata.com/api/agendar?v=B' +
+        // var redirectURL = 'http://localhost:3003/api/agendar?v=B' +
+          '&fbc=' + encodeURIComponent(fbc) +
+          '&fbclid=' + encodeURIComponent(fbclid) +
+          '&utm_campaign=' + encodeURIComponent(campaign) +
+          '&fbp=' + encodeURIComponent(fbp) +
+          '&userAgent=' + encodeURIComponent(userAgent);
+
         window.location.href = redirectURL;
       }
+    </script>
+    <script>
+      // ─── A/B Test: landing_agenda_directo ─────────────────────────────────────
+      // Variante A (50%): CTAs a WhatsApp — sin cambios
+      // Variante B (50%): todos los CTAs apuntan al calendario directo
+
+      function aplicarVarianteB() {
+        // 1. Todos los botones con clase .cta-whatsapp → agenda directa
+        document.querySelectorAll('.cta-whatsapp').forEach(function (el) {
+          el.href = '#';
+          el.setAttribute('onclick', 'irACalendario(event)');
+          el.innerHTML = '<i class="fa fa-calendar" style="margin-right: 5px; font-size: .9em;"></i>Agendá gratis';
+        });
+
+        // 2. Nav item "Probalo en 1 minuto" → "Agendá gratis"
+        var navLink = document.querySelector('#mainNavList a[href="#proba-sorby"]');
+        if (navLink) navLink.textContent = 'Agendá gratis';
+
+        // 3. Sección #proba-sorby — textos
+        var seccion = document.getElementById('proba-sorby');
+        if (seccion) {
+          var h2span = seccion.querySelector('h2.pre-titulo span');
+          if (h2span) h2span.textContent = 'Agenda tu demo';
+          var h3 = seccion.querySelector('h3');
+          if (h3) h3.innerHTML = 'Agendá una <span>demo gratis:</span>';
+          var p = seccion.querySelector('.contenido p');
+          if (p) p.innerHTML = 'Hablá con el equipo directo. <span>Demo de 15 min, gratis y sin compromiso</span>';
+        }
+
+        // 4. FAQ #7 — link inline dentro del texto de respuesta
+        document.querySelectorAll('.accordion-heading').forEach(function (heading) {
+          if (/probarlo sin registrarme/i.test(heading.textContent)) {
+            var content = heading.nextElementSibling;
+            if (content && content.querySelector('p')) {
+              content.querySelector('p').innerHTML =
+                'Sí. <a href="#" onclick="irACalendario(event)"><strong>Agendá una demo gratuita de 15 minutos</strong></a> ' +
+                'y el equipo te muestra cómo funciona para tu caso. Gratis, sin registro y sin compromiso.';
+            }
+          }
+        });
+
+        // 5. Link "Probalo en 1 minuto" en sección de características → agenda directa
+        document.querySelectorAll('a[href="#proba-sorby"]').forEach(function (el) {
+          if (/Probalo en 1 minuto/i.test(el.textContent)) {
+            el.href = '#';
+            el.setAttribute('onclick', 'irACalendario(event)');
+            el.innerHTML = '<img class="cta-gratis" src="img/gratis.png" alt="">' +
+              '<i class="fa fa-calendar" style="margin-right: 5px;"></i> Agendá gratis';
+          }
+        });
+      }
+
+      // ─── Inicialización ───────────────────────────────────────────────────────
+      (function () {
+        var LANDING_AB_PESO_B = 0.5;
+        var COOKIE_NAME = 'sb_lp_variante';
+        //var API_BASE = 'https://api.sorbydata.com';
+        var API_BASE = 'http://localhost:3003';
+
+        // ?sb_variante=A|B en la URL fuerza la variante (útil para QA/testing)
+        var forzada = getURLParameter('sb_variante').toUpperCase();
+        var variante = (forzada === 'A' || forzada === 'B') ? forzada : getCookie(COOKIE_NAME);
+        if (!variante) {
+          variante = Math.random() < LANDING_AB_PESO_B ? 'B' : 'A';
+        }
+        // No guardar en cookie si viene forzada por URL (permite probar sin "quedar" en esa variante)
+        if (!forzada) {
+          setCookie(COOKIE_NAME, variante, 90);
+        }
+        // Exponer en variable global para que irAWhatsApp/irACalendario puedan leerla
+        // incluso en modo QA (?sb_variante=A) donde la cookie no se guarda
+        window._sbVariante = variante;
+
+        // Contar visita por variante (fire-and-forget, no bloquea rendering)
+        fetch(API_BASE + '/api/agendar/landing-visit?v=' + variante, { method: 'POST' }).catch(function () {});
+
+        // GTM: para análisis en Google Analytics / Tag Manager
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'ab_test_asignado', variante: variante, test: 'landing_agenda_directo' });
+
+        if (variante === 'B') {
+          aplicarVarianteB();
+        }
+      })();
     </script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
