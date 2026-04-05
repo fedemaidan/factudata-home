@@ -878,7 +878,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         window._sbVariante = variante;
 
         // Contar visita por variante (fire-and-forget, no bloquea rendering)
-        fetch(API_BASE + '/api/agendar/landing-visit?v=' + variante, { method: 'POST' }).catch(function () {});
+        fetch(API_BASE + '/api/agendar/landing-visit?v=' + variante, { method: 'POST', mode: 'no-cors' }).catch(function () {});
 
         // GTM: para análisis en Google Analytics / Tag Manager
         window.dataLayer = window.dataLayer || [];
