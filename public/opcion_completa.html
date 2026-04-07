@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sorby - Operacion diaria de obra desde WhatsApp</title>
+
+  <meta name="description" content="Sorby organiza gastos, notas de pedido, remitos, materiales y presupuestos de obra desde WhatsApp, con panel online y Google Drive del cliente.">
+  <meta name="keywords" content="Sorby, gastos de obra, WhatsApp, notas de pedido, remitos, stock, materiales, presupuestos, Google Drive, constructoras">
+  <meta name="author" content="Sorby Data">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sorby - Gestiona la operacion diaria de obra desde WhatsApp">
+  <meta property="og:description" content="Gastos, pedidos, remitos, materiales y control presupuestario en una operacion simple para constructoras.">
+  <meta property="og:url" content="https://sorbydata.com/opcion_completa.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.cdnfonts.com/css/codec-cold" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/css/switzer.css" type="text/css" media="all">
+  <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/splide.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
+  <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+  <style>
+    :root {
+      --sorby-celeste: #00B2D4;
+      --sorby-teal: #0097B2;
+      --sorby-azul: #1E4469;
+      --sorby-verde: #2DC197;
+      --sorby-gris: #EEF0F5;
+      --sorby-blanco: #F6F6F6;
+      --sorby-texto: #505A5F;
+    }
+
+    .home.home-completa {
+      background-image: linear-gradient(115deg, rgba(30, 68, 105, 0.98), rgba(0, 151, 178, 0.95)), url(img/bg-1.png);
+      background-size: cover;
+      background-position: center right;
+    }
+
+    .home-completa .home-texto-1 {
+      max-width: 620px;
+    }
+
+    .home-completa .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #d1faff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-family: "Switzer-Variable";
+      font-size: 1.25em;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 20px;
+    }
+
+    .hero-resumen {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+      max-width: 620px;
+    }
+
+    .hero-resumen .pill {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+
+    .hero-resumen .pill h4 {
+      font-size: 1.9em;
+      color: #d1faff;
+      margin-bottom: 6px;
+    }
+
+    .hero-resumen .pill p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 1.45em;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .modulos-producto,
+    .para-quien,
+    .control-capa {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 120px 0;
+    }
+
+    .modulos-producto {
+      background: white;
+    }
+
+    .para-quien {
+      background: var(--sorby-gris);
+      background-image: url(img/bg-2.png);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .control-capa {
+      background: linear-gradient(140deg, #183754 0%, #1E4469 52%, #0097B2 100%);
+    }
+
+    .modulos-producto .container,
+    .para-quien .container,
+    .control-capa .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modulos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 18px;
+    }
+
+    .modulo-card {
+      background: white;
+      border: 1px solid rgba(0, 151, 178, 0.12);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 32px rgba(30, 68, 105, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modulo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--sorby-celeste), var(--sorby-verde));
+    }
+
+    .modulo-card .icono {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: rgba(0, 178, 212, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .modulo-card .icono img {
+      max-width: 30px;
+    }
+
+    .modulo-card h4 {
+      color: var(--sorby-teal);
+      font-size: 2.4em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .modulo-card p {
+      font-size: 1.6em;
+      color: var(--sorby-texto);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .modulo-card ul {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .modulo-card li {
+      font-size: 1.45em;
+      color: var(--sorby-azul);
+      font-weight: 600;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .modulo-card li span {
+      color: var(--sorby-verde);
+      margin-top: 1px;
+    }
+
+    .perfiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      margin-top: 20px;
+    }
+
+    .perfil-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(30, 68, 105, 0.08);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 34px rgba(30, 68, 105, 0.08);
+    }
+
+    .perfil-card .numero {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: var(--sorby-azul);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Switzer-Variable";
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .perfil-card h4 {
+      color: var(--sorby-teal);
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .perfil-card p {
+      color: var(--sorby-texto);
+      font-size: 1.6em;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .perfil-card .resumen {
+      display: grid;
+      gap: 10px;
+    }
+
+    .perfil-card .resumen div {
+      background: rgba(0, 151, 178, 0.06);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--sorby-azul);
+      font-size: 1.4em;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .control-capa .pre-titulo span,
+    .control-capa h3,
+    .control-capa p {
+      color: white;
+    }
+
+    .control-capa h3 span {
+      color: #d1faff;
+      display: block;
+    }
+
+    .control-kicker {
+      max-width: 820px;
+      margin: 0 auto 44px auto;
+      text-align: center;
+      font-size: 1.9em;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .control-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(6px);
+    }
+
+    .control-card .icono {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .control-card .icono img {
+      max-width: 30px;
+    }
+
+    .control-card h4 {
+      color: white;
+      font-size: 2.3em;
+      margin-bottom: 10px;
+    }
+
+    .control-card p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.55em;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .control-card ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-card li {
+      color: #d1faff;
+      font-size: 1.35em;
+      font-weight: 700;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .control-card li span {
+      color: var(--sorby-verde);
+    }
+
+    .bloque-frase {
+      margin: 38px auto 0 auto;
+      max-width: 920px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 24px 28px;
+      text-align: center;
+    }
+
+    .bloque-frase p {
+      color: white;
+      font-size: 1.8em;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .bloque-frase strong {
+      color: #d1faff;
+    }
+
+    .faq-nota,
+    .modulos-nota {
+      text-align: center;
+      font-family: "Switzer-Variable";
+      font-size: 1.95em;
+      font-weight: 600;
+      margin: 40px auto 0 auto;
+      color: var(--sorby-azul);
+      max-width: 860px;
+    }
+
+    .faq-nota span,
+    .modulos-nota span {
+      color: var(--sorby-teal);
+    }
+
+    @media (max-width: 1280px) {
+      .container {
+        width: 82%;
+      }
+
+      .modulos-grid,
+      .control-grid,
+      .perfiles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-resumen,
+      .modulos-grid,
+      .control-grid,
+      .perfiles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modulo-card,
+      .perfil-card,
+      .control-card {
+        padding: 22px;
+      }
+
+      .modulos-producto,
+      .para-quien,
+      .control-capa {
+        padding: 80px 0;
+      }
+
+      .home-completa .hero-kicker {
+        font-size: 1.1em;
+      }
+
+      .hero-resumen .pill h4 {
+        font-size: 1.75em;
+      }
+
+      .hero-resumen .pill p {
+        font-size: 1.35em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="mainHeader">
+    <nav class="container">
+      <img id="headerLogo" src="img/logo-mixto-blanco.png" alt="Logo Sorby">
+      <button class="menu-toggle" aria-label="Abrir menú de navegación">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul id="mainNavList">
+        <li><a href="#paso-paso">Como funciona</a></li>
+        <li><a href="#modulos">Modulos</a></li>
+        <li><a href="#control">Control</a></li>
+        <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="home home-completa">
+    <div class="container">
+      <div class="home-bloque1">
+        <div class="hero-kicker"><i class="fas fa-layer-group"></i> Mas simple que un ERP. Mas completo que una app de tickets.</div>
+        <h1>La operacion diaria de obra, <br>ordenada desde <span style="color:#2DC197;">WhatsApp</span></h1>
+        <p class="home-texto-1 texto-desktop">Sorby ayuda a constructoras y equipos de obra a <span style="font-weight:700;">registrar gastos, notas de pedido, remitos, materiales y desvíos de presupuesto</span> sin pedirle al equipo que aprenda un sistema complejo. Todo empieza en <span class="tools"><img class="icon-w" src="img/wsp.svg" alt="">WhatsApp, <img class="icon-d" src="img/drive.svg" alt="">Google Drive y <img class="icon-m" src="img/mail.svg" alt="">tu panel online.</span></p>
+        <p class="home-texto-1 texto-mobile">Sorby ordena gastos, pedidos, remitos y control de obra desde WhatsApp, con panel online y Drive del cliente.</p>
+        <img class="hero-img-mobile img-mobile" src="img/personaje-12-m.png" alt="Sorby en obra">
+
+        <div class="ctas ctas-home">
+          <a class="cta-blanco cta-arrow cta" href="#modulos"><i style="margin-right: 5px; font-size: .9em" class="fa fa-th-large"></i>Ver modulos</a>
+          <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)"><img class="cta-after" src="img/icono-wsp-proba.png" alt=""><i style="margin-right: 5px; font-size: .9em" class="fa fa-check icono-desktop"></i><i style="margin-right: 5px; font-weight: 600; font-size: 1.1em;" class="fab fa-whatsapp icono-mobile"></i>Probar por WhatsApp</a>
+        </div>
+
+        <div class="hero-resumen">
+          <div class="pill">
+            <h4>Obra</h4>
+            <p>Envia tickets, pedidos y remitos desde el chat que ya usan todos los dias.</p>
+          </div>
+          <div class="pill">
+            <h4>Administracion</h4>
+            <p>Valida, corrige, exporta y audita desde un panel mas claro y ordenado.</p>
+          </div>
+          <div class="pill">
+            <h4>Direccion</h4>
+            <p>Ve presupuesto vs real, desvíos y trazabilidad de cada movimiento.</p>
+          </div>
+          <div class="pill">
+            <h4>Datos del cliente</h4>
+            <p>Los comprobantes viven en tu Drive, no encerrados en un sistema ajeno.</p>
+          </div>
+        </div>
+
+        <div class="ya-confian">
+          <section class="splide" aria-label="Empresas que usan Sorby">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide"><img src="img/logos/1.png" alt="Cliente 1"></li>
+                <li class="splide__slide"><img src="img/logos/2.png" alt="Cliente 2"></li>
+                <li class="splide__slide"><img src="img/logos/3.png" alt="Cliente 3"></li>
+                <li class="splide__slide"><img src="img/logos/4.png" alt="Cliente 4"></li>
+                <li class="splide__slide"><img src="img/logos/5.png" alt="Cliente 5"></li>
+                <li class="splide__slide"><img src="img/logos/6.png" alt="Cliente 6"></li>
+                <li class="splide__slide"><img src="img/logos/7.png" alt="Cliente 7"></li>
+              </ul>
+            </div>
+            <h3 class="ya-eligen"><i style="margin-right: 5px;" class="fas fa-handshake"></i>Empresas que eligen Sorby</h3>
+          </section>
+        </div>
+      </div>
+      <div class="home-bloque2">
+        <img class="hero-img img-desktop" src="img/personaje-12saas.png" alt="Sorby sistema operativo de obra">
+      </div>
+    </div>
+  </section>
+
+  <section id="paso-paso" class="paso-paso">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up">
+        <h2 class="pre-titulo"><span>Como funciona</span></h2>
+        <h3>Tan simple para obra, <span>tan claro para administracion</span></h3>
+      </div>
+
+      <div class="contenido">
+        <div class="paso" data-aos="fade-up">
+          <img src="img/paso1.png" alt="Envio desde obra">
+          <h4>1. La obra envia desde WhatsApp</h4>
+          <p>Tickets, notas de pedido, facturas, remitos o mensajes de stock. Sorby toma la informacion desde el canal que el equipo ya usa.</p>
+        </div>
+
+        <div class="paso" data-aos="fade-up">
+          <img src="img/paso2.png" alt="Interpretacion automatica">
+          <h4>2. Sorby interpreta y ordena</h4>
+          <p>La IA extrae datos, valida lo fiscal, detecta inconsistencias y organiza la documentacion en tu Drive y en el panel.</p>
+        </div>
+
+        <div class="paso" data-aos="fade-up">
+          <img src="img/paso3.png" alt="Control centralizado">
+          <h4>3. Administracion controla y decide</h4>
+          <p>Desde el panel se revisan borradores, se sigue el presupuesto, se exporta informacion y se mantiene trazabilidad por obra, proyecto o responsable.</p>
+        </div>
+      </div>
+
+      <p class="pensado-para">Pensado para <span>constructoras, PyMEs y equipos de obra</span> que quieren orden sin meter un ERP pesado.</p>
+
+      <div class="ctas">
+        <a class="cta-celeste cta-arrow cta" href="#modulos"><i style="margin-right: 5px;" class="fas fa-wrench"></i> Ver todo lo que resuelve</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="modulos" class="modulos-producto">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up">
+        <h2 class="pre-titulo"><span>Modulos</span></h2>
+        <h3>Un sistema liviano para la <span>operacion completa de obra</span></h3>
+      </div>
+
+      <div class="modulos-grid" data-aos="fade-up" data-aos-delay="100">
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-factura.png" alt="Gastos"></div>
+          <h4>Gastos y facturas</h4>
+          <p>La puerta de entrada sigue siendo el gasto, pero con una operacion mucho mas prolija.</p>
+          <ul>
+            <li><span>✓</span> Foto por WhatsApp y carga automatica</li>
+            <li><span>✓</span> IVA discriminado y Factura A validada</li>
+            <li><span>✓</span> Caja chica y movimientos por obra</li>
+          </ul>
+        </article>
+
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-wsp.png" alt="Pedidos"></div>
+          <h4>Notas de pedido</h4>
+          <p>Los pedidos dejan de vivir en chats perdidos y pasan a tener seguimiento real.</p>
+          <ul>
+            <li><span>✓</span> Alta desde WhatsApp o panel</li>
+            <li><span>✓</span> Estados, comentarios e historial</li>
+            <li><span>✓</span> Trazabilidad entre obra y administracion</li>
+          </ul>
+        </article>
+
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-panel.png" alt="Remitos"></div>
+          <h4>Remitos y recepcion</h4>
+          <p>Los ingresos y movimientos de materiales quedan documentados y ordenados.</p>
+          <ul>
+            <li><span>✓</span> Extraccion de remitos y verificacion</li>
+            <li><span>✓</span> Seguimiento por hoja de ruta</li>
+            <li><span>✓</span> Confirmacion y control de diferencias</li>
+          </ul>
+        </article>
+
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-drive.png" alt="Stock"></div>
+          <h4>Stock y materiales</h4>
+          <p>No solo compras: tambien entradas, salidas, consultas y movimientos de materiales.</p>
+          <ul>
+            <li><span>✓</span> Consulta de stock desde WhatsApp</li>
+            <li><span>✓</span> Altas y retiros por proyecto</li>
+            <li><span>✓</span> Materiales organizados por deposito u obra</li>
+          </ul>
+        </article>
+
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-tiempo.png" alt="Presupuestos"></div>
+          <h4>Presupuesto vs real</h4>
+          <p>Sorby no se queda en registrar: conecta la operacion con el control financiero de obra.</p>
+          <ul>
+            <li><span>✓</span> Presupuestos por proyecto, categoria y proveedor</li>
+            <li><span>✓</span> Desvios y ejecutado actualizado</li>
+            <li><span>✓</span> Visibilidad para administracion y direccion</li>
+          </ul>
+        </article>
+
+        <article class="modulo-card">
+          <div class="icono"><img src="img/icono-automatizar.png" alt="Reportes"></div>
+          <h4>Panel, reportes y auditoria</h4>
+          <p>Todo lo que entra por WhatsApp termina en una capa de control util para tomar decisiones.</p>
+          <ul>
+            <li><span>✓</span> Borradores, validacion y correccion manual</li>
+            <li><span>✓</span> Reportes y exportaciones</li>
+            <li><span>✓</span> Historial de conversaciones y trazabilidad</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="modulos-nota">Sorby puede entrar por donde hoy mas duele: <span>gastos desordenados</span>, <span>pedidos sin seguimiento</span> o <span>materiales sin control</span>.</p>
+    </div>
+  </section>
+
+  <section class="para-quien">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up">
+        <h2 class="pre-titulo"><span>Para quien</span></h2>
+        <h3>Cada area usa Sorby de una forma <span>distinta, pero conectada</span></h3>
+      </div>
+
+      <div class="perfiles-grid" data-aos="fade-up" data-aos-delay="100">
+        <article class="perfil-card">
+          <div class="numero">01</div>
+          <h4>Obra</h4>
+          <p>El capataz, encargado o comprador no aprende otro sistema. Usa WhatsApp y resuelve.</p>
+          <div class="resumen">
+            <div>Tickets, pedidos y remitos desde el celular</div>
+            <div>Menos papeles sueltos y menos carga manual</div>
+            <div>Mas velocidad para resolver el dia a dia</div>
+          </div>
+        </article>
+
+        <article class="perfil-card">
+          <div class="numero">02</div>
+          <h4>Administracion</h4>
+          <p>La informacion llega mas ordenada, se valida mejor y se trabaja con menos perseguida interna.</p>
+          <div class="resumen">
+            <div>Panel de validacion y revision de facturas</div>
+            <div>Drive propio del cliente, con evidencia ordenada</div>
+            <div>Exportacion y seguimiento por obra o responsable</div>
+          </div>
+        </article>
+
+        <article class="perfil-card">
+          <div class="numero">03</div>
+          <h4>Direccion</h4>
+          <p>Deja de mirar solo papeles o chats y empieza a ver desvíos, ritmo y consistencia operativa.</p>
+          <div class="resumen">
+            <div>Presupuesto vs ejecutado por proyecto</div>
+            <div>Reportes, multiples obras y trazabilidad</div>
+            <div>Integracion con sistemas mas grandes cuando hace falta</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="control" class="control-capa">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up">
+        <h2 class="pre-titulo"><span>Control</span></h2>
+        <h3>Donde Sorby deja de ser un chat <span>y se vuelve sistema</span></h3>
+      </div>
+
+      <p class="control-kicker" data-aos="fade-up" data-aos-delay="100">La diferencia no es solo capturar informacion. La diferencia es que despues <strong>se puede revisar, ordenar, auditar y usar</strong> para decidir mejor.</p>
+
+      <div class="control-grid" data-aos="fade-up" data-aos-delay="150">
+        <article class="control-card">
+          <div class="icono"><img src="img/icono-panel.png" alt="Panel"></div>
+          <h4>Panel operativo</h4>
+          <p>Los borradores y movimientos no quedan flotando: pasan a una bandeja clara de trabajo.</p>
+          <ul>
+            <li><span>✓</span> Revision de datos antes de consolidar</li>
+            <li><span>✓</span> Correccion y validacion manual cuando hace falta</li>
+            <li><span>✓</span> Busqueda, filtros y exportacion</li>
+          </ul>
+        </article>
+
+        <article class="control-card">
+          <div class="icono"><img src="img/icono-tiempo.png" alt="Presupuesto"></div>
+          <h4>Control presupuestario</h4>
+          <p>Lo que se ejecuta en obra puede leerse contra lo planificado, sin esperar cierres eternos.</p>
+          <ul>
+            <li><span>✓</span> Presupuesto por categoria, etapa o proveedor</li>
+            <li><span>✓</span> Ejecutado y desvio visibles por proyecto</li>
+            <li><span>✓</span> Mejor lectura para direccion y administracion</li>
+          </ul>
+        </article>
+
+        <article class="control-card">
+          <div class="icono"><img src="img/icono-drive.png" alt="Drive"></div>
+          <h4>Drive, evidencia y reportes</h4>
+          <p>La documentacion sigue siendo del cliente y queda accesible para operar y auditar.</p>
+          <ul>
+            <li><span>✓</span> Comprobantes guardados en tu Drive</li>
+            <li><span>✓</span> Orden por proyecto, fecha o categoria</li>
+            <li><span>✓</span> Reportes para compartir y exportar</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="bloque-frase" data-aos="fade-up" data-aos-delay="200">
+        <p>Sorby ocupa ese lugar que muchas constructoras necesitan: <strong>mas liviano que un ERP integral</strong>, pero mucho <strong>mas util que seguir gestionando la obra con chats, tickets sueltos y planillas rotas</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas" class="caracteristicas">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up">
+        <h2 class="pre-titulo"><span>Diferenciales</span></h2>
+        <h3>Lo que hace que Sorby <span>se adopte rapido de verdad</span></h3>
+      </div>
+
+      <div class="contenido" data-aos="fade-in">
+        <div class="owl-carousel">
+          <div class="item">
+            <img src="img/icono-wsp.png" alt="WhatsApp nativo">
+            <h4>WhatsApp nativo</h4>
+            <p>El equipo de obra no necesita capacitarse ni cambiar sus habitos para empezar a usarlo.</p>
+          </div>
+          <div class="item">
+            <img src="img/icono-factura.png" alt="Fiscal">
+            <h4>Validacion fiscal</h4>
+            <p>Discrimina IVA y valida Factura A a nombre de la empresa para reducir errores evitables.</p>
+          </div>
+          <div class="item">
+            <img src="img/icono-panel.png" alt="Panel">
+            <h4>Panel de revision</h4>
+            <p>La automatizacion no te deja a ciegas: administracion puede revisar, corregir y consolidar.</p>
+          </div>
+          <div class="item">
+            <img src="img/icono-drive.png" alt="Drive propio">
+            <h4>Drive del cliente</h4>
+            <p>Los comprobantes y evidencias quedan en la infraestructura del cliente, no cautivos en un sistema cerrado.</p>
+          </div>
+          <div class="item">
+            <img src="img/icono-tiempo.png" alt="Presupuesto">
+            <h4>Presupuesto vs real</h4>
+            <p>La operacion diaria alimenta una capa de control para detectar desvíos antes de que sea tarde.</p>
+          </div>
+          <div class="item">
+            <img src="img/icono-automatizar.png" alt="Escalable">
+            <h4>Escala por modulo</h4>
+            <p>Se puede empezar por gastos y luego sumar pedidos, remitos, materiales o integracion con ERP.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pensado-para">Mas de <span>500 profesionales</span> ya trabajan con Sorby <img src="img/user.png" alt="Usuarios Sorby"></p>
+
+      <div class="ctas">
+        <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)">
+          <img class="cta-gratis" src="img/gratis.png" alt="Gratis">
+          <i style="margin-right: 5px;" class="fab fa-whatsapp"></i> Quiero probarlo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="proba-sorby" class="proba-sorby">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+        <h2 class="pre-titulo"><span>Primer paso</span></h2>
+        <h3>Empeza por <span>tu mayor dolor de hoy</span></h3>
+      </div>
+
+      <div class="contenido" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+        <p>Proba Sorby por WhatsApp o agenda una demo para ver la capa completa de control. <span>Sin cambiar la forma de trabajar del equipo</span></p>
+        <img src="img/reloj2.png" alt="Demo Sorby">
+      </div>
+
+      <div class="ctas">
+        <a class="cta-azul cta-arrow cta" href="#planes"><i style="margin-right: 5px; font-size: .9em;" class="fa fa-search"></i> Ver planes</a>
+        <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)"><i style="margin-right: 5px; font-weight: 500; font-size: 1.1em;" class="fab fa-whatsapp"></i><img src="img/cta-vamos.png" class="cta-vamos" alt="Vamos"> Hablar con Sorby</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="preguntas-frecuentes" class="preguntas-frecuentes">
+    <div class="container">
+      <div class="header-seccion">
+        <h2 class="pre-titulo"><span>Preguntas frecuentes</span></h2>
+        <h3>Lo que mas aparece <span>cuando una constructora evalua Sorby</span></h3>
+      </div>
+      <div class="contenido">
+        <div class="accordion-wrapper set1">
+          <div class="accordion-outer is-open">
+            <div class="accordion-heading">1- ¿Sorby es solo para registrar tickets?</div>
+            <div class="accordion-content" style="display: block;">
+              <p>No. Ese suele ser el punto de entrada, pero Sorby tambien puede ordenar notas de pedido, remitos, movimientos de materiales, caja chica y control presupuestario.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">2- ¿Reemplaza un ERP?</div>
+            <div class="accordion-content">
+              <p>No necesariamente. En muchas empresas Sorby funciona como una capa operativa mas simple para obra y administracion, y luego se integra o complementa sistemas mas grandes.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">3- ¿La gente de obra tiene que aprender un sistema nuevo?</div>
+            <div class="accordion-content">
+              <p>No. Justamente el valor esta en que la obra puede seguir usando WhatsApp para mandar informacion, mientras administracion y direccion trabajan con una capa mas ordenada.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">4- ¿Que pasa con los comprobantes y documentos?</div>
+            <div class="accordion-content">
+              <p>Los archivos se guardan en el Google Drive del cliente y quedan ordenados de forma trazable para consulta, auditoria y exportacion.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">5- ¿Sirve para varias obras y equipos?</div>
+            <div class="accordion-content">
+              <p>Si. Sorby puede trabajar con multiples proyectos, responsables, categorias y circuitos, manteniendo control por obra y visibilidad consolidada.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">6- ¿Puedo empezar por algo chico y despues crecer?</div>
+            <div class="accordion-content">
+              <p>Si. Muchas empresas arrancan por gastos o caja chica y despues suman pedidos, remitos, stock, reportes o integraciones segun la necesidad.</p>
+            </div>
+          </div>
+          <div class="accordion-outer">
+            <div class="accordion-heading">7- ¿Como lo pruebo?</div>
+            <div class="accordion-content">
+              <p>Podes empezar escribiendo por <a href="#" onclick="irAWhatsApp(event)"><strong>WhatsApp</strong></a> y ver el flujo inicial, o avanzar con una demo para revisar la capa completa de panel, control y reportes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="faq-nota">Ideal para empresas que hoy sienten que estan en el peor lugar posible: <span>demasiado complejas para seguir con chats y planillas</span>, pero <span>sin ganas de meter un ERP pesado para todo</span>.</p>
+      <div class="ctas">
+        <a class="cta-blanco cta-arrow cta" href="#planes"><i style="margin-right: 5px; font-size: .9em;" class="fas fa-list-alt"></i> Ver planes</a>
+        <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)"><i style="margin-right: 5px; font-weight: 500; font-size: 1.1em;" class="fab fa-whatsapp"></i> Quiero verlo en accion</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="planes" class="planes">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+        <h2 class="pre-titulo"><span>Planes</span></h2>
+        <h3>Crece con Sorby <span>segun el nivel de operacion que necesites</span></h3>
+      </div>
+
+      <div class="contenido">
+        <div class="planes-contenedor">
+          <div class="plan" data-aos="fade-in" data-aos-delay="0" data-aos-once="true">
+            <img src="img/plan-basico.png" alt="Plan basico">
+            <h4>Plan Basico</h4>
+            <p class="plan-desc">Para equipos chicos que quieren ordenar gastos, caja y pedidos sin cambiar la operatoria de obra.</p>
+            <p class="precio">$250.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 5 obras y 5 usuarios</li>
+              <li><span>✔️</span>Gastos y caja por WhatsApp</li>
+              <li><span>✔️</span>Notas de pedido por WhatsApp</li>
+              <li><span>✔️</span>Drive, Google Sheets y panel</li>
+              <li><span>✔️</span>Planillas estandar</li>
+              <li><span>✔️</span>Soporte via bot de WhatsApp</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+
+          <div class="plan" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+            <img src="img/plan-avanzado.png" alt="Plan intermedio">
+            <h4>Plan Intermedio</h4>
+            <p class="plan-desc">Para empresas que ya necesitan coordinar mejor obra, administracion y seguimiento de pedidos o remitos.</p>
+            <p class="precio">$375.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 10 obras y 10 usuarios</li>
+              <li><span>✔️</span>Gastos, pedidos y panel de validacion</li>
+              <li><span>✔️</span>Sincronizacion con Drive, Sheets y plataforma</li>
+              <li><span>✔️</span>Personalizacion de plantillas</li>
+              <li><span>✔️</span>Mejor seguimiento entre obra y administracion</li>
+              <li><span>✔️</span>Soporte directo por WhatsApp con humano</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+
+          <div class="plan" data-aos="fade-in" data-aos-delay="200" data-aos-once="true">
+            <img src="img/plan-pro.png" alt="Plan premium">
+            <h4>Plan Premium</h4>
+            <p class="plan-desc">Para operaciones mas complejas que necesitan materiales, control, multiples obras e integraciones externas.</p>
+            <p class="precio">$625.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 20 obras y 20 usuarios</li>
+              <li><span>✔️</span>Circuito operativo ampliado</li>
+              <li><span>✔️</span>Mas capas de control y seguimiento</li>
+              <li><span>✔️</span>Personalizacion de plantillas</li>
+              <li><span>✔️</span>Integracion con sistemas ERP</li>
+              <li><span>✔️</span>Soporte personalizado por WhatsApp</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-sorby" class="sobre-sorby">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+        <h2 class="pre-titulo"><span>Sobre Sorby</span></h2>
+        <h3>Nacimos para resolver el lugar <span>donde la obra se desordena</span></h3>
+      </div>
+
+      <div class="contenido">
+        <p data-aos="fade-in" data-aos-delay="100" data-aos-once="true">Sorby nacio al ver siempre el mismo problema: chats llenos de pedidos, tickets perdidos, comprobantes desordenados y administracion reconstruyendo la historia de la obra a mano.</p>
+        <p data-aos="fade-in" data-aos-delay="200" data-aos-once="true">Por eso lo hicimos <span style="font-weight: 700; color: #008DBA">simple para usar en campo y potente para controlar desde la oficina.</span> No buscamos complicar la operatoria: buscamos darle estructura.</p>
+        <img class="team" src="img/team.png" alt="Equipo Sorby" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+        <h4>Si queres ver como bajaria esto a tu caso:</h4>
+        <div class="ctas" data-aos-delay="200" data-aos-once="true">
+          <a class="cta-azul cta-arrow cta" href="#preguntas-frecuentes"><i style="margin-right: 5px; font-size: .9em;" class="fa fa-search"></i> Ver preguntas frecuentes</a>
+          <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)"><i style="margin-right: 5px; font-size: .9em;" class="fab fa-whatsapp"></i> Hablar con nosotros</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <div class="contenido">
+        <h2 class="pre-titulo"><span>Contacto</span></h2>
+        <h3>Hablemos de tu operacion <span>y de donde hoy se esta perdiendo tiempo</span></h3>
+        <div class="ctas">
+          <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)"><i style="margin-right: 5px; font-weight: 500; font-size: 1.1em;" class="fab fa-whatsapp"></i> Enviar mensaje</a>
+        </div>
+        <div class="seguinos-redes">
+          <h4>#SorbyEnRedes</h4>
+          <div class="redes">
+            <a target="_blank" href="https://www.instagram.com/sorbydata/?igshid=NjIwNzIyMDk2Mg%3D%3D"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/company/99806846/admin/feed/posts/?feedType=following"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>
+        <img src="img/logo-mixto-blanco.png" alt="Logo Sorby">
+      </div>
+      <div class="copy">
+        <p>© <span id="current-year"></span> Sorby Data / Sorby / SorbyData es una marca de Federico Andres Maidan. | <a href="privacidad.html" style="color: #fff; text-decoration: underline;">Politica de Privacidad</a>.</p>
+      </div>
+      <div class="info-f">
+        <h3><i class="fa fa-envelope" aria-hidden="true"></i>Datos</h3>
+        <p>Los usuarios pueden solicitar acceso, correccion o eliminacion de sus datos escribiendo a info@sorbydata.com</p>
+        <p>Los datos se procesan a traves de infraestructura de Cloud API de WhatsApp (Meta Platforms, Inc.)</p>
+      </div>
+      <div class="info-f">
+        <h3><i class="fa fa-envelope" aria-hidden="true"></i><i class="fa-solid fa-location-dot"></i>Direccion:</h3>
+        <p>Avenida Del Libertador 1010, Vicente Lopez, Argentina</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/splide.min.js"></script>
+  <script src="js/splide-extension-auto-scroll.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script>
+    $('.owl-carousel').addClass('owl-activo').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      autoplay: true,
+      dots: true,
+      responsive: {
+        0: { items: 1 },
+        600: { items: 2 },
+        1000: { items: 3 }
+      }
+    });
+  </script>
+
+  <script>
+    const splide = new Splide('.splide', {
+      type: 'loop',
+      perPage: 5,
+      gap: '25px',
+      focus: 'center',
+      drag: 'free',
+      arrows: false,
+      pagination: false,
+      autoScroll: {
+        speed: 0.3,
+      },
+    });
+
+    splide.mount(window.splide.Extensions);
+  </script>
+
+  <script>
+    AOS.init({
+      duration: 600,
+      easing: 'ease-out',
+      once: true
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      const logo = document.getElementById('headerLogo');
+      const scrollThreshold = 50;
+      const desktopBreakpoint = 768;
+
+      function handleScroll() {
+        if (window.innerWidth > desktopBreakpoint) {
+          if (window.scrollY > scrollThreshold) {
+            if (!header.classList.contains('scrolled')) {
+              header.classList.add('scrolled');
+              logo.src = 'img/logo-mixto-azul.png';
+            }
+          } else if (header.classList.contains('scrolled')) {
+            header.classList.remove('scrolled');
+            logo.src = 'img/logo-mixto-blanco.png';
+          }
+        } else {
+          if (header.classList.contains('scrolled')) {
+            header.classList.remove('scrolled');
+          }
+          logo.src = 'img/logo-mixto-azul.png';
+        }
+      }
+
+      window.addEventListener('resize', handleScroll);
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+    });
+  </script>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavList = document.getElementById('mainNavList');
+
+    function toggleMenu() {
+      const isOpen = mainNavList.classList.contains('active');
+
+      if (isOpen) {
+        mainNavList.style.height = mainNavList.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          mainNavList.style.height = '0';
+        });
+        mainNavList.classList.remove('active');
+        menuToggle.classList.remove('active');
+      } else {
+        mainNavList.classList.add('active');
+        menuToggle.classList.add('active');
+        mainNavList.style.height = mainNavList.scrollHeight + 'px';
+      }
+    }
+
+    function closeMenu() {
+      menuToggle.classList.remove('active');
+      mainNavList.style.height = '0';
+      mainNavList.classList.remove('active');
+    }
+
+    function setupMobileMenu() {
+      menuToggle.removeEventListener('click', toggleMenu);
+
+      if (window.innerWidth <= 768) {
+        menuToggle.addEventListener('click', toggleMenu);
+
+        mainNavList.querySelectorAll('a').forEach(link => {
+          link.removeEventListener('click', closeMenu);
+          link.addEventListener('click', closeMenu);
+        });
+
+        mainNavList.addEventListener('transitionend', () => {
+          if (!mainNavList.classList.contains('active')) {
+            mainNavList.style.height = '';
+          }
+        });
+      } else {
+        mainNavList.style.height = '';
+        mainNavList.classList.remove('active');
+        menuToggle.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', setupMobileMenu);
+    window.addEventListener('resize', setupMobileMenu);
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $(".accordion-wrapper:not(.on-hover)").each(function () {
+        $(this).find(".accordion-outer:first").addClass("is-open");
+        $(this).find(".accordion-content:first").show();
+      });
+
+      $(".accordion-wrapper:not(.on-hover) .accordion-heading").click(function () {
+        var $accordionContent = $(this).next(".accordion-content");
+        var $accordionOuter = $(this).closest(".accordion-outer");
+        var $parentWrapper = $(this).closest(".accordion-wrapper");
+
+        $parentWrapper.find(".accordion-content").not($accordionContent).slideUp();
+        $parentWrapper.find(".accordion-outer").not($accordionOuter).removeClass("is-open");
+
+        if ($accordionContent.is(":visible")) {
+          $accordionContent.slideUp();
+          $accordionOuter.removeClass("is-open");
+        } else {
+          $accordionContent.slideDown();
+          $accordionOuter.addClass("is-open");
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    });
+  </script>
+
+  <script>
+    const secciones = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+
+      secciones.forEach(section => {
+        const sectionTop = section.offsetTop - 70;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+  <script>
+    $(window).on('resize', function() {
+      var windowsize = jQuery(window).width();
+      if (windowsize < 1080) {
+        jQuery(".ya-confian").insertAfter(jQuery(".paso-paso"));
+      } else {
+        jQuery(".ya-confian").insertAfter(jQuery(".ctas-home"));
+      }
+    }).trigger('resize');
+  </script>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    function getURLParameter(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function setCookie(name, value, days = 90) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+    }
+
+    function irAWhatsApp(event) {
+      event.preventDefault();
+
+      const campaign = getURLParameter('utm_campaign') || "";
+      const fbclid = getURLParameter('fbclid') || "";
+      const fbp = getCookie('_fbp') || "";
+      const userAgent = navigator.userAgent;
+      let fbc = getCookie('_fbc') || "";
+
+      if (!fbc && fbclid) {
+        fbc = `fb.1.${Date.now()}.${fbclid}`;
+        setCookie('_fbc', fbc);
+      }
+
+      const redirectURL = `http://137.184.68.197:3051/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
+      window.location.href = redirectURL;
+    }
+  </script>
+</body>
+
+</html>

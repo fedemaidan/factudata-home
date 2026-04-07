@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-595NXMJJ');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorby - Operación de obra por WhatsApp</title>
+  <meta name="description" content="Sorby ordena gastos, pedidos, remitos y control de obra desde WhatsApp, con panel online y Drive del cliente. Para constructoras y PyMEs.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sorby - La operación de obra, ordenada desde WhatsApp">
+  <meta property="og:description" content="Gastos, pedidos, remitos y control presupuestario. Todo desde el celular que ya usan en obra.">
+  <meta property="og:url" content="https://sorbydata.com">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/css/switzer.css" type="text/css" media="all">
+  <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
+  <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+  <style>
+    /* =====================================================
+       SORBY SUPERADORA — Mobile-first, tipografía generosa
+       Pensado para jefes de obra mirando el cel en la calle
+       ===================================================== */
+
+    :root {
+      --s-azul: #1E4469;
+      --s-teal: #0097B2;
+      --s-celeste: #00B2D4;
+      --s-verde: #2DC197;
+      --s-fondo: #EEF0F5;
+      --s-texto: #3A4A52;
+      --s-blanco: #ffffff;
+    }
+
+    /* --- RESET del custom.css para esta página --- */
+    body.s-page { font-size: 10px; }
+
+    body.s-page header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 20px rgba(30,68,105,0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    body.s-page header nav {
+      padding: 14px 0;
+    }
+
+    body.s-page header nav img {
+      max-width: 140px;
+    }
+
+    body.s-page header nav ul li a {
+      color: var(--s-azul);
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    body.s-page header nav ul li a:hover {
+      color: var(--s-teal);
+    }
+
+    /* --- HERO --- */
+    .s-hero {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 0 80px;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(45,193,151,0.15), transparent 50%),
+        radial-gradient(ellipse at 90% 100%, rgba(0,178,212,0.18), transparent 50%),
+        linear-gradient(155deg, #153050 0%, #1E4469 40%, #0A8EAF 100%);
+      overflow: hidden;
+    }
+
+    .s-hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .s-hero-copy {
+      color: white;
+    }
+
+    .s-hero-copy h1 {
+      font-family: "Switzer-Variable";
+      font-size: 5.8em;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .s-hero-copy h1 span {
+      color: var(--s-verde);
+    }
+
+    .s-hero-copy .s-sub {
+      font-size: 2.2em;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.90);
+      margin-bottom: 32px;
+      max-width: 580px;
+      font-weight: 600;
+    }
+
+    .s-hero-copy .s-sub strong {
+      font-weight: 700;
+      color: white;
+    }
+
+    .s-hero-bullets {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .s-hero-bullets li {
+      color: rgba(255,255,255,0.95);
+      font-size: 1.9em;
+      font-weight: 600;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .s-hero-bullets li .ico {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: var(--s-verde);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.65em;
+      font-weight: 700;
+    }
+
+    .s-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .s-btn {
+      padding: 20px 32px;
+      border-radius: 14px;
+      font-family: "Switzer-Variable";
+      font-size: 1.8em;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .s-btn:hover { transform: translateY(-2px); }
+
+    .s-btn-primary {
+      background: var(--s-celeste);
+      color: white;
+      box-shadow: 0 12px 30px rgba(0,178,212,0.30);
+    }
+
+    .s-btn-primary:hover {
+      box-shadow: 0 16px 40px rgba(0,178,212,0.40);
+    }
+
+    .s-btn-ghost {
+      background: rgba(255,255,255,0.10);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.22);
+    }
+
+    .s-btn-ghost:hover {
+      background: rgba(255,255,255,0.16);
+    }
+
+    /* Hero visual */
+    .s-hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+    }
+
+    .s-persona {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      filter: drop-shadow(0 24px 48px rgba(10,25,42,0.30));
+    }
+
+    .s-float-card {
+      position: absolute;
+      background: rgba(255,255,255,0.97);
+      border-radius: 18px;
+      padding: 20px 24px;
+      box-shadow: 0 16px 40px rgba(17,38,59,0.18);
+      z-index: 3;
+    }
+
+    .s-float-card h4 {
+      font-family: "Switzer-Variable";
+      font-size: 1.6em;
+      color: var(--s-teal);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .s-float-card li {
+      font-size: 1.5em;
+      color: var(--s-azul);
+      font-weight: 700;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .s-float-card li span { color: var(--s-verde); }
+
+    .s-card-left {
+      bottom: 20px;
+      left: -20px;
+      width: 280px;
+    }
+
+    .s-card-right {
+      top: 60px;
+      right: -10px;
+      width: 240px;
+    }
+
+    /* --- LOGOS BAR --- */
+    .s-logos {
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid rgba(30,68,105,0.06);
+      padding: 28px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .s-logos .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .s-logos-row {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .s-logos-row img {
+      max-width: 72px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+
+    .s-logos-row img:hover { opacity: 1; }
+
+    .s-logos-label {
+      font-family: "Switzer-Variable";
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #8a99a4;
+    }
+
+    /* --- SECCIONES --- */
+    .s-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 100px 0;
+    }
+
+    .s-section.s-bg-light {
+      background: var(--s-fondo);
+      background-image: url(img/bg-2.png);
+      background-size: cover;
+    }
+
+    .s-section.s-bg-white { background: white; }
+
+    .s-section.s-bg-dark {
+      background: linear-gradient(145deg, #173755 0%, #1E4469 48%, #0097B2 100%);
+    }
+
+    .s-section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .s-section-header .s-tag {
+      display: inline-block;
+      background: var(--s-celeste);
+      color: white;
+      padding: 5px 14px;
+      font-family: "Switzer-Variable";
+      font-size: 1.4em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .s-section-header h2 {
+      font-family: "Switzer-Variable";
+      font-size: 4.8em;
+      line-height: 1.15;
+      color: var(--s-azul);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .s-section-header h2 span {
+      color: var(--s-teal);
+      display: block;
+    }
+
+    .s-bg-dark .s-section-header h2 { color: white; }
+    .s-bg-dark .s-section-header h2 span { color: #c8f5ff; }
+
+    /* --- GRIDS --- */
+    .s-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .s-grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    /* --- CARDS --- */
+    .s-card {
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .s-card-white {
+      background: white;
+      border: 1px solid rgba(30,68,105,0.07);
+      box-shadow: 0 10px 30px rgba(30,68,105,0.07);
+    }
+
+    .s-card-glass {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(6px);
+      color: white;
+    }
+
+    .s-card h3 {
+      font-family: "Switzer-Variable";
+      font-size: 2.6em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .s-card-white h3 { color: var(--s-teal); }
+    .s-card-glass h3 { color: white; }
+
+    .s-card p {
+      font-size: 1.8em;
+      line-height: 1.55;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .s-card-white p { color: var(--s-texto); }
+    .s-card-glass p { color: rgba(255,255,255,0.90); }
+
+    .s-card-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .s-card-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 1.6em;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .s-card-white .s-card-list li { color: var(--s-azul); }
+    .s-card-glass .s-card-list li { color: #d8f7ff; }
+    .s-card-list li span { color: var(--s-verde); }
+
+    /* Step number */
+    .s-step-num {
+      font-family: "Switzer-Variable";
+      font-size: 5em;
+      font-weight: 800;
+      color: var(--s-celeste);
+      opacity: 0.18;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    /* --- QUOTE --- */
+    .s-quote {
+      margin-top: 36px;
+      padding: 28px 32px;
+      border-radius: 20px;
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: white;
+      font-size: 2em;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    /* --- COMPARACIÓN --- */
+    .s-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .s-compare-tag {
+      font-family: "Switzer-Variable";
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .s-tag-red { color: #b5654f; }
+    .s-tag-green { color: var(--s-teal); }
+
+    /* --- PLANES (hereda estilos de custom.css) --- */
+
+    /* --- CONTACTO CTA FOOTER --- */
+    .s-contacto {
+      text-align: center;
+      padding: 80px 0;
+      background: var(--s-fondo);
+    }
+
+    .s-contacto h2 {
+      font-family: "Switzer-Variable";
+      font-size: 4em;
+      color: var(--s-azul);
+      margin-bottom: 20px;
+    }
+
+    .s-contacto h2 span { color: var(--s-teal); }
+
+    .s-contacto p {
+      font-size: 2em;
+      color: var(--s-texto);
+      margin-bottom: 32px;
+    }
+
+    /* =====================================================
+       RESPONSIVE — Mobile-first mindset
+       ===================================================== */
+
+    @media (max-width: 1280px) {
+      .s-hero .container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .s-hero-visual { min-height: 460px; }
+
+      .s-grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      body.s-page header nav { padding: 10px 0; }
+      body.s-page header nav img { max-width: 120px; }
+      body.s-page .menu-toggle { display: block; }
+
+      .s-hero {
+        padding: 100px 0 48px;
+        min-height: auto;
+      }
+
+      .s-hero .container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .s-hero-copy {
+        text-align: left;
+      }
+
+      .s-hero-copy h1 {
+        font-size: 4.2em;
+        margin-bottom: 24px;
+      }
+
+      .s-hero-copy .s-sub {
+        font-size: 1.85em;
+        line-height: 1.55;
+        margin-bottom: 36px;
+        max-width: none;
+      }
+
+      .s-hero-bullets {
+        display: none;
+      }
+
+      .s-ctas {
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+
+      .s-btn {
+        width: 100%;
+        font-size: 1.8em;
+        padding: 20px 24px;
+      }
+
+      .s-hero-visual {
+        min-height: auto;
+        padding: 0;
+        justify-content: center;
+      }
+
+      .s-persona {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .s-float-card {
+        display: none;
+      }
+
+      .s-section { padding: 72px 0; }
+
+      .s-section-header h2 { font-size: 3.6em; }
+
+      .s-grid-3,
+      .s-grid-2x2,
+      .s-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .s-card { padding: 26px; }
+      .s-card h3 { font-size: 2.4em; }
+      .s-card p { font-size: 1.7em; }
+      .s-card-list li { font-size: 1.55em; }
+      .s-quote { font-size: 1.8em; }
+
+      .s-contacto h2 { font-size: 3.2em; }
+      .s-contacto p { font-size: 1.8em; }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: 88%; }
+
+      body.s-page header nav img { max-width: 110px; }
+
+      .s-hero { padding: 90px 0 48px; }
+
+      .s-hero-copy h1 {
+        font-size: 3.6em;
+        margin-bottom: 20px;
+      }
+
+      .s-hero-copy .s-sub {
+        font-size: 1.75em;
+        margin-bottom: 32px;
+      }
+
+      .s-btn { font-size: 1.7em; padding: 18px 20px; }
+
+      .s-persona { max-width: 240px; }
+
+      .s-section { padding: 56px 0; }
+      .s-section-header h2 { font-size: 3em; }
+      .s-section-header .s-tag { font-size: 1.2em; }
+
+      .s-card { padding: 22px; }
+      .s-card h3 { font-size: 2.2em; }
+      .s-card p { font-size: 1.6em; }
+      .s-card-list li { font-size: 1.5em; }
+
+      .s-quote { font-size: 1.7em; padding: 22px 18px; }
+
+      .s-contacto h2 { font-size: 2.8em; }
+      .s-contacto p { font-size: 1.7em; }
+    }
+  </style>
+</head>
+
+<body class="s-page">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-595NXMJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ==================== HEADER ==================== -->
+  <header id="mainHeader">
+    <nav class="container">
+      <img id="headerLogo" src="img/logo-mixto-azul.png" alt="Logo Sorby">
+      <button class="menu-toggle" aria-label="Abrir menú de navegación">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul id="mainNavList">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#control">Control</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="s-hero">
+    <div class="container">
+      <div class="s-hero-copy">
+        <h1>La operación diaria de obra, <span>ordenada desde WhatsApp</span></h1>
+        <p class="s-sub">Sorby te ayuda a <strong>ordenar todo</strong> lo que pasa en obra — gastos, pedidos, remitos y materiales — <strong>desde el celular</strong>, usando WhatsApp.</p>
+
+        <ul class="s-hero-bullets">
+          <li><span class="ico">✓</span> La obra manda información desde WhatsApp</li>
+          <li><span class="ico">✓</span> Administración revisa y exporta en el panel</li>
+          <li><span class="ico">✓</span> Dirección ve presupuesto vs ejecutado</li>
+        </ul>
+
+        <div class="s-ctas">
+          <a class="s-btn s-btn-primary" href="#" onclick="irAWhatsApp(event)">
+            <i class="fab fa-whatsapp" style="margin-right:8px"></i>Probá Sorby ahora
+          </a>
+          <a class="s-btn s-btn-ghost" href="#como-funciona">
+            <i class="fa fa-question" style="margin-right:8px"></i>¿Cómo funciona?
+          </a>
+        </div>
+      </div>
+
+      <div class="s-hero-visual">
+        <img class="s-persona" src="img/personaje-12saas.png" alt="Profesional de obra usando Sorby">
+        <div class="s-float-card s-card-left">
+          <h4>Lo que resuelve</h4>
+          <ul>
+            <li><span>✓</span> Gastos y facturas</li>
+            <li><span>✓</span> Notas de pedido</li>
+            <li><span>✓</span> Remitos y materiales</li>
+            <li><span>✓</span> Presupuesto y control</li>
+          </ul>
+        </div>
+        <div class="s-float-card s-card-right">
+          <h4>Sin fricción</h4>
+          <ul>
+            <li><span>✓</span> WhatsApp nativo</li>
+            <li><span>✓</span> Panel online</li>
+            <li><span>✓</span> Drive del cliente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOGOS ==================== -->
+  <section class="s-logos">
+    <div class="container">
+      <div class="s-logos-row">
+        <img src="img/logos/1.png" alt="Cliente 1">
+        <img src="img/logos/2.png" alt="Cliente 2">
+        <img src="img/logos/3.png" alt="Cliente 3">
+        <img src="img/logos/4.png" alt="Cliente 4">
+        <img src="img/logos/5.png" alt="Cliente 5">
+        <img src="img/logos/6.png" alt="Cliente 6">
+        <img src="img/logos/7.png" alt="Cliente 7">
+      </div>
+      <div class="s-logos-label">Empresas que eligen Sorby</div>
+    </div>
+  </section>
+
+  <!-- ==================== CÓMO FUNCIONA ==================== -->
+  <section id="como-funciona" class="s-section s-bg-light">
+    <div class="container">
+      <div class="s-section-header">
+        <div class="s-tag">Cómo funciona</div>
+        <h2>Simple para obra, <span>claro para administración</span></h2>
+      </div>
+
+      <div class="s-grid-3">
+        <article class="s-card s-card-white">
+          <div class="s-step-num">01</div>
+          <h3>La obra envía</h3>
+          <p>Tickets, pedidos, remitos o mensajes de stock desde WhatsApp. Sin capacitación.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Foto y listo</li>
+            <li><span>✓</span> Sin apps nuevas</li>
+            <li><span>✓</span> Menos papeles sueltos</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <div class="s-step-num">02</div>
+          <h3>Sorby ordena</h3>
+          <p>La IA interpreta, valida y organiza la información para que no llegue rota a la oficina.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Extracción automática</li>
+            <li><span>✓</span> Validación fiscal</li>
+            <li><span>✓</span> Todo en Drive</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <div class="s-step-num">03</div>
+          <h3>La empresa controla</h3>
+          <p>Panel para revisar, corregir, exportar y tomar decisiones con datos reales.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Borradores y validación</li>
+            <li><span>✓</span> Reportes y trazabilidad</li>
+            <li><span>✓</span> Presupuesto vs real</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MÓDULOS ==================== -->
+  <section id="modulos" class="s-section s-bg-white">
+    <div class="container">
+      <div class="s-section-header">
+        <div class="s-tag">Módulos</div>
+        <h2>Un sistema liviano para la <span>operación diaria de obra</span></h2>
+      </div>
+
+      <div class="s-grid-2x2">
+        <article class="s-card s-card-white">
+          <h3>Gastos y facturas</h3>
+          <p>Foto por WhatsApp → datos ordenados y validación fiscal automática.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> IVA discriminado</li>
+            <li><span>✓</span> Factura A validada</li>
+            <li><span>✓</span> Caja chica y movimientos</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <h3>Notas de pedido</h3>
+          <p>Los pedidos dejan de vivir en chats y pasan a tener seguimiento real.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Alta por WhatsApp o panel</li>
+            <li><span>✓</span> Estados y comentarios</li>
+            <li><span>✓</span> Trazabilidad entre áreas</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <h3>Remitos y materiales</h3>
+          <p>Entradas, recepción y control de diferencias para que nada quede invisible.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Extracción y revisión</li>
+            <li><span>✓</span> Hoja de ruta</li>
+            <li><span>✓</span> Materiales por obra</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <h3>Presupuesto y reportes</h3>
+          <p>La operación diaria alimenta una capa de control útil para dirección.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Presupuesto por proyecto</li>
+            <li><span>✓</span> Ejecutado y desvío</li>
+            <li><span>✓</span> Exportaciones</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTROL ==================== -->
+  <section id="control" class="s-section s-bg-dark">
+    <div class="container">
+      <div class="s-section-header">
+        <div class="s-tag">Control</div>
+        <h2>Donde Sorby deja de ser un chat <span>y se vuelve sistema</span></h2>
+      </div>
+
+      <div class="s-grid-3">
+        <article class="s-card s-card-glass">
+          <h3>Panel operativo</h3>
+          <p>Borradores y movimientos en una bandeja de trabajo clara, no en una cadena de mensajes.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Revisión antes de consolidar</li>
+            <li><span>✓</span> Corrección manual</li>
+            <li><span>✓</span> Búsqueda y exportación</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-glass">
+          <h3>Presupuesto vs real</h3>
+          <p>Lo que se ejecuta en obra se lee contra lo planificado sin esperar cierres eternos.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Por categoría o proveedor</li>
+            <li><span>✓</span> Desvíos por proyecto</li>
+            <li><span>✓</span> Lectura para dirección</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-glass">
+          <h3>Drive del cliente</h3>
+          <p>La documentación sigue siendo de la empresa, ordenada como evidencia operativa.</p>
+          <ul class="s-card-list">
+            <li><span>✓</span> Comprobantes en Drive</li>
+            <li><span>✓</span> Orden por proyecto y fecha</li>
+            <li><span>✓</span> Soporte para auditoría</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="s-quote">Más simple que un ERP integral. Mucho más útil que seguir con tickets perdidos, pedidos sueltos y planillas rotas.</div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPARACIÓN ==================== -->
+  <section class="s-section s-bg-light">
+    <div class="container">
+      <div class="s-section-header">
+        <div class="s-tag">El cambio</div>
+        <h2>El problema no es capturar datos. <span>Es poder usarlos después.</span></h2>
+      </div>
+
+      <div class="s-compare">
+        <article class="s-card s-card-white">
+          <div class="s-compare-tag s-tag-red">Hoy en muchas obras</div>
+          <h3>Caos operativo</h3>
+          <ul class="s-card-list">
+            <li><span>✗</span> Tickets perdidos o tarde</li>
+            <li><span>✗</span> Pedidos sin seguimiento</li>
+            <li><span>✗</span> Remitos sin control</li>
+            <li><span>✗</span> Excel armado a mano</li>
+            <li><span>✗</span> Presupuesto imposible de leer</li>
+          </ul>
+        </article>
+
+        <article class="s-card s-card-white">
+          <div class="s-compare-tag s-tag-green">Con Sorby</div>
+          <h3>Operación con estructura</h3>
+          <ul class="s-card-list">
+            <li><span>✓</span> Obra envía por WhatsApp</li>
+            <li><span>✓</span> Administración valida en panel</li>
+            <li><span>✓</span> Documentación en Drive</li>
+            <li><span>✓</span> Reportes y exportaciones</li>
+            <li><span>✓</span> Desvíos visibles a tiempo</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PLANES ==================== -->
+  <section id="planes" class="planes">
+    <div class="container">
+      <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+        <h2 class="pre-titulo"><span>Planes</span></h2>
+        <h3>Crecé con Sorby <span>según el nivel de operación que necesites</span></h3>
+      </div>
+
+      <div class="contenido">
+        <div class="planes-contenedor">
+          <div class="plan" data-aos="fade-in" data-aos-once="true">
+            <img src="img/plan-basico.png" alt="Plan básico">
+            <h4>Plan Básico</h4>
+            <p class="plan-desc">Para equipos chicos que quieren ordenar gastos, caja y pedidos sin cambiar la operatoria.</p>
+            <p class="precio">$250.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 5 obras y 5 usuarios</li>
+              <li><span>✔️</span>Gastos y caja por WhatsApp</li>
+              <li><span>✔️</span>Notas de pedido por WhatsApp</li>
+              <li><span>✔️</span>Drive, Google Sheets y panel</li>
+              <li><span>✔️</span>Soporte vía bot</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+
+          <div class="plan" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+            <img src="img/plan-avanzado.png" alt="Plan intermedio">
+            <h4>Plan Intermedio</h4>
+            <p class="plan-desc">Para empresas que necesitan coordinar obra, administración y seguimiento operativo.</p>
+            <p class="precio">$375.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 10 obras y 10 usuarios</li>
+              <li><span>✔️</span>Gastos, pedidos y panel de validación</li>
+              <li><span>✔️</span>Personalización de plantillas</li>
+              <li><span>✔️</span>Mejor seguimiento entre áreas</li>
+              <li><span>✔️</span>Soporte humano por WhatsApp</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+
+          <div class="plan" data-aos="fade-in" data-aos-delay="200" data-aos-once="true">
+            <img src="img/plan-pro.png" alt="Plan premium">
+            <h4>Plan Premium</h4>
+            <p class="plan-desc">Para operaciones complejas que necesitan control ampliado, múltiples obras e integraciones.</p>
+            <p class="precio">$625.000 <span>/mes</span></p>
+            <ul>
+              <li><span>✔️</span>Hasta 20 obras y 20 usuarios</li>
+              <li><span>✔️</span>Circuito operativo ampliado</li>
+              <li><span>✔️</span>Más capas de control</li>
+              <li><span>✔️</span>Integración con ERP</li>
+              <li><span>✔️</span>Soporte personalizado</li>
+            </ul>
+            <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irAWhatsApp(event)">Comenzar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTO ==================== -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <div class="contenido">
+        <h2 class="pre-titulo"><span>Contacto</span></h2>
+        <h3>Hablemos de tu operación <span>y dónde se está perdiendo tiempo</span></h3>
+        <div class="ctas">
+          <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irAWhatsApp(event)">
+            <i style="margin-right: 5px; font-weight: 500; font-size: 1.1em;" class="fab fa-whatsapp"></i> Enviar mensaje
+          </a>
+        </div>
+        <div class="seguinos-redes">
+          <h4>#SorbyEnRedes</h4>
+          <div class="redes">
+            <a target="_blank" href="https://www.instagram.com/sorbydata/"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/company/99806846/"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div>
+        <img src="img/logo-mixto-blanco.png" alt="Logo Sorby">
+      </div>
+      <div class="copy">
+        <p>© <span id="current-year"></span> Sorby Data / Sorby / SorbyData es una marca de Federico Andres Maidan. | <a href="privacidad.html" style="color: #fff; text-decoration: underline;">Política de Privacidad</a>.</p>
+      </div>
+      <div class="info-f">
+        <h3><i class="fa fa-envelope" aria-hidden="true"></i> Datos</h3>
+        <p>Los usuarios pueden solicitar el acceso, corrección o eliminación de sus datos enviando un correo a info@sorbydata.com</p>
+      </div>
+      <div class="info-f">
+        <h3><i class="fa-solid fa-location-dot"></i> Dirección</h3>
+        <p>Avenida Del Libertador 1010, Vicente López, Argentina</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script>
+    AOS.init({ duration: 600, easing: 'ease-out', once: true });
+  </script>
+
+  <script>
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavList = document.getElementById('mainNavList');
+
+    function toggleMenu() {
+      const isOpen = mainNavList.classList.contains('active');
+      if (isOpen) {
+        mainNavList.style.height = mainNavList.scrollHeight + 'px';
+        requestAnimationFrame(() => { mainNavList.style.height = '0'; });
+        mainNavList.classList.remove('active');
+        menuToggle.classList.remove('active');
+      } else {
+        mainNavList.classList.add('active');
+        menuToggle.classList.add('active');
+        mainNavList.style.height = mainNavList.scrollHeight + 'px';
+      }
+    }
+
+    function closeMenu() {
+      menuToggle.classList.remove('active');
+      mainNavList.style.height = '0';
+      mainNavList.classList.remove('active');
+    }
+
+    function setupMobileMenu() {
+      menuToggle.removeEventListener('click', toggleMenu);
+      if (window.innerWidth <= 768) {
+        menuToggle.addEventListener('click', toggleMenu);
+        mainNavList.querySelectorAll('a').forEach(link => {
+          link.removeEventListener('click', closeMenu);
+          link.addEventListener('click', closeMenu);
+        });
+      } else {
+        mainNavList.style.height = '';
+        mainNavList.classList.remove('active');
+        menuToggle.classList.remove('active');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', setupMobileMenu);
+    window.addEventListener('resize', setupMobileMenu);
+
+    // Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // WhatsApp CTA
+    function irAWhatsApp(e) {
+      if (e) e.preventDefault();
+      window.open('https://wa.me/5491131500168?text=Hola%2C%20quiero%20probar%20Sorby', '_blank');
+    }
+  </script>
+</body>
+</html>
