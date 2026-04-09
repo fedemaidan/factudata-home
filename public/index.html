@@ -1503,8 +1503,26 @@ const menuToggle = document.querySelector('.menu-toggle');
         _selectedDay = day;
         _isAsap = false;
         _trackStep('select');
-        // Ir directo al formulario
-        irADatos();
+
+        // Mostrar fallback visible en desktop por si el salto inmediato no renderiza a tiempo.
+        var selectedBar = document.getElementById('modalSelectedBar');
+        var selectedLabel = document.getElementById('selLabel');
+        if (selectedBar && selectedLabel) {
+          selectedLabel.textContent = (slot && slot.time ? slot.time : 'Horario seleccionado') + ' - ' + (day && day.label ? day.label : '');
+          selectedBar.classList.add('visible');
+        }
+
+        // Ir directo al formulario.
+        try {
+          irADatos();
+        } catch (err) {
+          console.error('[modal-agendar] Error navegando a datos:', err);
+          var errEl = document.getElementById('modalError1');
+          if (errEl) {
+            errEl.textContent = 'Se seleccionó el horario, pero hubo un problema al abrir el formulario. Tocá "Confirmar" abajo.';
+            errEl.style.display = 'block';
+          }
+        }
       }
 
       // ── Desktop: 5-col grid ──
@@ -1621,11 +1639,37 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       // ── Confirm bar → ir a datos ──
       function irADatos() {
-        document.getElementById('badgeText').textContent = _selectedSlot.time + ' — ' + _selectedDay.label;
-        document.getElementById('modalSlotBadge').style.display = '';
-        document.getElementById('modalSubmitBtn').innerHTML = 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+        if (!_selectedSlot || !_selectedDay) {
+          var errEl = document.getElementById('modalError1');
+          if (errEl) {
+            errEl.textContent = 'Primero elegí un horario.';
+            errEl.style.display = 'block';
+          }
+          return;
+        }
+
+        var badgeText = document.getElementById('badgeText');
+        var slotBadge = document.getElementById('modalSlotBadge');
+        var submitBtn = document.getElementById('modalSubmitBtn');
+        var selectedBar = document.getElementById('modalSelectedBar');
+        var errEl = document.getElementById('modalError1');
+
+        if (errEl) errEl.style.display = 'none';
+        if (badgeText) badgeText.textContent = _selectedSlot.time + ' — ' + _selectedDay.label;
+        if (slotBadge) slotBadge.style.display = '';
+        if (submitBtn) {
+          submitBtn.innerHTML = 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+          submitBtn.disabled = true;
+        }
+        if (selectedBar) selectedBar.classList.remove('visible');
+
         mostrarStep(2);
         validarForm();
+
+        var nombreInput = document.getElementById('modalNombre');
+        if (nombreInput && typeof nombreInput.focus === 'function') {
+          setTimeout(function() { nombreInput.focus(); }, 30);
+        }
       }
 
       // ── Fallback: contactenme ASAP ──
