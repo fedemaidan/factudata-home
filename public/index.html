@@ -461,7 +461,600 @@
             </div>
         </div>
     </footer>
-    
+
+    <!-- ==================== MODAL AGENDAR (Variante B) ==================== -->
+    <style>
+      .modal-agendar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+      }
+      .modal-agendar-overlay.active { display: flex; }
+      .modal-agendar {
+        background: #fff;
+        border-radius: 16px;
+        max-width: 720px;
+        width: 100%;
+        padding: 36px 28px 28px;
+        position: relative;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        font-family: "Quicksand", sans-serif;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-agendar-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: none;
+        border: none;
+        font-size: 2.4em;
+        cursor: pointer;
+        color: #999;
+        line-height: 1;
+      }
+      .modal-agendar h3 {
+        font-family: "Switzer-Variable";
+        color: #1E4469;
+        font-size: 2.2em;
+        margin-bottom: 4px;
+        text-align: center;
+      }
+      .modal-agendar .modal-sub {
+        color: #666;
+        font-size: 1.4em;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .modal-agendar label {
+        display: block;
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #1E4469;
+        margin-bottom: 6px;
+        margin-top: 14px;
+      }
+      .modal-agendar input[type="text"],
+      .modal-agendar input[type="tel"] {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1.5em;
+        font-family: "Quicksand", sans-serif;
+        transition: border-color 0.2s;
+        outline: none;
+      }
+      .modal-agendar input:focus {
+        border-color: #00B2D4;
+      }
+      /* Steps */
+      .modal-step { display: none; }
+      .modal-step.active { display: block; }
+      /* Quick link */
+      .modal-quick-link {
+        display: block;
+        font-size: 1.1em;
+        color: #00B2D4;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .modal-quick-link:hover { text-decoration: underline; }
+      .modal-quick-link i { margin-right: 4px; }
+      /* Fallback link */
+      .modal-fallback {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 1.1em;
+        color: #888;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-fallback a {
+        color: #00B2D4;
+        text-decoration: none;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .modal-fallback a:hover { text-decoration: underline; }
+      /* Selected slot bar */
+      .modal-selected-bar {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        background: #1E4469;
+        color: #fff;
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-top: 14px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.2em;
+        font-weight: 600;
+        animation: slideUp 0.2s ease;
+      }
+      .modal-selected-bar.visible { display: flex; }
+      .modal-selected-bar .sel-label { flex: 1; }
+      .modal-selected-bar .sel-btn {
+        background: #00B2D4;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 18px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 12px;
+        white-space: nowrap;
+      }
+      .modal-selected-bar .sel-btn:hover { box-shadow: 0 0 12px rgba(0,178,212,0.4); }
+      @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      /* Skeleton loading */
+      .modal-skeleton {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .modal-skeleton-col { flex: 1; min-width: 0; }
+      .modal-skeleton-header {
+        height: 48px;
+        background: #f0f4f7;
+        border-radius: 8px 8px 0 0;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .modal-skeleton-slots {
+        border-radius: 0 0 8px 8px;
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: #fafbfc;
+      }
+      .modal-skeleton-pill {
+        height: 32px;
+        background: #edf1f4;
+        border-radius: 6px;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .modal-skeleton-pill:nth-child(2) { animation-delay: 0.15s; }
+      .modal-skeleton-pill:nth-child(3) { animation-delay: 0.3s; }
+      .modal-skeleton-pill:nth-child(4) { animation-delay: 0.45s; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+      .modal-skeleton.hidden, .modal-skeleton-mobile.hidden { display: none !important; }
+      /* Phone hint */
+      .modal-hint {
+        font-size: 1.05em;
+        color: #999;
+        margin-top: 4px;
+      }
+      /* Selected slot badge */
+      .modal-slot-badge {
+        display: block;
+        background: #f0fbfd;
+        border: 2px solid #00B2D4;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 1.25em;
+        font-weight: 600;
+        color: #1E4469;
+        font-family: "Quicksand", sans-serif;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .modal-slot-badge i { color: #00B2D4; margin-right: 6px; }
+      /* Add to calendar */
+      .modal-add-cal {
+        display: inline-block;
+        background: #fff;
+        border: 2px solid #00B2D4;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.15em;
+        font-weight: 600;
+        color: #00B2D4;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 12px;
+        transition: all 0.2s;
+      }
+      .modal-add-cal:hover { background: #f0fbfd; }
+      .modal-add-cal i { margin-right: 6px; }
+      /* Calendar grid: 3 days side by side */
+      .modal-calendar {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .modal-cal-day {
+        flex: 1;
+        min-width: 0;
+      }
+      .modal-cal-day-header {
+        font-family: "Switzer-Variable";
+        font-weight: 700;
+        font-size: 1.1em;
+        color: #1E4469;
+        text-align: center;
+        padding: 6px 4px;
+        background: #f0f7fa;
+        border-radius: 8px 8px 0 0;
+        border: 2px solid #e0e0e0;
+        border-bottom: none;
+      }
+      .modal-cal-day-header .cal-day-name { display: block; font-size: 0.85em; color: #00B2D4; text-transform: uppercase; letter-spacing: 0.5px; }
+      .modal-cal-day-header .cal-day-num { display: block; font-size: 1.15em; }
+      .modal-cal-slots {
+        border: 2px solid #e0e0e0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+      .modal-slot-pill {
+        padding: 7px 2px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        background: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #1E4469;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.12s ease;
+      }
+      .modal-slot-pill:hover { background: #f0fbfd; border-color: #00B2D4; }
+      .modal-slot-pill.selected { background: #00B2D4; color: #fff; border-color: #00B2D4; transform: scale(0.97); }
+      /* Nav para paging de días */
+      .modal-cal-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .modal-cal-nav button {
+        background: none;
+        border: none;
+        font-size: 1.4em;
+        color: #00B2D4;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        padding: 4px 10px;
+      }
+      .modal-cal-nav button:disabled { color: #ccc; cursor: not-allowed; }
+      .modal-cal-nav span {
+        font-size: 1.2em;
+        color: #999;
+        font-family: "Quicksand", sans-serif;
+      }
+      /* Buttons */
+      .modal-btn {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        font-family: "Switzer-Variable";
+        font-size: 1.6em;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .modal-btn-primary {
+        background: #00B2D4;
+        color: #fff;
+      }
+      .modal-btn-primary:hover { box-shadow: 0 0 12px rgba(0,178,212,0.4); }
+      .modal-btn-primary:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .modal-btn-back {
+        background: transparent;
+        color: #999;
+        margin-top: 8px;
+        font-size: 1.3em;
+        text-transform: none;
+      }
+      /* Confirmation */
+      .modal-confirm {
+        text-align: center;
+      }
+      .modal-confirm .modal-check {
+        font-size: 5em;
+        color: #00B2D4;
+        margin-bottom: 10px;
+      }
+      .modal-confirm h3 {
+        color: #1E4469;
+        margin-bottom: 8px;
+      }
+      .modal-confirm p {
+        font-size: 1.5em;
+        color: #555;
+        line-height: 1.6;
+      }
+      .modal-confirm .modal-fecha-resumen {
+        font-weight: 700;
+        color: #00B2D4;
+      }
+      .modal-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 0.6s linear infinite;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .modal-error {
+        color: #d32f2f;
+        font-size: 1.25em;
+        margin-top: 8px;
+        text-align: center;
+      }
+      .modal-loading-slots {
+        text-align: center;
+        padding: 30px 0;
+        font-size: 1.4em;
+        color: #999;
+      }
+      .modal-no-slots {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 1.3em;
+        color: #d32f2f;
+      }
+      /* ===== MOBILE: full-screen bottom sheet ===== */
+      @media (max-width: 768px) {
+        .modal-agendar-overlay { padding: 0; align-items: flex-end; }
+        .modal-agendar {
+          border-radius: 20px 20px 0 0;
+          max-width: 100%;
+          max-height: 100dvh;
+          height: 100dvh;
+          padding: 16px 16px 24px;
+          display: flex;
+          flex-direction: column;
+        }
+        .modal-agendar-close { top: 10px; right: 12px; font-size: 2em; z-index: 2; }
+        .modal-agendar h3 { font-size: 1.7em; margin-bottom: 2px; }
+        .modal-agendar .modal-sub { font-size: 1.2em; margin-bottom: 10px; }
+        .modal-quick-link { font-size: 1em; margin-bottom: 8px; }
+
+        /* Day tabs: horizontal scrollable strip */
+        .modal-day-tabs {
+          display: flex !important;
+          gap: 0;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 0 -16px;
+          padding: 0 16px;
+          scrollbar-width: none;
+          flex-shrink: 0;
+        }
+        .modal-day-tabs::-webkit-scrollbar { display: none; }
+        .modal-day-tab {
+          flex: 0 0 auto;
+          padding: 8px 14px;
+          font-family: "Switzer-Variable";
+          font-weight: 700;
+          font-size: 1.15em;
+          color: #8aa;
+          border-bottom: 3px solid transparent;
+          cursor: pointer;
+          text-align: center;
+          white-space: nowrap;
+          transition: all 0.15s;
+        }
+        .modal-day-tab .tab-day-name { display: block; font-size: 0.75em; color: #00B2D4; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal-day-tab .tab-day-num { display: block; font-size: 1.1em; }
+        .modal-day-tab.active {
+          color: #1E4469;
+          border-bottom-color: #00B2D4;
+          background: #f0fbfd;
+        }
+
+        /* Hide desktop 3-col calendar, show mobile slot grid */
+        .modal-calendar { display: none !important; }
+        .modal-cal-nav { display: none !important; }
+        .modal-skeleton { display: none !important; }
+
+        .modal-skeleton-mobile {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          padding: 12px 0;
+        }
+        .modal-skeleton-mobile-pill {
+          height: 48px;
+          background: #edf1f4;
+          border-radius: 10px;
+          animation: pulse 1.2s ease-in-out infinite;
+        }
+        .modal-skeleton-mobile-pill:nth-child(2) { animation-delay: 0.1s; }
+        .modal-skeleton-mobile-pill:nth-child(3) { animation-delay: 0.2s; }
+        .modal-skeleton-mobile-pill:nth-child(4) { animation-delay: 0.3s; }
+        .modal-skeleton-mobile-pill:nth-child(5) { animation-delay: 0.4s; }
+        .modal-skeleton-mobile-pill:nth-child(6) { animation-delay: 0.5s; }
+
+        .modal-mobile-slots {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          padding: 12px 0;
+          overflow-y: auto;
+          flex: 1;
+          align-content: start;
+        }
+        .modal-mobile-slots .modal-slot-pill {
+          padding: 14px 4px;
+          font-size: 1.35em;
+          border: 2px solid #e8eef2;
+          border-radius: 10px;
+          background: #fafbfc;
+        }
+        .modal-mobile-slots .modal-slot-pill:active {
+          transform: scale(0.95);
+          background: #e0f7fb;
+        }
+
+        .modal-mobile-empty {
+          text-align: center;
+          color: #999;
+          font-size: 1.2em;
+          padding: 30px 0;
+          grid-column: 1 / -1;
+        }
+
+        /* Selected bar: sticky at bottom on mobile */
+        .modal-selected-bar {
+          position: sticky;
+          bottom: 0;
+          margin: auto 0 0 0;
+          border-radius: 12px 12px 0 0;
+          padding: 14px 16px;
+          font-size: 1.1em;
+        }
+
+        /* Step 1 layout on mobile: flex column fill */
+        #modalStep1.active {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-height: 0;
+        }
+        .modal-fallback {
+          flex-shrink: 0;
+          margin-top: auto;
+          padding-top: 8px;
+        }
+      }
+
+      /* Desktop: hide mobile-only elements */
+      @media (min-width: 769px) {
+        .modal-day-tabs { display: none; }
+        .modal-mobile-slots { display: none; }
+        .modal-skeleton-mobile { display: none; }
+      }
+    </style>
+
+    <div class="modal-agendar-overlay" id="modalAgendar">
+      <div class="modal-agendar">
+        <button class="modal-agendar-close" onclick="cerrarModalAgendar()">&times;</button>
+
+        <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
+        <div class="modal-step active" id="modalStep1">
+          <h3>Elegí tu horario</h3>
+          <p class="modal-sub">Demo de 15 min, gratis y sin compromiso</p>
+
+          <div class="modal-quick-link" onclick="elegirProximo()">
+            <i class="fa fa-bolt"></i> Tomar el primer horario disponible
+          </div>
+
+          <!-- Desktop: Skeleton loading -->
+          <div class="modal-skeleton" id="modalSkeleton">
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+          </div>
+
+          <!-- Mobile: Skeleton loading -->
+          <div class="modal-skeleton-mobile" id="modalSkeletonMobile">
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+          </div>
+
+          <!-- Mobile: day tabs -->
+          <div class="modal-day-tabs" id="modalDayTabs"></div>
+
+          <!-- Mobile: slots for selected day -->
+          <div class="modal-mobile-slots" id="modalMobileSlots"></div>
+
+          <!-- Desktop: 5-day grid -->
+          <div class="modal-calendar" id="modalCalendar"></div>
+
+          <!-- Desktop: Nav paging -->
+          <div class="modal-cal-nav" id="modalCalNav" style="display:none">
+            <button onclick="calPrev()" id="calPrevBtn"><i class="fa fa-arrow-left"></i> Antes</button>
+            <span id="calPageInfo"></span>
+            <button onclick="calNext()" id="calNextBtn">Después <i class="fa fa-arrow-right"></i></button>
+          </div>
+
+          <!-- Selected slot confirmation bar -->
+          <div class="modal-selected-bar" id="modalSelectedBar">
+            <span class="sel-label" id="selLabel"></span>
+            <button class="sel-btn" onclick="irADatos()">Confirmar <i class="fa fa-arrow-right"></i></button>
+          </div>
+
+          <div class="modal-error" id="modalError1" style="display:none"></div>
+          <div class="modal-fallback">¿No encontrás horario? <a onclick="quieroContacto()">Contactanos por WhatsApp</a></div>
+        </div>
+
+        <!-- PASO 2: Datos + Confirmación -->
+        <div class="modal-step" id="modalStep2">
+          <h3>Completá tus datos</h3>
+          <div class="modal-slot-badge" id="modalSlotBadge"><i class="fa fa-calendar-check"></i> <span id="badgeText"></span></div>
+          <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
+            <label for="modalNombre">Tu nombre *</label>
+            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()">
+            <label for="modalTelefono">Tu WhatsApp *</label>
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel" oninput="validarForm()">
+            <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
+            <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization">
+            <div class="modal-error" id="modalError2" style="display:none"></div>
+            <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary" disabled>Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
+          </form>
+          <button class="modal-btn modal-btn-back" onclick="modalVolver(1)"><i class="fa fa-arrow-left" style="margin-right:6px;font-size:.85em"></i> Cambiar horario</button>
+        </div>
+
+        <!-- PASO 3: Confirmación exitosa -->
+        <div class="modal-step" id="modalStep3">
+          <div class="modal-confirm">
+            <div class="modal-check">&#10003;</div>
+            <h3>¡Reunión agendada!</h3>
+            <p><span class="modal-fecha-resumen" id="modalResumenFecha"></span></p>
+            <p style="margin-top:12px;">Te contactamos por <strong>WhatsApp</strong> para confirmar los detalles.</p>
+            <a class="modal-add-cal" id="modalAddCal" download="reunion-sorby.ics"><i class="fa fa-calendar-plus"></i> Añadir a mi calendario</a>
+            <button class="modal-btn modal-btn-primary" style="margin-top:16px" onclick="cerrarModalAgendar()">Listo</button>
+          </div>
+        </div>
+
+        <!-- PASO 3b: Contacto ASAP -->
+        <div class="modal-step" id="modalStep3b">
+          <div class="modal-confirm">
+            <div class="modal-check" style="color:#25D366">&#10003;</div>
+            <h3>¡Recibido!</h3>
+            <p>Te contactamos por <strong>WhatsApp</strong> lo antes posible para coordinar.</p>
+            <button class="modal-btn modal-btn-primary" style="margin-top:24px" onclick="cerrarModalAgendar()">Listo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- jquery js -->
     <script src="js/jquery.min.js"></script>
     <!-- owl carousel -->
@@ -677,7 +1270,9 @@ const menuToggle = document.querySelector('.menu-toggle');
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener("click", function (e) {
-            const target = document.querySelector(this.getAttribute("href"));
+            const href = this.getAttribute("href");
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (target) {
               e.preventDefault();
               target.scrollIntoView({
@@ -778,31 +1373,380 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       function irACalendario(event) {
         event.preventDefault();
+        abrirModalAgendar();
+      }
 
-        var campaign = getURLParameter('utm_campaign') || "";
-        var fbclid = getURLParameter('fbclid') || "";
-        var fbp = getCookie('_fbp') || "";
-        var userAgent = navigator.userAgent;
-        var fbc = getCookie('_fbc') || "";
+      // ─── Modal de Agendamiento Inline ──────────────────────────────────────
+      // Base URL automática: localhost si estás en local, producción si no
+      var SORBY_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
+        ? 'http://localhost:3003'
+        : 'https://api.sorbydata.com';
 
-        if (!fbc && fbclid) {
-          fbc = 'fb.1.' + Date.now() + '.' + fbclid;
-          setCookie('_fbc', fbc);
+      var _slotsData = null; // Cache de slots
+      var _selectedDay = null;
+      var _selectedSlot = null;
+      var _tracked = {}; // evitar duplicados por sesión
+
+      function _trackStep(step) {
+        if (_tracked[step]) return; // solo una vez por apertura
+        _tracked[step] = true;
+        // mode: no-cors — es fire-and-forget, no necesitamos leer la respuesta
+        fetch(SORBY_API + '/api/agendar/track', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            step: step,
+            fbc: getCookie('_fbc') || '',
+            fbp: getCookie('_fbp') || '',
+            userAgent: navigator.userAgent
+          })
+        }).catch(function() {});
+      }
+
+      function abrirModalAgendar() {
+        document.getElementById('modalAgendar').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        _trackStep('open');
+        // Si ya cargamos slots, no volver a cargar
+        if (!_slotsData) { cargarSlots(); }
+      }
+
+      function cerrarModalAgendar() {
+        document.getElementById('modalAgendar').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Cerrar con Escape o clic fuera
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') cerrarModalAgendar();
+      });
+      document.getElementById('modalAgendar').addEventListener('click', function(e) {
+        if (e.target === this) cerrarModalAgendar();
+      });
+
+      function mostrarStep(n) {
+        document.querySelectorAll('.modal-step').forEach(function(el) { el.classList.remove('active'); });
+        document.getElementById('modalStep' + n).classList.add('active');
+      }
+
+      function modalVolver(n) {
+        // Reset selected bar when going back to calendar
+        if (n === 1) {
+          document.getElementById('modalSelectedBar').classList.remove('visible');
+        }
+        mostrarStep(n);
+      }
+
+      var _calPage = 0;
+      var DAYS_PER_PAGE = 5;
+      var _activeTab = 0;
+      var _isAsap = false;
+
+      // ── Skeleton: show/hide ──
+      function showSkeleton() {
+        var sk = document.getElementById('modalSkeleton');
+        var skm = document.getElementById('modalSkeletonMobile');
+        if (sk) sk.classList.remove('hidden');
+        if (skm) skm.classList.remove('hidden');
+      }
+      function hideSkeleton() {
+        var sk = document.getElementById('modalSkeleton');
+        var skm = document.getElementById('modalSkeletonMobile');
+        if (sk) sk.classList.add('hidden');
+        if (skm) skm.classList.add('hidden');
+      }
+
+      function cargarSlots() {
+        var calEl = document.getElementById('modalCalendar');
+        var mobileSlots = document.getElementById('modalMobileSlots');
+        showSkeleton();
+        calEl.innerHTML = '';
+        mobileSlots.innerHTML = '';
+
+        fetch(SORBY_API + '/api/agendar/slots')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            hideSkeleton();
+            if (!data.ok || !data.slots || !data.slots.length) {
+              calEl.innerHTML = '<div class="modal-no-slots">No hay horarios disponibles. Intentá más tarde.</div>';
+              mobileSlots.innerHTML = '<div class="modal-mobile-empty">No hay horarios disponibles.</div>';
+              return;
+            }
+            _slotsData = data.slots.filter(function(d) { return d.slots.length > 0; });
+            _calPage = 0;
+            _activeTab = 0;
+            renderCalendar();
+          })
+          .catch(function() {
+            hideSkeleton();
+            calEl.innerHTML = '<div class="modal-no-slots">Error cargando horarios. Intentá más tarde.</div>';
+            document.getElementById('modalMobileSlots').innerHTML = '<div class="modal-mobile-empty">Error cargando horarios.</div>';
+          });
+      }
+
+      function renderCalendar() {
+        if (!_slotsData || !_slotsData.length) return;
+        renderDesktopCalendar();
+        renderMobileTabs();
+        renderMobileSlots();
+      }
+
+      // ── Slot selection (shared) ──
+      function seleccionarSlot(day, slot, pillEl) {
+        document.querySelectorAll('.modal-slot-pill').forEach(function(p) { p.classList.remove('selected'); });
+        pillEl.classList.add('selected');
+        _selectedSlot = slot;
+        _selectedDay = day;
+        _isAsap = false;
+        _trackStep('select');
+        // Show confirm bar
+        var bar = document.getElementById('modalSelectedBar');
+        document.getElementById('selLabel').textContent = slot.time + ' — ' + day.label;
+        bar.classList.add('visible');
+      }
+
+      // ── Desktop: 5-col grid ──
+      function renderDesktopCalendar() {
+        var calEl = document.getElementById('modalCalendar');
+        var navEl = document.getElementById('modalCalNav');
+        calEl.innerHTML = '';
+
+        var start = _calPage * DAYS_PER_PAGE;
+        var daysToShow = _slotsData.slice(start, start + DAYS_PER_PAGE);
+
+        daysToShow.forEach(function(day) {
+          var col = document.createElement('div');
+          col.className = 'modal-cal-day';
+
+          var parts = day.label.split(' ');
+          var header = document.createElement('div');
+          header.className = 'modal-cal-day-header';
+          header.innerHTML = '<span class="cal-day-name">' + parts[0] + '</span><span class="cal-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          col.appendChild(header);
+
+          var slotsContainer = document.createElement('div');
+          slotsContainer.className = 'modal-cal-slots';
+
+          day.slots.forEach(function(slot) {
+            var pill = document.createElement('div');
+            pill.className = 'modal-slot-pill';
+            pill.textContent = slot.time;
+            pill.addEventListener('click', function() { seleccionarSlot(day, slot, pill); });
+            slotsContainer.appendChild(pill);
+          });
+
+          col.appendChild(slotsContainer);
+          calEl.appendChild(col);
+        });
+
+        var totalPages = Math.ceil(_slotsData.length / DAYS_PER_PAGE);
+        if (totalPages > 1) {
+          navEl.style.display = 'flex';
+          document.getElementById('calPrevBtn').disabled = _calPage === 0;
+          document.getElementById('calNextBtn').disabled = _calPage >= totalPages - 1;
+          document.getElementById('calPageInfo').textContent = (_calPage + 1) + ' / ' + totalPages;
+        } else {
+          navEl.style.display = 'none';
+        }
+      }
+
+      function calPrev() { if (_calPage > 0) { _calPage--; renderDesktopCalendar(); } }
+      function calNext() {
+        var totalPages = Math.ceil(_slotsData.length / DAYS_PER_PAGE);
+        if (_calPage < totalPages - 1) { _calPage++; renderDesktopCalendar(); }
+      }
+
+      // ── Mobile: tab strip + slot grid ──
+      function renderMobileTabs() {
+        var tabsEl = document.getElementById('modalDayTabs');
+        tabsEl.innerHTML = '';
+
+        _slotsData.forEach(function(day, i) {
+          var parts = day.label.split(' ');
+          var tab = document.createElement('div');
+          tab.className = 'modal-day-tab' + (i === _activeTab ? ' active' : '');
+          tab.innerHTML = '<span class="tab-day-name">' + parts[0] + '</span><span class="tab-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          tab.addEventListener('click', function() { selectMobileTab(i); });
+          tabsEl.appendChild(tab);
+        });
+
+        var activeTabEl = tabsEl.children[_activeTab];
+        if (activeTabEl) {
+          activeTabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+
+      function selectMobileTab(index) {
+        _activeTab = index;
+        var tabs = document.querySelectorAll('.modal-day-tab');
+        tabs.forEach(function(t, i) { t.classList.toggle('active', i === index); });
+        renderMobileSlots();
+        var tabsEl = document.getElementById('modalDayTabs');
+        if (tabsEl.children[index]) {
+          tabsEl.children[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+
+      function renderMobileSlots() {
+        var container = document.getElementById('modalMobileSlots');
+        container.innerHTML = '';
+
+        if (!_slotsData || !_slotsData[_activeTab]) return;
+        var day = _slotsData[_activeTab];
+
+        if (!day.slots.length) {
+          container.innerHTML = '<div class="modal-mobile-empty">Sin horarios disponibles este día</div>';
+          return;
         }
 
-        // GTM — misma señal de tracking que el botón de WhatsApp
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'ir_a_calendario', variante: 'B', test: 'landing_agenda_directo' });
+        day.slots.forEach(function(slot) {
+          var pill = document.createElement('div');
+          pill.className = 'modal-slot-pill';
+          pill.textContent = slot.time;
+          pill.addEventListener('click', function() { seleccionarSlot(day, slot, pill); });
+          container.appendChild(pill);
+        });
+      }
 
-        var redirectURL = 'https://api.sorbydata.com/api/agendar?v=B' +
-        // var redirectURL = 'http://localhost:3003/api/agendar?v=B' +
-          '&fbc=' + encodeURIComponent(fbc) +
-          '&fbclid=' + encodeURIComponent(fbclid) +
-          '&utm_campaign=' + encodeURIComponent(campaign) +
-          '&fbp=' + encodeURIComponent(fbp) +
-          '&userAgent=' + encodeURIComponent(userAgent);
+      // ── Quick action: primer horario ──
+      function elegirProximo() {
+        if (!_slotsData || !_slotsData.length) return;
+        _selectedDay = _slotsData[0];
+        _selectedSlot = _slotsData[0].slots[0];
+        _isAsap = false;
+        irADatos();
+      }
 
-        window.location.href = redirectURL;
+      // ── Confirm bar → ir a datos ──
+      function irADatos() {
+        document.getElementById('badgeText').textContent = _selectedSlot.time + ' — ' + _selectedDay.label;
+        document.getElementById('modalSlotBadge').style.display = '';
+        document.getElementById('modalSubmitBtn').innerHTML = 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+        mostrarStep(2);
+        validarForm();
+      }
+
+      // ── Fallback: contactenme ASAP ──
+      function quieroContacto() {
+        _isAsap = true;
+        _selectedDay = null;
+        _selectedSlot = null;
+        document.getElementById('modalSlotBadge').innerHTML = '<i class="fab fa-whatsapp" style="color:#25D366;margin-right:6px"></i> Te contactamos lo antes posible';
+        document.getElementById('modalSubmitBtn').innerHTML = 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>';
+        mostrarStep(2);
+        validarForm();
+      }
+
+      // ── Form validation: enable/disable submit ──
+      function validarForm() {
+        var nombre = document.getElementById('modalNombre').value.trim();
+        var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
+        var btn = document.getElementById('modalSubmitBtn');
+        btn.disabled = !(nombre.length > 0 && telefono.length >= 8);
+      }
+
+      // ── Submit booking ──
+      function enviarBooking() {
+        var nombre = document.getElementById('modalNombre').value.trim();
+        var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
+        var empresa = document.getElementById('modalEmpresa').value.trim();
+        var errEl = document.getElementById('modalError2');
+
+        if (!nombre || telefono.length < 8) {
+          errEl.textContent = 'Completá nombre y WhatsApp válido';
+          errEl.style.display = 'block';
+          return false;
+        }
+        errEl.style.display = 'none';
+
+        var btn = document.getElementById('modalSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<div class="modal-spinner"></div> Agendando...';
+
+        var body = {
+          name: nombre,
+          phone: telefono,
+          empresa: empresa || undefined,
+          fbc: getCookie('_fbc') || '',
+          fbp: getCookie('_fbp') || '',
+          utm_campaign: getURLParameter('utm_campaign') || '',
+          userAgent: navigator.userAgent
+        };
+
+        if (_isAsap) {
+          body.asap = true;
+          body.datetime = _slotsData && _slotsData[0] ? _slotsData[0].slots[0].iso : new Date(Date.now() + 86400000).toISOString();
+        } else {
+          body.datetime = _selectedSlot.iso;
+        }
+
+        fetch(SORBY_API + '/api/agendar/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data.ok) {
+            errEl.textContent = data.error || 'Error al agendar. Intentá de nuevo.';
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = _isAsap
+              ? 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>'
+              : 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+            return;
+          }
+
+          if (_isAsap) {
+            mostrarStep('3b');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'contacto_asap', variante: 'B', test: 'landing_agenda_directo' });
+          } else {
+            document.getElementById('modalResumenFecha').textContent = data.fecha + ' a las ' + data.hora + ' hs';
+            generarICS();
+            mostrarStep(3);
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'demo_agendada_inline', variante: 'B', test: 'landing_agenda_directo' });
+          }
+        })
+        .catch(function() {
+          errEl.textContent = 'Error de conexión. Intentá de nuevo.';
+          errEl.style.display = 'block';
+          btn.disabled = false;
+          btn.innerHTML = _isAsap
+            ? 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>'
+            : 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+        });
+
+        return false;
+      }
+
+      // ── .ics file generation for "Add to Calendar" ──
+      function generarICS() {
+        if (!_selectedSlot) return;
+        var dt = new Date(_selectedSlot.iso);
+        var dtEnd = new Date(dt.getTime() + 15 * 60000);
+        var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+        var fmt = function(d) {
+          return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+        };
+        var ics = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Sorby//Demo//ES',
+          'BEGIN:VEVENT',
+          'DTSTART:' + fmt(dt),
+          'DTEND:' + fmt(dtEnd),
+          'SUMMARY:Demo Sorby',
+          'DESCRIPTION:Reunión de 15 minutos con el equipo de Sorby',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+        var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var link = document.getElementById('modalAddCal');
+        if (link) link.href = url;
       }
     </script>
     <script>
@@ -860,9 +1804,6 @@ const menuToggle = document.querySelector('.menu-toggle');
       (function () {
         var LANDING_AB_PESO_B = 0.5;
         var COOKIE_NAME = 'sb_lp_variante';
-        var API_BASE = 'https://api.sorbydata.com';
-        //var API_BASE = 'http://localhost:3003';
-
         // ?sb_variante=A|B en la URL fuerza la variante (útil para QA/testing)
         var forzada = getURLParameter('sb_variante').toUpperCase();
         var variante = (forzada === 'A' || forzada === 'B') ? forzada : getCookie(COOKIE_NAME);
@@ -878,7 +1819,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         window._sbVariante = variante;
 
         // Contar visita por variante (fire-and-forget, no bloquea rendering)
-        fetch(API_BASE + '/api/agendar/landing-visit?v=' + variante, { method: 'POST', mode: 'no-cors' }).catch(function () {});
+        fetch(SORBY_API + '/api/agendar/landing-visit?v=' + variante, { method: 'POST', mode: 'no-cors' }).catch(function () {});
 
         // GTM: para análisis en Google Analytics / Tag Manager
         window.dataLayer = window.dataLayer || [];
