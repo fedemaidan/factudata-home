@@ -520,6 +520,7 @@
         margin-top: 14px;
       }
       .modal-agendar input[type="text"],
+      .modal-agendar input[type="email"],
       .modal-agendar input[type="tel"] {
         width: 100%;
         padding: 12px 14px;
@@ -1020,8 +1021,10 @@
           <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
             <label for="modalNombre">Tu nombre *</label>
             <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()">
-            <label for="modalTelefono">Tu WhatsApp *</label>
-            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel" oninput="validarForm()">
+            <label for="modalEmail">Tu email *</label>
+            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()">
+            <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national">
             <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
             <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
             <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization">
@@ -1500,10 +1503,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         _selectedDay = day;
         _isAsap = false;
         _trackStep('select');
-        // Show confirm bar
-        var bar = document.getElementById('modalSelectedBar');
-        document.getElementById('selLabel').textContent = slot.time + ' — ' + day.label;
-        bar.classList.add('visible');
+        // Ir directo al formulario
+        irADatos();
       }
 
       // ── Desktop: 5-col grid ──
@@ -1641,20 +1642,22 @@ const menuToggle = document.querySelector('.menu-toggle');
       // ── Form validation: enable/disable submit ──
       function validarForm() {
         var nombre = document.getElementById('modalNombre').value.trim();
-        var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
+        var email = document.getElementById('modalEmail').value.trim();
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         var btn = document.getElementById('modalSubmitBtn');
-        btn.disabled = !(nombre.length > 0 && telefono.length >= 8);
+        btn.disabled = !(nombre.length > 0 && emailOk);
       }
 
       // ── Submit booking ──
       function enviarBooking() {
         var nombre = document.getElementById('modalNombre').value.trim();
+        var email = document.getElementById('modalEmail').value.trim();
         var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
         var empresa = document.getElementById('modalEmpresa').value.trim();
         var errEl = document.getElementById('modalError2');
 
-        if (!nombre || telefono.length < 8) {
-          errEl.textContent = 'Completá nombre y WhatsApp válido';
+        if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          errEl.textContent = 'Completá nombre y email válido';
           errEl.style.display = 'block';
           return false;
         }
@@ -1666,7 +1669,8 @@ const menuToggle = document.querySelector('.menu-toggle');
 
         var body = {
           name: nombre,
-          phone: telefono,
+          email: email,
+          phone: telefono || undefined,
           empresa: empresa || undefined,
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
@@ -1709,6 +1713,23 @@ const menuToggle = document.querySelector('.menu-toggle');
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'demo_agendada_inline', variante: 'B', test: 'landing_agenda_directo' });
           }
+
+          // Trigger browser autocomplete save
+          try {
+            var iframe = document.createElement('iframe');
+            iframe.name = 'autocomplete_frame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            var form = document.getElementById('modalForm');
+            var origTarget = form.target;
+            var origAction = form.action;
+            form.target = 'autocomplete_frame';
+            form.action = 'about:blank';
+            form.submit();
+            form.target = origTarget || '';
+            form.action = origAction || '';
+            setTimeout(function() { iframe.remove(); }, 500);
+          } catch(e) {}
         })
         .catch(function() {
           errEl.textContent = 'Error de conexión. Intentá de nuevo.';
