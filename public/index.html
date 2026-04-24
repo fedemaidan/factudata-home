@@ -957,14 +957,70 @@
         .modal-mobile-slots { display: none; }
         .modal-skeleton-mobile { display: none; }
       }
+
+      /* ── Step 0: Categorización ── */
+      .modal-categorias {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .modal-categoria-btn {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        background: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #1E4469;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.15s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .modal-categoria-btn:hover {
+        border-color: #00B2D4;
+        background: #f0fbfd;
+        color: #00B2D4;
+      }
+      @media (max-width: 768px) {
+        .modal-categoria-btn { font-size: 1.25em; padding: 12px 14px; }
+      }
     </style>
 
     <div class="modal-agendar-overlay" id="modalAgendar">
       <div class="modal-agendar">
         <button class="modal-agendar-close" onclick="cerrarModalAgendar()">&times;</button>
 
+        <!-- PASO 0: Categorización -->
+        <div class="modal-step active" id="modalStep0">
+          <h3>¿Qué tipo de negocio tenés?</h3>
+          <p class="modal-sub">Para mostrarte la mejor opción para tu caso</p>
+          <div class="modal-categorias">
+            <button class="modal-categoria-btn" onclick="seleccionarCategoria(1)">
+              <i class="fa fa-building"></i> Constructora
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoria(2)">
+              <i class="fa fa-pencil-square-o"></i> Estudio de arquitectura
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoria(3)">
+              <i class="fa fa-home"></i> Desarrolladora
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoria(4)">
+              <i class="fa fa-user"></i> Profesional independiente
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoria(5)">
+              <i class="fa fa-truck"></i> Proveedor de materiales / Corralón
+            </button>
+          </div>
+        </div>
+
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
-        <div class="modal-step active" id="modalStep1">
+        <div class="modal-step" id="modalStep1">
           <h3>Elegí tu horario</h3>
           <p class="modal-sub">Demo de 15 min, gratis y sin compromiso</p>
 
@@ -1011,7 +1067,7 @@
           </div>
 
           <div class="modal-error" id="modalError1" style="display:none"></div>
-          <div class="modal-fallback">¿No encontrás horario? <a onclick="quieroContacto()">Contactanos por WhatsApp</a></div>
+          <div class="modal-fallback">¿No encontrás horario? <a href="#" onclick="contactarPorWhatsApp(event)">Contactanos por WhatsApp</a> al +54 9 11 6237-7270 &nbsp;·&nbsp; <a href="#" onclick="modalVolver(0)">← Cambiar categoría</a></div>
         </div>
 
         <!-- PASO 2: Datos + Confirmación -->
@@ -1379,6 +1435,13 @@ const menuToggle = document.querySelector('.menu-toggle');
         abrirModalAgendar();
       }
 
+      function contactarPorWhatsApp(event) {
+        if (event) event.preventDefault();
+        var numero = '5491162377270';
+        var mensaje = 'Hola, me gustaría saber más de Sorby';
+        window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(mensaje), '_blank');
+      }
+
       // ─── Modal de Agendamiento Inline ──────────────────────────────────────
       // Base URL automática: localhost si estás en local, producción si no
       var SORBY_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
@@ -1389,6 +1452,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       var _selectedDay = null;
       var _selectedSlot = null;
       var _tracked = {}; // evitar duplicados por sesión
+      var _categoriaSeleccionada = null; // 1=Constructora 2=Estudio 3=Desarrolladora 4=Profesional 5=Proveedor
 
       function _trackStep(step) {
         if (_tracked[step]) return; // solo una vez por apertura
@@ -1411,8 +1475,22 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.getElementById('modalAgendar').classList.add('active');
         document.body.style.overflow = 'hidden';
         _trackStep('open');
-        // Si ya cargamos slots, no volver a cargar
+        _categoriaSeleccionada = null;
+        mostrarStep(0); // Siempre empezar por categorización
+        // Pre-cargar slots en background para que estén listos cuando se elija categoría
         if (!_slotsData) { cargarSlots(); }
+      }
+
+      function seleccionarCategoria(cat) {
+        _categoriaSeleccionada = cat;
+        if (cat === 4) {
+          // Profesional independiente → WhatsApp bot (sin conversión FB)
+          cerrarModalAgendar();
+          irAWhatsApp({ preventDefault: function(){} });
+          return;
+        }
+        // Constructora, Estudio, Desarrolladora, Proveedor → calendario
+        mostrarStep(1);
       }
 
       function cerrarModalAgendar() {
@@ -1711,11 +1789,19 @@ const menuToggle = document.querySelector('.menu-toggle');
         btn.disabled = true;
         btn.innerHTML = '<div class="modal-spinner"></div> Agendando...';
 
+        var CATEGORIA_LABELS = {
+          1: 'Constructora',
+          2: 'Estudio de arquitectura',
+          3: 'Desarrolladora',
+          4: 'Profesional independiente',
+          5: 'Proveedor de materiales / Corralón'
+        };
         var body = {
           name: nombre,
           email: email,
           phone: telefono || undefined,
           empresa: empresa || undefined,
+          categoria: _categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined,
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
           utm_campaign: getURLParameter('utm_campaign') || '',
@@ -1866,34 +1952,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       // ─── Inicialización ───────────────────────────────────────────────────────
-      (function () {
-        var LANDING_AB_PESO_B = 0.5;
-        var COOKIE_NAME = 'sb_lp_variante';
-        // ?sb_variante=A|B en la URL fuerza la variante (útil para QA/testing)
-        var forzada = getURLParameter('sb_variante').toUpperCase();
-        var variante = (forzada === 'A' || forzada === 'B') ? forzada : getCookie(COOKIE_NAME);
-        if (!variante) {
-          variante = Math.random() < LANDING_AB_PESO_B ? 'B' : 'A';
-        }
-        // No guardar en cookie si viene forzada por URL (permite probar sin "quedar" en esa variante)
-        if (!forzada) {
-          setCookie(COOKIE_NAME, variante, 90);
-        }
-        // Exponer en variable global para que irAWhatsApp/irACalendario puedan leerla
-        // incluso en modo QA (?sb_variante=A) donde la cookie no se guarda
-        window._sbVariante = variante;
-
-        // Contar visita por variante (fire-and-forget, no bloquea rendering)
-        fetch(SORBY_API + '/api/agendar/landing-visit?v=' + variante, { method: 'POST', mode: 'no-cors' }).catch(function () {});
-
-        // GTM: para análisis en Google Analytics / Tag Manager
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'ab_test_asignado', variante: variante, test: 'landing_agenda_directo' });
-
-        if (variante === 'B') {
-          aplicarVarianteB();
-        }
-      })();
+      aplicarVarianteB();
     </script>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
