@@ -1421,13 +1421,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         
         // const redirectURL = `http://localhost:3003/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
 
-        // Propagar variante del A/B test para atribución
-        // Prioridad: cookie (sesiones reales) → window._sbVariante (modo QA con ?sb_variante=)
-        const varianteAB = getCookie('sb_lp_variante') || window._sbVariante || '';
-        const finalURL = varianteAB ? redirectURL + `&variante=${encodeURIComponent(varianteAB)}` : redirectURL;
-        
         // Abrir en la misma ventana para garantizar que el redirect se complete
-        window.location.href = finalURL;
+        window.location.href = redirectURL;
       }
 
       function irACalendario(event) {
@@ -1447,6 +1442,9 @@ const menuToggle = document.querySelector('.menu-toggle');
       var SORBY_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
         ? 'http://localhost:3003'
         : 'https://api.sorbydata.com';
+
+      // Registrar visita (fire-and-forget, no bloquea nada)
+      try { fetch(SORBY_API + '/api/agendar/landing-visit', { method: 'POST' }); } catch (_) {}
 
       var _slotsData = null; // Cache de slots
       var _selectedDay = null;
@@ -1901,11 +1899,8 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
     </script>
     <script>
-      // ─── A/B Test: landing_agenda_directo ─────────────────────────────────────
-      // Variante A (50%): CTAs a WhatsApp — sin cambios
-      // Variante B (50%): todos los CTAs apuntan al calendario directo
-
-      function aplicarVarianteB() {
+      // ─── Configuración de CTAs ────────────────────────────────────────────────
+      function configurarCTAs() {
         // 1. Todos los botones con clase .cta-whatsapp → agenda directa
         document.querySelectorAll('.cta-whatsapp').forEach(function (el) {
           el.href = '#';
@@ -1952,29 +1947,18 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       // ─── Inicialización ───────────────────────────────────────────────────────
-      aplicarVarianteB();
+      configurarCTAs();
     </script>
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-    
-      const firebaseConfig = {
-        apiKey: "AIzaSyDZYWr3jGf1WM6Wry1YJU67plv16lcAWeA",
-        authDomain: "factudata-home.firebaseapp.com",
-        projectId: "factudata-home",
-        storageBucket: "factudata-home.appspot.com",
-        messagingSenderId: "214267828048",
-        appId: "1:214267828048:web:43df2ccd8830ca1ec17e55",
-        measurementId: "G-H1G436VC5Q"
-      };
-    
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    
+    <script src="/__/firebase/9.22.1/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.22.1/firebase-analytics-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script>
+      const analytics = firebase.analytics();
+
       // Trackear clicks en todos los botones de WhatsApp
       document.querySelectorAll('.cta-whatsapp').forEach(boton => {
         boton.addEventListener('click', () => {
-          logEvent(analytics, 'go_to_admin', { name: 'proba_sorby' });
+          analytics.logEvent('go_to_admin', { name: 'proba_sorby' });
         });
       });
     </script>
