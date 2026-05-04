@@ -1481,6 +1481,7 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       function seleccionarCategoria(cat) {
         _categoriaSeleccionada = cat;
+        _trackStep('category');
         if (cat === 4) {
           // Profesional independiente → WhatsApp bot (sin conversión FB)
           cerrarModalAgendar();
