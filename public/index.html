@@ -1479,9 +1479,19 @@ const menuToggle = document.querySelector('.menu-toggle');
         if (!_slotsData) { cargarSlots(); }
       }
 
+      var _categoriaNombres = {
+        1: 'constructora',
+        2: 'estudio_arquitectura',
+        3: 'desarrolladora',
+        4: 'profesional_independiente',
+        5: 'proveedor_materiales'
+      };
+
       function seleccionarCategoria(cat) {
         _categoriaSeleccionada = cat;
         _trackStep('category');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat });
         if (cat === 4) {
           // Profesional independiente → WhatsApp bot (sin conversión FB)
           cerrarModalAgendar();
@@ -1497,13 +1507,6 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.body.style.overflow = '';
       }
 
-      // Cerrar con Escape o clic fuera
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') cerrarModalAgendar();
-      });
-      document.getElementById('modalAgendar').addEventListener('click', function(e) {
-        if (e.target === this) cerrarModalAgendar();
-      });
 
       function mostrarStep(n) {
         document.querySelectorAll('.modal-step').forEach(function(el) { el.classList.remove('active'); });
