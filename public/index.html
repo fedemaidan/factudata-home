@@ -1901,7 +1901,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
           utm_campaign: getURLParameter('utm_campaign') || '',
-          userAgent: navigator.userAgent
+          userAgent: navigator.userAgent,
+          variante_categoria: _abVariant
         };
 
         if (_isAsap) {
