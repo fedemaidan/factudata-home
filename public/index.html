@@ -995,34 +995,10 @@
       <div class="modal-agendar">
         <button class="modal-agendar-close" onclick="cerrarModalAgendar()">&times;</button>
 
-        <!-- PASO 0: Categorización -->
-        <div class="modal-step active" id="modalStep0">
-          <h3>¿Qué tipo de negocio tenés?</h3>
-          <p class="modal-sub">Para mostrarte la mejor opción para tu caso</p>
-          <div class="modal-categorias">
-            <button class="modal-categoria-btn" onclick="seleccionarCategoria(1)">
-              <i class="fa fa-building"></i> Constructora
-            </button>
-            <button class="modal-categoria-btn" onclick="seleccionarCategoria(2)">
-              <i class="fa fa-pencil-square-o"></i> Estudio de arquitectura
-            </button>
-            <button class="modal-categoria-btn" onclick="seleccionarCategoria(3)">
-              <i class="fa fa-home"></i> Desarrolladora
-            </button>
-            <button class="modal-categoria-btn" onclick="seleccionarCategoria(4)">
-              <i class="fa fa-user"></i> Profesional independiente
-            </button>
-            <button class="modal-categoria-btn" onclick="seleccionarCategoria(5)">
-              <i class="fa fa-truck"></i> Proveedor de materiales / Corralón
-            </button>
-          </div>
-        </div>
-
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
-        <div class="modal-step" id="modalStep1">
-          <h3>Elegí tu horario</h3>
+        <div class="modal-step active" id="modalStep1">
+          <h3>Demo de 15 min · Gratis · Sin compromiso</h3>
           <p class="modal-sub">Mirá cómo tu obra deja de ser un caos de papeles.</p>
-          <p class="modal-sub" style="font-size: .9em; opacity: .75; margin-top: -8px;">Demo de 15 min · Gratis · Sin compromiso</p>
 
           <div class="modal-quick-link" onclick="elegirProximo()">
             <i class="fa fa-bolt"></i> Tomar el primer horario disponible
@@ -1067,7 +1043,7 @@
           </div>
 
           <div class="modal-error" id="modalError1" style="display:none"></div>
-          <div class="modal-fallback">¿No encontrás horario? <a href="#" onclick="contactarPorWhatsApp(event)">Contactanos por WhatsApp</a> al +54 9 11 6237-7270 <span id="linkCambiarCategoriaWrap">&nbsp;·&nbsp; <a href="#" id="linkCambiarCategoria" onclick="modalVolver(0)">← Cambiar categoría</a></span></div>
+          <div class="modal-fallback">¿No encontrás horario? <a href="#" onclick="contactarPorWhatsApp(event)">Contactanos por WhatsApp</a> al +54 9 11 6237-7270</div>
         </div>
 
         <!-- PASO 2: Datos + Confirmación -->
@@ -1102,7 +1078,7 @@
           </div>
         </div>
 
-        <!-- PASO CatB: Categoría post-booking (solo Variante B) -->
+        <!-- PASO CatB: Categoría post-booking -->
         <div class="modal-step" id="modalStepCatB">
           <div style="text-align:center;margin-bottom:8px">
             <div class="modal-check" style="font-size:2.5em">&#10003;</div>
@@ -1472,40 +1448,54 @@ const menuToggle = document.querySelector('.menu-toggle');
         ? 'http://localhost:3003'
         : 'https://api.sorbydata.com';
 
-      // ── A/B test: categoría antes vs después del booking ──
-      // Override manual: ?ab=A | ?ab=B fuerza la variante y la pega en localStorage.
-      //                  ?ab=reset borra la asignación y vuelve a sortear.
-      var _abVariant = (function() {
-        try {
-          var qs = new URLSearchParams(location.search);
-          var force = (qs.get('ab') || '').toUpperCase();
-          if (force === 'A' || force === 'B') {
-            localStorage.setItem('sorby_ab_cat_position', force);
-            return force;
-          }
-          if (force === 'RESET') {
-            localStorage.removeItem('sorby_ab_cat_position');
-          }
-          var v = localStorage.getItem('sorby_ab_cat_position');
-          if (v === 'A' || v === 'B') return v;
-          v = Math.random() < 0.5 ? 'A' : 'B';
-          localStorage.setItem('sorby_ab_cat_position', v);
-          return v;
-        } catch (e) {
-          return Math.random() < 0.5 ? 'A' : 'B';
-        }
-      })();
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'ab_test_assigned', test_categoria: 'cat_before_vs_after', variante_categoria: _abVariant });
+      // Flujo único: el usuario elige horario, completa datos, y recién
+      // después de agendar se le pregunta la categoría de negocio.
+      // (Antes había A/B test cat-pre vs cat-post — quedó B como ganadora.)
+      // Limpiar asignación vieja del A/B en localStorage de visitantes recurrentes.
+      try { localStorage.removeItem('sorby_ab_cat_position'); } catch (_) {}
 
       // Registrar visita (fire-and-forget, no bloquea nada)
-      try { fetch(SORBY_API + '/api/agendar/landing-visit?variante_categoria=' + _abVariant, { method: 'POST' }); } catch (_) {}
+      try { fetch(SORBY_API + '/api/agendar/landing-visit', { method: 'POST' }); } catch (_) {}
 
       var _slotsData = null; // Cache de slots
       var _selectedDay = null;
       var _selectedSlot = null;
       var _tracked = {}; // evitar duplicados por sesión
       var _categoriaSeleccionada = null; // 1=Constructora 2=Estudio 3=Desarrolladora 4=Profesional 5=Proveedor
+
+      // ── Funnel URL + FB Pixel tracking ─────────────────────────────
+      // Cambia la URL en cada paso (history.pushState, sin recargar) y
+      // dispara el evento estándar de Meta para que cada etapa sea
+      // medible como conversión en Ads Manager.
+      var _funnelBaseUrl = location.pathname + location.search + location.hash;
+      var _funnelFiredFb = {}; // dedupe FB events por apertura
+      function _funnelReset() { _funnelFiredFb = {}; }
+      function _funnelStep(slug, fbEvent, fbParams) {
+        try {
+          var url = slug ? ('/agendar' + (slug === '/' ? '' : slug)) : _funnelBaseUrl;
+          if (location.pathname + location.search !== url) {
+            history.pushState({ funnel: slug || null }, '', url);
+          }
+        } catch (_) {}
+        if (fbEvent && typeof fbq === 'function' && !_funnelFiredFb[fbEvent + ':' + (slug || '')]) {
+          _funnelFiredFb[fbEvent + ':' + (slug || '')] = true;
+          try {
+            if (fbEvent.indexOf('Custom:') === 0) {
+              fbq('trackCustom', fbEvent.slice(7), fbParams || {});
+            } else {
+              fbq('track', fbEvent, fbParams || {});
+            }
+          } catch (_) {}
+        }
+      }
+      // Back button → cerrar modal / volver a estado base
+      window.addEventListener('popstate', function() {
+        var modal = document.getElementById('modalAgendar');
+        if (modal && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
 
       function _trackStep(step) {
         if (_tracked[step]) return; // solo una vez por apertura
@@ -1519,8 +1509,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             step: step,
             fbc: getCookie('_fbc') || '',
             fbp: getCookie('_fbp') || '',
-            userAgent: navigator.userAgent,
-            variante_categoria: _abVariant
+            userAgent: navigator.userAgent
           })
         }).catch(function() {});
       }
@@ -1529,16 +1518,11 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.getElementById('modalAgendar').classList.add('active');
         document.body.style.overflow = 'hidden';
         _trackStep('open');
+        _funnelReset();
         _categoriaSeleccionada = null;
-        if (_abVariant === 'B') {
-          // Variante B: saltar categorización, ir directo al horario.
-          var linkCat = document.getElementById('linkCambiarCategoriaWrap');
-          if (linkCat) linkCat.style.display = 'none';
-          mostrarStep(1);
-        } else {
-          mostrarStep(0); // Variante A: empezar por categorización (control)
-        }
-        // Pre-cargar slots en background para que estén listos cuando se elija categoría
+        mostrarStep(1);
+        _funnelStep('/horario', 'ViewContent', { content_name: 'agendar_horario', funnel_step: 'horario' });
+        // Pre-cargar slots en background
         if (!_slotsData) { cargarSlots(); }
       }
 
@@ -1550,25 +1534,11 @@ const menuToggle = document.querySelector('.menu-toggle');
         5: 'proveedor_materiales'
       };
 
-      function seleccionarCategoria(cat) {
-        _categoriaSeleccionada = cat;
-        _trackStep('category');
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, variante_categoria: 'A', test_categoria: 'cat_before_vs_after', momento: 'pre_booking' });
-        if (cat === 4) {
-          // Profesional independiente → WhatsApp bot (sin conversión FB)
-          cerrarModalAgendar();
-          irAWhatsApp({ preventDefault: function(){} });
-          return;
-        }
-        // Constructora, Estudio, Desarrolladora, Proveedor → calendario
-        mostrarStep(1);
-      }
-
+      // Categoría seleccionada después de agendar (paso CatB).
       function seleccionarCategoriaPost(cat) {
         _categoriaSeleccionada = cat;
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, variante_categoria: 'B', test_categoria: 'cat_before_vs_after', momento: 'post_booking' });
+        window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, momento: 'post_booking' });
         try {
           fetch(SORBY_API + '/api/agendar/track', {
             method: 'POST',
@@ -1581,8 +1551,7 @@ const menuToggle = document.querySelector('.menu-toggle');
               datetime: (_selectedSlot && _selectedSlot.iso) || null,
               fbc: getCookie('_fbc') || '',
               fbp: getCookie('_fbp') || '',
-              userAgent: navigator.userAgent,
-              variante_categoria: _abVariant
+              userAgent: navigator.userAgent
             })
           }).catch(function() {});
         } catch (_) {}
@@ -1592,13 +1561,19 @@ const menuToggle = document.querySelector('.menu-toggle');
       function omitirCategoriaPost(e) {
         if (e && e.preventDefault) e.preventDefault();
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'seleccion_categoria_skip', variante_categoria: 'B', test_categoria: 'cat_before_vs_after' });
+        window.dataLayer.push({ event: 'seleccion_categoria_skip', momento: 'post_booking' });
         mostrarStep(3);
       }
 
       function cerrarModalAgendar() {
         document.getElementById('modalAgendar').classList.remove('active');
         document.body.style.overflow = '';
+        // Volver a la URL original sin disparar popstate
+        try {
+          if (location.pathname !== _funnelBaseUrl.split('?')[0].split('#')[0]) {
+            history.pushState({}, '', _funnelBaseUrl);
+          }
+        } catch (_) {}
       }
 
 
@@ -1838,6 +1813,12 @@ const menuToggle = document.querySelector('.menu-toggle');
         if (selectedBar) selectedBar.classList.remove('visible');
 
         mostrarStep(2);
+        // 🔑 Paso clave: usuario eligió horario y ve el form de datos.
+        _funnelStep('/datos', 'InitiateCheckout', {
+          content_name: 'agendar_datos',
+          funnel_step: 'datos',
+          datetime: (_selectedSlot && _selectedSlot.iso) || null
+        });
         validarForm();
 
         var nombreInput = document.getElementById('modalNombre');
@@ -1854,6 +1835,10 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.getElementById('modalSlotBadge').innerHTML = '<i class="fab fa-whatsapp" style="color:#25D366;margin-right:6px"></i> Te contactamos lo antes posible';
         document.getElementById('modalSubmitBtn').innerHTML = 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>';
         mostrarStep(2);
+        _funnelStep('/datos-asap', 'InitiateCheckout', {
+          content_name: 'agendar_datos_asap',
+          funnel_step: 'datos_asap'
+        });
         validarForm();
       }
 
@@ -1901,8 +1886,7 @@ const menuToggle = document.querySelector('.menu-toggle');
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
           utm_campaign: getURLParameter('utm_campaign') || '',
-          userAgent: navigator.userAgent,
-          variante_categoria: _abVariant
+          userAgent: navigator.userAgent
         };
 
         if (_isAsap) {
@@ -1932,20 +1916,31 @@ const menuToggle = document.querySelector('.menu-toggle');
           if (_isAsap) {
             mostrarStep('3b');
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'contacto_asap', variante: 'B', test: 'landing_agenda_directo' });
+            window.dataLayer.push({ event: 'contacto_asap' });
+            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' });
+            try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}
           } else {
             var resumenTxt = data.fecha + ' a las ' + data.hora + ' hs';
             document.getElementById('modalResumenFecha').textContent = resumenTxt;
             generarICS();
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'demo_agendada_inline', variante: 'B', test: 'landing_agenda_directo', variante_categoria: _abVariant, test_categoria: 'cat_before_vs_after' });
-            if (_abVariant === 'B' && !_categoriaSeleccionada) {
-              var resEl = document.getElementById('modalCatBResumen');
-              if (resEl) resEl.textContent = resumenTxt;
-              mostrarStep('CatB');
-            } else {
-              mostrarStep(3);
-            }
+            window.dataLayer.push({ event: 'demo_agendada_inline' });
+            // 🎯 Conversión: demo agendada. Schedule = evento estándar de Meta para citas.
+            _funnelStep('/listo', 'Lead', {
+              content_name: 'demo_agendada',
+              funnel_step: 'listo',
+              datetime: (_selectedSlot && _selectedSlot.iso) || null
+            });
+            try {
+              fbq('track', 'Schedule', {
+                content_name: 'demo_agendada',
+                datetime: (_selectedSlot && _selectedSlot.iso) || null
+              });
+            } catch (_) {}
+            // Después de agendar, pedimos la categoría de negocio.
+            var resEl = document.getElementById('modalCatBResumen');
+            if (resEl) resEl.textContent = resumenTxt;
+            mostrarStep('CatB');
           }
 
           // Trigger browser autocomplete save
