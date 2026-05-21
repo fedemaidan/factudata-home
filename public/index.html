@@ -69,7 +69,16 @@
          src="https://www.facebook.com/tr?id=564852612609427&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Meta Pixel Code -->
-  
+
+  <!-- Microsoft Clarity — session replay + heatmaps -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wutf5eai8c");
+  </script>
+
 </head>
 
 <body>
@@ -1052,14 +1061,14 @@
           <div class="modal-slot-badge" id="modalSlotBadge"><i class="fa fa-calendar-check"></i> <span id="badgeText"></span></div>
           <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
             <label for="modalNombre">Tu nombre *</label>
-            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()">
+            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')">
             <label for="modalEmail">Tu email *</label>
-            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()">
+            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')">
             <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national">
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')">
             <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
             <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization">
+            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')">
             <div class="modal-error" id="modalError2" style="display:none"></div>
             <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary" disabled>Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
           </form>
@@ -1487,6 +1496,24 @@ const menuToggle = document.querySelector('.menu-toggle');
             }
           } catch (_) {}
         }
+        // Clarity: dispara un evento custom por cada paso del funnel para
+        // poder filtrar sesiones por "llegó a X" y armar funnels visuales.
+        _clarity('funnel_' + (fbParams && fbParams.funnel_step || slug || 'unknown'));
+      }
+
+      // ── Helper Clarity (no-op si todavía no se cargó el snippet) ──
+      function _clarity(eventName, data) {
+        try {
+          if (typeof window.clarity !== 'function') return;
+          if (data && typeof data === 'object') {
+            for (var k in data) {
+              if (Object.prototype.hasOwnProperty.call(data, k)) {
+                window.clarity('set', k, String(data[k]));
+              }
+            }
+          }
+          if (eventName) window.clarity('event', eventName);
+        } catch (_) {}
       }
       // Back button → cerrar modal / volver a estado base
       window.addEventListener('popstate', function() {
@@ -1536,6 +1563,7 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       // Categoría seleccionada después de agendar (paso CatB).
       function seleccionarCategoriaPost(cat) {
+        _clarity('seleccion_categoria', { categoria: _categoriaNombres[cat] || cat });
         _categoriaSeleccionada = cat;
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, momento: 'post_booking' });
@@ -1566,7 +1594,14 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       function cerrarModalAgendar() {
-        document.getElementById('modalAgendar').classList.remove('active');
+        var modalEl = document.getElementById('modalAgendar');
+        var estabaAbierto = modalEl && modalEl.classList.contains('active');
+        // Trackear abandono con el step en el que estaba (sólo si el flujo no
+        // llegó a éxito — listo / listo_asap son cierres legítimos).
+        if (estabaAbierto && _currentStep && _currentStep !== '3' && _currentStep !== '3b' && _currentStep !== 'CatB') {
+          _trackStep('close_step_' + _currentStep);
+        }
+        if (modalEl) modalEl.classList.remove('active');
         document.body.style.overflow = '';
         // Volver a la URL original sin disparar popstate
         try {
@@ -1576,10 +1611,19 @@ const menuToggle = document.querySelector('.menu-toggle');
         } catch (_) {}
       }
 
+      var _currentStep = null;
 
       function mostrarStep(n) {
         document.querySelectorAll('.modal-step').forEach(function(el) { el.classList.remove('active'); });
         document.getElementById('modalStep' + n).classList.add('active');
+        _currentStep = String(n);
+        // 🔭 Tracking granular: registrar la vista efectiva de cada step.
+        // Esto separa "tocó píldora" (track 'select') de "el form se renderizó
+        // y el usuario lo vio realmente" (track 'view_datos').
+        if (n === 2) _trackStep('view_datos');
+        else if (n === 3) _trackStep('view_listo');
+        else if (n === '3b' || n === 3.1) _trackStep('view_listo_asap');
+        else if (n === 'CatB') _trackStep('view_cat_post');
       }
 
       function modalVolver(n) {
@@ -1853,6 +1897,9 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       // ── Submit booking ──
       function enviarBooking() {
+        // 🔭 Tracking granular: registrar TODO intento de submit, incluso si
+        // la validación local falla. Permite cuantificar abandono en form.
+        _trackStep('submit_attempt');
         var nombre = document.getElementById('modalNombre').value.trim();
         var email = document.getElementById('modalEmail').value.trim();
         var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
@@ -1860,6 +1907,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         var errEl = document.getElementById('modalError2');
 
         if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          _trackStep('submit_validation_error');
           errEl.textContent = 'Completá nombre y email válido';
           errEl.style.display = 'block';
           return false;
@@ -1904,6 +1952,10 @@ const menuToggle = document.querySelector('.menu-toggle');
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (!data.ok) {
+            _trackStep('submit_backend_error');
+            // Tag de Clarity para poder buscar grabaciones donde el backend
+            // devolvió error (CORS, 4xx/5xx con ok:false, etc.).
+            _clarity('submit_backend_error', { booking_error: data.error || 'unknown' });
             errEl.textContent = data.error || 'Error al agendar. Intentá de nuevo.';
             errEl.style.display = 'block';
             btn.disabled = false;
@@ -1919,6 +1971,8 @@ const menuToggle = document.querySelector('.menu-toggle');
             window.dataLayer.push({ event: 'contacto_asap' });
             _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' });
             try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}
+            // 🎯 Clarity: marcar sesión como convertida (lead ASAP).
+            _clarity('contacto_asap', { converted: 'asap' });
           } else {
             var resumenTxt = data.fecha + ' a las ' + data.hora + ' hs';
             document.getElementById('modalResumenFecha').textContent = resumenTxt;
@@ -1937,6 +1991,12 @@ const menuToggle = document.querySelector('.menu-toggle');
                 datetime: (_selectedSlot && _selectedSlot.iso) || null
               });
             } catch (_) {}
+            // 🎯 Clarity: marcar sesión como convertida (demo agendada).
+            // Permite filtrar grabaciones por converted=demo vs no-converted.
+            _clarity('demo_agendada', {
+              converted: 'demo',
+              datetime: (_selectedSlot && _selectedSlot.iso) || ''
+            });
             // Después de agendar, pedimos la categoría de negocio.
             var resEl = document.getElementById('modalCatBResumen');
             if (resEl) resEl.textContent = resumenTxt;
@@ -1961,6 +2021,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           } catch(e) {}
         })
         .catch(function() {
+          _trackStep('submit_network_error');
+          _clarity('submit_network_error');
           errEl.textContent = 'Error de conexión. Intentá de nuevo.';
           errEl.style.display = 'block';
           btn.disabled = false;
