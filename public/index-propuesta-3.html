@@ -2689,6 +2689,16 @@
         cursor: not-allowed;
         box-shadow: none;
       }
+      /* Visual incomplete: el botón se ve gris pero sigue clickeable
+         (al click va a mostrar el prompt de WA o el mensaje de error). */
+      .modal-btn-primary.btn-incomplete {
+        background: #BDBDBD !important;
+        box-shadow: none !important;
+        cursor: pointer;
+      }
+      .modal-btn-primary.btn-incomplete:hover {
+        background: #A8A8A8 !important;
+      }
       .modal-btn-back {
         background: transparent;
         color: #999;
@@ -3111,7 +3121,7 @@
               </button>
             </div>
 
-            <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary" disabled>Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
+            <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary btn-incomplete">Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
           </form>
           <button class="modal-btn modal-btn-back" onclick="modalVolver(1)"><i class="fa fa-arrow-left" style="margin-right:6px;font-size:.85em"></i> Cambiar horario</button>
         </div>
@@ -3975,19 +3985,19 @@ const menuToggle = document.querySelector('.menu-toggle');
       function validarForm() {
         var nombre = document.getElementById('modalNombre').value.trim();
         var email = document.getElementById('modalEmail').value.trim();
-        var telefono = (document.getElementById('modalTelefono').value || '').replace(/\D/g, '');
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        var telefonoOk = telefono.length >= 8;
         var btn = document.getElementById('modalSubmitBtn');
-        btn.disabled = !(nombre.length > 0 && emailOk);
 
-        // Si tiene nombre + WhatsApp pero NO email → mostrar el prompt "agendá por WhatsApp"
+        // El botón siempre es clickeable: si el form está incompleto se ve "gris"
+        // pero deja disparar onsubmit → enviarBooking() decide qué mostrar.
+        var incomplete = !(nombre.length > 0 && emailOk);
+        btn.disabled = false;
+        btn.classList.toggle('btn-incomplete', incomplete);
+
+        // Mientras escribe NO mostramos el prompt de WhatsApp (confunde).
+        // Sólo aparece si clickea Confirmar con datos incompletos pero WA válido.
         var waPrompt = document.getElementById('modalWaPrompt');
-        if (waPrompt) {
-          var mostrar = (nombre.length > 0 && telefonoOk && !emailOk);
-          waPrompt.style.display = mostrar ? 'block' : 'none';
-          if (mostrar) _trackStep('mostro_wa_prompt');
-        }
+        if (waPrompt && incomplete) waPrompt.style.display = 'none';
       }
 
       // ── Agendar por WhatsApp con info pre-llenada del form ──
@@ -4037,10 +4047,25 @@ const menuToggle = document.querySelector('.menu-toggle');
         var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
         var empresa = document.getElementById('modalEmpresa').value.trim();
         var errEl = document.getElementById('modalError2');
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var telefonoOk = telefono.length >= 8;
 
-        if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (!nombre || !emailOk) {
           _trackStep('submit_validation_error');
-          errEl.textContent = 'Completá nombre y email válido';
+
+          // Si el usuario clickeó Confirmar con datos incompletos pero ya cargó
+          // un WhatsApp válido, ofrecerle el path de WhatsApp como alternativa.
+          var waPrompt = document.getElementById('modalWaPrompt');
+          if (telefonoOk && waPrompt) {
+            waPrompt.style.display = 'block';
+            _trackStep('mostro_wa_prompt');
+            // Scroll suave al prompt para que el usuario lo vea
+            try { waPrompt.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch(_) {}
+            errEl.style.display = 'none';
+            return false;
+          }
+
+          errEl.textContent = !nombre ? 'Completá tu nombre' : 'Completá un email válido para confirmar';
           errEl.style.display = 'block';
           return false;
         }
