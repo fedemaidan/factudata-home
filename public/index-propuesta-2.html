@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorby — Propuesta de nuevo hero</title>
+  <!-- MOCKUP standalone. Mobile-first. No afecta producción. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       Mobile-first CSS.
+       - Estilos base = mobile (sin imagen, todo apilado).
+       - @media (min-width: 769px) = desktop (suma imagen al costado).
+       ═══════════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul: #1E4469;
+      --azul-oscuro: #163553;
+      --celeste: #00B2D4;
+      --celeste-bright: #23B5D3;
+      --verde: #2DC197;
+      --blanco: #FFFFFF;
+      --gris: #F6F6F6;
+      --gris-borde: #E0E0E0;
+      --texto: #2A2A2A;
+      --texto-light: #5A6A7A;
+      --wa-green: #25D366;
+    }
+
+    body {
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+    /* ═════════ HEADER (mobile-first) ═════════ */
+    header {
+      background: linear-gradient(160deg, var(--azul) 0%, var(--azul-oscuro) 100%);
+      color: var(--blanco);
+      padding: 8px 0;
+      /* En mobile NO sticky — gana ~40px de viewport, importante para Instagram in-app */
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo-link { display: inline-flex; align-items: center; }
+    .logo-img { height: 32px; width: auto; display: block; }
+    header .nav-cta { display: none; } /* oculto en mobile — alcanza el sticky bottom */
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--celeste); color: var(--blanco);
+      padding: 8px 14px; border-radius: 8px;
+      font-weight: 700; font-size: 13px;
+      cursor: pointer; border: none;
+      font-family: inherit;
+      transition: box-shadow .15s;
+    }
+    .nav-cta:hover { box-shadow: 0 0 12px rgba(0,178,212,0.5); }
+
+    /* ═════════ HERO (mobile-first) ═════════ */
+    .hero {
+      background: linear-gradient(160deg, var(--azul) 0%, var(--azul-oscuro) 50%, #0d2745 100%);
+      color: var(--blanco);
+      padding: 18px 0 30px;
+      position: relative;
+      overflow: hidden;
+      /* Mobile: hero ocupa toda la pantalla restando el header (~52px)
+         Usa 100svh (small viewport height) — correcto para Instagram in-app */
+      min-height: calc(100svh - 52px);
+      display: flex;
+      align-items: flex-start; /* contenido pegado arriba */
+    }
+    .hero .container { width: 100%; }
+    .hero .container { width: 100%; }
+    .hero::before, .hero::after {
+      content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
+    }
+    .hero::before { top: -120px; right: -100px; width: 380px; height: 380px; background: var(--celeste); }
+    .hero::after { bottom: -80px; left: -60px; width: 280px; height: 280px; background: var(--verde); }
+
+    .hero-content { position: relative; z-index: 2; }
+    .hero-image { display: none; } /* OCULTA EN MOBILE (mobile-first) */
+
+    /* Pill selector — mobile: grilla 2x2 */
+    .pill-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .pill-label {
+      display: none; /* oculto en mobile, se muestra en desktop */
+    }
+    .pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--blanco);
+      padding: 10px 14px; border-radius: 12px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .15s;
+      font-family: inherit;
+      text-align: center;
+    }
+    .pill:hover { background: rgba(255,255,255,0.16); }
+    .pill.active { background: var(--verde); border-color: var(--verde); color: var(--blanco); }
+
+    .hero h1 {
+      font-size: 28px; /* mobile base */
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .hero h1 em { font-style: normal; color: var(--verde); }
+
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .hero-sub strong { color: var(--blanco); }
+
+    .hero-bullets {
+      list-style: none;
+      margin: 0 auto 22px;
+      max-width: 460px;
+      display: none; /* oculto en mobile — se muestra en desktop via media query */
+    }
+    .hero-bullets li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 0; font-size: 14px;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-bullets li::before {
+      content: '✓'; color: var(--verde);
+      font-weight: 700; font-size: 16px;
+      flex-shrink: 0; line-height: 1.3;
+    }
+
+    .hero-ctas {
+      display: none; /* oculto en mobile, visible en desktop */
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    /* Scroll hint (mobile) — invita a explorar, clickeable */
+    .scroll-hint {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.55);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      animation: hint-bounce 2.2s ease-in-out infinite;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .15s;
+      scroll-margin-top: 60px; /* compensa el header al scrollear */
+    }
+    .scroll-hint:hover { color: rgba(255,255,255,0.85); }
+    .scroll-hint i { font-size: 14px; }
+    /* Smooth scroll global para anchors */
+    html { scroll-behavior: smooth; }
+    /* Sección destino tiene scroll-margin para que no quede pegada al header */
+    #como-funciona { scroll-margin-top: 12px; }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50%      { transform: translateY(4px); opacity: 0.85; }
+    }
+
+    /* Teaser quote arriba de los pills (mobile) */
+    .hero-teaser {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 22px;
+      line-height: 1.5;
+      padding: 0 8px;
+    }
+    .hero-teaser::before, .hero-teaser::after {
+      content: '"';
+      color: var(--verde);
+      font-weight: 800;
+      opacity: 0.6;
+      margin: 0 3px;
+    }
+
+    /* Sub-headline en 2 líneas: principal + secundaria */
+    .hero-sub-secondary {
+      display: block;
+      margin-top: 6px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 22px; border-radius: 10px;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      font-family: inherit;
+      border: 2px solid transparent;
+      transition: all .15s;
+      width: 100%; max-width: 320px;
+    }
+    .btn-primary { background: var(--celeste); color: var(--blanco); }
+    .btn-primary:hover { box-shadow: 0 0 16px rgba(0,178,212,0.6); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,0.4); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+    .hero-logos {
+      text-align: center;
+      opacity: 0.65;
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .logo-grid {
+      display: flex; flex-wrap: wrap; gap: 18px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      opacity: 0.75;
+    }
+    .logo-grid img {
+      height: 26px;
+      width: auto;
+      filter: brightness(0) invert(1); /* fuerza color blanco sobre fondo oscuro */
+      opacity: 0.85;
+    }
+
+    /* ═════════ QUOTES SECTION ═════════ */
+    .quotes-section { background: var(--gris); padding: 40px 0; }
+    .section-title {
+      font-size: 22px; font-weight: 700; color: var(--azul);
+      text-align: center; margin-bottom: 8px;
+    }
+    .section-sub {
+      text-align: center; color: var(--texto-light);
+      margin-bottom: 28px; font-size: 14px;
+    }
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .quote-card {
+      background: var(--blanco); border-radius: 14px;
+      padding: 18px 20px;
+      border-top: 4px solid var(--verde);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .quote-card::before {
+      content: '"'; font-family: Georgia, serif;
+      font-size: 44px; color: var(--verde);
+      opacity: 0.25; position: absolute;
+      top: 2px; right: 12px; line-height: 1;
+    }
+    .quote-text {
+      font-size: 14.5px; font-style: italic;
+      color: var(--azul); line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .quote-author { font-size: 12px; color: var(--texto-light); font-weight: 600; }
+    .quote-solucion {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(45,193,151,0.35);
+      font-size: 12.5px;
+      color: var(--azul);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .quote-solucion::before {
+      content: '→ ';
+      color: var(--verde);
+      font-weight: 800;
+      margin-right: 2px;
+    }
+    .quote-solucion strong { color: var(--verde); font-weight: 800; }
+
+    /* ═════════ FAQ ═════════ */
+    .faq-section { padding: 40px 0; background: var(--blanco); }
+    .faq-grid {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .faq-item {
+      background: var(--gris);
+      border-radius: 10px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--celeste);
+    }
+    .faq-q { font-size: 14.5px; font-weight: 700; color: var(--azul); margin-bottom: 5px; }
+    .faq-a { font-size: 13.5px; color: var(--texto); line-height: 1.55; }
+
+    /* ═════════ FINAL CTA ═════════ */
+    .final-cta {
+      background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+      color: var(--blanco);
+      padding: 44px 0;
+      text-align: center;
+    }
+    .final-cta h2 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .final-cta p {
+      font-size: 14px; color: rgba(255,255,255,0.8);
+      margin-bottom: 22px;
+      max-width: 540px;
+      margin-left: auto; margin-right: auto;
+    }
+    .final-cta .btn { margin: 0 auto; }
+
+    /* ═══════════════════════════════════════════════════════════
+       DESKTOP — agregamos imagen y layout side-by-side.
+       Todo lo nuevo va acá. El mobile queda intacto.
+       ═══════════════════════════════════════════════════════════ */
+    @media (min-width: 769px) {
+      body { font-size: 16px; }
+      .container { padding: 0 24px; }
+
+      /* Header: en desktop sí sticky */
+      header { padding: 16px 0; position: sticky; top: 0; }
+      .logo { font-size: 24px; }
+      .nav-cta { padding: 10px 18px; font-size: 14px; }
+
+      /* HERO: side-by-side con la imagen a la derecha */
+      .hero {
+        padding: 48px 0 56px;
+        min-height: 0; /* en desktop no forzamos altura completa */
+        display: flex;
+        align-items: center;
+      }
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
+        align-items: center;
+      }
+      .hero-text {
+        text-align: left;
+      }
+      .pill-selector {
+        display: flex; /* override del grid mobile */
+        grid-template-columns: none;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-bottom: 22px;
+        gap: 8px;
+      }
+      .pill-label {
+        display: inline; /* visible en desktop */
+        font-size: 13px;
+        color: rgba(255,255,255,0.7);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      .pill { padding: 8px 14px; font-size: 13px; border-radius: 20px; }
+
+      /* Bullets vuelven a mostrarse en desktop */
+      .hero-bullets { display: block; }
+
+      /* Sticky CTA oculto en desktop — el botón del header alcanza */
+      .sticky-cta { display: none; }
+      body { padding-bottom: 0; }
+
+      .hero h1 { font-size: 40px; text-align: left; max-width: 100%; }
+      .hero-sub { font-size: 17px; text-align: left; max-width: 520px; margin-left: 0; margin-right: 0; margin-bottom: 22px; }
+
+      .hero-bullets { margin: 0 0 26px 0; max-width: 100%; }
+      .hero-bullets li { font-size: 15.5px; padding: 8px 0; }
+
+      .hero-ctas {
+        display: flex; /* visible en desktop */
+        flex-direction: row; justify-content: flex-start; gap: 14px; margin-bottom: 28px;
+      }
+      .btn { width: auto; max-width: none; padding: 14px 24px; }
+
+      /* Header CTA visible en desktop */
+      header .nav-cta { display: inline-flex; }
+
+      /* Ocultos en desktop: scroll hint + teaser quote (sólo mobile) */
+      .scroll-hint, .hero-teaser { display: none; }
+
+      .logo-img { height: 38px; }
+      .logos-strip { padding: 36px 0; }
+      .logos-strip-grid { gap: 40px; }
+      .logos-strip-grid img { height: 40px; }
+
+      /* IMAGEN visible sólo en desktop */
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        max-height: 360px; /* antes 460 — más balance con el texto */
+        filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
+      }
+
+      /* Quotes en 3 columnas */
+      .quotes-section { padding: 64px 0; }
+      .section-title { font-size: 28px; }
+      .section-sub { font-size: 15px; margin-bottom: 36px; }
+      .quotes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .quote-text { font-size: 15px; }
+
+      /* FAQ */
+      .faq-section { padding: 64px 0; }
+      .faq-item { padding: 20px 24px; }
+      .faq-q { font-size: 16px; }
+      .faq-a { font-size: 14.5px; }
+
+      /* Final */
+      .final-cta { padding: 64px 0; }
+      .final-cta h2 { font-size: 32px; }
+      .final-cta p { font-size: 16px; }
+      .final-cta .btn { width: auto; max-width: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIONES NUEVAS (mobile-first):
+       - Cómo funciona (3 pilares + flujo 4 pasos)
+       - Sorby en acción (chat WhatsApp + screenshot dashboard)
+       - 6 Módulos
+       - Planes (simplificados)
+       - Onboarding
+       ═══════════════════════════════════════════════════════════ */
+
+    /* ── Sticky CTA bottom (mobile only) ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--blanco);
+      /* safe-area-inset-bottom = notch iOS + barra inferior de Instagram */
+      padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+      z-index: 90;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .sticky-cta .btn {
+      width: 100%;
+      max-width: none;
+      padding: 12px 18px;
+      font-size: 15px;
+      box-shadow: 0 4px 14px rgba(0,178,212,0.35);
+    }
+    body { padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)); }
+
+    /* ── Layout común de sección ── */
+    section.bloque { padding: 44px 0; }
+    .bloque.alt { background: var(--gris); }
+    .bloque-header { text-align: center; margin-bottom: 28px; }
+    .bloque-kicker {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--celeste); margin-bottom: 8px;
+    }
+    .bloque-title { font-size: 22px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
+    .bloque-sub { font-size: 14px; color: var(--texto-light); max-width: 540px; margin: 0 auto; }
+
+    /* ── 3 pilares: bot + web + sheets ── */
+    .pilares-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 14px; margin-bottom: 28px;
+    }
+    .pilar {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--celeste);
+    }
+    .pilar-icon { font-size: 38px; margin-bottom: 10px; }
+    .pilar-title { font-size: 15px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
+    .pilar-desc { font-size: 13px; color: var(--texto-light); line-height: 1.55; }
+
+    /* ── Flujo 4 pasos ── */
+    .flow-title-h {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--texto-light);
+      text-align: center; margin-bottom: 14px;
+    }
+    .flow {
+      display: flex; flex-direction: column;
+      gap: 10px;
+      max-width: 700px; margin: 0 auto;
+    }
+    .flow-step-box {
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border-left: 3px solid var(--celeste);
+    }
+    .flow-step-box:nth-child(2) { border-left-color: var(--wa-green); }
+    .flow-step-box:nth-child(3) { border-left-color: #8b5cf6; }
+    .flow-step-box:nth-child(4) { border-left-color: var(--verde); }
+    .flow-num-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(0,178,212,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; flex-shrink: 0;
+      position: relative;
+    }
+    .flow-step-box:nth-child(2) .flow-num-circle { background: rgba(37,211,102,0.12); }
+    .flow-step-box:nth-child(3) .flow-num-circle { background: rgba(139,92,246,0.12); }
+    .flow-step-box:nth-child(4) .flow-num-circle { background: rgba(45,193,151,0.15); }
+    .flow-num-circle::after {
+      content: attr(data-num);
+      position: absolute;
+      bottom: -4px; right: -4px;
+      background: var(--azul); color: var(--blanco);
+      font-size: 10px; font-weight: 800;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--blanco);
+    }
+    .flow-step-text { font-size: 13.5px; line-height: 1.5; color: var(--texto); flex: 1; }
+    .flow-step-text strong { display: block; color: var(--azul); margin-bottom: 3px; font-weight: 700; font-size: 14.5px; }
+
+    /* ── Strip de logos de clientes (entre hero y cómo funciona) ── */
+    .logos-strip {
+      background: var(--blanco);
+      padding: 24px 0;
+      border-bottom: 1px solid #EEE;
+    }
+    .logos-strip-stat {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .logos-strip-stat strong {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--azul);
+      letter-spacing: -0.5px;
+    }
+    .logos-strip-stat span {
+      display: block;
+      font-size: 12px;
+      color: var(--texto-light);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .logos-strip-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--texto-light);
+      margin-bottom: 16px;
+    }
+    .logos-strip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      align-items: center;
+      justify-content: center;
+    }
+    .logos-strip-grid img {
+      height: 30px;
+      width: auto;
+      opacity: 0.65;
+      filter: grayscale(100%);
+      transition: opacity .2s, filter .2s;
+    }
+    .logos-strip-grid img:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+
+    /* ── Sorby se adapta a tu rubro — 4 cards ── */
+    .rubros-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .rubro-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 22px 22px;
+      box-shadow: 0 2px 14px rgba(30,68,105,0.08);
+      border-top: 4px solid var(--celeste);
+      display: flex;
+      flex-direction: column;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .rubro-card:nth-child(2) { border-top-color: var(--verde); }
+    .rubro-card:nth-child(3) { border-top-color: #8b5cf6; }
+    .rubro-card:nth-child(4) { border-top-color: #f59e0b; }
+    .rubro-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,68,105,0.14); }
+    .rubro-icon { font-size: 34px; margin-bottom: 8px; }
+    .rubro-name {
+      font-size: 17px; font-weight: 800; color: var(--azul);
+      margin-bottom: 10px;
+    }
+    .rubro-quote {
+      font-size: 13px; font-style: italic;
+      color: var(--texto-light);
+      line-height: 1.5;
+      padding: 10px 12px;
+      background: var(--gris);
+      border-radius: 8px;
+      border-left: 3px solid var(--celeste);
+      margin-bottom: 14px;
+    }
+    .rubro-card:nth-child(2) .rubro-quote { border-left-color: var(--verde); }
+    .rubro-card:nth-child(3) .rubro-quote { border-left-color: #8b5cf6; }
+    .rubro-card:nth-child(4) .rubro-quote { border-left-color: #f59e0b; }
+    .rubro-features {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 13px; color: var(--texto);
+      margin-top: auto;
+    }
+    .rubro-features span { line-height: 1.45; }
+
+    /* ── Sorby en acción — storytelling stack ── */
+    .accion-stack {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .accion-row {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+    }
+    .accion-text { text-align: center; max-width: 540px; }
+    .accion-step {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--celeste);
+      background: rgba(0,178,212,0.10);
+      padding: 4px 10px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+    .accion-text h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .accion-text p {
+      font-size: 14px;
+      color: var(--texto-light);
+      line-height: 1.55;
+    }
+    .accion-shot {
+      width: 100%;
+      max-width: 480px;
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 8px;
+      box-shadow: 0 8px 28px rgba(30,68,105,0.14);
+      overflow: hidden;
+    }
+    .accion-shot img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+    .accion-shot.accion-shot-phone {
+      max-width: 280px;
+      background: #111;
+      padding: 6px;
+      border-radius: 28px;
+    }
+    .accion-shot.accion-shot-phone img {
+      border-radius: 22px;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       MOCKUPS HTML de los 4 screenshots de "Sorby en acción"
+       ════════════════════════════════════════════════════════ */
+
+    /* ── 1. Mockup WhatsApp factura ── */
+    .mock-phone {
+      background: #ECE5DD;
+      border-radius: 22px;
+      padding: 10px 8px;
+      font-size: 11px;
+    }
+    .mock-phone-bar {
+      display: flex; justify-content: space-between;
+      font-size: 10px; color: #444; font-weight: 600;
+      padding: 0 6px 6px;
+    }
+    .mock-phone-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 6px; border-bottom: 1px solid #d8d2c6; margin-bottom: 8px;
+    }
+    .mock-phone-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--celeste); color: var(--blanco);
+      font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mock-phone-name { font-size: 12px; font-weight: 700; color: #111; }
+    .mock-phone-status { font-size: 9px; color: #888; }
+    .mock-msg-user {
+      background: #DCF8C6;
+      border-radius: 8px;
+      padding: 6px;
+      max-width: 80%;
+      margin-left: auto;
+      margin-bottom: 6px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }
+    .mock-pdf-preview {
+      background: rgba(255,255,255,0.6);
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 10px;
+    }
+    .mock-pdf-preview img-pdf {
+      width: 30px; height: 30px;
+      background: var(--coral, #e74c3c);
+      color: white;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 9px; font-weight: 800;
+      line-height: 30px; text-align: center;
+    }
+    .mock-msg-bot {
+      background: var(--blanco);
+      border-radius: 8px;
+      padding: 8px 10px;
+      max-width: 92%;
+      font-size: 10.5px;
+      line-height: 1.55;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.06);
+    }
+    .mock-msg-bot strong { color: #075E54; }
+    .mock-msg-time { font-size: 8px; color: #999; text-align: right; }
+    .mock-cert-card {
+      background: rgba(45,193,151,0.10);
+      border-left: 3px solid var(--verde);
+      border-radius: 5px;
+      padding: 6px 8px;
+      margin: 6px 0;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .mock-cert-card strong { color: var(--azul); }
+
+    /* ── 2. Mockup Cajas dashboard ── */
+    .mock-dash {
+      background: var(--blanco);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 11px;
+    }
+    .mock-dash-bread {
+      font-size: 10px; color: var(--texto-light);
+      margin-bottom: 8px;
+    }
+    .mock-dash-title { font-size: 14px; font-weight: 800; color: var(--azul); margin-bottom: 10px; }
+    .mock-cajas-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+      margin-bottom: 10px;
+    }
+    .mock-caja-card {
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: var(--blanco);
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+    }
+    .mock-caja-card.usd { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .mock-caja-card.gastos { background: linear-gradient(135deg, #f87171, #ef4444); }
+    .mock-caja-card-label { font-size: 9px; opacity: 0.85; margin-bottom: 2px; }
+    .mock-caja-card-val { font-size: 14px; font-weight: 800; line-height: 1; }
+    .mock-caja-card-sub { font-size: 8.5px; opacity: 0.75; margin-top: 2px; }
+    .mock-dash-table {
+      width: 100%; border-collapse: collapse; font-size: 9px;
+    }
+    .mock-dash-table th {
+      background: var(--gris); padding: 5px;
+      font-size: 8.5px; font-weight: 700; color: var(--texto-light);
+      text-transform: uppercase; letter-spacing: 0.3px;
+      text-align: left;
+    }
+    .mock-dash-table td {
+      padding: 5px; border-bottom: 1px solid #f0f0f0;
+      color: var(--texto);
+    }
+    .mock-dash-table .red { color: #c0392b; font-weight: 700; }
+    .mock-dash-table .green { color: #0a6147; font-weight: 700; }
+    .mock-dash-cat { color: var(--celeste); font-weight: 600; font-size: 8.5px; }
+
+    /* ── 3. Mockup Presupuesto ── */
+    .mock-pres-header {
+      background: var(--azul); color: var(--blanco);
+      border-radius: 8px 8px 0 0;
+      padding: 10px 12px;
+      margin: -12px -12px 10px;
+    }
+    .mock-pres-rubro { font-size: 13px; font-weight: 800; }
+    .mock-pres-sub { font-size: 10px; opacity: 0.75; }
+    .mock-pres-stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px; margin-bottom: 10px;
+    }
+    .mock-pres-stat {
+      background: var(--gris); border-radius: 6px; padding: 6px 8px;
+    }
+    .mock-pres-stat-l { font-size: 8.5px; color: var(--texto-light); text-transform: uppercase; }
+    .mock-pres-stat-v { font-size: 12px; font-weight: 800; color: var(--azul); line-height: 1.2; }
+    .mock-pres-stat-v.green { color: #0a6147; }
+    .mock-pres-stat-v.orange { color: #d97706; }
+    .mock-pres-progress {
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .mock-pres-progress div {
+      height: 100%;
+      width: 8%;
+      background: linear-gradient(90deg, var(--celeste), var(--teal));
+    }
+    .mock-pres-tabs {
+      display: flex; gap: 8px; padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0; margin-bottom: 8px;
+      font-size: 9.5px; color: var(--texto-light); font-weight: 600;
+    }
+    .mock-pres-tabs span.active { color: var(--celeste); border-bottom: 2px solid var(--celeste); padding-bottom: 4px; }
+
+    /* ── 5. Mockup Control de Obra Profesional ── */
+    .mock-obra-header {
+      background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+      color: var(--blanco);
+      border-radius: 8px 8px 0 0;
+      padding: 12px 14px;
+      margin: -12px -12px 12px;
+    }
+    .mock-obra-header-pro {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #7c3aed 100%);
+    }
+    .mock-obra-header-top {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+    }
+    .mock-obra-name { font-size: 13px; font-weight: 800; margin-top: 4px; }
+    .mock-obra-sub { font-size: 10px; opacity: 0.82; margin-top: 2px; }
+    .mock-obra-state {
+      display: inline-block;
+      background: rgba(249,115,22,0.95); color: var(--blanco);
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px; border-radius: 12px;
+    }
+    .mock-obra-total { text-align: right; }
+    .mock-obra-total > div {
+      font-size: 16px; font-weight: 800; line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .mock-obra-total span { font-size: 9px; opacity: 0.78; }
+
+    .mock-obra-banner {
+      background: #fff8e1;
+      border: 1px solid rgba(255,183,77,0.4);
+      border-radius: 7px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      display: flex; gap: 8px; align-items: flex-start;
+      font-size: 10px;
+      color: #8a5a00;
+    }
+    .mock-obra-banner span { font-size: 14px; flex-shrink: 0; }
+    .mock-obra-banner strong { color: #8a5a00; font-weight: 800; }
+    .mock-obra-banner .mob-sub { color: #b07700; }
+
+    .mock-obra-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 6px; margin-bottom: 12px;
+    }
+    .mock-obra-kpis .kpi {
+      background: var(--gris);
+      border-radius: 6px;
+      padding: 7px 8px;
+    }
+    .mock-obra-kpis .kpi-l {
+      font-size: 8px; font-weight: 700;
+      color: var(--texto-light);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .mock-obra-kpis .kpi-v {
+      font-size: 14px; font-weight: 800;
+      color: var(--azul); line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .mock-obra-kpis .kpi-s {
+      font-size: 7.5px; color: var(--texto-light); margin-top: 2px;
+      line-height: 1.2;
+    }
+    .mock-obra-tabs {
+      display: flex; gap: 14px;
+      font-size: 10px; color: var(--texto-light); font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 6px; margin-bottom: 10px;
+    }
+    .mock-obra-tabs span.active { color: var(--celeste); border-bottom: 2px solid var(--celeste); padding-bottom: 5px; }
+    .mock-obra-table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 12px; }
+    .mock-obra-table th {
+      background: var(--gris); padding: 5px 6px;
+      font-size: 8.5px; color: var(--texto-light);
+      text-align: left; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .mock-obra-table td { padding: 6px; border-bottom: 1px solid #f0f0f0; }
+    .mock-obra-table .rubro { font-weight: 700; color: var(--azul); font-size: 10px; }
+    .mock-obra-table .pos { color: #0a6147; font-weight: 700; }
+    .mock-obra-table .neg { color: #c0392b; font-weight: 700; }
+    .mock-obra-table .num { font-variant-numeric: tabular-nums; }
+    .mock-obra-table tr.total td {
+      background: rgba(0,178,212,0.06);
+      font-weight: 800;
+      border-bottom: none;
+    }
+    .mock-obra-mini-progress {
+      display: inline-block;
+      width: 38px; height: 5px;
+      background: #e5e7eb; border-radius: 5px;
+      vertical-align: middle;
+      margin-right: 4px;
+      overflow: hidden;
+    }
+    .mock-obra-mini-progress div {
+      height: 100%;
+      background: linear-gradient(90deg, var(--verde), #14b8a6);
+    }
+
+    /* Curva S — chart SVG-like en CSS */
+    .mock-curve-wrap {
+      background: var(--gris);
+      border-radius: 8px;
+      padding: 10px 12px 8px;
+      position: relative;
+    }
+    .mock-curve-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--texto-light);
+      margin-bottom: 6px;
+    }
+    .mock-curve-legend {
+      display: flex; gap: 10px;
+      font-size: 8.5px; color: var(--texto-light); margin-bottom: 4px;
+    }
+    .mock-curve-legend span::before {
+      content: ''; display: inline-block;
+      width: 8px; height: 2px;
+      vertical-align: middle; margin-right: 4px;
+    }
+    .mock-curve-legend .lg-plan::before { background: #94a3b8; }
+    .mock-curve-legend .lg-cert::before { background: var(--celeste); }
+    .mock-curve-legend .lg-cobr::before { background: var(--verde); }
+    .mock-curve-svg { width: 100%; height: 80px; display: block; }
+
+    /* Próximo cobro card */
+    .mock-cobro-card {
+      background: linear-gradient(135deg, rgba(45,193,151,0.10), rgba(0,178,212,0.06));
+      border-left: 3px solid var(--verde);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 10px;
+      margin-top: 10px;
+    }
+    .mock-cobro-card strong { color: var(--azul); font-weight: 800; font-size: 11px; }
+    .mock-cobro-card .badge {
+      display: inline-block;
+      background: var(--verde); color: var(--blanco);
+      font-size: 8px; font-weight: 800;
+      padding: 2px 6px; border-radius: 10px;
+      letter-spacing: 0.3px;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    /* ── 4. Mockup Acopio ── */
+    .mock-acopio-info {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 6px; margin-bottom: 12px;
+      font-size: 10px;
+    }
+    .mock-acopio-info-l { font-size: 8.5px; color: var(--texto-light); text-transform: uppercase; }
+    .mock-acopio-info-v { font-size: 11px; font-weight: 700; color: var(--azul); }
+    .mock-acopio-progress-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .mock-acopio-progress {
+      flex: 1;
+      height: 5px;
+      background: #e5e7eb; border-radius: 5px;
+      overflow: hidden;
+    }
+    .mock-acopio-progress div {
+      height: 100%;
+      width: 97%;
+      background: linear-gradient(90deg, #5a4fcf, #818cf8);
+    }
+    .mock-acopio-donut {
+      display: flex; justify-content: center; padding: 10px 0;
+    }
+    .mock-donut {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: conic-gradient(#10b981 0% 97%, #ef4444 97% 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .mock-donut::before {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      background: var(--blanco);
+      border-radius: 50%;
+    }
+    .mock-donut-text {
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .mock-donut-text strong { display: block; font-size: 16px; font-weight: 800; color: var(--azul); }
+    .mock-donut-text span { font-size: 9px; color: var(--texto-light); }
+    .mock-acopio-bottom {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 10px;
+    }
+    .mock-acopio-bottom > div {
+      background: var(--gris); border-radius: 5px; padding: 6px 8px;
+    }
+    .mock-acopio-bottom .red { color: #c0392b; font-weight: 800; font-size: 11px; }
+    .mock-acopio-bottom .green { color: #0a6147; font-weight: 800; font-size: 11px; }
+
+    /* ── Planes CTA ── */
+    .planes-cta {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 6px 28px rgba(30,68,105,0.10);
+    }
+    .planes-cta-emoji { font-size: 44px; margin-bottom: 12px; }
+    .planes-cta-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .planes-cta-sub {
+      font-size: 14px;
+      color: var(--texto-light);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    .planes-cta-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 18px;
+      margin-bottom: 24px;
+      font-size: 12.5px;
+      color: var(--azul);
+      font-weight: 600;
+    }
+    .planes-cta-btn { width: auto !important; max-width: none !important; }
+
+    /* ── WhatsApp chat mockup (legacy, queda por compatibilidad) ── */
+    .chat-block {
+      background: #ECE5DD;
+      border-radius: 14px;
+      padding: 14px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .chat-block-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #075E54; text-align: center; margin-bottom: 10px;
+    }
+    .bubble {
+      max-width: 90%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .bubble.user {
+      background: #DCF8C6;
+      margin-left: auto;
+      border-bottom-right-radius: 2px;
+    }
+    .bubble.bot {
+      background: var(--blanco);
+      border-bottom-left-radius: 2px;
+    }
+    .bubble-name { display: block; font-size: 9px; font-weight: 700; margin-bottom: 2px; }
+    .bubble.user .bubble-name { color: #4CAF50; }
+    .bubble.bot .bubble-name { color: var(--teal); }
+
+    /* ── Dashboard screenshot placeholder ── */
+    .dashboard-shot {
+      max-width: 540px; margin: 24px auto 0;
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      text-align: center;
+    }
+    .dashboard-shot img {
+      max-width: 100%; height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+    .dashboard-placeholder {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #f0f4f8, #e1eaf1);
+      border: 2px dashed var(--gris-borde);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--texto-light);
+      font-size: 12px; text-align: center;
+      padding: 20px;
+    }
+
+    /* ── Módulos (6 cards) ── */
+    .mod-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 12px; max-width: 1100px; margin: 0 auto;
+    }
+    .mod-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--celeste);
+    }
+    .mod-card.c2 { border-left-color: #FFB74D; }
+    .mod-card.c3 { border-left-color: var(--verde); }
+    .mod-card.c4 { border-left-color: #AB82FF; }
+    .mod-card.c5 { border-left-color: var(--teal); }
+    .mod-card.c6 { border-left-color: #FF7043; }
+    .mod-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .mod-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(0,178,212,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .mod-card.c2 .mod-icon { background: rgba(255,183,77,0.15); }
+    .mod-card.c3 .mod-icon { background: rgba(45,193,151,0.15); }
+    .mod-card.c4 .mod-icon { background: rgba(171,130,255,0.15); }
+    .mod-card.c5 .mod-icon { background: rgba(0,151,178,0.15); }
+    .mod-card.c6 .mod-icon { background: rgba(255,112,67,0.15); }
+    .mod-name { font-size: 15px; font-weight: 700; color: var(--azul); }
+    .mod-desc { font-size: 13px; color: var(--texto-light); line-height: 1.55; }
+
+    /* ── Planes simplificados ── */
+    .planes-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 14px; max-width: 1100px; margin: 0 auto;
+    }
+    .plan-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(30,68,105,0.08);
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .plan-card.featured { box-shadow: 0 8px 28px rgba(30,68,105,0.18); border: 2px solid var(--teal); }
+    .plan-card.featured::before {
+      content: 'MÁS ELEGIDO';
+      position: absolute; top: 0; right: 0;
+      background: var(--verde); color: var(--blanco);
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      padding: 5px 12px; border-bottom-left-radius: 10px;
+    }
+    .plan-head {
+      padding: 18px 20px;
+      background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+      color: var(--blanco);
+    }
+    .plan-head.featured-bg { background: linear-gradient(135deg, var(--teal), var(--celeste)); }
+    .plan-name {
+      font-size: 12px; font-weight: 700; opacity: 0.8;
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .plan-price {
+      font-size: 28px; font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .plan-price small { font-size: 13px; font-weight: 600; opacity: 0.8; }
+    .plan-cuota { font-size: 12px; opacity: 0.85; line-height: 1.4; }
+    .plan-body { padding: 18px 20px; flex: 1; }
+    .plan-limits { display: flex; gap: 12px; margin-bottom: 14px; }
+    .plan-limit {
+      flex: 1; text-align: center;
+      background: var(--gris); border-radius: 8px; padding: 8px 4px;
+    }
+    .plan-limit-n { font-size: 18px; font-weight: 700; color: var(--azul); }
+    .plan-limit-l { font-size: 10px; color: var(--texto-light); }
+    .plan-features { list-style: none; }
+    .plan-features li { padding: 4px 0; font-size: 13px; display: flex; gap: 8px; align-items: flex-start; }
+    .plan-features li::before { content: '✓'; color: var(--verde); font-weight: 700; flex-shrink: 0; }
+    .plan-features li.off { color: #C8C8C8; }
+    .plan-features li.off::before { content: '–'; color: #D8D8D8; }
+
+    /* ── Onboarding ── */
+    .ob-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 14px; max-width: 1000px; margin: 0 auto;
+    }
+    .ob-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .ob-icon { font-size: 36px; margin-bottom: 10px; }
+    .ob-title { font-size: 15px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
+    .ob-desc { font-size: 13px; color: var(--texto-light); line-height: 1.55; }
+
+    /* ═════════ DESKTOP overrides para secciones nuevas ═════════ */
+    @media (min-width: 769px) {
+      section.bloque { padding: 72px 0; }
+      .bloque-title { font-size: 30px; }
+      .bloque-sub { font-size: 16px; }
+      .bloque-header { margin-bottom: 44px; }
+
+      .pilares-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 44px; }
+      .pilar { padding: 28px 22px; }
+      .pilar-icon { font-size: 44px; }
+      .pilar-title { font-size: 17px; }
+      .pilar-desc { font-size: 14px; }
+
+      .flow { flex-direction: row; gap: 14px; }
+      .flow-step-box { flex: 1; flex-direction: column; text-align: center; gap: 10px; padding: 18px 14px; }
+      .flow-step-text strong { margin-bottom: 4px; }
+
+      .en-accion-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 36px;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .dashboard-shot { margin-top: 0; max-width: none; }
+
+      /* Accion stack side-by-side, alternando lados */
+      .accion-stack { gap: 60px; }
+      .accion-row {
+        flex-direction: row;
+        gap: 48px;
+        align-items: center;
+      }
+      .accion-row.reverse { flex-direction: row-reverse; }
+      .accion-text { text-align: left; flex: 1; }
+      .accion-text h3 { font-size: 24px; margin-bottom: 12px; }
+      .accion-text p { font-size: 15.5px; }
+      .accion-shot { max-width: 580px; flex: 1; }
+      .accion-shot.accion-shot-phone { max-width: 320px; }
+
+      /* Planes CTA */
+      .planes-cta { padding: 48px 40px; }
+      .planes-cta-title { font-size: 28px; }
+      .planes-cta-sub { font-size: 15px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+      .rubros-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+      .mod-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .mod-card { padding: 18px 16px; }
+      .mod-name { font-size: 14px; }
+      .mod-desc { font-size: 12.5px; }
+
+      .planes-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
+
+      .ob-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .ob-card { padding: 28px 22px; }
+      .ob-icon { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════ HEADER ═════════ -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo-link">
+        <img src="img/logo-mixto-blanco.png" alt="Sorby Data" class="logo-img" />
+      </a>
+      <button class="nav-cta" onclick="handleDemo()">
+        <i class="fa fa-calendar"></i> Agendá gratis
+      </button>
+    </div>
+  </header>
+
+  <!-- ═════════ HERO ═════════ -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <h1 id="hero-h1">Sabé cómo va cada obra <em>antes de que termine</em>.</h1>
+
+        <p class="hero-sub" id="hero-sub">
+          Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.
+          <span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>
+        </p>
+
+        <ul class="hero-bullets" id="hero-bullets">
+          <li>Foto al ticket o audio al bot → cargado en segundos</li>
+          <li>Stock y herramientas con trazabilidad por obra</li>
+          <li>Desvíos de presupuesto detectados antes del cierre</li>
+        </ul>
+
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="handleDemo()">
+            <i class="fa fa-calendar"></i> Agendá demo gratis
+          </button>
+        </div>
+
+        <a href="#como-funciona" class="scroll-hint">
+          <span>Mirá cómo funciona</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+      </div>
+
+      <div class="hero-image">
+        <!-- Visible sólo en desktop por CSS. -->
+        <img src="img/personaje-12.png" alt="Sorby — control de obras" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═════════ STRIP DE LOGOS DE CLIENTES ═════════ -->
+  <section class="logos-strip">
+    <div class="container">
+      <div class="logos-strip-stat">
+        <strong>+100 empresas del rubro</strong>
+        <span>Ya ordenan sus obras, materiales y caja con Sorby</span>
+      </div>
+      <div class="logos-strip-label">🤝 Algunas de ellas</div>
+      <div class="logos-strip-grid">
+        <img src="img/logos/1.png" alt="Cliente 1" />
+        <img src="img/logos/2.png" alt="Cliente 2" />
+        <img src="img/logos/3.png" alt="Cliente 3" />
+        <img src="img/logos/4.png" alt="Cliente 4" />
+        <img src="img/logos/5.png" alt="Cliente 5" />
+        <img src="img/logos/6.png" alt="Cliente 6" />
+        <img src="img/logos/7.png" alt="Cliente 7" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ CÓMO FUNCIONA ═════════ -->
+  <section class="bloque" id="como-funciona">
+    <div class="container">
+      <div class="bloque-header">
+        <div class="bloque-kicker">Cómo funciona</div>
+        <h2 class="bloque-title">Simple y fácil: sin sistemas complejos</h2>
+        <p class="bloque-sub">Tu equipo ya usa WhatsApp. Sorby lo convierte en tu herramienta de gestión de obra.</p>
+      </div>
+
+      <div class="pilares-grid">
+        <div class="pilar">
+          <div class="pilar-icon">🤖</div>
+          <div class="pilar-title">Bot de WhatsApp con IA</div>
+          <div class="pilar-desc">Mandá texto, audio o foto al bot. Sin comandos, sin menús — la IA entiende lenguaje natural y registra todo solo.</div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-icon">💻</div>
+          <div class="pilar-title">Plataforma web</div>
+          <div class="pilar-desc">Dashboard completo para el dueño. Filtrá, analizá, exportá y tomá decisiones desde cualquier dispositivo.</div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-icon">📊</div>
+          <div class="pilar-title">Google Sheets sincronizado</div>
+          <div class="pilar-desc">Todos los movimientos van automáticamente a Google Sheets. Compartilo con tu contador con un link.</div>
+        </div>
+      </div>
+
+      <div class="flow-title-h">Así se registra un gasto — 4 pasos</div>
+      <div class="flow">
+        <div class="flow-step-box">
+          <div class="flow-num-circle" data-num="1">📷</div>
+          <div class="flow-step-text"><strong>En obra</strong>El encargado saca foto a la factura del corralón.</div>
+        </div>
+        <div class="flow-step-box">
+          <div class="flow-num-circle" data-num="2">💬</div>
+          <div class="flow-step-text"><strong>WhatsApp</strong>La manda al bot de Sorby como cualquier mensaje.</div>
+        </div>
+        <div class="flow-step-box">
+          <div class="flow-num-circle" data-num="3">🤖</div>
+          <div class="flow-step-text"><strong>IA procesa</strong>Extrae proveedor, monto, fecha y categoría.</div>
+        </div>
+        <div class="flow-step-box">
+          <div class="flow-num-circle" data-num="4">✅</div>
+          <div class="flow-step-text"><strong>Queda registrado</strong>Aparece en la caja de la obra al instante.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ SORBY SE ADAPTA A TU RUBRO ═════════ -->
+  <section class="bloque" id="rubros">
+    <div class="container">
+      <div class="bloque-header">
+        <div class="bloque-kicker">Soluciones por perfil</div>
+        <h2 class="bloque-title">Sorby se adapta a tu rubro</h2>
+        <p class="bloque-sub">Mismo motor, distintos focos. Estos son los problemas concretos que resolvemos en cada tipo de empresa.</p>
+      </div>
+
+      <div class="rubros-grid">
+        <div class="rubro-card">
+          <div class="rubro-icon">🏗️</div>
+          <div class="rubro-name">Constructora</div>
+          <div class="rubro-quote">"Si la obra me dio o no, me di cuenta cuando ya terminó."</div>
+          <div class="rubro-features">
+            <span>✓ Gastos por obra desde WhatsApp</span>
+            <span>✓ Stock y herramientas con trazabilidad</span>
+            <span>✓ Margen real antes del cierre</span>
+          </div>
+        </div>
+
+        <div class="rubro-card">
+          <div class="rubro-icon">📐</div>
+          <div class="rubro-name">Estudio de arquitectura</div>
+          <div class="rubro-quote">"El comitente me pregunta y tengo que armar algo aparte cada vez."</div>
+          <div class="rubro-features">
+            <span>✓ Bot de voz para cargar gastos en obra</span>
+            <span>✓ Reporte automático para el comitente</span>
+            <span>✓ Certificados de avance con aprobación</span>
+          </div>
+        </div>
+
+        <div class="rubro-card">
+          <div class="rubro-icon">🏢</div>
+          <div class="rubro-name">Desarrolladora</div>
+          <div class="rubro-quote">"Varios compradores en cuotas y todo va a la misma caja. Un lío."</div>
+          <div class="rubro-features">
+            <span>✓ Plan de cobros por comprador y unidad</span>
+            <span>✓ Reporte para inversores y socios por link</span>
+            <span>✓ Caja multi-banco separada por proyecto</span>
+          </div>
+        </div>
+
+        <div class="rubro-card">
+          <div class="rubro-icon">🏬</div>
+          <div class="rubro-name">Corralón</div>
+          <div class="rubro-quote">"Trabajo con crédito y cuando cierro nunca sé bien cuánto debo."</div>
+          <div class="rubro-features">
+            <span>✓ Acopios con clientes y proveedores</span>
+            <span>✓ Cuenta corriente de cada cliente al día</span>
+            <span>✓ Multi-sucursal en un solo lugar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ SORBY EN ACCIÓN ═════════ -->
+  <section class="bloque alt">
+    <div class="container">
+      <div class="bloque-header">
+        <div class="bloque-kicker">Sorby en acción</div>
+        <h2 class="bloque-title">Así trabaja con tus datos reales</h2>
+        <p class="bloque-sub">Mismo WhatsApp para el equipo. Dashboard completo para el dueño. Todo conectado.</p>
+      </div>
+
+      <div class="accion-stack">
+
+        <!-- Paso 1: WhatsApp → bot procesa factura -->
+        <div class="accion-row">
+          <div class="accion-text">
+            <div class="accion-step">Paso 1</div>
+            <h3>Tu encargado manda la factura por WhatsApp</h3>
+            <p>Foto, PDF o audio. El bot la recibe y la procesa con IA. Sin formularios, sin app nueva.</p>
+          </div>
+          <div class="accion-shot accion-shot-phone">
+            <div class="mock-phone">
+              <div class="mock-phone-bar"><span>11:24</span><span>📶 🔋87</span></div>
+              <div class="mock-phone-header">
+                <div class="mock-phone-avatar">Sd</div>
+                <div>
+                  <div class="mock-phone-name">SorbyData</div>
+                  <div class="mock-phone-status">en línea</div>
+                </div>
+              </div>
+              <div class="mock-msg-user">
+                <div class="mock-pdf-preview">
+                  <span style="display:inline-block;width:24px;height:30px;background:#e74c3c;color:white;border-radius:3px;font-size:8px;font-weight:800;line-height:30px;text-align:center;">PDF</span>
+                  <span><strong>FACTURAA.pdf</strong><br><span style="font-size:9px;color:#666">1 página · 59 KB</span></span>
+                </div>
+                <div class="mock-msg-time">11:23 ✓✓</div>
+              </div>
+              <div class="mock-msg-bot">
+                Los datos del comprobante son:<br>
+                👉 <strong>Proyecto</strong> Tigre<br>
+                👉 <strong>Fecha</strong> 2026-07-15<br>
+                👉 <strong>Vencimiento</strong> 2026-07-25<br>
+                👉 <strong>Proveedor</strong> EL SOL MATERIALES S.A.<br>
+                👉 <strong>Categoría</strong> Materiales<br>
+                👉 <strong>Subcategoría</strong> Corralón<br>
+                👉 <strong>Medio</strong> Transferencia<br>
+                👉 <strong>Subtotal</strong> $ 13.927.002<br>
+                👉 <strong>IVA 21%</strong> $ 2.924.670<br>
+                👉 <strong>Total</strong> $ 17.199.847<br>
+                👉 <strong>Moneda</strong> ARS
+                <div class="mock-msg-time">11:23</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2: dashboard cajas -->
+        <div class="accion-row reverse">
+          <div class="accion-text">
+            <div class="accion-step">Paso 2</div>
+            <h3>Aparece al instante en la caja de la obra</h3>
+            <p>Con proveedor, categoría, fecha, monto e impuestos ya cargados. Vista por proyecto, multi-moneda, con filtros.</p>
+          </div>
+          <div class="accion-shot">
+            <div class="mock-dash">
+              <div class="mock-dash-bread">🏠 Inicio › 📁 Proyectos › 💰 Cajas › <strong style="color:var(--azul)">Lote 4 y 5</strong></div>
+              <div class="mock-dash-title">Cajas · Lote 4 y 5</div>
+              <div class="mock-cajas-cards">
+                <div class="mock-caja-card">
+                  <div class="mock-caja-card-label">CAJA EN PESOS</div>
+                  <div class="mock-caja-card-val">$45.570.146</div>
+                  <div class="mock-caja-card-sub">ARS · neto</div>
+                </div>
+                <div class="mock-caja-card usd">
+                  <div class="mock-caja-card-label">CAJA EN DÓLARES</div>
+                  <div class="mock-caja-card-val">US$11.466</div>
+                  <div class="mock-caja-card-sub">USD · saldo actual</div>
+                </div>
+                <div class="mock-caja-card gastos">
+                  <div class="mock-caja-card-label">GASTOS</div>
+                  <div class="mock-caja-card-val">-US$54.145</div>
+                  <div class="mock-caja-card-sub">USD BLUE · egreso</div>
+                </div>
+              </div>
+              <table class="mock-dash-table">
+                <thead>
+                  <tr><th>Cod.</th><th>Fecha</th><th>Total</th><th>Categoría</th><th>Proveedor</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>4695</td><td>19/05</td><td class="red">$60.005</td><td><span class="mock-dash-cat">Combustible</span></td><td>Mercado Pago</td></tr>
+                  <tr><td>4754</td><td>22/05</td><td class="green">$100.000.000</td><td>Sin categoría</td><td>—</td></tr>
+                  <tr><td>4717</td><td>20/05</td><td class="red">$1.000.000</td><td><span class="mock-dash-cat">Ferretería</span></td><td>BATTEZZATI</td></tr>
+                  <tr><td>4711</td><td>20/05</td><td class="red">$1.000.000</td><td><span class="mock-dash-cat">Hormigón</span></td><td>AHORMIGONERA BS AS</td></tr>
+                  <tr><td>4707</td><td>20/05</td><td class="red">$500.000</td><td><span class="mock-dash-cat">Mano de obra</span></td><td>ADRIAN MABRES</td></tr>
+                  <tr><td>4458</td><td>29/04</td><td class="green">$5.000.000</td><td>Cobro</td><td>Plan para Pedro</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 3: control de presupuesto -->
+        <div class="accion-row">
+          <div class="accion-text">
+            <div class="accion-step">Paso 3</div>
+            <h3>Se descuenta del presupuesto en vivo</h3>
+            <p>Cada movimiento impacta automáticamente sobre el rubro correspondiente. Sabés cuánto va vs cuánto se proyectó, antes de que sea tarde.</p>
+          </div>
+          <div class="accion-shot">
+            <div class="mock-dash">
+              <div class="mock-pres-header">
+                <div class="mock-pres-rubro">🏗️ Mano de obra</div>
+                <div class="mock-pres-sub">Rubro de presupuesto · 12 movimientos</div>
+              </div>
+              <div class="mock-pres-tabs">
+                <span>✏️ Editar</span>
+                <span>➕ Adicional</span>
+                <span>📜 Historial (2)</span>
+                <span class="active">📊 Movim. (12)</span>
+                <span>📎 Adjuntos</span>
+              </div>
+              <div class="mock-pres-stats">
+                <div class="mock-pres-stat">
+                  <div class="mock-pres-stat-l">Presupuestado</div>
+                  <div class="mock-pres-stat-v">USD 100M</div>
+                </div>
+                <div class="mock-pres-stat">
+                  <div class="mock-pres-stat-l">Ejecutado</div>
+                  <div class="mock-pres-stat-v green">USD 8.450</div>
+                </div>
+                <div class="mock-pres-stat">
+                  <div class="mock-pres-stat-l">Avance</div>
+                  <div class="mock-pres-stat-v orange">0.0%</div>
+                </div>
+              </div>
+              <div class="mock-pres-progress"><div></div></div>
+              <table class="mock-dash-table">
+                <thead>
+                  <tr><th>Fecha</th><th>Detalle</th><th>Monto</th><th>Acum.</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>10/03</td><td>Sin proveedor</td><td class="red">$2.000.000</td><td>$2.000.000</td></tr>
+                  <tr><td>23/02</td><td>Sin proveedor</td><td class="red">$2.000.000</td><td>$4.000.000</td></tr>
+                  <tr><td>08/10</td><td>Los Alerces</td><td class="red">$10.000</td><td>$8.010.000</td></tr>
+                  <tr><td>07/10</td><td>Los Alerces</td><td class="red">$500.000</td><td>$8.520.000</td></tr>
+                  <tr><td>07/10</td><td>Los Bilardos</td><td class="red">$1.000.000</td><td>$11.020.000</td></tr>
+                  <tr><td><strong>Total</strong></td><td>(c/imp.)</td><td colspan="2"><strong>$12.120.000</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 4: acopio -->
+        <div class="accion-row reverse">
+          <div class="accion-text">
+            <div class="accion-step">Paso 4</div>
+            <h3>Lo mismo con acopios y remitos</h3>
+            <p>Cada acopio con su saldo en vivo, remitos registrados, gráfico de disponibilidad. Trazabilidad total sin planillas.</p>
+          </div>
+          <div class="accion-shot">
+            <div class="mock-dash">
+              <div class="mock-dash-bread">🏠 Inicio › 📦 Acopios › <strong style="color:var(--azul)">COR-7159</strong> <span style="background:#10b98122;color:#0a6147;padding:2px 6px;border-radius:6px;font-size:8.5px;font-weight:700;margin-left:4px;">Activo</span></div>
+              <div class="mock-acopio-info">
+                <div>
+                  <div class="mock-acopio-info-l">Proyecto</div>
+                  <div class="mock-acopio-info-v">Personal</div>
+                </div>
+                <div>
+                  <div class="mock-acopio-info-l">Proveedor</div>
+                  <div class="mock-acopio-info-v">Corralón Gómez</div>
+                </div>
+                <div>
+                  <div class="mock-acopio-info-l">Acopiado</div>
+                  <div class="mock-acopio-info-v">$10.000.000</div>
+                </div>
+                <div>
+                  <div class="mock-acopio-info-l">Desacopiado</div>
+                  <div class="mock-acopio-info-v" style="color:#c0392b">$270.877</div>
+                </div>
+                <div>
+                  <div class="mock-acopio-info-l">Tipo</div>
+                  <div class="mock-acopio-info-v">Lista precios</div>
+                </div>
+              </div>
+              <div class="mock-acopio-progress-row">
+                <span style="font-size:10px;font-weight:600;color:var(--texto-light)">Disponible</span>
+                <div class="mock-acopio-progress"><div></div></div>
+                <span style="font-size:11px;font-weight:800;color:var(--azul)">$9.729.122 <span style="font-size:9px;color:var(--texto-light)">(97.3%)</span></span>
+              </div>
+              <div class="mock-acopio-donut">
+                <div class="mock-donut">
+                  <div class="mock-donut-text">
+                    <strong>97.3%</strong>
+                    <span>Disponible</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-acopio-bottom">
+                <div>
+                  <div class="mock-acopio-info-l">Acopiado</div>
+                  <div class="green">$10.000.000</div>
+                </div>
+                <div>
+                  <div class="mock-acopio-info-l">Desacopiado</div>
+                  <div class="red">$270.877</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 5: control profesional de obra (presupuesto vs certificado vs gastado real) -->
+        <div class="accion-row">
+          <div class="accion-text">
+            <div class="accion-step">Paso 5</div>
+            <h3>Y avance de obra contra el presupuesto profesional</h3>
+            <p>Para constructoras, estudios y desarrolladoras: presupuesto por rubros, certificados de avance, y cobros que se desbloquean automáticamente al certificar. Tres columnas que se cruzan: lo que presupuestaste, lo que ya certificaste y lo que te costó realmente.</p>
+          </div>
+          <div class="accion-shot">
+            <div class="mock-dash">
+              <div class="mock-obra-header mock-obra-header-pro">
+                <div class="mock-obra-header-top">
+                  <div>
+                    <div class="mock-obra-state">En ejecución</div>
+                    <div class="mock-obra-name">🏢 Edificio Corporativo — Bloque A</div>
+                    <div class="mock-obra-sub">Desarrolladora Inmobiliaria SA · Av. del Libertador 2400, CABA</div>
+                  </div>
+                  <div class="mock-obra-total">
+                    <div>$1.240.093.855</div>
+                    <span>10 meses · mar → dic 2026</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-obra-banner">
+                <span>⏳</span>
+                <div>
+                  <strong>1 certificado esperando aprobación del cliente</strong><br>
+                  <span class="mob-sub">Cert #004 · Cubiertas Metálicas · enviado hace 27 días · $20.8M</span>
+                </div>
+              </div>
+              <div class="mock-obra-kpis">
+                <div class="kpi">
+                  <div class="kpi-l">Presupuesto</div>
+                  <div class="kpi-v">$1240.1M</div>
+                  <div class="kpi-s">22 rubros · contrato original</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpi-l">Certificado</div>
+                  <div class="kpi-v" style="color:#d97706">$148.8M</div>
+                  <div class="kpi-s">12.0% · $20.8M pend. aprob.</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpi-l">Gastado real</div>
+                  <div class="kpi-v">$138.7M</div>
+                  <div class="kpi-s">3 gastos sin imputar</div>
+                </div>
+                <div class="kpi">
+                  <div class="kpi-l">Margen</div>
+                  <div class="kpi-v" style="color:#dc2626">$6.2M</div>
+                  <div class="kpi-s">gastado &gt; certif. aprob.</div>
+                </div>
+              </div>
+              <div class="mock-obra-tabs">
+                <span class="active">📊 Ejecución</span>
+                <span>💸 Plan de cobro (5)</span>
+                <span>📜 Certificados (5)</span>
+                <span>📎 Anexos (1)</span>
+                <span>📐 Cronograma</span>
+              </div>
+              <table class="mock-obra-table">
+                <thead>
+                  <tr>
+                    <th>Rubro</th>
+                    <th>Presupuestado</th>
+                    <th>Certificado</th>
+                    <th>Gastado</th>
+                    <th>Margen</th>
+                    <th>Avance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="rubro">1. Preliminares</td>
+                    <td class="num">$34.6M</td>
+                    <td class="num">$34.6M</td>
+                    <td class="num">$28.1M</td>
+                    <td class="pos num">+$6.5M</td>
+                    <td><span class="mock-obra-mini-progress"><div style="width:100%"></div></span>100%</td>
+                  </tr>
+                  <tr>
+                    <td class="rubro">3. Estructuras</td>
+                    <td class="num">$79.1M</td>
+                    <td class="num">$53.8M</td>
+                    <td class="num">$51.2M</td>
+                    <td class="pos num">+$2.6M</td>
+                    <td><span class="mock-obra-mini-progress"><div style="width:68%"></div></span>68%</td>
+                  </tr>
+                  <tr>
+                    <td class="rubro">4. Cubiertas</td>
+                    <td class="num">$104.2M</td>
+                    <td class="num">$20.8M</td>
+                    <td class="num">$24.0M</td>
+                    <td class="neg num">-$3.2M ⚠️</td>
+                    <td><span class="mock-obra-mini-progress"><div style="width:20%;background:#f59e0b"></div></span>20%</td>
+                  </tr>
+                  <tr class="total">
+                    <td>TOTAL</td>
+                    <td class="num">$1.240M</td>
+                    <td class="num">$108.4M</td>
+                    <td class="num">$103.3M</td>
+                    <td class="pos num">+$5.1M</td>
+                    <td><strong>8.7%</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="mock-curve-wrap">
+                <div class="mock-curve-title">Curva S · Planificado vs Certificado vs Cobrado</div>
+                <div class="mock-curve-legend">
+                  <span class="lg-plan">Plan</span>
+                  <span class="lg-cert">Certificado</span>
+                  <span class="lg-cobr">Cobrado</span>
+                </div>
+                <svg class="mock-curve-svg" viewBox="0 0 300 80" preserveAspectRatio="none">
+                  <!-- Grid horizontal -->
+                  <line x1="0" y1="78" x2="300" y2="78" stroke="#e5e7eb" stroke-width="0.5" />
+                  <line x1="0" y1="40" x2="300" y2="40" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="2,2" />
+                  <!-- Plan (gris, S completa) -->
+                  <polyline points="0,78 30,76 60,70 90,60 120,46 150,32 180,20 210,12 240,7 270,4 300,2"
+                    fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="3,2" />
+                  <!-- Certificado (celeste, hasta mes 3) -->
+                  <polyline points="0,78 30,76 60,71 90,64"
+                    fill="none" stroke="#00B2D4" stroke-width="2" />
+                  <circle cx="90" cy="64" r="2.2" fill="#00B2D4" />
+                  <!-- Cobrado (verde, hasta mes 2) -->
+                  <polyline points="0,78 30,76 60,72"
+                    fill="none" stroke="#2DC197" stroke-width="2" />
+                  <circle cx="60" cy="72" r="2.2" fill="#2DC197" />
+                </svg>
+              </div>
+
+              <div class="mock-cobro-card">
+                ⏳ Próximo cobro: <strong>Cuota Estructuras $300M</strong>
+                <span class="badge">Esperando certificado</span><br>
+                <span style="color:var(--texto-light);font-size:9.5px">Avance actual 68% → ya se liberaron $204M (proporcional)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 6: certificar avance desde WhatsApp -->
+        <div class="accion-row reverse">
+          <div class="accion-text">
+            <div class="accion-step">Paso 6</div>
+            <h3>El director certifica el avance desde WhatsApp</h3>
+            <p>Foto + un mensaje al bot. Sorby genera el certificado en borrador, el director confirma desde el chat o desde la web, y se manda al cliente para que lo apruebe. <strong>Al aprobarse, se desbloquea la cuota de cobro vinculada — automático.</strong></p>
+          </div>
+          <div class="accion-shot accion-shot-phone">
+            <div class="mock-phone">
+              <div class="mock-phone-bar"><span>10:45</span><span>📶 🔋91</span></div>
+              <div class="mock-phone-header">
+                <div class="mock-phone-avatar">Sd</div>
+                <div>
+                  <div class="mock-phone-name">SorbyData</div>
+                  <div class="mock-phone-status">Bot · en línea</div>
+                </div>
+              </div>
+              <div class="mock-msg-user">
+                certifico el 80% de mampostería y tabiques, adjunto foto
+                <div class="mock-msg-time">10:40 ✓✓</div>
+              </div>
+              <div class="mock-msg-user" style="padding:0;background:#DCF8C6;overflow:hidden">
+                <div style="background:#bcd9a8;height:60px;display:flex;align-items:center;justify-content:center;color:#5a7a4a;font-size:18px">📷</div>
+                <div class="mock-msg-time" style="padding:3px 6px">10:41 ✓✓</div>
+              </div>
+              <div class="mock-msg-bot">
+                ✅ Entendí el mensaje. Esto es lo que voy a registrar:
+                <div class="mock-cert-card">
+                  <strong>📋 Certificado de avance</strong><br>
+                  Rubro: <strong>Mampostería y Tabiques</strong><br>
+                  Avance: <strong>80%</strong><br>
+                  Monto: <strong>$92.3M</strong>
+                </div>
+                Confirmás? Respondé <strong>sí</strong> para guardar como borrador o <strong>enviar</strong> para mandar al cliente.
+                <div class="mock-msg-time">10:43</div>
+              </div>
+              <div class="mock-msg-user">
+                sí
+                <div class="mock-msg-time">10:45 ✓✓</div>
+              </div>
+              <div class="mock-msg-bot">
+                📜 Certificado <strong>#005</strong> guardado en borrador.<br>
+                Lo revisás y enviás desde 👉 sorbydata.com/cert/5
+                <div class="mock-msg-time">10:45</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ MÓDULOS ═════════ -->
+  <section class="bloque" id="modulos">
+    <div class="container">
+      <div class="bloque-header">
+        <div class="bloque-kicker">Funcionalidades</div>
+        <h2 class="bloque-title">8 módulos integrados</h2>
+        <p class="bloque-sub">Todo lo que necesitás para gestionar tus obras, en un solo lugar. Disponibles desde WhatsApp y desde la web.</p>
+      </div>
+
+      <div class="mod-grid">
+        <div class="mod-card c1">
+          <div class="mod-head">
+            <div class="mod-icon">💰</div>
+            <div class="mod-name">Gestión de Caja</div>
+          </div>
+          <div class="mod-desc">Cada obra con su caja en pesos y dólares. Cajas chicas por usuario, imputación al costo de obra y categorización de movimientos.</div>
+        </div>
+
+        <div class="mod-card c2">
+          <div class="mod-head">
+            <div class="mod-icon">📊</div>
+            <div class="mod-name">Control de Presupuestos</div>
+          </div>
+          <div class="mod-desc">Presupuesto por rubro y etapa. Comparación presupuestado vs ejecutado en tiempo real. Detectá desvíos antes que se vayan de las manos.</div>
+        </div>
+
+        <div class="mod-card c3">
+          <div class="mod-head">
+            <div class="mod-icon">📈</div>
+            <div class="mod-name">Reportes</div>
+          </div>
+          <div class="mod-desc">Reportes automáticos de rentabilidad, flujo de caja y consumo de materiales. Compartibles por link con socios o comitentes.</div>
+        </div>
+
+        <div class="mod-card c4">
+          <div class="mod-head">
+            <div class="mod-icon">🏗️</div>
+            <div class="mod-name">Acopio de Materiales</div>
+          </div>
+          <div class="mod-desc">Registrá materiales que quedan en el proveedor. Desacopiá con foto de remito. Stock y costo de obra se actualizan solos.</div>
+        </div>
+
+        <div class="mod-card c5">
+          <div class="mod-head">
+            <div class="mod-icon">📋</div>
+            <div class="mod-name">Notas de Pedido</div>
+          </div>
+          <div class="mod-desc">Pedidos al proveedor con trazabilidad completa. Quién pidió qué, cuándo, y si se cumplió. Reemplaza el grupo de WhatsApp.</div>
+        </div>
+
+        <div class="mod-card c6">
+          <div class="mod-head">
+            <div class="mod-icon">🔧</div>
+            <div class="mod-name">Stock &amp; Herramientas</div>
+          </div>
+          <div class="mod-desc">Ingresos, egresos y transferencias de materiales y herramientas. Sabés qué hay en depósito, qué está en obra y qué se consumió.</div>
+        </div>
+
+        <div class="mod-card c1">
+          <div class="mod-head">
+            <div class="mod-icon">🏗️</div>
+            <div class="mod-name">Control de Avance de Obra</div>
+          </div>
+          <div class="mod-desc">Presupuesto profesional por rubros y tareas. Certificados con aprobación del cliente, curva S y vista de ejecución con margen real por rubro.</div>
+        </div>
+
+        <div class="mod-card c3">
+          <div class="mod-head">
+            <div class="mod-icon">💸</div>
+            <div class="mod-name">Plan de Cobro</div>
+          </div>
+          <div class="mod-desc">Cuotas por fecha, por certificado de avance o por hito. Cobros se desbloquean automáticamente al aprobarse el certificado vinculado.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ PLANES — CTA a agendar ═════════ -->
+  <section class="bloque alt" id="planes">
+    <div class="container">
+      <div class="planes-cta">
+        <div class="planes-cta-emoji">💰</div>
+        <h2 class="planes-cta-title">¿Querés conocer los planes y precios?</h2>
+        <p class="planes-cta-sub">Cada operación es distinta. En una llamada de 15 minutos te armamos un plan a la medida de tu equipo, tus obras y tu presupuesto. Sin compromiso.</p>
+        <div class="planes-cta-features">
+          <span>✓ 4 planes disponibles</span>
+          <span>✓ Anual en 4 cuotas</span>
+          <span>✓ 20% OFF pago único</span>
+          <span>✓ Implementación incluida</span>
+        </div>
+        <button class="btn btn-primary planes-cta-btn" onclick="handleDemo()">
+          <i class="fa fa-calendar"></i> Agendá tu demo y conocé los planes
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ ONBOARDING ═════════ -->
+  <section class="bloque" id="onboarding">
+    <div class="container">
+      <div class="bloque-header">
+        <div class="bloque-kicker">Implementación</div>
+        <h2 class="bloque-title">Estás operativo el primer día</h2>
+        <p class="bloque-sub">Te acompañamos en la personalización sin cargo extra. Incluido en todos los planes.</p>
+      </div>
+
+      <div class="ob-grid">
+        <div class="ob-card">
+          <div class="ob-icon">🚀</div>
+          <div class="ob-title">Día 1 operativo</div>
+          <div class="ob-desc">Importamos los movimientos de tus obras en curso. Empezás a registrar gastos desde el primer día, sin esperar semanas.</div>
+        </div>
+        <div class="ob-card">
+          <div class="ob-icon">💬</div>
+          <div class="ob-title">Grupo WhatsApp exclusivo</div>
+          <div class="ob-desc">Canal dedicado para tu equipo. Consultás y resolvés dudas en el momento, no en una cola de tickets.</div>
+        </div>
+        <div class="ob-card">
+          <div class="ob-icon">📅</div>
+          <div class="ob-title">Acompañamiento semanal</div>
+          <div class="ob-desc">Reunión de seguimiento durante el primer mes. Aseguramos que el equipo adopte la herramienta con éxito.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ QUOTES — problemas que resolvemos ═════════ -->
+  <section class="quotes-section">
+    <div class="container">
+      <h2 class="section-title">Si te identificás con alguna de estas...</h2>
+      <p class="section-sub">Los problemas más frecuentes que escuchamos en cada reunión. <strong>Sorby está construido para resolverlos.</strong></p>
+      <div class="quotes-grid" id="quotes-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═════════ FAQ ═════════ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Las dudas que recibimos siempre</h2>
+      <p class="section-sub">Si pensaste alguna de estas, ya tenemos respuesta</p>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q">¿Mi equipo lo va a usar de verdad?</div>
+          <div class="faq-a">No tiene que aprender ninguna app nueva. Mandan la foto del ticket o un audio al WhatsApp que ya usan todos los días.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿En cuánto tiempo arranco a usarlo?</div>
+          <div class="faq-a">En 24 hs estás operando. El onboarding lo hace nuestro equipo — el tiempo que pones vos es mínimo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Ya tenemos Excel / Tango / un sistema propio.</div>
+          <div class="faq-a">Sorby es un complemento operativo, no un reemplazo contable. Captura todo lo que pasa en obra y lo exportás en el formato que necesite tu contador.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Y si en algún momento decido cancelar? ¿Pierdo mis datos?</div>
+          <div class="faq-a">No. Exportás toda tu información — movimientos, obras, stock — y te la llevás. Servidores cloud encriptados.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa con la inflación? No quiero que se me dispare el precio.</div>
+          <div class="faq-a">Plan anual fija el precio durante 12 meses con 20% de descuento. La actualización por IPC aplica recién al renovar.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Somos chicos, ¿no es para empresas más grandes?</div>
+          <div class="faq-a">No es cuestión de tamaño. Es cuestión de cuánto tiempo perdés hoy en registrar gastos, buscar remitos o responder consultas del comitente. Hay plan independiente para estudios chicos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ FINAL CTA ═════════ -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>15 minutos. Gratis. Sin compromiso.</h2>
+      <p>Te mostramos cómo Sorby se adapta a tu operación, en tiempo real con tus números.</p>
+      <button class="btn btn-primary" onclick="handleDemo()">
+        <i class="fa fa-calendar"></i> Agendá tu demo
+      </button>
+    </div>
+  </section>
+
+  <!-- ═════════ STICKY CTA (mobile only) ═════════ -->
+  <div class="sticky-cta">
+    <button class="btn btn-primary" onclick="handleDemo()">
+      <i class="fa fa-calendar"></i> Agendá demo gratis
+    </button>
+  </div>
+
+  <script>
+    // ─── Configuración por perfil ──────────────────────────────
+    const PERFILES = {
+      constructora: {
+        teaser: 'Si la obra me dio o no, me di cuenta cuando ya terminó.',
+        h1: 'Sabé cómo va cada obra <em>antes de que termine</em>.',
+        sub: 'Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>',
+        bullets: [
+          'Foto al ticket o audio al bot → cargado en segundos',
+          'Stock, presupuesto por rubro y avance en tiempo real',
+          'Margen real por obra antes del cierre — no después'
+        ],
+        quotes: [
+          { text: 'Si salieron 200 bolsas de cemento y eran 50, quiero saber quién lo autorizó.', author: 'Dueño de constructora · reunión de venta', solucion: 'Notas de pedido con trazabilidad: quién pidió qué, cuándo, y qué llegó realmente.' },
+          { text: 'Odio cuando me levanto y no sé qué pasó en las obras durante la noche.', author: 'Socio fundador · reunión de venta', solucion: 'Movimientos cargados en vivo desde WhatsApp. Cuando te levantás, todo está al día.' },
+          { text: 'Quiero que me avisen cuando algo se está moviendo, no solo acumular datos.', author: 'Encargada de administración · reunión de venta', solucion: 'Alertas automáticas de desvíos por rubro y consumos fuera de lo normal.' }
+        ]
+      },
+      estudio: {
+        teaser: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.',
+        h1: 'Lo que pasa en la obra, <em>ordenado solo</em>.',
+        sub: 'Gastos, pedidos y avances — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente.</span>',
+        bullets: [
+          'Cargá gastos hablándole al bot (modo audio)',
+          'Certificados de avance con aprobación del comitente, por link',
+          'Presupuesto vs ejecutado por rubro en vivo — no enterarse al final'
+        ],
+        quotes: [
+          { text: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.', author: 'Arquitecta · reunión de venta', solucion: 'Bot de voz: cargás gastos hablándole al chat en el momento, sin escribir.' },
+          { text: 'El comitente me pregunta cómo va la obra y tengo que armar algo aparte cada vez.', author: 'Arquitecto socio · reunión de venta', solucion: 'Reporte automático del avance compartido al comitente por link.' },
+          { text: 'Mando el pedido por WhatsApp y después nadie sabe si se cumplió.', author: 'Arquitecta dueña · reunión de venta', solucion: 'Notas de pedido con estado: pedido / recibido / pagado, sin perderse en el grupo.' }
+        ]
+      },
+      desarrolladora: {
+        teaser: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.',
+        h1: 'El control financiero <em>que los inversores te piden</em>.',
+        sub: 'Presupuesto, avance, cobros e info para socios — <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano cada vez.</span>',
+        bullets: [
+          'Presupuesto por rubro con avance certificado en vivo',
+          'Plan de cobros con cuotas que se desbloquean al certificar',
+          'Reporte automático para inversores y caja multi-banco'
+        ],
+        quotes: [
+          { text: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.', author: 'Director financiero · reunión de venta', solucion: 'Reporte para inversores actualizado automáticamente, compartido por link.' },
+          { text: 'Tenemos varios compradores pagando en cuotas y todo va a la misma caja. Es un lío.', author: 'Socio desarrollador · reunión de venta', solucion: 'Plan de cobros por comprador y por unidad funcional, con saldos en vivo.' },
+          { text: 'Quiero separar los movimientos por banco sin mezclarlos, pero no encuentro la forma.', author: 'Administradora · reunión de venta', solucion: 'Caja multi-banco por proyecto, con conciliación automática.' }
+        ]
+      },
+      corralon: {
+        teaser: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.',
+        h1: 'Acopios, cuentas corrientes y multi-sucursal, <em>en un solo lugar</em>.',
+        sub: 'Acopios, CC y multi-sucursal — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu equipo lo opera. Vos lo controlás.</span>',
+        bullets: [
+          'Acopios con clientes y proveedores',
+          'Cuenta corriente de cada cliente al día',
+          'Alerta automática si el precio del proveedor no coincide'
+        ],
+        quotes: [
+          { text: 'Tengo que estar llamando a ver: este remito, ¿a qué factura corresponde?', author: 'Proveedora de materiales · reunión de venta', solucion: 'Acopios con remitos vinculados a facturas, todo en una vista.' },
+          { text: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.', author: 'Dueño de corralón · reunión de venta', solucion: 'Cuenta corriente con proveedor en vivo: total debido y fechas de vencimiento.' },
+          { text: 'Trabajo con crédito y cuando cierro nunca sé bien cuánto debo.', author: 'Administradora · reunión de venta', solucion: 'CC de clientes y proveedores actualizada en tiempo real, sin esperar cierre.' }
+        ]
+      }
+    };
+
+    function renderPerfil(perfil) {
+      const cfg = PERFILES[perfil];
+      if (!cfg) return;
+
+      // Propuesta 2: hero único, no se mutan h1/sub/teaser/bullets.
+      // Solo cambian las quotes de la sección "Si te identificás con alguna...".
+
+      document.getElementById('hero-bullets').innerHTML =
+        cfg.bullets.map(b => `<li>${b}</li>`).join('');
+
+      document.getElementById('quotes-grid').innerHTML =
+        cfg.quotes.map(q => `
+          <div class="quote-card">
+            <div class="quote-text">${q.text}</div>
+            <div class="quote-author">— ${q.author}</div>
+            ${q.solucion ? `<div class="quote-solucion">${q.solucion}</div>` : ''}
+          </div>
+        `).join('');
+
+      document.querySelectorAll('.pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.perfil === perfil);
+      });
+
+      console.log('[mockup] Perfil seleccionado:', perfil);
+    }
+
+    document.querySelectorAll('.pill').forEach(p => {
+      p.addEventListener('click', () => renderPerfil(p.dataset.perfil));
+    });
+
+    function handleDemo() {
+      alert('[mockup] Acá abriría el modal de agendamiento real.');
+    }
+
+    renderPerfil('constructora');
+  </script>
+
+</body>
+</html>
