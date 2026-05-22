@@ -2903,6 +2903,74 @@
       @media (max-width: 768px) {
         .modal-categoria-btn { font-size: 1.25em; padding: 12px 14px; }
 
+        /* ── Ajustes de respiración mobile en el modal ── */
+        .modal-agendar h3 {
+          font-size: 1.55em;
+          padding-right: 32px; /* espacio para la X que está absoluta a la derecha */
+        }
+        .modal-sub-features {
+          font-size: 0.9em;
+          gap: 6px 12px;
+          margin-bottom: 10px;
+        }
+        .modal-social-proof {
+          font-size: 0.82em;
+          padding: 5px 12px;
+          margin-bottom: 10px;
+        }
+
+        /* Card de humanización más compacta en mobile */
+        .modal-attendee {
+          padding: 8px 10px;
+          gap: 9px;
+          margin-bottom: 12px;
+        }
+        .modal-attendee-avatar { width: 34px; height: 34px; font-size: 12px; }
+        .modal-attendee-text { font-size: 0.85em; }
+        .modal-attendee-text span { font-size: 0.92em; }
+
+        /* CTA principal del modal — verde para coherencia con CTAs externos */
+        .modal-primary-cta {
+          background: linear-gradient(135deg, #2DC197 0%, #10B981 100%);
+          box-shadow: 0 4px 16px rgba(45,193,151,0.4);
+          padding: 12px 14px;
+        }
+        .modal-primary-cta > i:first-child { font-size: 18px; }
+        .modal-primary-cta strong { font-size: 0.95em; }
+        .modal-primary-cta em { font-size: 0.78em; }
+
+        /* Separador "o elegí vos" más compacto */
+        .modal-or-divider { margin: 6px 0 10px; font-size: 0.8em; }
+
+        /* Day tabs: scroll horizontal, cada uno con ancho mínimo */
+        .modal-day-tabs {
+          gap: 0;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .modal-day-tabs::-webkit-scrollbar { display: none; }
+        .modal-day-tab {
+          min-width: 80px;
+          padding: 8px 10px;
+        }
+
+        /* Slots mobile más compactos */
+        .modal-mobile-slots {
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 6px !important;
+          padding: 10px 0 !important;
+        }
+        .modal-slot-pill {
+          height: 42px !important;
+          font-size: 1em !important;
+        }
+
+        /* WhatsApp alternativa más compacta */
+        .modal-wa-alt { margin-top: 12px; padding-top: 10px; }
+        .modal-wa-alt-label { font-size: 0.85em; margin-bottom: 6px; }
+        .modal-wa-alt-btn { padding: 8px 14px; font-size: 0.9em; }
+
         /* M11 — Confirmar agendamiento sticky en mobile, igual que el sticky del hero */
         #modalStep2 {
           padding-bottom: 90px; /* espacio para el botón fijo */
