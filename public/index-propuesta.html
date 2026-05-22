@@ -73,7 +73,12 @@
       padding: 28px 0 36px;
       position: relative;
       overflow: hidden;
+      /* Mobile: que el hero ocupe toda la pantalla restando header (~56px) + sticky bottom (~70px) */
+      min-height: calc(100svh - 56px);
+      display: flex;
+      align-items: center;
     }
+    .hero .container { width: 100%; }
     .hero::before, .hero::after {
       content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
     }
@@ -83,24 +88,27 @@
     .hero-content { position: relative; z-index: 2; }
     .hero-image { display: none; } /* OCULTA EN MOBILE (mobile-first) */
 
-    /* Pill selector */
+    /* Pill selector — mobile: 2 filas centradas */
     .pill-selector {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      justify-content: center; align-items: center;
-      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
     }
     .pill-label {
-      font-size: 12px; color: rgba(255,255,255,0.7);
-      font-weight: 600; width: 100%; text-align: center; margin-bottom: 4px;
+      display: none; /* oculto en mobile, se muestra en desktop */
     }
     .pill {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.18);
       color: var(--blanco);
-      padding: 7px 12px; border-radius: 20px;
-      font-size: 12.5px; font-weight: 600;
+      padding: 6px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 600;
       cursor: pointer; transition: all .15s;
       font-family: inherit;
+      white-space: nowrap;
     }
     .pill:hover { background: rgba(255,255,255,0.16); }
     .pill.active { background: var(--verde); border-color: var(--verde); color: var(--blanco); }
@@ -127,6 +135,7 @@
       list-style: none;
       margin: 0 auto 22px;
       max-width: 460px;
+      display: none; /* oculto en mobile — se muestra en desktop via media query */
     }
     .hero-bullets li {
       display: flex; align-items: flex-start; gap: 10px;
@@ -281,7 +290,11 @@
       .nav-cta { padding: 10px 18px; font-size: 14px; }
 
       /* HERO: side-by-side con la imagen a la derecha */
-      .hero { padding: 48px 0 56px; }
+      .hero {
+        padding: 48px 0 56px;
+        min-height: 0; /* en desktop no forzamos altura completa */
+        display: block;
+      }
       .hero-content {
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
@@ -295,9 +308,25 @@
         justify-content: flex-start;
         margin-bottom: 22px;
         gap: 8px;
+        overflow-x: visible;
+        flex-wrap: wrap;
+        margin-left: 0; margin-right: 0;
       }
-      .pill-label { width: auto; text-align: left; margin-bottom: 0; margin-right: 6px; font-size: 13px; }
+      .pill-label {
+        display: inline; /* visible en desktop */
+        font-size: 13px;
+        color: rgba(255,255,255,0.7);
+        font-weight: 600;
+        margin-right: 6px;
+      }
       .pill { padding: 8px 14px; font-size: 13px; }
+
+      /* Bullets vuelven a mostrarse en desktop */
+      .hero-bullets { display: block; }
+
+      /* Sticky CTA oculto en desktop — el botón del header alcanza */
+      .sticky-cta { display: none; }
+      body { padding-bottom: 0; }
 
       .hero h1 { font-size: 40px; text-align: left; max-width: 100%; }
       .hero-sub { font-size: 17px; text-align: left; max-width: 520px; margin-left: 0; margin-right: 0; margin-bottom: 22px; }
@@ -358,6 +387,23 @@
        - Planes (simplificados)
        - Onboarding
        ═══════════════════════════════════════════════════════════ */
+
+    /* ── Sticky CTA bottom (mobile only) ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--blanco);
+      padding: 10px 14px 12px;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+      z-index: 90;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .sticky-cta .btn {
+      width: 100%;
+      max-width: none;
+      box-shadow: 0 4px 14px rgba(0,178,212,0.35);
+    }
+    body { padding-bottom: 80px; } /* espacio para que no tape el footer */
 
     /* ── Layout común de sección ── */
     section.bloque { padding: 44px 0; }
@@ -1212,14 +1258,6 @@
           <li>Desvíos de presupuesto detectados antes del cierre</li>
         </ul>
 
-        <div class="hero-ctas">
-          <button class="btn btn-primary" onclick="handleDemo()">
-            <i class="fa fa-calendar"></i> Agendá demo gratis
-          </button>
-          <a href="#como-funciona" class="btn btn-secondary">
-            <i class="fa fa-circle-question"></i> Cómo funciona
-          </a>
-        </div>
 
       </div>
 
@@ -1882,6 +1920,13 @@
       </button>
     </div>
   </section>
+
+  <!-- ═════════ STICKY CTA (mobile only) ═════════ -->
+  <div class="sticky-cta">
+    <button class="btn btn-primary" onclick="handleDemo()">
+      <i class="fa fa-calendar"></i> Agendá demo gratis
+    </button>
+  </div>
 
   <script>
     // ─── Configuración por perfil ──────────────────────────────
