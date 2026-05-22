@@ -70,13 +70,13 @@
     .hero {
       background: linear-gradient(160deg, var(--azul) 0%, var(--azul-oscuro) 50%, #0d2745 100%);
       color: var(--blanco);
-      padding: 28px 0 36px;
+      padding: 20px 0 36px;
       position: relative;
       overflow: hidden;
-      /* Mobile: que el hero ocupe toda la pantalla restando header (~56px) + sticky bottom (~70px) */
+      /* Mobile: que el hero ocupe toda la pantalla restando header (~56px) */
       min-height: calc(100svh - 56px);
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* contenido pegado arriba */
     }
     .hero .container { width: 100%; }
     .hero::before, .hero::after {
@@ -88,14 +88,12 @@
     .hero-content { position: relative; z-index: 2; }
     .hero-image { display: none; } /* OCULTA EN MOBILE (mobile-first) */
 
-    /* Pill selector — mobile: 2 filas centradas */
+    /* Pill selector — mobile: grilla 2x2 */
     .pill-selector {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 28px;
     }
     .pill-label {
       display: none; /* oculto en mobile, se muestra en desktop */
@@ -104,11 +102,11 @@
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.18);
       color: var(--blanco);
-      padding: 6px 12px; border-radius: 20px;
-      font-size: 12px; font-weight: 600;
+      padding: 10px 14px; border-radius: 12px;
+      font-size: 13px; font-weight: 600;
       cursor: pointer; transition: all .15s;
       font-family: inherit;
-      white-space: nowrap;
+      text-align: center;
     }
     .pill:hover { background: rgba(255,255,255,0.16); }
     .pill.active { background: var(--verde); border-color: var(--verde); color: var(--blanco); }
@@ -117,7 +115,7 @@
       font-size: 28px; /* mobile base */
       font-weight: 700;
       line-height: 1.15;
-      margin-bottom: 14px;
+      margin-bottom: 24px;
       text-align: center;
     }
     .hero h1 em { font-style: normal; color: var(--verde); }
@@ -127,7 +125,7 @@
       color: rgba(255,255,255,0.85);
       text-align: center;
       margin-bottom: 18px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
     .hero-sub strong { color: var(--blanco); }
 
@@ -293,7 +291,8 @@
       .hero {
         padding: 48px 0 56px;
         min-height: 0; /* en desktop no forzamos altura completa */
-        display: block;
+        display: flex;
+        align-items: center;
       }
       .hero-content {
         display: grid;
@@ -305,12 +304,12 @@
         text-align: left;
       }
       .pill-selector {
+        display: flex; /* override del grid mobile */
+        grid-template-columns: none;
+        flex-wrap: wrap;
         justify-content: flex-start;
         margin-bottom: 22px;
         gap: 8px;
-        overflow-x: visible;
-        flex-wrap: wrap;
-        margin-left: 0; margin-right: 0;
       }
       .pill-label {
         display: inline; /* visible en desktop */
@@ -319,7 +318,7 @@
         font-weight: 600;
         margin-right: 6px;
       }
-      .pill { padding: 8px 14px; font-size: 13px; }
+      .pill { padding: 8px 14px; font-size: 13px; border-radius: 20px; }
 
       /* Bullets vuelven a mostrarse en desktop */
       .hero-bullets { display: block; }
