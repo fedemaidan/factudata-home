@@ -46,9 +46,9 @@
     header {
       background: linear-gradient(160deg, var(--azul) 0%, var(--azul-oscuro) 100%);
       color: var(--blanco);
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
+      padding: 8px 0;
+      /* En mobile NO sticky — gana ~40px de viewport, importante para Instagram in-app */
+      position: relative;
       z-index: 100;
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
@@ -70,14 +70,16 @@
     .hero {
       background: linear-gradient(160deg, var(--azul) 0%, var(--azul-oscuro) 50%, #0d2745 100%);
       color: var(--blanco);
-      padding: 20px 0 36px;
+      padding: 18px 0 30px;
       position: relative;
       overflow: hidden;
-      /* Mobile: que el hero ocupe toda la pantalla restando header (~56px) */
-      min-height: calc(100svh - 56px);
+      /* Mobile: hero ocupa toda la pantalla restando el header (~52px)
+         Usa 100svh (small viewport height) — correcto para Instagram in-app */
+      min-height: calc(100svh - 52px);
       display: flex;
       align-items: flex-start; /* contenido pegado arriba */
     }
+    .hero .container { width: 100%; }
     .hero .container { width: 100%; }
     .hero::before, .hero::after {
       content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
@@ -282,8 +284,8 @@
       body { font-size: 16px; }
       .container { padding: 0 24px; }
 
-      /* Header: el botón ya existía. Sumamos algún cambio visual liviano. */
-      header { padding: 16px 0; }
+      /* Header: en desktop sí sticky */
+      header { padding: 16px 0; position: sticky; top: 0; }
       .logo { font-size: 24px; }
       .nav-cta { padding: 10px 18px; font-size: 14px; }
 
@@ -392,7 +394,8 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       background: var(--blanco);
-      padding: 10px 14px 12px;
+      /* safe-area-inset-bottom = notch iOS + barra inferior de Instagram */
+      padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0px));
       box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
       z-index: 90;
       border-top: 1px solid rgba(0,0,0,0.08);
@@ -400,9 +403,11 @@
     .sticky-cta .btn {
       width: 100%;
       max-width: none;
+      padding: 12px 18px;
+      font-size: 15px;
       box-shadow: 0 4px 14px rgba(0,178,212,0.35);
     }
-    body { padding-bottom: 80px; } /* espacio para que no tape el footer */
+    body { padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)); }
 
     /* ── Layout común de sección ── */
     section.bloque { padding: 44px 0; }
