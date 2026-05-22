@@ -219,6 +219,22 @@
       margin-bottom: 12px;
     }
     .quote-author { font-size: 12px; color: var(--texto-light); font-weight: 600; }
+    .quote-solucion {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(45,193,151,0.35);
+      font-size: 12.5px;
+      color: var(--azul);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .quote-solucion::before {
+      content: '→ ';
+      color: var(--verde);
+      font-weight: 800;
+      margin-right: 2px;
+    }
+    .quote-solucion strong { color: var(--verde); font-weight: 800; }
 
     /* ═════════ FAQ ═════════ */
     .faq-section { padding: 40px 0; background: var(--blanco); }
@@ -1812,11 +1828,11 @@
     </div>
   </section>
 
-  <!-- ═════════ QUOTES ═════════ -->
+  <!-- ═════════ QUOTES — problemas que resolvemos ═════════ -->
   <section class="quotes-section">
     <div class="container">
-      <h2 class="section-title">Lo que nos dicen los clientes</h2>
-      <p class="section-sub">Frases textuales extraídas de reuniones reales</p>
+      <h2 class="section-title">Si te identificás con alguna de estas...</h2>
+      <p class="section-sub">Los problemas más frecuentes que escuchamos en cada reunión. <strong>Sorby está construido para resolverlos.</strong></p>
       <div class="quotes-grid" id="quotes-grid"></div>
     </div>
   </section>
@@ -1879,9 +1895,9 @@
           'Margen real por obra antes del cierre — no después'
         ],
         quotes: [
-          { text: 'Si salieron 200 bolsas de cemento y eran 50, quiero saber quién lo autorizó.', author: 'Dueño de constructora, 8 obras activas' },
-          { text: 'Odio cuando me levanto y no sé qué pasó en las obras durante la noche.', author: 'Socio fundador, constructora mediana' },
-          { text: 'Quiero que me avisen cuando algo se está moviendo, no solo acumular datos.', author: 'Encargada de administración' }
+          { text: 'Si salieron 200 bolsas de cemento y eran 50, quiero saber quién lo autorizó.', author: 'Dueño de constructora · reunión de venta', solucion: 'Notas de pedido con trazabilidad: quién pidió qué, cuándo, y qué llegó realmente.' },
+          { text: 'Odio cuando me levanto y no sé qué pasó en las obras durante la noche.', author: 'Socio fundador · reunión de venta', solucion: 'Movimientos cargados en vivo desde WhatsApp. Cuando te levantás, todo está al día.' },
+          { text: 'Quiero que me avisen cuando algo se está moviendo, no solo acumular datos.', author: 'Encargada de administración · reunión de venta', solucion: 'Alertas automáticas de desvíos por rubro y consumos fuera de lo normal.' }
         ]
       },
       estudio: {
@@ -1893,9 +1909,9 @@
           'Presupuesto vs ejecutado por rubro en vivo — no enterarse al final'
         ],
         quotes: [
-          { text: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.', author: 'Arquitecta, estudio en CABA' },
-          { text: 'El comitente me pregunta cómo va la obra y tengo que armar algo aparte cada vez.', author: 'Arquitecto socio' },
-          { text: 'Mando el pedido por WhatsApp y después nadie sabe si se cumplió.', author: 'Arquitecta dueña' }
+          { text: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.', author: 'Arquitecta · reunión de venta', solucion: 'Bot de voz: cargás gastos hablándole al chat en el momento, sin escribir.' },
+          { text: 'El comitente me pregunta cómo va la obra y tengo que armar algo aparte cada vez.', author: 'Arquitecto socio · reunión de venta', solucion: 'Reporte automático del avance compartido al comitente por link.' },
+          { text: 'Mando el pedido por WhatsApp y después nadie sabe si se cumplió.', author: 'Arquitecta dueña · reunión de venta', solucion: 'Notas de pedido con estado: pedido / recibido / pagado, sin perderse en el grupo.' }
         ]
       },
       desarrolladora: {
@@ -1907,9 +1923,9 @@
           'Reporte automático para inversores y caja multi-banco'
         ],
         quotes: [
-          { text: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.', author: 'Director financiero, 2 proyectos' },
-          { text: 'Tenemos varios compradores pagando en cuotas y todo va a la misma caja. Es un lío.', author: 'Socio desarrollador' },
-          { text: 'Quiero separar los movimientos por banco sin mezclarlos, pero no encuentro la forma.', author: 'Administradora de desarrollos' }
+          { text: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.', author: 'Director financiero · reunión de venta', solucion: 'Reporte para inversores actualizado automáticamente, compartido por link.' },
+          { text: 'Tenemos varios compradores pagando en cuotas y todo va a la misma caja. Es un lío.', author: 'Socio desarrollador · reunión de venta', solucion: 'Plan de cobros por comprador y por unidad funcional, con saldos en vivo.' },
+          { text: 'Quiero separar los movimientos por banco sin mezclarlos, pero no encuentro la forma.', author: 'Administradora · reunión de venta', solucion: 'Caja multi-banco por proyecto, con conciliación automática.' }
         ]
       },
       corralon: {
@@ -1921,9 +1937,9 @@
           'Alerta automática si el precio del proveedor no coincide'
         ],
         quotes: [
-          { text: 'Tengo que estar llamando a ver: este remito, ¿a qué factura corresponde?', author: 'Proveedora de materiales, 2 sucursales' },
-          { text: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.', author: 'Dueño de corralón' },
-          { text: 'Trabajo con crédito y cuando cierro nunca sé bien cuánto debo.', author: 'Administradora de corralón' }
+          { text: 'Tengo que estar llamando a ver: este remito, ¿a qué factura corresponde?', author: 'Proveedora de materiales · reunión de venta', solucion: 'Acopios con remitos vinculados a facturas, todo en una vista.' },
+          { text: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.', author: 'Dueño de corralón · reunión de venta', solucion: 'Cuenta corriente con proveedor en vivo: total debido y fechas de vencimiento.' },
+          { text: 'Trabajo con crédito y cuando cierro nunca sé bien cuánto debo.', author: 'Administradora · reunión de venta', solucion: 'CC de clientes y proveedores actualizada en tiempo real, sin esperar cierre.' }
         ]
       }
     };
@@ -1943,6 +1959,7 @@
           <div class="quote-card">
             <div class="quote-text">${q.text}</div>
             <div class="quote-author">— ${q.author}</div>
+            ${q.solucion ? `<div class="quote-solucion">${q.solucion}</div>` : ''}
           </div>
         `).join('');
 
