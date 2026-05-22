@@ -2211,6 +2211,16 @@
 
       /* ───────── NUEVAS MEJORAS UX DEL MODAL ───────── */
 
+      /* Subtítulo solitario cuando es el único elemento del header */
+      .modal-sub-only {
+        text-align: center;
+        font-size: 0.95em;
+        color: #5A6A7A;
+        margin: 0 0 16px;
+        font-family: "Quicksand", sans-serif;
+        letter-spacing: 0.3px;
+      }
+
       /* M1 — Sub con features inline */
       .modal-sub-features {
         display: flex;
@@ -2971,32 +2981,23 @@
         .modal-wa-alt-label { font-size: 0.85em; margin-bottom: 6px; }
         .modal-wa-alt-btn { padding: 8px 14px; font-size: 0.9em; }
 
-        /* M11 — Confirmar agendamiento sticky en mobile, igual que el sticky del hero */
-        #modalStep2 {
-          padding-bottom: 90px; /* espacio para el botón fijo */
-        }
+        /* Confirmar agendamiento: queda al final del form (flujo natural) con
+           shadow fuerte y verde glow para destacar. Sin position:fixed para que
+           NO se superponga al teclado de iOS / Instagram in-app. */
         #modalStep2 #modalSubmitBtn {
-          position: fixed;
-          left: 14px; right: 14px; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-          width: auto !important;
-          z-index: 100;
-          box-shadow: 0 -2px 12px rgba(0,0,0,0.15), 0 4px 14px rgba(0,178,212,0.45);
           padding: 14px 18px;
           font-size: 1.05em;
-          margin: 0;
+          margin-top: 6px;
+          background: linear-gradient(135deg, #2DC197 0%, #10B981 100%) !important;
+          box-shadow: 0 4px 18px rgba(45,193,151,0.45) !important;
         }
-        /* Cuando el bloque WhatsApp aparece, también lo dejamos sticky pegado encima del confirmar */
+        #modalStep2 #modalSubmitBtn:disabled {
+          background: #d4d4d4 !important;
+          box-shadow: none !important;
+        }
+        /* El bloque WhatsApp queda inline arriba del confirmar */
         #modalStep2 #modalWaPrompt {
-          position: fixed;
-          left: 14px; right: 14px;
-          bottom: calc(70px + env(safe-area-inset-bottom, 0px));
-          z-index: 99;
-          box-shadow: 0 -2px 12px rgba(0,0,0,0.12);
-          margin-bottom: 0;
-        }
-        /* Cuando el prompt está visible, dar más padding al step para que no tape el "Cambiar horario" */
-        #modalStep2:has(#modalWaPrompt[style*="block"]) {
-          padding-bottom: 240px;
+          margin: 14px 0;
         }
       }
     </style>
@@ -3007,20 +3008,7 @@
 
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
-          <h3>Agendá tu demo gratis</h3>
-          <p class="modal-sub">15 min · online · sin compromiso</p>
-
-          <!-- M3: CTA principal — primer horario disponible como botón grande -->
-          <button class="modal-primary-cta" onclick="elegirProximo()">
-            <i class="fa fa-bolt"></i>
-            <span>
-              <strong>Tomar el próximo horario disponible</strong>
-              <em id="modalNextSlotHint">Buscando…</em>
-            </span>
-            <i class="fa fa-arrow-right"></i>
-          </button>
-
-          <div class="modal-or-divider"><span>o elegí vos</span></div>
+          <p class="modal-sub modal-sub-only">15 min · online · sin compromiso</p>
 
           <!-- Desktop: Skeleton loading -->
           <div class="modal-skeleton" id="modalSkeleton">
