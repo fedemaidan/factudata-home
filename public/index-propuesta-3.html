@@ -301,8 +301,29 @@
       transition: all .15s;
       width: 100%; max-width: 320px;
     }
-    .btn-primary { background: var(--celeste); color: var(--blanco); }
-    .btn-primary:hover { box-shadow: 0 0 16px rgba(0,178,212,0.6); transform: translateY(-1px); }
+    /* CTA principal — verde con glow pulsante para destacar sobre el fondo azul */
+    .btn-primary {
+      background: linear-gradient(135deg, #2DC197 0%, #10B981 100%);
+      color: var(--blanco);
+      box-shadow: 0 4px 20px rgba(45,193,151,0.45),
+                  0 0 0 0 rgba(45,193,151,0.7);
+      animation: cta-pulse-glow 2.6s ease-out infinite;
+    }
+    .btn-primary:hover {
+      animation: none;
+      box-shadow: 0 6px 28px rgba(45,193,151,0.65);
+      transform: translateY(-1px);
+    }
+    @keyframes cta-pulse-glow {
+      0%, 100% {
+        box-shadow: 0 4px 20px rgba(45,193,151,0.45),
+                    0 0 0 0    rgba(45,193,151,0.7);
+      }
+      50% {
+        box-shadow: 0 6px 28px rgba(45,193,151,0.6),
+                    0 0 0 14px rgba(45,193,151,0);
+      }
+    }
     .btn-secondary { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,0.4); }
     .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
 
@@ -545,6 +566,12 @@
       box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
       z-index: 90;
       border-top: 1px solid rgba(0,0,0,0.08);
+      /* Animación de entrada: sube desde abajo con un mini-rebote */
+      animation: cta-bounce-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+    }
+    @keyframes cta-bounce-in {
+      0%   { transform: translateY(110%); }
+      100% { transform: translateY(0); }
     }
     .sticky-cta .btn {
       width: 100%;
