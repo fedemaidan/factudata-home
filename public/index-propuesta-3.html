@@ -2981,23 +2981,45 @@
         .modal-wa-alt-label { font-size: 0.85em; margin-bottom: 6px; }
         .modal-wa-alt-btn { padding: 8px 14px; font-size: 0.9em; }
 
-        /* Confirmar agendamiento: queda al final del form (flujo natural) con
-           shadow fuerte y verde glow para destacar. Sin position:fixed para que
-           NO se superponga al teclado de iOS / Instagram in-app. */
+        /* Confirmar agendamiento sticky fijo abajo con fondo OPACO para no
+           dejar ver los campos del form debajo. */
+        #modalStep2 {
+          padding-bottom: 110px; /* espacio para que el último campo no quede tapado */
+        }
         #modalStep2 #modalSubmitBtn {
+          position: fixed;
+          left: 14px; right: 14px;
+          bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+          width: auto !important;
+          z-index: 100;
           padding: 14px 18px;
           font-size: 1.05em;
-          margin-top: 6px;
+          margin: 0;
           background: linear-gradient(135deg, #2DC197 0%, #10B981 100%) !important;
-          box-shadow: 0 4px 18px rgba(45,193,151,0.45) !important;
+          box-shadow: 0 -2px 18px rgba(255,255,255,0.85),
+                      0 4px 16px rgba(45,193,151,0.5) !important;
         }
         #modalStep2 #modalSubmitBtn:disabled {
-          background: #d4d4d4 !important;
-          box-shadow: none !important;
+          background: #BDBDBD !important;
+          box-shadow: 0 -2px 18px rgba(255,255,255,0.85),
+                      0 2px 8px rgba(0,0,0,0.15) !important;
+          color: #FFFFFF !important;
         }
-        /* El bloque WhatsApp queda inline arriba del confirmar */
+        /* Bloque WhatsApp también sticky encima del Confirmar, fondo blanco sólido */
         #modalStep2 #modalWaPrompt {
-          margin: 14px 0;
+          position: fixed;
+          left: 14px; right: 14px;
+          bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+          z-index: 99;
+          margin: 0;
+          background: #FFFFFF !important;
+          border: 1px solid rgba(37,211,102,0.4) !important;
+          box-shadow: 0 -4px 20px rgba(255,255,255,0.95),
+                      0 6px 22px rgba(0,0,0,0.12) !important;
+        }
+        /* Cuando el prompt está visible, padding-bottom mayor para ver el último campo */
+        #modalStep2:has(#modalWaPrompt[style*="block"]) {
+          padding-bottom: 280px;
         }
       }
     </style>
