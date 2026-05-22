@@ -55,6 +55,7 @@
     .header-inner { display: flex; justify-content: space-between; align-items: center; }
     .logo-link { display: inline-flex; align-items: center; }
     .logo-img { height: 32px; width: auto; display: block; }
+    header .nav-cta { display: none; } /* oculto en mobile — alcanza el sticky bottom */
     .nav-cta {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--celeste); color: var(--blanco);
@@ -149,10 +150,56 @@
     }
 
     .hero-ctas {
-      display: flex; gap: 10px;
+      display: none; /* oculto en mobile, visible en desktop */
+      gap: 10px;
       flex-direction: column;
       align-items: center;
       margin-bottom: 22px;
+    }
+
+    /* Scroll hint (mobile) — invita a explorar */
+    .scroll-hint {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.55);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      animation: hint-bounce 2.2s ease-in-out infinite;
+    }
+    .scroll-hint i { font-size: 14px; }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50%      { transform: translateY(4px); opacity: 0.85; }
+    }
+
+    /* Teaser quote arriba de los pills (mobile) */
+    .hero-teaser {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 22px;
+      line-height: 1.5;
+      padding: 0 8px;
+    }
+    .hero-teaser::before, .hero-teaser::after {
+      content: '"';
+      color: var(--verde);
+      font-weight: 800;
+      opacity: 0.6;
+      margin: 0 3px;
+    }
+
+    /* Sub-headline en 2 líneas: principal + secundaria */
+    .hero-sub-secondary {
+      display: block;
+      margin-top: 6px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
     }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -335,8 +382,17 @@
       .hero-bullets { margin: 0 0 26px 0; max-width: 100%; }
       .hero-bullets li { font-size: 15.5px; padding: 8px 0; }
 
-      .hero-ctas { flex-direction: row; justify-content: flex-start; gap: 14px; margin-bottom: 28px; }
+      .hero-ctas {
+        display: flex; /* visible en desktop */
+        flex-direction: row; justify-content: flex-start; gap: 14px; margin-bottom: 28px;
+      }
       .btn { width: auto; max-width: none; padding: 14px 24px; }
+
+      /* Header CTA visible en desktop */
+      header .nav-cta { display: inline-flex; }
+
+      /* Ocultos en desktop: scroll hint + teaser quote (sólo mobile) */
+      .scroll-hint, .hero-teaser { display: none; }
 
       .logo-img { height: 38px; }
       .logos-strip { padding: 36px 0; }
@@ -353,7 +409,7 @@
       .hero-image img {
         max-width: 100%;
         height: auto;
-        max-height: 460px;
+        max-height: 360px; /* antes 460 — más balance con el texto */
         filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
       }
 
@@ -1241,6 +1297,8 @@
     <div class="container hero-content">
 
       <div class="hero-text">
+        <div class="hero-teaser" id="hero-teaser">Si la obra me dio o no, me di cuenta cuando ya terminó.</div>
+
         <div class="pill-selector">
           <span class="pill-label">Soy:</span>
           <button class="pill active" data-perfil="constructora">🏗️ Constructora</button>
@@ -1252,8 +1310,8 @@
         <h1 id="hero-h1">Sabé cómo va cada obra <em>antes de que termine</em>.</h1>
 
         <p class="hero-sub" id="hero-sub">
-          Sorby controla gastos, stock y presupuesto de tus obras desde WhatsApp.
-          <strong>Tu encargado carga, vos controlás.</strong>
+          Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.
+          <span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>
         </p>
 
         <ul class="hero-bullets" id="hero-bullets">
@@ -1262,7 +1320,16 @@
           <li>Desvíos de presupuesto detectados antes del cierre</li>
         </ul>
 
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="handleDemo()">
+            <i class="fa fa-calendar"></i> Agendá demo gratis
+          </button>
+        </div>
 
+        <div class="scroll-hint">
+          <span>Mirá cómo funciona</span>
+          <i class="fa fa-chevron-down"></i>
+        </div>
       </div>
 
       <div class="hero-image">
@@ -1936,8 +2003,9 @@
     // ─── Configuración por perfil ──────────────────────────────
     const PERFILES = {
       constructora: {
+        teaser: 'Si la obra me dio o no, me di cuenta cuando ya terminó.',
         h1: 'Sabé cómo va cada obra <em>antes de que termine</em>.',
-        sub: 'Sorby controla <strong>gastos, stock, presupuesto y avance</strong> de tus obras desde WhatsApp. <strong>Tu encargado carga, vos controlás.</strong>',
+        sub: 'Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>',
         bullets: [
           'Foto al ticket o audio al bot → cargado en segundos',
           'Stock, presupuesto por rubro y avance en tiempo real',
@@ -1950,8 +2018,9 @@
         ]
       },
       estudio: {
+        teaser: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.',
         h1: 'Lo que pasa en la obra, <em>ordenado solo</em>.',
-        sub: 'Sorby registra los <strong>gastos, pedidos y avances</strong> de tus obras desde WhatsApp. Sin armar planillas para el comitente.',
+        sub: 'Gastos, pedidos y avances — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente.</span>',
         bullets: [
           'Cargá gastos hablándole al bot (modo audio)',
           'Certificados de avance con aprobación del comitente, por link',
@@ -1964,8 +2033,9 @@
         ]
       },
       desarrolladora: {
+        teaser: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.',
         h1: 'El control financiero <em>que los inversores te piden</em>.',
-        sub: 'Sorby unifica <strong>presupuesto, avance, cobros e información para socios</strong> — en un solo panel.',
+        sub: 'Presupuesto, avance, cobros e info para socios — <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano cada vez.</span>',
         bullets: [
           'Presupuesto por rubro con avance certificado en vivo',
           'Plan de cobros con cuotas que se desbloquean al certificar',
@@ -1978,8 +2048,9 @@
         ]
       },
       corralon: {
+        teaser: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.',
         h1: 'Acopios, cuentas corrientes y multi-sucursal, <em>en un solo lugar</em>.',
-        sub: 'Sorby ordena el día a día de tu corralón desde WhatsApp. <strong>Tu equipo lo opera, vos lo controlás.</strong>',
+        sub: 'Acopios, CC y multi-sucursal — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu equipo lo opera. Vos lo controlás.</span>',
         bullets: [
           'Acopios con clientes y proveedores',
           'Cuenta corriente de cada cliente al día',
@@ -1997,6 +2068,8 @@
       const cfg = PERFILES[perfil];
       if (!cfg) return;
 
+      const teaserEl = document.getElementById('hero-teaser');
+      if (teaserEl && cfg.teaser) teaserEl.textContent = cfg.teaser;
       document.getElementById('hero-h1').innerHTML = cfg.h1;
       document.getElementById('hero-sub').innerHTML = cfg.sub;
 
