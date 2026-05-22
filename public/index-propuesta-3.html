@@ -287,6 +287,10 @@
       color: rgba(255,255,255,0.7);
       font-weight: 500;
     }
+    .hero-sub-secondary strong {
+      color: #FFFFFF;
+      font-weight: 800;
+    }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 13px 22px; border-radius: 10px;
@@ -1397,11 +1401,11 @@
           <button class="pill" data-perfil="corralon">🏬 Corralón</button>
         </div>
 
-        <h1 id="hero-h1">Sabé cómo va cada obra <em>antes de que termine</em>.</h1>
+        <h1 id="hero-h1">Tu obra bajo control, <em>donde estés</em>.</h1>
 
         <p class="hero-sub" id="hero-sub">
           Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.
-          <span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>
+          <span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>
         </p>
 
         <ul class="hero-bullets" id="hero-bullets">
@@ -2164,7 +2168,7 @@
       /* Steps */
       .modal-step { display: none; }
       .modal-step.active { display: block; }
-      /* Quick link */
+      /* Quick link (legacy) */
       .modal-quick-link {
         display: block;
         font-size: 1.1em;
@@ -2177,6 +2181,261 @@
       }
       .modal-quick-link:hover { text-decoration: underline; }
       .modal-quick-link i { margin-right: 4px; }
+
+      /* ───────── NUEVAS MEJORAS UX DEL MODAL ───────── */
+
+      /* M1 — Sub con features inline */
+      .modal-sub-features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 16px;
+        font-size: 1em;
+        color: #5A6A7A;
+        margin-bottom: 14px;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-sub-features span { font-weight: 600; white-space: nowrap; }
+
+      /* M7 — Social proof banner */
+      .modal-social-proof {
+        background: linear-gradient(135deg, rgba(45,193,151,0.10), rgba(0,178,212,0.08));
+        border: 1px solid rgba(45,193,151,0.25);
+        border-radius: 999px;
+        padding: 6px 16px;
+        font-size: 0.92em;
+        color: #0a6147;
+        text-align: center;
+        margin: 0 auto 14px;
+        font-family: "Quicksand", sans-serif;
+        max-width: fit-content;
+      }
+      .modal-social-proof strong { font-weight: 700; }
+
+      /* M6 — Humanización (Te atiende ...) */
+      .modal-attendee {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: #F0FBFD;
+        border-radius: 10px;
+        margin-bottom: 16px;
+        border-left: 3px solid #00B2D4;
+      }
+      .modal-attendee-avatar {
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00B2D4, #0097B2);
+        color: #fff;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 800; font-size: 14px;
+        flex-shrink: 0;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-attendee-text {
+        font-family: "Quicksand", sans-serif;
+        font-size: 0.95em;
+        line-height: 1.35;
+      }
+      .modal-attendee-text strong { display: block; color: #1E4469; font-weight: 700; }
+      .modal-attendee-text span { font-size: 0.85em; color: #5A6A7A; }
+
+      /* M3 — CTA primario "Tomar próximo horario" */
+      .modal-primary-cta {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #00B2D4, #0097B2);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 18px;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        text-align: left;
+        box-shadow: 0 4px 14px rgba(0,178,212,0.35);
+        transition: transform .15s, box-shadow .15s;
+        margin-bottom: 14px;
+      }
+      .modal-primary-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,178,212,0.45); }
+      .modal-primary-cta > i:first-child { font-size: 22px; flex-shrink: 0; }
+      .modal-primary-cta > i:last-child { font-size: 14px; margin-left: auto; opacity: 0.9; }
+      .modal-primary-cta span { flex: 1; display: flex; flex-direction: column; }
+      .modal-primary-cta strong { font-size: 1em; font-weight: 700; }
+      .modal-primary-cta em {
+        font-style: normal;
+        font-size: 0.82em;
+        opacity: 0.92;
+        margin-top: 2px;
+      }
+
+      /* Separador "o elegí vos" */
+      .modal-or-divider {
+        text-align: center;
+        position: relative;
+        margin: 10px 0 14px;
+        color: #888;
+        font-size: 0.85em;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-or-divider::before {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; top: 50%;
+        border-top: 1px solid #E0E0E0;
+        z-index: 0;
+      }
+      .modal-or-divider span {
+        background: #fff;
+        padding: 0 12px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* M5 — WhatsApp alternativa real */
+      .modal-wa-alt {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px dashed #E0E0E0;
+        text-align: center;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-wa-alt-label {
+        display: block;
+        font-size: 0.92em;
+        color: #5A6A7A;
+        margin-bottom: 8px;
+      }
+      .modal-wa-alt-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #25D366;
+        color: #fff;
+        padding: 9px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95em;
+        box-shadow: 0 3px 10px rgba(37,211,102,0.25);
+        transition: transform .15s, box-shadow .15s;
+      }
+      .modal-wa-alt-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 14px rgba(37,211,102,0.35);
+      }
+      .modal-wa-alt-btn i { font-size: 18px; }
+
+      /* M9 — Skeleton mejorado (mensaje + filas) */
+      .modal-skeleton-msg {
+        text-align: center;
+        font-size: 0.92em;
+        color: #888;
+        margin-bottom: 10px;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-skeleton-row { display: flex; gap: 8px; }
+
+      /* Bloque "Agendá por WhatsApp" cuando tiene WA pero no email */
+      .modal-wa-prompt {
+        background: linear-gradient(135deg, rgba(37,211,102,0.08), rgba(45,193,151,0.06));
+        border: 1px solid rgba(37,211,102,0.3);
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        font-family: "Quicksand", sans-serif;
+        animation: wa-prompt-in 0.25s ease-out;
+      }
+      @keyframes wa-prompt-in {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .modal-wa-prompt-msg {
+        font-size: 0.95em;
+        color: #2A2A2A;
+        line-height: 1.45;
+        margin-bottom: 10px;
+      }
+      .modal-wa-prompt-msg strong { color: #075E54; font-weight: 700; }
+      .modal-wa-prompt-msg span {
+        display: inline-block; margin-top: 6px;
+        font-size: 0.9em; color: #5A6A7A;
+      }
+      .modal-wa-prompt-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        background: #25D366;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 700;
+        font-size: 1em;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(37,211,102,0.35);
+        transition: transform .15s, box-shadow .15s;
+      }
+      .modal-wa-prompt-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(37,211,102,0.45);
+      }
+      .modal-wa-prompt-btn i { font-size: 20px; }
+
+      /* M12 — Confirmación más festiva */
+      .modal-confetti {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 4px;
+        animation: confetti-bounce 1.2s ease-out 0.2s 2;
+      }
+      @keyframes confetti-bounce {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50%      { transform: translateY(-8px) rotate(8deg); }
+      }
+      .modal-fecha-resumen-wrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #F0FBFD;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 1.05em;
+        color: #1E4469;
+        font-weight: 700;
+        margin: 8px auto 14px;
+      }
+      .modal-fecha-resumen-wrap i { color: #00B2D4; }
+      .modal-next-steps {
+        background: #F6F6F6;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin: 10px 0 14px;
+        text-align: left;
+      }
+      .modal-next-step-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.95em;
+        color: #2A2A2A;
+        font-family: "Quicksand", sans-serif;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+      .modal-next-step-item:last-child { margin-bottom: 0; }
+      .modal-next-step-item i {
+        color: #00B2D4;
+        font-size: 18px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .modal-next-step-item .fa-whatsapp { color: #25D366; }
       /* Fallback link */
       .modal-fallback {
         text-align: center;
@@ -2616,6 +2875,34 @@
       }
       @media (max-width: 768px) {
         .modal-categoria-btn { font-size: 1.25em; padding: 12px 14px; }
+
+        /* M11 — Confirmar agendamiento sticky en mobile, igual que el sticky del hero */
+        #modalStep2 {
+          padding-bottom: 90px; /* espacio para el botón fijo */
+        }
+        #modalStep2 #modalSubmitBtn {
+          position: fixed;
+          left: 14px; right: 14px; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+          width: auto !important;
+          z-index: 100;
+          box-shadow: 0 -2px 12px rgba(0,0,0,0.15), 0 4px 14px rgba(0,178,212,0.45);
+          padding: 14px 18px;
+          font-size: 1.05em;
+          margin: 0;
+        }
+        /* Cuando el bloque WhatsApp aparece, también lo dejamos sticky pegado encima del confirmar */
+        #modalStep2 #modalWaPrompt {
+          position: fixed;
+          left: 14px; right: 14px;
+          bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+          z-index: 99;
+          box-shadow: 0 -2px 12px rgba(0,0,0,0.12);
+          margin-bottom: 0;
+        }
+        /* Cuando el prompt está visible, dar más padding al step para que no tape el "Cambiar horario" */
+        #modalStep2:has(#modalWaPrompt[style*="block"]) {
+          padding-bottom: 240px;
+        }
       }
     </style>
 
@@ -2625,20 +2912,45 @@
 
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
-          <h3>Demo de 15 min · Gratis · Sin compromiso</h3>
-          <p class="modal-sub">Mirá cómo tu obra deja de ser un caos de papeles.</p>
+          <h3>Agendá tu demo gratis</h3>
+          <p class="modal-sub modal-sub-features">
+            <span>⏱ 15 min</span><span>💻 Online</span><span>💳 Sin tarjeta</span>
+          </p>
 
-          <div class="modal-quick-link" onclick="elegirProximo()">
-            <i class="fa fa-bolt"></i> Tomar el primer horario disponible
+          <!-- M7: Social proof -->
+          <div class="modal-social-proof">💚 <strong>+8 demos agendadas</strong> esta semana</div>
+
+          <!-- M6: Humanización — quién te atiende -->
+          <div class="modal-attendee">
+            <div class="modal-attendee-avatar">FM</div>
+            <div class="modal-attendee-text">
+              <strong>Te atiende Fede Maidan</strong>
+              <span>Fundador de Sorby · Demo en vivo con tu caso</span>
+            </div>
           </div>
+
+          <!-- M3: CTA principal — primer horario disponible como botón grande -->
+          <button class="modal-primary-cta" onclick="elegirProximo()">
+            <i class="fa fa-bolt"></i>
+            <span>
+              <strong>Tomar el próximo horario disponible</strong>
+              <em id="modalNextSlotHint">Buscando…</em>
+            </span>
+            <i class="fa fa-arrow-right"></i>
+          </button>
+
+          <div class="modal-or-divider"><span>o elegí vos</span></div>
 
           <!-- Desktop: Skeleton loading -->
           <div class="modal-skeleton" id="modalSkeleton">
-            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
-            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
-            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
-            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
-            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-msg">Buscando los próximos horarios…</div>
+            <div class="modal-skeleton-row">
+              <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+              <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+              <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+              <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+              <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            </div>
           </div>
 
           <!-- Mobile: Skeleton loading -->
@@ -2671,7 +2983,14 @@
           </div>
 
           <div class="modal-error" id="modalError1" style="display:none"></div>
-          <div class="modal-fallback">¿No encontrás horario? <a href="#" onclick="contactarPorWhatsApp(event)">Contactanos por WhatsApp</a> al +54 9 11 6237-7270</div>
+
+          <!-- M5: WhatsApp como alternativa real, no fallback gris -->
+          <div class="modal-wa-alt">
+            <span class="modal-wa-alt-label">¿Preferís hablar primero?</span>
+            <a href="#" class="modal-wa-alt-btn" onclick="contactarPorWhatsApp(event)">
+              <i class="fab fa-whatsapp"></i> Escribinos por WhatsApp
+            </a>
+          </div>
         </div>
 
         <!-- PASO 2: Datos + Confirmación -->
@@ -2684,23 +3003,47 @@
             <label for="modalEmail">Tu email *</label>
             <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')">
             <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')">
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" oninput="validarForm()" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')">
             <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
             <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
             <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')">
             <div class="modal-error" id="modalError2" style="display:none"></div>
+
+            <!-- Bloque que aparece cuando hay WhatsApp pero no email -->
+            <div class="modal-wa-prompt" id="modalWaPrompt" style="display:none">
+              <div class="modal-wa-prompt-msg">
+                ¿Querés agendar desde acá? <strong>Completá el mail</strong>.<br>
+                <span>O agendá directamente por WhatsApp con todo lo que ya cargaste:</span>
+              </div>
+              <button type="button" class="modal-wa-prompt-btn" onclick="agendarPorWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
+              </button>
+            </div>
+
             <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary" disabled>Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
           </form>
           <button class="modal-btn modal-btn-back" onclick="modalVolver(1)"><i class="fa fa-arrow-left" style="margin-right:6px;font-size:.85em"></i> Cambiar horario</button>
         </div>
 
-        <!-- PASO 3: Confirmación exitosa -->
+        <!-- PASO 3: Confirmación exitosa (M12 — más festiva e informativa) -->
         <div class="modal-step" id="modalStep3">
           <div class="modal-confirm">
+            <div class="modal-confetti">🎉</div>
             <div class="modal-check">&#10003;</div>
-            <h3>¡Reunión agendada!</h3>
-            <p><span class="modal-fecha-resumen" id="modalResumenFecha"></span></p>
-            <p style="margin-top:12px;">Te contactamos por <strong>WhatsApp</strong> para confirmar los detalles.</p>
+            <h3>¡Listo! Tu demo está reservada</h3>
+            <p class="modal-fecha-resumen-wrap"><i class="fa fa-calendar"></i> <span class="modal-fecha-resumen" id="modalResumenFecha"></span></p>
+
+            <div class="modal-next-steps">
+              <div class="modal-next-step-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>Te llegará un <strong>WhatsApp en 5 minutos</strong> para confirmar.</span>
+              </div>
+              <div class="modal-next-step-item">
+                <i class="fa fa-envelope"></i>
+                <span>Y un <strong>email con el link de Meet</strong>.</span>
+              </div>
+            </div>
+
             <a class="modal-add-cal" id="modalAddCal" download="reunion-sorby.ics"><i class="fa fa-calendar-plus"></i> Añadir a mi calendario</a>
             <button class="modal-btn modal-btn-primary" style="margin-top:16px" onclick="cerrarModalAgendar()">Listo</button>
           </div>
@@ -3293,11 +3636,27 @@ const menuToggle = document.querySelector('.menu-toggle');
             _calPage = 0;
             _activeTab = 0;
             renderCalendar();
+            // M3 — Actualizar el hint del CTA principal con el primer horario disponible
+            try {
+              var hintEl = document.getElementById('modalNextSlotHint');
+              if (hintEl && _slotsData[0] && _slotsData[0].slots[0]) {
+                var firstDay = _slotsData[0];
+                var firstSlot = _slotsData[0].slots[0];
+                var dayName = _smartDayLabel(firstDay);
+                var parts = firstDay.label.split(' ');
+                hintEl.textContent = dayName + ' ' + parts[1] + ' ' + parts[2] + ' · ' + firstSlot.time + ' hs';
+              }
+            } catch (_) {}
           })
           .catch(function() {
             hideSkeleton();
             calEl.innerHTML = '<div class="modal-no-slots">Error cargando horarios. Intentá más tarde.</div>';
             document.getElementById('modalMobileSlots').innerHTML = '<div class="modal-mobile-empty">Error cargando horarios.</div>';
+            // M3 — Si falla la carga, sugerir WhatsApp como alternativa en el botón principal
+            try {
+              var hintEl = document.getElementById('modalNextSlotHint');
+              if (hintEl) hintEl.textContent = 'No pude cargar los horarios — probá WhatsApp ↓';
+            } catch (_) {}
           });
       }
 
@@ -3352,9 +3711,10 @@ const menuToggle = document.querySelector('.menu-toggle');
           col.className = 'modal-cal-day';
 
           var parts = day.label.split(' ');
+          var dayName = _smartDayLabel(day);
           var header = document.createElement('div');
           header.className = 'modal-cal-day-header';
-          header.innerHTML = '<span class="cal-day-name">' + parts[0] + '</span><span class="cal-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          header.innerHTML = '<span class="cal-day-name">' + dayName + '</span><span class="cal-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
           col.appendChild(header);
 
           var slotsContainer = document.createElement('div');
@@ -3390,15 +3750,29 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       // ── Mobile: tab strip + slot grid ──
+      // M2 — Devuelve "Hoy" / "Mañana" / nombre del día si aplica
+      function _smartDayLabel(day) {
+        var parts = day.label.split(' ');
+        var fallback = parts[0]; // ej. "Viernes"
+        if (!day.slots || !day.slots[0] || !day.slots[0].iso) return fallback;
+        var slotDate = new Date(day.slots[0].iso);
+        var today = new Date();
+        var diffDays = Math.floor((slotDate.setHours(0,0,0,0) - today.setHours(0,0,0,0)) / 86400000);
+        if (diffDays === 0) return 'Hoy';
+        if (diffDays === 1) return 'Mañana';
+        return fallback;
+      }
+
       function renderMobileTabs() {
         var tabsEl = document.getElementById('modalDayTabs');
         tabsEl.innerHTML = '';
 
         _slotsData.forEach(function(day, i) {
           var parts = day.label.split(' ');
+          var dayName = _smartDayLabel(day);
           var tab = document.createElement('div');
           tab.className = 'modal-day-tab' + (i === _activeTab ? ' active' : '');
-          tab.innerHTML = '<span class="tab-day-name">' + parts[0] + '</span><span class="tab-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          tab.innerHTML = '<span class="tab-day-name">' + dayName + '</span><span class="tab-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
           tab.addEventListener('click', function() { selectMobileTab(i); });
           tabsEl.appendChild(tab);
         });
@@ -3510,9 +3884,56 @@ const menuToggle = document.querySelector('.menu-toggle');
       function validarForm() {
         var nombre = document.getElementById('modalNombre').value.trim();
         var email = document.getElementById('modalEmail').value.trim();
+        var telefono = (document.getElementById('modalTelefono').value || '').replace(/\D/g, '');
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var telefonoOk = telefono.length >= 8;
         var btn = document.getElementById('modalSubmitBtn');
         btn.disabled = !(nombre.length > 0 && emailOk);
+
+        // Si tiene nombre + WhatsApp pero NO email → mostrar el prompt "agendá por WhatsApp"
+        var waPrompt = document.getElementById('modalWaPrompt');
+        if (waPrompt) {
+          var mostrar = (nombre.length > 0 && telefonoOk && !emailOk);
+          waPrompt.style.display = mostrar ? 'block' : 'none';
+          if (mostrar) _trackStep('mostro_wa_prompt');
+        }
+      }
+
+      // ── Agendar por WhatsApp con info pre-llenada del form ──
+      function agendarPorWhatsApp() {
+        _trackStep('click_agendar_wa');
+        _clarity && _clarity('click_agendar_wa');
+
+        var nombre = (document.getElementById('modalNombre').value || '').trim();
+        var email = (document.getElementById('modalEmail').value || '').trim();
+        var telefono = (document.getElementById('modalTelefono').value || '').replace(/\D/g, '');
+        var empresa = (document.getElementById('modalEmpresa').value || '').trim();
+
+        // Horario seleccionado (si lo eligió)
+        var horarioTxt = '';
+        try {
+          if (_selectedSlot && _selectedDay) {
+            horarioTxt = _selectedDay.label + ' a las ' + _selectedSlot.time + ' hs';
+          }
+        } catch (_) {}
+
+        var lineas = [];
+        lineas.push('¡Hola! Quiero agendar una demo de Sorby.');
+        lineas.push('');
+        if (nombre)    lineas.push('👤 Nombre: ' + nombre);
+        if (telefono)  lineas.push('📱 WhatsApp: ' + telefono);
+        if (empresa)   lineas.push('🏢 Empresa: ' + empresa);
+        if (email)     lineas.push('✉️ Email: ' + email);
+        if (horarioTxt) {
+          lineas.push('');
+          lineas.push('📅 Horario que prefiero: ' + horarioTxt);
+        }
+        lineas.push('');
+        lineas.push('¿Confirmamos por acá?');
+
+        var msg = encodeURIComponent(lineas.join('\n'));
+        var numero = '5491162377270';
+        window.open('https://wa.me/' + numero + '?text=' + msg, '_blank');
       }
 
       // ── Submit booking ──
@@ -3752,8 +4173,8 @@ const menuToggle = document.querySelector('.menu-toggle');
     const PERFILES = {
       constructora: {
         teaser: 'Si la obra me dio o no, me di cuenta cuando ya terminó.',
-        h1: 'Sabé cómo va cada obra <em>antes de que termine</em>.',
-        sub: 'Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu encargado carga. Vos controlás.</span>',
+        h1: 'Tu obra bajo control, <em>donde estés</em>.',
+        sub: 'Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Foto al ticket o audio al bot → cargado en segundos',
           'Stock, presupuesto por rubro y avance en tiempo real',
@@ -3768,7 +4189,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       estudio: {
         teaser: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.',
         h1: 'Lo que pasa en la obra, <em>ordenado solo</em>.',
-        sub: 'Gastos, pedidos y avances — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente.</span>',
+        sub: 'Gastos, pedidos y avances — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Cargá gastos hablándole al bot (modo audio)',
           'Certificados de avance con aprobación del comitente, por link',
@@ -3783,7 +4204,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       desarrolladora: {
         teaser: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.',
         h1: 'El control financiero <em>que los inversores te piden</em>.',
-        sub: 'Presupuesto, avance, cobros e info para socios — <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano cada vez.</span>',
+        sub: 'Presupuesto, avance, cobros e info para socios — <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Presupuesto por rubro con avance certificado en vivo',
           'Plan de cobros con cuotas que se desbloquean al certificar',
@@ -3798,7 +4219,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       corralon: {
         teaser: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.',
         h1: 'Acopios, cuentas corrientes y multi-sucursal, <em>en un solo lugar</em>.',
-        sub: 'Acopios, CC y multi-sucursal — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Tu equipo lo opera. Vos lo controlás.</span>',
+        sub: 'Acopios, CC y multi-sucursal — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">El equipo lo opera. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Acopios con clientes y proveedores',
           'Cuenta corriente de cada cliente al día',
