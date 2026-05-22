@@ -381,24 +381,42 @@
     }
     .flow {
       display: flex; flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       max-width: 700px; margin: 0 auto;
     }
     .flow-step-box {
       background: var(--blanco);
-      border-radius: 10px;
-      padding: 14px 16px;
+      border-radius: 12px;
+      padding: 16px;
       display: flex; align-items: center; gap: 14px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border-left: 3px solid var(--celeste);
     }
+    .flow-step-box:nth-child(2) { border-left-color: var(--wa-green); }
+    .flow-step-box:nth-child(3) { border-left-color: #8b5cf6; }
+    .flow-step-box:nth-child(4) { border-left-color: var(--verde); }
     .flow-num-circle {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--teal); color: var(--blanco);
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(0,178,212,0.12);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 700; flex-shrink: 0;
+      font-size: 28px; flex-shrink: 0;
+      position: relative;
     }
-    .flow-step-text { font-size: 13.5px; line-height: 1.5; color: var(--texto); }
-    .flow-step-text strong { display: block; color: var(--azul); margin-bottom: 2px; font-weight: 700; }
+    .flow-step-box:nth-child(2) .flow-num-circle { background: rgba(37,211,102,0.12); }
+    .flow-step-box:nth-child(3) .flow-num-circle { background: rgba(139,92,246,0.12); }
+    .flow-step-box:nth-child(4) .flow-num-circle { background: rgba(45,193,151,0.15); }
+    .flow-num-circle::after {
+      content: attr(data-num);
+      position: absolute;
+      bottom: -4px; right: -4px;
+      background: var(--azul); color: var(--blanco);
+      font-size: 10px; font-weight: 800;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--blanco);
+    }
+    .flow-step-text { font-size: 13.5px; line-height: 1.5; color: var(--texto); flex: 1; }
+    .flow-step-text strong { display: block; color: var(--azul); margin-bottom: 3px; font-weight: 700; font-size: 14.5px; }
 
     /* ── Strip de logos de clientes (entre hero y cómo funciona) ── */
     .logos-strip {
@@ -1247,19 +1265,19 @@
       <div class="flow-title-h">Así se registra un gasto — 4 pasos</div>
       <div class="flow">
         <div class="flow-step-box">
-          <div class="flow-num-circle">1</div>
+          <div class="flow-num-circle" data-num="1">📷</div>
           <div class="flow-step-text"><strong>En obra</strong>El encargado saca foto a la factura del corralón.</div>
         </div>
         <div class="flow-step-box">
-          <div class="flow-num-circle">2</div>
+          <div class="flow-num-circle" data-num="2">💬</div>
           <div class="flow-step-text"><strong>WhatsApp</strong>La manda al bot de Sorby como cualquier mensaje.</div>
         </div>
         <div class="flow-step-box">
-          <div class="flow-num-circle">3</div>
+          <div class="flow-num-circle" data-num="3">🤖</div>
           <div class="flow-step-text"><strong>IA procesa</strong>Extrae proveedor, monto, fecha y categoría.</div>
         </div>
         <div class="flow-step-box">
-          <div class="flow-num-circle">4</div>
+          <div class="flow-num-circle" data-num="4">✅</div>
           <div class="flow-step-text"><strong>Queda registrado</strong>Aparece en la caja de la obra al instante.</div>
         </div>
       </div>
