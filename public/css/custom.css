@@ -1709,28 +1709,32 @@ header nav ul li:nth-of-type(1) {
     }
         
     .home h1{
-        font-size: 4.3em;
+        font-size: 3.8em; /* antes 4.3em — un poco más chico, pero con espacio porque ya no está la imagen */
         text-align: center;
         color: #E0F7FA;
-/*        margin-top: 80px;*/
         margin-top: 0;
+        line-height: 1.1;
     }
-    
+
     .home p{
-        font-size: 1.8em;
+        font-size: 1.6em; /* antes 1.8em — leve reducción */
     }
-    
+
     .tools{
         line-height: 1.8em;
         font-size: .8em;
     }
-    
-    .home .hero-img-mobile{
-        max-width: 210px;
-        display: block;
-        margin: 5px auto 0 auto;
+
+    /* 🎯 Mobile: sin ilustración del personaje. CTA queda above-the-fold.
+       Ver #1 en LEARNING_LOG.md */
+    .home .hero-img-mobile {
+        display: none !important;
     }
-    
+
+    .home .home-bloque1 > .ctas-home {
+        margin-top: 18px;
+    }
+
     .home .ctas{
         flex-direction: column-reverse;
         margin: 0 auto;
