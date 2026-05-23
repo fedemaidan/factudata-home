@@ -3962,6 +3962,22 @@ const menuToggle = document.querySelector('.menu-toggle');
         });
       } catch (_) {}
 
+      // ── Restaurar modal si el usuario refrescó en /agendar/* ─────────
+      // Firebase rewrites mandan /agendar/** → index.html, así que el browser
+      // sirve la landing y nosotros reabrimos el modal en el step correcto.
+      // Sólo "horario" es restaurable (los otros steps perdieron form/booking
+      // data al refresh). Reaperturamos en step 1 si el path es uno conocido.
+      try {
+        var ag = (location.pathname || '').match(/^\/agendar(?:\/([^/?#]+))?/);
+        if (ag) {
+          // Esperar a que el DOM esté listo y el resto del script termine de
+          // declarar funciones antes de abrir el modal.
+          setTimeout(function() {
+            try { if (typeof abrirModalAgendar === 'function') abrirModalAgendar(); } catch (_) {}
+          }, 0);
+        }
+      } catch (_) {}
+
       // ── Snapshot de lead parcial ─────────────────────────────────────
       // Si el usuario tipea datos pero no confirma, queremos que llegue al
       // SDR igual. Se manda en blur de email/teléfono y on-unload del modal

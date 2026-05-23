@@ -3963,6 +3963,18 @@ const menuToggle = document.querySelector('.menu-toggle');
         });
       } catch (_) {}
 
+      // ── Restaurar modal si el usuario refrescó en /agendar/* ─────────
+      // Firebase rewrites mandan /agendar/** → index.html. Aquí reabrimos
+      // el modal en step 1 (los otros steps perdieron datos al refresh).
+      try {
+        var ag = (location.pathname || '').match(/^\/agendar(?:\/([^/?#]+))?/);
+        if (ag) {
+          setTimeout(function() {
+            try { if (typeof abrirModalAgendar === 'function') abrirModalAgendar(); } catch (_) {}
+          }, 0);
+        }
+      } catch (_) {}
+
       // ── Snapshot de lead parcial ─────────────────────────────────────
       // Si el usuario tipea datos pero no confirma, queremos que llegue al
       // SDR igual. Se manda en blur de email/teléfono y on-unload del modal
