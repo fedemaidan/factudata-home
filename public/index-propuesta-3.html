@@ -513,8 +513,11 @@
       .sticky-cta { display: none; }
       body { padding-bottom: 0; }
 
-      .hero h1 { font-size: 40px; text-align: left; max-width: 100%; }
-      .hero-sub { font-size: 17px; text-align: left; max-width: 520px; margin-left: 0; margin-right: 0; margin-bottom: 22px; }
+      .hero h1 { font-size: 54px; text-align: left; max-width: 100%; line-height: 1.1; margin-bottom: 22px; }
+      .hero-sub { font-size: 19px; text-align: left; max-width: 540px; margin-left: 0; margin-right: 0; margin-bottom: 26px; }
+      .hero-sub-secondary { font-size: 16px; margin-top: 8px; }
+      .hero-bullets li { font-size: 16.5px; padding: 9px 0; }
+      .hero-bullets.hero-bullets-q li::before { font-size: 1.4em; }
 
       .hero-bullets { margin: 0 0 26px 0; max-width: 100%; }
       .hero-bullets li { font-size: 15.5px; padding: 8px 0; }
@@ -2287,13 +2290,13 @@
       .modal-agendar {
         background: #fff;
         border-radius: 16px;
-        max-width: 720px;
+        max-width: 980px; /* antes 720 — más espacio para ver los 5 días en una sola pantalla */
         width: 100%;
-        padding: 36px 28px 28px;
+        padding: 36px 32px 28px;
         position: relative;
         box-shadow: 0 12px 40px rgba(0,0,0,0.2);
         font-family: "Quicksand", sans-serif;
-        max-height: 90vh;
+        max-height: 92vh;
         overflow-y: auto;
       }
       .modal-agendar-close {
@@ -2774,7 +2777,7 @@
         display: flex;
         flex-direction: column;
         gap: 4px;
-        max-height: 220px;
+        max-height: 340px; /* antes 220 — más slots visibles sin scroll */
         overflow-y: auto;
       }
       .modal-slot-pill {
@@ -3191,7 +3194,7 @@
 
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
-          <p class="modal-sub modal-sub-only">15 min · online · sin compromiso</p>
+          <p class="modal-sub modal-sub-only">15 min · online</p>
 
           <!-- Desktop: Skeleton loading -->
           <div class="modal-skeleton" id="modalSkeleton">
