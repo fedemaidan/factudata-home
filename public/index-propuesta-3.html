@@ -3340,14 +3340,14 @@
           <div class="modal-slot-badge" id="modalSlotBadge"><i class="fa fa-calendar-check"></i> <span id="badgeText"></span></div>
           <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
             <label for="modalNombre">Tu nombre *</label>
-            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')">
+            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_nombre')">
             <label for="modalEmail">Tu email *</label>
-            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')">
+            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_email')">
             <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" oninput="validarForm()" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')">
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" oninput="validarForm()" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_telefono')">
             <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
             <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')">
+            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_empresa')">
             <div class="modal-error" id="modalError2" style="display:none"></div>
 
             <!-- Bloque que aparece cuando hay WhatsApp pero no email -->
@@ -3767,8 +3767,8 @@ const menuToggle = document.querySelector('.menu-toggle');
       // Limpiar asignación vieja del A/B en localStorage de visitantes recurrentes.
       try { localStorage.removeItem('sorby_ab_cat_position'); } catch (_) {}
 
-      // Registrar visita (fire-and-forget, no bloquea nada)
-      try { fetch(SORBY_API + '/api/agendar/landing-visit', { method: 'POST' }); } catch (_) {}
+      // NOTA: la llamada a /landing-visit se hace MÁS ABAJO, después de
+      // construir _attribution, para poder mandar UTMs/fbclid/referrer.
 
       var _slotsData = null; // Cache de slots
       var _selectedDay = null;
@@ -3783,7 +3783,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       var _funnelBaseUrl = location.pathname + location.search + location.hash;
       var _funnelFiredFb = {}; // dedupe FB events por apertura
       function _funnelReset() { _funnelFiredFb = {}; }
-      function _funnelStep(slug, fbEvent, fbParams) {
+      function _funnelStep(slug, fbEvent, fbParams, eventId) {
         try {
           var url = slug ? ('/agendar' + (slug === '/' ? '' : slug)) : _funnelBaseUrl;
           if (location.pathname + location.search !== url) {
@@ -3793,10 +3793,13 @@ const menuToggle = document.querySelector('.menu-toggle');
         if (fbEvent && typeof fbq === 'function' && !_funnelFiredFb[fbEvent + ':' + (slug || '')]) {
           _funnelFiredFb[fbEvent + ':' + (slug || '')] = true;
           try {
+            var opts = eventId ? { eventID: eventId } : undefined;
             if (fbEvent.indexOf('Custom:') === 0) {
-              fbq('trackCustom', fbEvent.slice(7), fbParams || {});
+              if (opts) fbq('trackCustom', fbEvent.slice(7), fbParams || {}, opts);
+              else fbq('trackCustom', fbEvent.slice(7), fbParams || {});
             } else {
-              fbq('track', fbEvent, fbParams || {});
+              if (opts) fbq('track', fbEvent, fbParams || {}, opts);
+              else fbq('track', fbEvent, fbParams || {});
             }
           } catch (_) {}
         }
@@ -3819,6 +3822,24 @@ const menuToggle = document.querySelector('.menu-toggle');
           if (eventName) window.clarity('event', eventName);
         } catch (_) {}
       }
+      // Si cierra el tab / cambia de app / bloquea pantalla con el modal
+      // abierto y datos tipeados → mandar snapshot del lead parcial.
+      // pagehide es más confiable que beforeunload en iOS/Safari y mobile.
+      window.addEventListener('pagehide', function() {
+        var modal = document.getElementById('modalAgendar');
+        if (modal && modal.classList.contains('active')) {
+          _enviarLeadParcial('unload');
+        }
+      });
+      window.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+          var modal = document.getElementById('modalAgendar');
+          if (modal && modal.classList.contains('active')) {
+            _enviarLeadParcial('visibility_hidden');
+          }
+        }
+      });
+
       // Back button → cerrar modal / volver a estado base
       window.addEventListener('popstate', function() {
         var modal = document.getElementById('modalAgendar');
@@ -3834,6 +3855,172 @@ const menuToggle = document.querySelector('.menu-toggle');
           if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
         } catch (_) {}
         return 'evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+      }
+
+      // ── Session ID estable ───────────────────────────────────────────
+      // UUID persistido en sessionStorage. Es la clave que permite cruzar
+      // todos los eventos de un mismo usuario aunque cambie el email/tel
+      // mientras tipea, evitando duplicados en ContactoSDR cuando la PII
+      // muta entre blurs.
+      var _sessionId = (function() {
+        try {
+          var KEY = 'sorby_session_id';
+          var v = sessionStorage.getItem(KEY);
+          if (!v) {
+            v = _genEventId();
+            sessionStorage.setItem(KEY, v);
+          }
+          return v;
+        } catch (_) {
+          return _genEventId();
+        }
+      })();
+
+      // ── Atribución de la sesión ──────────────────────────────────────
+      // Capturamos UTMs + fbclid/gclid + referrer al primer ingreso y los
+      // persistimos en sessionStorage (first-touch dentro de la sesión).
+      // Se manda en TODOS los tracking payloads para que en el dashboard
+      // puedas ver "abrió modal: 47, de los cuales 31 vinieron de Meta
+      // campaña 'carteleria-mayo'" y similar.
+      var _attribution = (function() {
+        try {
+          var KEY = 'sorby_attribution';
+          var cached = sessionStorage.getItem(KEY);
+          if (cached) {
+            try { return JSON.parse(cached); } catch (_) {}
+          }
+          var qs = new URLSearchParams(location.search);
+          var attr = {
+            utm_source:   qs.get('utm_source')   || undefined,
+            utm_medium:   qs.get('utm_medium')   || undefined,
+            utm_campaign: qs.get('utm_campaign') || undefined,
+            utm_content:  qs.get('utm_content')  || undefined,
+            utm_term:     qs.get('utm_term')     || undefined,
+            gclid:        qs.get('gclid')        || undefined,
+            fbclid:       qs.get('fbclid')       || undefined,
+            referrer:     document.referrer      || undefined,
+            landing_path: location.pathname      || undefined,
+            first_seen:   new Date().toISOString(),
+          };
+          // Si no vino UTM source, inferimos de fbclid/gclid/referrer.
+          if (!attr.utm_source) {
+            if (attr.fbclid) attr.utm_source = 'facebook';
+            else if (attr.gclid) attr.utm_source = 'google';
+            else if (attr.referrer) {
+              try {
+                var host = new URL(attr.referrer).hostname.replace(/^www\./, '');
+                attr.utm_source = host;
+              } catch (_) { attr.utm_source = 'referral'; }
+            } else {
+              attr.utm_source = 'direct';
+            }
+          }
+          sessionStorage.setItem(KEY, JSON.stringify(attr));
+          return attr;
+        } catch (_) {
+          return {};
+        }
+      })();
+
+      // 🎯 Identificar la sesión en Clarity desde el page load. Permite
+      // hilar grabaciones anónimas con conversiones posteriores aunque el
+      // usuario nunca complete el email. Después, cuando agenda, llamamos
+      // de nuevo a clarity('identify', email, ...) para mergear.
+      function _applyClaritySessionTags() {
+        try {
+          if (typeof window.clarity !== 'function') return false;
+          window.clarity('set', 'session_id', _sessionId);
+          if (_attribution.utm_source)   window.clarity('set', 'utm_source',   _attribution.utm_source);
+          if (_attribution.utm_medium)   window.clarity('set', 'utm_medium',   _attribution.utm_medium);
+          if (_attribution.utm_campaign) window.clarity('set', 'utm_campaign', _attribution.utm_campaign);
+          if (_attribution.utm_content)  window.clarity('set', 'utm_content',  _attribution.utm_content);
+          if (_attribution.fbclid)       window.clarity('set', 'fbclid',       _attribution.fbclid);
+          if (_attribution.gclid)        window.clarity('set', 'gclid',        _attribution.gclid);
+          return true;
+        } catch (_) { return false; }
+      }
+      if (!_applyClaritySessionTags()) {
+        setTimeout(_applyClaritySessionTags, 1500);
+      }
+
+      // Registrar visita (fire-and-forget) con atribución completa.
+      try {
+        fetch(SORBY_API + '/api/agendar/landing-visit', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            sessionId: _sessionId,
+            attribution: _attribution,
+            url: location.href,
+            fbc: getCookie('_fbc') || '',
+            fbp: getCookie('_fbp') || '',
+            userAgent: navigator.userAgent
+          })
+        });
+      } catch (_) {}
+
+      // ── Snapshot de lead parcial ─────────────────────────────────────
+      // Si el usuario tipea datos pero no confirma, queremos que llegue al
+      // SDR igual. Se manda en blur de email/teléfono y on-unload del modal
+      // o de la página. Idempotente: el backend hace upsert por email/tel.
+      var _partialLastSent = ''; // dedupe: misma payload no se reenvía
+      function _enviarLeadParcial(trigger) {
+        try {
+          var nombre = (document.getElementById('modalNombre') || {}).value || '';
+          var email = (document.getElementById('modalEmail') || {}).value || '';
+          var telefono = ((document.getElementById('modalTelefono') || {}).value || '').replace(/\D/g, '');
+          var empresa = (document.getElementById('modalEmpresa') || {}).value || '';
+          nombre = nombre.trim(); email = email.trim(); empresa = empresa.trim();
+
+          var emailOk = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          var phoneOk = telefono && telefono.length >= 8;
+          if (!emailOk && !phoneOk) return; // no hay identificador útil
+
+          var payload = {
+            trigger: trigger,
+            // _currentStep es null hasta que se abre el modal. Omitir undefined
+            // para que el backend reciba claramente "no había step activo".
+            lastStep: _currentStep || undefined,
+            sessionId: _sessionId,
+            attribution: _attribution,
+            name: nombre || undefined,
+            email: emailOk ? email : undefined,
+            phone: phoneOk ? telefono : undefined,
+            empresa: empresa || undefined,
+            url: location.href,
+            fbc: getCookie('_fbc') || '',
+            fbp: getCookie('_fbp') || '',
+            userAgent: navigator.userAgent
+          };
+
+          // Dedupe: no reenviar payload idéntico (sólo cambian trigger/lastStep)
+          var dedupKey = (payload.email || '') + '|' + (payload.phone || '') + '|' + (payload.name || '') + '|' + (payload.empresa || '');
+          if (dedupKey === _partialLastSent && trigger !== 'unload') return;
+          _partialLastSent = dedupKey;
+
+          var url = SORBY_API + '/api/agendar/partial-lead';
+          var bodyStr = JSON.stringify(payload);
+
+          // sendBeacon sobrevive al cierre del tab — ideal para unload.
+          // Para los demás triggers también es válido y es no-bloqueante.
+          var sent = false;
+          try {
+            if (navigator.sendBeacon) {
+              var blob = new Blob([bodyStr], { type: 'text/plain' });
+              sent = navigator.sendBeacon(url, blob);
+            }
+          } catch (_) {}
+          if (!sent) {
+            fetch(url, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain' },
+              body: bodyStr,
+              keepalive: true
+            }).catch(function() {});
+          }
+        } catch (_) {}
       }
 
       function _trackStep(step) {
@@ -3856,6 +4043,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           body: JSON.stringify({
             step: step,
             eventId: eventId,
+            sessionId: _sessionId,
+            attribution: _attribution,
             url: location.href,
             fbc: getCookie('_fbc') || '',
             fbp: getCookie('_fbp') || '',
@@ -3924,6 +4113,9 @@ const menuToggle = document.querySelector('.menu-toggle');
         // llegó a éxito — listo / listo_asap son cierres legítimos).
         if (estabaAbierto && _currentStep && _currentStep !== '3' && _currentStep !== '3b' && _currentStep !== 'CatB') {
           _trackStep('close_step_' + _currentStep);
+          // 🎯 Si tipeó datos y se va sin confirmar, snapshot al backend
+          // para que el SDR le pueda escribir igual.
+          _enviarLeadParcial('modal_close');
         }
         if (modalEl) modalEl.classList.remove('active');
         document.body.style.overflow = '';
@@ -4317,6 +4509,48 @@ const menuToggle = document.querySelector('.menu-toggle');
         var telefono = (document.getElementById('modalTelefono').value || '').replace(/\D/g, '');
         var empresa = (document.getElementById('modalEmpresa').value || '').trim();
 
+        // 🎯 Identificar en Clarity con lo que haya. Email es id ideal;
+        // si no hay email pero hay teléfono, usamos teléfono como fallback.
+        try {
+          if (typeof window.clarity === 'function') {
+            var clarityId = email || telefono || null;
+            if (clarityId) window.clarity('identify', clarityId, undefined, undefined, nombre || clarityId);
+            if (email) window.clarity('set', 'email', email);
+            if (nombre) window.clarity('set', 'nombre', nombre);
+            if (empresa) window.clarity('set', 'empresa', empresa);
+            if (telefono) window.clarity('set', 'telefono', telefono);
+            window.clarity('set', 'lead_path', 'whatsapp');
+          }
+        } catch (_) {}
+
+        // 🎯 Lead a Meta (Pixel + CAPI con event_id compartido). El usuario
+        // se está yendo a WhatsApp con datos llenos — es un lead real.
+        try {
+          var waEventId = _genEventId();
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: 'lead_whatsapp' }, { eventID: waEventId });
+          }
+          // CAPI mirror vía /track con step custom → no incrementa stats, sólo manda señal a FB.
+          fetch(SORBY_API + '/api/agendar/lead-wa', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              eventId: waEventId,
+              sessionId: _sessionId,
+              attribution: _attribution,
+              url: location.href,
+              name: nombre || undefined,
+              email: email || undefined,
+              phone: telefono || undefined,
+              empresa: empresa || undefined,
+              fbc: getCookie('_fbc') || '',
+              fbp: getCookie('_fbp') || '',
+              userAgent: navigator.userAgent
+            })
+          }).catch(function() {});
+        } catch (_) {}
+
         // Horario seleccionado (si lo eligió)
         var horarioTxt = '';
         try {
@@ -4400,10 +4634,12 @@ const menuToggle = document.querySelector('.menu-toggle');
           categoria: _categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined,
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
-          utm_campaign: getURLParameter('utm_campaign') || '',
+          utm_campaign: _attribution.utm_campaign || getURLParameter('utm_campaign') || '',
+          attribution: _attribution,
           userAgent: navigator.userAgent,
           url: location.href,
-          eventId: bookingEventId
+          eventId: bookingEventId,
+          sessionId: _sessionId
         };
 
         // 🎯 Identificación en Clarity: el email es el id estable.
@@ -4451,7 +4687,10 @@ const menuToggle = document.querySelector('.menu-toggle');
             mostrarStep('3b');
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'contacto_asap' });
-            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' });
+            // Lead = evento "padre" deduplicado con CAPI por bookingEventId.
+            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' }, bookingEventId);
+            // Contact = métrica de apoyo, sólo Pixel (sin eventID para no
+            // colisionar con el dedup del Lead). Meta lo cuenta aparte.
             try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}
             // 🎯 Clarity: marcar sesión como convertida (lead ASAP).
             _clarity('contacto_asap', { converted: 'asap' });
@@ -4461,12 +4700,16 @@ const menuToggle = document.querySelector('.menu-toggle');
             generarICS();
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'demo_agendada_inline' });
-            // 🎯 Conversión: demo agendada. Schedule = evento estándar de Meta para citas.
+            // 🎯 Conversión: demo agendada.
+            // Lead es el evento PADRE deduplicado con el CAPI (bookingEventId compartido).
             _funnelStep('/listo', 'Lead', {
               content_name: 'demo_agendada',
               funnel_step: 'listo',
               datetime: (_selectedSlot && _selectedSlot.iso) || null
-            });
+            }, bookingEventId);
+            // Schedule = evento estándar de Meta para citas, sólo Pixel y SIN
+            // eventID para que no colisione con el dedup del Lead. Sirve para
+            // que el ad-manager pueda optimizar a "agendamientos" si querés.
             try {
               fbq('track', 'Schedule', {
                 content_name: 'demo_agendada',

@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google Tag Manager -->
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-595NXMJJ');
+  </script>
+  <!-- End Google Tag Manager -->
+  
+
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sorby - Registrá tus gastos de obra fácil y rápido</title>
+  
+  <meta name="description" content="Sorby te ayuda a registrar los gastos de obra desde tu celular, usando WhatsApp, Google Drive o email. Rápido, simple y automático para PyMEs y constructoras.">
+  
+  <meta name="keywords" content="Sorby, gastos de obra, control de gastos, WhatsApp, PyME, constructora, ticket, factura, IVA automático, finanzas obra">
+  
+  <meta name="author" content="Sorby Data">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Sorby - Controlá tus gastos de obra desde el celular">
+  <meta property="og:description" content="Digitalizá tus gastos de obra de forma rápida y automática. Usá Sorby con herramientas que ya conocés como WhatsApp, Google Drive y tu propio E-mail.">
+  <meta property="og:url" content="https://sorbydata.com">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/codec-cold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/css/switzer.css" type="text/css" media="all">
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type="text/css" media="all">   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- RESET -->
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+    <!-- SLIDERS -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/splide.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <!-- CSS MAIN -->
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/custom.css" type="text/css" media="all">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '564852612609427');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=564852612609427&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Microsoft Clarity — session replay + heatmaps -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wutf5eai8c");
+  </script>
+
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-595NXMJJ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+    <header id="mainHeader">
+        <nav class="container">
+            <img id="headerLogo" src="img/logo-mixto-blanco.png" alt="Logo Sorby">
+            <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul id="mainNavList">
+                <li><a href="#paso-paso">Paso a paso</a></li>
+                <li><a href="#caracteristicas">Caracteristicas</a></li>
+                <li><a href="#" onclick="irACalendario(event)">Agendá gratis</a></li>
+                <li><a href="#preguntas-frecuentes">Preguntas Frecuentes</a></li>
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#sobre-sorby">Sobre Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!------------------ HOME ------------------------->  
+    <section id="home" class="home">
+        <div class="container">
+            <div class="home-bloque1">
+                <h1>¿Tus gastos están desordenados?</h1>
+                <p class="home-texto-1 texto-desktop">Sorby, el sistema que te ayuda a <span style="font-weight: 700;">registrar todo</span> lo que se gasta en obra o depósito, <span style="font-weight: 700; ">desde el celular</span> y usando lo que <span style="font-weight: 700;">ya conoces:</span> <span class="tools"><img class="icon-w" src="img/wsp.svg" alt="">Whatsapp, <img class="icon-d" src="img/drive.svg" alt="">Google drive <span style="font-weight: 500; ">y tu</span> <span class="gmail"><img class="icon-m" src="img/mail.svg" alt="">E-Mail.</span></span></p>
+                <p class="home-texto-1 texto-mobile">Sorby, el sistema que te ayuda a <span style="font-weight: 700;">registrar todo</span> lo que se gasta en obra o depósito, <span style="font-weight: 700; ">desde el celular usando Whatsapp y Google Drive.</span></p>
+                <img class="hero-img-mobile img-mobile" src="img/personaje-12-m.png" alt="">
+                <div class="ctas ctas-home">
+                    <a class="cta-blanco cta-arrow cta" href="#paso-paso"><i style="margin-right: 5px; font-size: .9em" class="fa fa-question"></i>Cómo funciona?</a>
+                    <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irACalendario(event)"><i style="margin-right: 5px; font-size: .9em" class="fa fa-calendar"></i>Agendá gratis</a>
+                </div>
+                <div class="ya-confian">
+                    <section class="splide" aria-label="Splide Basic HTML Example">
+                      <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide"><img src="img/logos/1.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/2.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/3.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/4.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/5.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/6.png" alt=""></li>
+                                <li class="splide__slide"><img src="img/logos/7.png" alt=""></li>
+                            </ul>
+                      </div>
+                      <h3 class="ya-eligen"><i style="margin-right: 5px;em" class="fas fa-handshake"></i>Empresas que eligen Sorby</h3>
+                    </section>
+                </div>
+            </div> 
+            <div class="home-bloque2">
+                <img class="hero-img img-desktop" src="img/personaje-12.png" alt="">
+            </div>   
+        </div>
+    </section>
+    
+    <!------------------ PASO A PASO ------------------------->
+    <section id="paso-paso" class="paso-paso">
+      <div class="container">
+        <div class="header-seccion" data-aos="fade-up">
+          <h2 class="pre-titulo"><span>Paso a paso</span></h2>
+          <h3>Tan simple que <span>cualquiera puede usarlo</span></h3>
+        </div>
+
+        <div class="contenido">
+          <div class="paso" data-aos="fade-up">
+            <img src="img/foto.png" alt="">
+            <h4>1. Sacas una foto al ticket</h4>
+            <p>Sacás una foto al ticket, factura o cualquiera sea el gasto realizado.</p>
+          </div>
+
+          <div class="paso" data-aos="fade-up">
+            <img src="img/wsp.png" alt="">
+            <h4>2. La envías por Whatsapp</h4>
+            <p>La enviás por Whatsapp a un chat privado y Sorby se encarga de leer la información de forma automática.</p>
+          </div>
+
+          <div class="paso" data-aos="fade-up">
+            <img src="img/gasto-registrado.png" alt="">
+            <h4>3. Listo, gasto registrado</h4>
+            <p>El gasto queda registrado en tu panel con todos los datos disponibles, ordenados y listos para usar.</p>
+          </div>
+        </div>
+
+        <p class="pensado-para">
+          👷 Pensado para <span>Constructoras y Pymes</span> del mundo de la construcción.
+        </p>
+
+        <div class="ctas">
+          <a class="cta-celeste cta-arrow cta" href="#caracteristicas">
+            <i style="margin-right: 5px;" class="fas fa-wrench"></i> ¿En qué ayuda Sorby?
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!------------------ CARACTERISTICAS ------------------------->
+    <section id="caracteristicas" class="caracteristicas">
+  <div class="container">
+    <div class="header-seccion" data-aos="fade-up">
+      <h2 class="pre-titulo"><span>Caracteristicas</span></h2>
+      <h3>Inteligencia artificial que <span>ahorra tiempo y errores</span></h3>
+    </div>
+
+    <div class="contenido" data-aos="fade-in">
+      <div class="owl-carousel">
+        <div class="item">
+          <img src="img/icono-iva.png" alt="">
+          <h4>IVA automático</h4>
+          <p>Detecta y discrimina el IVA en cada ticket sin que tengas que calcularlo.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-factura.png" alt="">
+          <h4>Valida facturas A</h4>
+          <p>Verifica que la factura esté bien hecha a nombre de la empresa para aprovecharla fiscalmente.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-automatizar.png" alt="">
+          <h4>Control de gastos automático</h4>
+          <p>Detecta excesos y te avisa si un gasto no cumple con tus políticas.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-tiempo.png" alt="">
+          <h4>Carga en 1 minuto</h4>
+          <p>Solo sacás una foto y la mandás. Todo lo demás lo hace Sorby.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-wsp.png" alt="">
+          <h4>Usá tu WhatsApp</h4>
+          <p>Mandás las fotos como si hablaras con alguien. Sin aprender nada nuevo.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-drive.png" alt="">
+          <h4>Centralizado en Drive</h4>
+          <p>Guardamos los comprobantes en tu propio Google Drive, sin apps raras ni accesos extraños.</p>
+        </div>
+        <div class="item">
+          <img src="img/icono-panel.png" alt="">
+          <h4>Panel de control online</h4>
+          <p>Consultá, ordená o exportá todos tus gastos desde un solo lugar.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="pensado-para">
+      Más de <span>500 profesionales</span> ya lo están usando 
+      <img src="img/user.png" alt="+500 Usuarios"> 
+    </p>
+
+    <div class="ctas">
+      <a class="cta-celeste cta-arrow cta" href="#" onclick="irACalendario(event)">
+        <img class="cta-gratis" src="img/gratis.png" alt="">
+        <i style="margin-right: 5px;" class="fa fa-calendar"></i> Agendá gratis
+      </a>
+    </div>
+  </div>
+</section>
+    
+    <!------------------ PROBA SORBY ------------------------->
+    <section id="proba-sorby" class="proba-sorby">
+  <div class="container">
+    <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+      <h2 class="pre-titulo"><span>Agenda tu demo</span></h2>
+      <h3>Agendá una <span>demo gratis:</span></h3>
+    </div>
+
+    <div class="contenido" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+      <p>Hablá con el equipo directo. <span>Demo de 15 min, gratis y sin compromiso</span></p>
+      <img src="img/reloj2.png" alt="Agendá una demo">
+    </div>
+
+    <div class="ctas">
+      <a class="cta-azul cta-arrow cta" href="#preguntas-frecuentes">
+        <i style="margin-right: 5px; font-size: .9em;" class="fa fa-search"></i>
+        Quiero saber más
+      </a>
+      <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irACalendario(event)">
+        <i style="margin-right: 5px; font-size: .9em;" class="fa fa-calendar"></i>
+        Agendá gratis
+      </a>
+    </div>
+  </div>
+</section>
+    
+    <!------------------ FAQ ------------------------->
+    <section id="preguntas-frecuentes" class="preguntas-frecuentes">
+        <div class="container">
+            <div class="header-seccion">
+                <h2 class="pre-titulo"><span>Preguntas frecuentes</span></h2>
+                <h3>Todo lo que <span>tenés que saber</span></h3>
+            </div>
+            <div class="contenido">
+                <!-- First set of accordions (click-based) -->
+                <div class="accordion-wrapper set1">
+                  <div class="accordion-outer is-open">
+                    <div class="accordion-heading">1- ¿Qué es exactamente Sorby?</div>
+                    <div class="accordion-content" style="display: block;">
+                      <p>Es un sistema inteligente que registra tus gastos en obra o depósito, sin apps raras ni procesos complicados. Solo usás tu WhatsApp, tu Drive y tu mail. Sorby lee los tickets, valida los datos fiscales, y los organiza automáticamente para que tengas todo bajo control.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">2- ¿Para quién está pensado Sorby?</div>
+                    <div class="accordion-content">
+                      <p>Sorby está diseñado para constructoras, PyMEs y profesionales que manejan gastos de obra o depósito y quieren ordenarlos sin depender de papeles, planillas ni apps complejas. Lo puede usar cualquier persona del equipo sin conocimientos contables.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">3- ¿Cómo se organiza la información?</div>
+                    <div class="accordion-content">
+                      <p>Sorby guarda todo en tu propio Google Drive, ordenado por fecha y proveedor. Además, tenés un panel de control online para consultar, buscar o exportar los gastos cuando quieras.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">4- ¿Qué pasa si una factura tiene errores?</div>
+                    <div class="accordion-content">
+                      <p>Sorby te avisa automáticamente si la factura no sirve o si no está bien emitida. Así evitás perder crédito fiscal por errores comunes.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">5- ¿Se puede usar en más de una obra o equipo?</div>
+                    <div class="accordion-content">
+                      <p>Sí. Podés tener múltiples obras, proyectos o equipos dentro del mismo sistema. Sorby clasifica automáticamente los gastos según lo que le indiques en el mensaje.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">6- ¿Qué pasa si dejo de usarlo?</div>
+                    <div class="accordion-content">
+                      <p>Toda la información sigue siendo tuya. Los comprobantes están en tu Drive y podés exportar lo que necesites desde el panel de control. No te quedás sin nada.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-outer">
+                    <div class="accordion-heading">7- ¿Puedo probarlo sin registrarme?</div>
+                    <div class="accordion-content">
+                      <p>Sí. <a href="#" onclick="irACalendario(event)"><strong>Agendá una demo gratuita de 15 minutos</strong></a> y el equipo te muestra cómo funciona para tu caso. Gratis, sin registro y sin compromiso.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="ctas">
+                <a class="cta-blanco cta-arrow cta" href="#planes"><i style="margin-right: 5px; font-size: .9em;" class="fas fa-list-alt"></i>Ver planes</a>
+                <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irACalendario(event)"><i style="margin-right: 5px; font-size: .9em;" class="fa fa-calendar"></i>Agendá gratis</a>
+            </div>    
+        </div>
+    </section>
+    
+    <!------------------ PLANES ------------------------->
+    <section id="planes" class="planes">
+  <div class="container">
+    <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+      <h2 class="pre-titulo"><span>Planes</span></h2>
+      <h3>Crecé con Sorby <span>Un plan para cada etapa</span></h3>
+    </div>
+
+    <div class="contenido">
+      <div class="planes-contenedor">
+        <div class="plan" data-aos="fade-in" data-aos-delay="0" data-aos-once="true">
+          <img src="img/plan-basico.png" alt="">
+          <h4>Plan Básico</h4>
+          <p class="plan-desc">Equipos chicos o empresas que recién comienzan a organizar sus gastos de obra de forma digital.</p>
+          <p class="precio">$250.000 <span>/mes</span></p>
+          <ul>
+            <li><span>✔️</span>Hasta 5 obras y 5 usuarios</li>
+            <li><span>✔️</span>Gestión de caja a través de WhatsApp</li>
+            <li><span>✔️</span>Gestión de notas de pedido a través de WhatsApp</li>
+            <li><span>✔️</span>Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+            <li><span>✔️</span>Planillas estándar (no modificables)</li>
+            <li><span>✔️</span>Soporte vía bot de WhatsApp</li>
+          </ul>
+          <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irACalendario(event)">Agendá gratis</a>
+        </div>
+
+        <div class="plan" data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+          <img src="img/plan-avanzado.png" alt="">
+          <h4>Plan Intermedio</h4>
+          <p class="plan-desc">Empresas que tienen equipos en calle y necesitan mejorar la comunicación entre obras y administración.</p>
+          <p class="precio">$375.000 <span>/mes</span></p>
+          <ul>
+            <li><span>✔️</span>Hasta 10 obras y 10 usuarios</li>
+            <li><span>✔️</span>Gestión de caja a través de WhatsApp</li>
+            <li><span>✔️</span>Gestión de notas de pedido a través de WhatsApp</li>
+            <li><span>✔️</span>Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+            <li><span>✔️</span>Personalización de plantillas</li>
+            <li><span>✔️</span>Soporte personalizado directo por WhatsApp con un humano</li>
+          </ul>
+          <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irACalendario(event)">Agendá gratis</a>
+        </div>
+
+        <div class="plan" data-aos="fade-in" data-aos-delay="200" data-aos-once="true">
+          <img src="img/plan-pro.png" alt="">
+          <h4>Plan Premium</h4>
+          <p class="plan-desc">Empresas con operaciones más complejas que requieren sistemas externos y mayor control.</p>
+          <p class="precio">$625.000 <span>/mes</span></p>
+          <ul>
+            <li><span>✔️</span>Hasta 20 obras y 20 usuarios</li>
+            <li><span>✔️</span>Gestión de caja a través de WhatsApp</li>
+            <li><span>✔️</span>Gestión de notas de pedido a través de WhatsApp</li>
+            <li><span>✔️</span>Sincronización con Google Sheets, Google Drive y nuestra plataforma</li>
+            <li><span>✔️</span>Personalización de plantillas</li>
+            <li><span>✔️</span>Integración con sistemas ERP</li>
+            <li><span>✔️</span>Soporte personalizado directo por WhatsApp con un humano</li>
+          </ul>
+          <a class="cta-celeste-plan cta-whatsapp" href="#" onclick="irACalendario(event)">Agendá gratis</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+    <!------------------ SOBRE NOSOTROS ------------------------->
+<section id="sobre-sorby" class="sobre-sorby">
+  <div class="container">
+    <div class="header-seccion" data-aos="fade-up" data-aos-once="true">
+      <h2 class="pre-titulo"><span>Sobre Sorby</span></h2>
+      <h3>Sabemos lo que es lidiar con el <span>caos diario</span></h3>
+    </div>
+
+    <div class="contenido">
+      <p data-aos="fade-in" data-aos-delay="100" data-aos-once="true">
+        Sorby nació para resolver un problema que muchos conocen: gastos desordenados, tickets que se pierden y decisiones sin información clara.
+      </p>
+
+      <p data-aos="fade-in" data-aos-delay="200" data-aos-once="true">
+        Lo hicimos <span style="font-weight: 700; color: #008DBA">simple, directo y práctico.</span> Hoy ayudamos a todo tipo de empresas a tener sus números bajo control.
+      </p>
+
+      <img class="team" src="img/team.png" alt="" data-aos="fade-up" data-aos-delay="200" data-aos-once="true">
+
+      <h4>
+        Si aún tenés dudas y necesitás información:
+      </h4>
+
+      <div class="ctas" data-aos-delay="200" data-aos-once="true">
+        <a class="cta-azul cta-arrow cta" href="#preguntas-frecuentes">
+          <i style="margin-right: 5px; font-size: .9em;" class="fa fa-search"></i> Ver preguntas frecuentes
+        </a>
+        <a class="cta-celeste cta-arrow cta" target="_blank" href="#contacto">
+          <i style="margin-right: 5px; font-size: .9em;" class="fa fa-user"></i>Contacto
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+    <!------------------ CONTACTO ------------------------->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <div class="contenido">
+                <h2 class="pre-titulo"><span>Contacto</span></h2>
+                <h3>¡Hablemos! <span>Contactanos para una atención personalizada.</span></h3>
+                <div class="ctas">
+                    <a class="cta-celeste cta-arrow cta cta-whatsapp" href="#" onclick="irACalendario(event)"><i style="margin-right: 5px; font-size: .9em;" class="fa fa-calendar"></i>Agendá gratis</a>
+                </div> 
+                <div class="seguinos-redes">
+                    <h4>#SorbyEnRedes</h4>
+                    <div class="redes">
+                        <a target="_blank" href="https://www.instagram.com/sorbydata/?igshid=NjIwNzIyMDk2Mg%3D%3D"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/99806846/admin/feed/posts/?feedType=following"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div>
+                <img src="img/logo-mixto-blanco.png" alt="">
+            </div>
+            <div class="copy">
+                <p>© <span id="current-year"></span> Sorby Data / Sorby / SorbyData es una marca de Federico Andres Maidan. © 2025. | <a href="privacidad.html" style="color: #fff; text-decoration: underline;">Política de Privacidad</a>.</p>
+            </div>
+            <div class="info-f">
+                <h3><i class="fa fa-envelope" aria-hidden="true"></i>Datos</h3>
+                <p>Los usuarios pueden solicitar el acceso, corrección o eliminación de sus datos enviando un correo a info@sorbydata.com</p>
+                <p>Los datos son procesados a través de la infraestructura de Cloud API de WhatsApp (Meta Platforms, Inc.)</p>
+            </div>
+            <div class="info-f">
+                <h3><i class="fa fa-envelope" aria-hidden="true"></i><i class="fa-solid fa-location-dot"></i>Dirección:</h3>
+                <p>Avenida Del Libertador 1010, Vicente López, Argentina</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL AGENDAR (Variante B) ==================== -->
+    <style>
+      .modal-agendar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+      }
+      .modal-agendar-overlay.active { display: flex; }
+      .modal-agendar {
+        background: #fff;
+        border-radius: 16px;
+        max-width: 720px;
+        width: 100%;
+        padding: 36px 28px 28px;
+        position: relative;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        font-family: "Quicksand", sans-serif;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-agendar-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: none;
+        border: none;
+        font-size: 2.4em;
+        cursor: pointer;
+        color: #999;
+        line-height: 1;
+      }
+      .modal-agendar h3 {
+        font-family: "Switzer-Variable";
+        color: #1E4469;
+        font-size: 2.2em;
+        margin-bottom: 4px;
+        text-align: center;
+      }
+      .modal-agendar .modal-sub {
+        color: #666;
+        font-size: 1.4em;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .modal-agendar label {
+        display: block;
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #1E4469;
+        margin-bottom: 6px;
+        margin-top: 14px;
+      }
+      .modal-agendar input[type="text"],
+      .modal-agendar input[type="email"],
+      .modal-agendar input[type="tel"] {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1.5em;
+        font-family: "Quicksand", sans-serif;
+        transition: border-color 0.2s;
+        outline: none;
+      }
+      .modal-agendar input:focus {
+        border-color: #00B2D4;
+      }
+      /* Steps */
+      .modal-step { display: none; }
+      .modal-step.active { display: block; }
+      /* Quick link */
+      .modal-quick-link {
+        display: block;
+        font-size: 1.1em;
+        color: #00B2D4;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .modal-quick-link:hover { text-decoration: underline; }
+      .modal-quick-link i { margin-right: 4px; }
+      /* Fallback link */
+      .modal-fallback {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 1.1em;
+        color: #888;
+        font-family: "Quicksand", sans-serif;
+      }
+      .modal-fallback a {
+        color: #00B2D4;
+        text-decoration: none;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .modal-fallback a:hover { text-decoration: underline; }
+      /* Selected slot bar */
+      .modal-selected-bar {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        background: #1E4469;
+        color: #fff;
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-top: 14px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.2em;
+        font-weight: 600;
+        animation: slideUp 0.2s ease;
+      }
+      .modal-selected-bar.visible { display: flex; }
+      .modal-selected-bar .sel-label { flex: 1; }
+      .modal-selected-bar .sel-btn {
+        background: #00B2D4;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 18px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 12px;
+        white-space: nowrap;
+      }
+      .modal-selected-bar .sel-btn:hover { box-shadow: 0 0 12px rgba(0,178,212,0.4); }
+      @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      /* Skeleton loading */
+      .modal-skeleton {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .modal-skeleton-col { flex: 1; min-width: 0; }
+      .modal-skeleton-header {
+        height: 48px;
+        background: #f0f4f7;
+        border-radius: 8px 8px 0 0;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .modal-skeleton-slots {
+        border-radius: 0 0 8px 8px;
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: #fafbfc;
+      }
+      .modal-skeleton-pill {
+        height: 32px;
+        background: #edf1f4;
+        border-radius: 6px;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .modal-skeleton-pill:nth-child(2) { animation-delay: 0.15s; }
+      .modal-skeleton-pill:nth-child(3) { animation-delay: 0.3s; }
+      .modal-skeleton-pill:nth-child(4) { animation-delay: 0.45s; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+      .modal-skeleton.hidden, .modal-skeleton-mobile.hidden { display: none !important; }
+      /* Phone hint */
+      .modal-hint {
+        font-size: 1.05em;
+        color: #999;
+        margin-top: 4px;
+      }
+      /* Selected slot badge */
+      .modal-slot-badge {
+        display: block;
+        background: #f0fbfd;
+        border: 2px solid #00B2D4;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 1.25em;
+        font-weight: 600;
+        color: #1E4469;
+        font-family: "Quicksand", sans-serif;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .modal-slot-badge i { color: #00B2D4; margin-right: 6px; }
+      /* Add to calendar */
+      .modal-add-cal {
+        display: inline-block;
+        background: #fff;
+        border: 2px solid #00B2D4;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.15em;
+        font-weight: 600;
+        color: #00B2D4;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 12px;
+        transition: all 0.2s;
+      }
+      .modal-add-cal:hover { background: #f0fbfd; }
+      .modal-add-cal i { margin-right: 6px; }
+      /* Calendar grid: 3 days side by side */
+      .modal-calendar {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .modal-cal-day {
+        flex: 1;
+        min-width: 0;
+      }
+      .modal-cal-day-header {
+        font-family: "Switzer-Variable";
+        font-weight: 700;
+        font-size: 1.1em;
+        color: #1E4469;
+        text-align: center;
+        padding: 6px 4px;
+        background: #f0f7fa;
+        border-radius: 8px 8px 0 0;
+        border: 2px solid #e0e0e0;
+        border-bottom: none;
+      }
+      .modal-cal-day-header .cal-day-name { display: block; font-size: 0.85em; color: #00B2D4; text-transform: uppercase; letter-spacing: 0.5px; }
+      .modal-cal-day-header .cal-day-num { display: block; font-size: 1.15em; }
+      .modal-cal-slots {
+        border: 2px solid #e0e0e0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        padding: 6px 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+      .modal-slot-pill {
+        padding: 7px 2px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        background: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #1E4469;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.12s ease;
+      }
+      .modal-slot-pill:hover { background: #f0fbfd; border-color: #00B2D4; }
+      .modal-slot-pill.selected { background: #00B2D4; color: #fff; border-color: #00B2D4; transform: scale(0.97); }
+      /* Nav para paging de días */
+      .modal-cal-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .modal-cal-nav button {
+        background: none;
+        border: none;
+        font-size: 1.4em;
+        color: #00B2D4;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        padding: 4px 10px;
+      }
+      .modal-cal-nav button:disabled { color: #ccc; cursor: not-allowed; }
+      .modal-cal-nav span {
+        font-size: 1.2em;
+        color: #999;
+        font-family: "Quicksand", sans-serif;
+      }
+      /* Buttons */
+      .modal-btn {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        font-family: "Switzer-Variable";
+        font-size: 1.6em;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .modal-btn-primary {
+        background: #00B2D4;
+        color: #fff;
+      }
+      .modal-btn-primary:hover { box-shadow: 0 0 12px rgba(0,178,212,0.4); }
+      .modal-btn-primary:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .modal-btn-back {
+        background: transparent;
+        color: #999;
+        margin-top: 8px;
+        font-size: 1.3em;
+        text-transform: none;
+      }
+      /* Confirmation */
+      .modal-confirm {
+        text-align: center;
+      }
+      .modal-confirm .modal-check {
+        font-size: 5em;
+        color: #00B2D4;
+        margin-bottom: 10px;
+      }
+      .modal-confirm h3 {
+        color: #1E4469;
+        margin-bottom: 8px;
+      }
+      .modal-confirm p {
+        font-size: 1.5em;
+        color: #555;
+        line-height: 1.6;
+      }
+      .modal-confirm .modal-fecha-resumen {
+        font-weight: 700;
+        color: #00B2D4;
+      }
+      .modal-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 0.6s linear infinite;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .modal-error {
+        color: #d32f2f;
+        font-size: 1.25em;
+        margin-top: 8px;
+        text-align: center;
+      }
+      .modal-loading-slots {
+        text-align: center;
+        padding: 30px 0;
+        font-size: 1.4em;
+        color: #999;
+      }
+      .modal-no-slots {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 1.3em;
+        color: #d32f2f;
+      }
+      /* ===== MOBILE: full-screen bottom sheet ===== */
+      @media (max-width: 768px) {
+        .modal-agendar-overlay { padding: 0; align-items: flex-end; }
+        .modal-agendar {
+          border-radius: 20px 20px 0 0;
+          max-width: 100%;
+          max-height: 100dvh;
+          height: 100dvh;
+          padding: 16px 16px 24px;
+          display: flex;
+          flex-direction: column;
+        }
+        .modal-agendar-close { top: 10px; right: 12px; font-size: 2em; z-index: 2; }
+        .modal-agendar h3 { font-size: 1.7em; margin-bottom: 2px; }
+        .modal-agendar .modal-sub { font-size: 1.2em; margin-bottom: 10px; }
+        .modal-quick-link { font-size: 1em; margin-bottom: 8px; }
+
+        /* Day tabs: horizontal scrollable strip */
+        .modal-day-tabs {
+          display: flex !important;
+          gap: 0;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 0 -16px;
+          padding: 0 16px;
+          scrollbar-width: none;
+          flex-shrink: 0;
+        }
+        .modal-day-tabs::-webkit-scrollbar { display: none; }
+        .modal-day-tab {
+          flex: 0 0 auto;
+          padding: 8px 14px;
+          font-family: "Switzer-Variable";
+          font-weight: 700;
+          font-size: 1.15em;
+          color: #8aa;
+          border-bottom: 3px solid transparent;
+          cursor: pointer;
+          text-align: center;
+          white-space: nowrap;
+          transition: all 0.15s;
+        }
+        .modal-day-tab .tab-day-name { display: block; font-size: 0.75em; color: #00B2D4; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal-day-tab .tab-day-num { display: block; font-size: 1.1em; }
+        .modal-day-tab.active {
+          color: #1E4469;
+          border-bottom-color: #00B2D4;
+          background: #f0fbfd;
+        }
+
+        /* Hide desktop 3-col calendar, show mobile slot grid */
+        .modal-calendar { display: none !important; }
+        .modal-cal-nav { display: none !important; }
+        .modal-skeleton { display: none !important; }
+
+        .modal-skeleton-mobile {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          padding: 12px 0;
+        }
+        .modal-skeleton-mobile-pill {
+          height: 48px;
+          background: #edf1f4;
+          border-radius: 10px;
+          animation: pulse 1.2s ease-in-out infinite;
+        }
+        .modal-skeleton-mobile-pill:nth-child(2) { animation-delay: 0.1s; }
+        .modal-skeleton-mobile-pill:nth-child(3) { animation-delay: 0.2s; }
+        .modal-skeleton-mobile-pill:nth-child(4) { animation-delay: 0.3s; }
+        .modal-skeleton-mobile-pill:nth-child(5) { animation-delay: 0.4s; }
+        .modal-skeleton-mobile-pill:nth-child(6) { animation-delay: 0.5s; }
+
+        .modal-mobile-slots {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          padding: 12px 0;
+          overflow-y: auto;
+          flex: 1;
+          align-content: start;
+        }
+        .modal-mobile-slots .modal-slot-pill {
+          padding: 14px 4px;
+          font-size: 1.35em;
+          border: 2px solid #e8eef2;
+          border-radius: 10px;
+          background: #fafbfc;
+        }
+        .modal-mobile-slots .modal-slot-pill:active {
+          transform: scale(0.95);
+          background: #e0f7fb;
+        }
+
+        .modal-mobile-empty {
+          text-align: center;
+          color: #999;
+          font-size: 1.2em;
+          padding: 30px 0;
+          grid-column: 1 / -1;
+        }
+
+        /* Selected bar: sticky at bottom on mobile */
+        .modal-selected-bar {
+          position: sticky;
+          bottom: 0;
+          margin: auto 0 0 0;
+          border-radius: 12px 12px 0 0;
+          padding: 14px 16px;
+          font-size: 1.1em;
+        }
+
+        /* Step 1 layout on mobile: flex column fill */
+        #modalStep1.active {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-height: 0;
+        }
+        .modal-fallback {
+          flex-shrink: 0;
+          margin-top: auto;
+          padding-top: 8px;
+        }
+      }
+
+      /* Desktop: hide mobile-only elements */
+      @media (min-width: 769px) {
+        .modal-day-tabs { display: none; }
+        .modal-mobile-slots { display: none; }
+        .modal-skeleton-mobile { display: none; }
+      }
+
+      /* ── Step 0: Categorización ── */
+      .modal-categorias {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .modal-categoria-btn {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        background: #fff;
+        font-family: "Quicksand", sans-serif;
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #1E4469;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.15s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .modal-categoria-btn:hover {
+        border-color: #00B2D4;
+        background: #f0fbfd;
+        color: #00B2D4;
+      }
+      @media (max-width: 768px) {
+        .modal-categoria-btn { font-size: 1.25em; padding: 12px 14px; }
+      }
+    </style>
+
+    <div class="modal-agendar-overlay" id="modalAgendar">
+      <div class="modal-agendar">
+        <button class="modal-agendar-close" onclick="cerrarModalAgendar()">&times;</button>
+
+        <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
+        <div class="modal-step active" id="modalStep1">
+          <h3>Demo de 15 min · Gratis · Sin compromiso</h3>
+          <p class="modal-sub">Mirá cómo tu obra deja de ser un caos de papeles.</p>
+
+          <div class="modal-quick-link" onclick="elegirProximo()">
+            <i class="fa fa-bolt"></i> Tomar el primer horario disponible
+          </div>
+
+          <!-- Desktop: Skeleton loading -->
+          <div class="modal-skeleton" id="modalSkeleton">
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+            <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
+          </div>
+
+          <!-- Mobile: Skeleton loading -->
+          <div class="modal-skeleton-mobile" id="modalSkeletonMobile">
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+            <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
+          </div>
+
+          <!-- Mobile: day tabs -->
+          <div class="modal-day-tabs" id="modalDayTabs"></div>
+
+          <!-- Mobile: slots for selected day -->
+          <div class="modal-mobile-slots" id="modalMobileSlots"></div>
+
+          <!-- Desktop: 5-day grid -->
+          <div class="modal-calendar" id="modalCalendar"></div>
+
+          <!-- Desktop: Nav paging -->
+          <div class="modal-cal-nav" id="modalCalNav" style="display:none">
+            <button onclick="calPrev()" id="calPrevBtn"><i class="fa fa-arrow-left"></i> Antes</button>
+            <span id="calPageInfo"></span>
+            <button onclick="calNext()" id="calNextBtn">Después <i class="fa fa-arrow-right"></i></button>
+          </div>
+
+          <!-- Selected slot confirmation bar -->
+          <div class="modal-selected-bar" id="modalSelectedBar">
+            <span class="sel-label" id="selLabel"></span>
+            <button class="sel-btn" onclick="irADatos()">Confirmar <i class="fa fa-arrow-right"></i></button>
+          </div>
+
+          <div class="modal-error" id="modalError1" style="display:none"></div>
+          <div class="modal-fallback">¿No encontrás horario? <a href="#" onclick="contactarPorWhatsApp(event)">Contactanos por WhatsApp</a> al +54 9 11 6237-7270</div>
+        </div>
+
+        <!-- PASO 2: Datos + Confirmación -->
+        <div class="modal-step" id="modalStep2">
+          <h3>Completá tus datos</h3>
+          <div class="modal-slot-badge" id="modalSlotBadge"><i class="fa fa-calendar-check"></i> <span id="badgeText"></span></div>
+          <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
+            <label for="modalNombre">Tu nombre *</label>
+            <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')">
+            <label for="modalEmail">Tu email *</label>
+            <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')">
+            <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')">
+            <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
+            <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')">
+            <div class="modal-error" id="modalError2" style="display:none"></div>
+            <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary" disabled>Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
+          </form>
+          <button class="modal-btn modal-btn-back" onclick="modalVolver(1)"><i class="fa fa-arrow-left" style="margin-right:6px;font-size:.85em"></i> Cambiar horario</button>
+        </div>
+
+        <!-- PASO 3: Confirmación exitosa -->
+        <div class="modal-step" id="modalStep3">
+          <div class="modal-confirm">
+            <div class="modal-check">&#10003;</div>
+            <h3>¡Reunión agendada!</h3>
+            <p><span class="modal-fecha-resumen" id="modalResumenFecha"></span></p>
+            <p style="margin-top:12px;">Te contactamos por <strong>WhatsApp</strong> para confirmar los detalles.</p>
+            <a class="modal-add-cal" id="modalAddCal" download="reunion-sorby.ics"><i class="fa fa-calendar-plus"></i> Añadir a mi calendario</a>
+            <button class="modal-btn modal-btn-primary" style="margin-top:16px" onclick="cerrarModalAgendar()">Listo</button>
+          </div>
+        </div>
+
+        <!-- PASO CatB: Categoría post-booking -->
+        <div class="modal-step" id="modalStepCatB">
+          <div style="text-align:center;margin-bottom:8px">
+            <div class="modal-check" style="font-size:2.5em">&#10003;</div>
+            <h3 style="margin-top:4px">¡Reunión agendada!</h3>
+            <p class="modal-sub" id="modalCatBResumen" style="margin-bottom:14px"></p>
+          </div>
+          <h3 style="font-size:1.25em;margin-bottom:4px">Una última cosa</h3>
+          <p class="modal-sub">¿Qué tipo de negocio tenés? Nos ayuda a preparar mejor la demo.</p>
+          <div class="modal-categorias">
+            <button class="modal-categoria-btn" onclick="seleccionarCategoriaPost(1)">
+              <i class="fa fa-building"></i> Constructora
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoriaPost(2)">
+              <i class="fa fa-pencil-square-o"></i> Estudio de arquitectura
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoriaPost(3)">
+              <i class="fa fa-home"></i> Desarrolladora
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoriaPost(4)">
+              <i class="fa fa-user"></i> Profesional independiente
+            </button>
+            <button class="modal-categoria-btn" onclick="seleccionarCategoriaPost(5)">
+              <i class="fa fa-truck"></i> Proveedor de materiales / Corralón
+            </button>
+          </div>
+          <a href="#" onclick="omitirCategoriaPost(event)" style="display:block;text-align:center;margin-top:14px;color:#888;font-size:.95em;text-decoration:underline">Omitir</a>
+        </div>
+
+        <!-- PASO 3b: Contacto ASAP -->
+        <div class="modal-step" id="modalStep3b">
+          <div class="modal-confirm">
+            <div class="modal-check" style="color:#25D366">&#10003;</div>
+            <h3>¡Recibido!</h3>
+            <p>Te contactamos por <strong>WhatsApp</strong> lo antes posible para coordinar.</p>
+            <button class="modal-btn modal-btn-primary" style="margin-top:24px" onclick="cerrarModalAgendar()">Listo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jquery js -->
+    <script src="js/jquery.min.js"></script>
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/splide.min.js"></script>
+    <script src="js/splide-extension-auto-scroll.min.js"></script>
+    <script>
+        $('.owl-carousel').addClass('owl-activo').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay:true,
+            dots: true,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+    </script>
+    <script>
+const splide = new Splide('.splide', {
+  type      : 'loop',
+  perPage   : 5,
+  gap: '25px', // <== menor separación (podés usar px, rem, etc.)
+  focus     : 'center',
+  drag      : 'free',
+  arrows    : false,
+  pagination: false,
+  autoScroll: {
+    speed: 0.3,
+  },
+});
+
+splide.mount(window.splide.Extensions);
+    </script>
+
+    <!-- ANIMACION PAGINA -->
+    <script src="js/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 600,     // duración sutil
+        easing: 'ease-out',// entrada suave
+        once: true         // solo se anima una vez
+      });
+    </script>    
+
+    <!--/****** MODIFICACIONES HEADER Y NAV EN SCROLL ******/-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get references to your HTML elements
+        const header = document.querySelector('header');
+        const logo = document.getElementById('headerLogo');
+
+        // Define the scroll threshold (how far down the page you need to scroll for changes to apply)
+        const scrollThreshold = 50;
+
+        // Define el ancho de pantalla a partir del cual queremos que funcione el efecto de scroll
+        const desktopBreakpoint = 768; // Cambia esto si tu breakpoint es diferente
+
+        // Function to handle the scroll event
+        function handleScroll() {
+            // Verifica si el ancho actual de la ventana es mayor que el breakpoint de escritorio
+            if (window.innerWidth > desktopBreakpoint) {
+                // Lógica de scroll para escritorio (logo blanco a azul, header transparente a blanco)
+                if (window.scrollY > scrollThreshold) {
+                    if (!header.classList.contains('scrolled')) {
+                        header.classList.add('scrolled');
+                        logo.src = 'img/logo-mixto-azul.png';
+                    }
+                } else {
+                    if (header.classList.contains('scrolled')) {
+                        header.classList.remove('scrolled');
+                        logo.src = 'img/logo-mixto-blanco.png'; // Vuelve a blanco si está arriba y en escritorio
+                    }
+                }
+            } else {
+                // Lógica para móviles (logo siempre azul, sin cambios de scroll en header)
+                // Asegúrate de que el header no tenga la clase 'scrolled'
+                if (header.classList.contains('scrolled')) {
+                    header.classList.remove('scrolled');
+                    // IMPORTANTE: Aquí podrías necesitar resetear otros estilos del header
+                    // si tu CSS inicial de header.scrolled es muy agresivo.
+                    // Por ejemplo: header.style.backgroundColor = 'transparent'; (si lo pusiste así en el CSS original)
+                }
+                // Asegura que el logo sea siempre azul en móvil
+                logo.src = 'img/logo-mixto-azul.png'; 
+            }
+        }
+
+        // --- Lógica NUEVA para el manejo de redimensionamiento ---
+        // También necesitamos que la función handleScroll se ejecute cada vez que la ventana se redimensiona,
+        // para aplicar los estilos correctos de inmediato si se cambia de desktop a mobile o viceversa.
+        window.addEventListener('resize', handleScroll);
+
+        // Attach the scroll event listener to the window
+        window.addEventListener('scroll', handleScroll);
+
+        // Call the function once on page load to establish the initial state
+        handleScroll();
+    });
+</script>
+
+    <!--/****** MENU MOBILE EXPANDIBLE AL TOCAR BOTON ******/-->
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavList = document.getElementById('mainNavList');
+
+    function toggleMenu() {
+        const isOpen = mainNavList.classList.contains('active');
+
+        if (isOpen) {
+            mainNavList.style.height = mainNavList.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+                mainNavList.style.height = '0';
+            });
+            mainNavList.classList.remove('active');
+            menuToggle.classList.remove('active');
+        } else {
+            mainNavList.classList.add('active');
+            menuToggle.classList.add('active');
+            mainNavList.style.height = mainNavList.scrollHeight + 'px';
+        }
+    }
+
+    function closeMenu() {
+        menuToggle.classList.remove('active');
+        mainNavList.style.height = '0';
+        mainNavList.classList.remove('active');
+    }
+
+    function setupMobileMenu() {
+        // Desvincular si estaba ya vinculado
+        menuToggle.removeEventListener('click', toggleMenu);
+
+        if (window.innerWidth <= 768) {
+            menuToggle.addEventListener('click', toggleMenu);
+
+            mainNavList.querySelectorAll('a').forEach(link => {
+                link.removeEventListener('click', closeMenu); // limpia primero
+                link.addEventListener('click', closeMenu);
+            });
+
+            mainNavList.addEventListener('transitionend', () => {
+                if (!mainNavList.classList.contains('active')) {
+                    mainNavList.style.height = '';
+                }
+            });
+        } else {
+            // En desktop: asegúrate de que el menú esté visible y limpio
+            mainNavList.style.height = '';
+            mainNavList.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    }
+
+    // Ejecutar en carga inicial
+    window.addEventListener('DOMContentLoaded', setupMobileMenu);
+
+    // Ejecutar también al cambiar tamaño
+    window.addEventListener('resize', setupMobileMenu);
+</script>
+
+    
+    <!--/****** FAQ/ACCORDION ******/-->
+    <script>
+        $(document).ready(function () {
+          // For the click-based accordions, the first one stays open
+          $(".accordion-wrapper:not(.on-hover)").each(function () {
+            $(this).find(".accordion-outer:first").addClass("is-open");
+            $(this).find(".accordion-content:first").show();
+          });
+
+          // Click event for accordions without "on-hover" class
+          $(".accordion-wrapper:not(.on-hover) .accordion-heading").click(function () {
+            var $accordionContent = $(this).next(".accordion-content");
+            var $accordionOuter = $(this).closest(".accordion-outer");
+            var $parentWrapper = $(this).closest(".accordion-wrapper");
+
+            // Slide up all other accordions IN THIS WRAPPER and remove the 'is-open' class
+            $parentWrapper.find(".accordion-content").not($accordionContent).slideUp();
+            $parentWrapper
+              .find(".accordion-outer")
+              .not($accordionOuter)
+              .removeClass("is-open");
+
+            // Toggle the clicked accordion
+            if ($accordionContent.is(":visible")) {
+              $accordionContent.slideUp();
+              $accordionOuter.removeClass("is-open");
+            } else {
+              $accordionContent.slideDown();
+              $accordionOuter.addClass("is-open");
+            }
+          });
+
+          // Optional: Add hover functionality for the hover accordions
+          $(".accordion-wrapper.on-hover .accordion-heading").hover(
+            function () {
+              $(this).next(".accordion-content").stop().slideDown();
+              $(this).closest(".accordion-outer").addClass("is-open");
+            },
+            function () {
+              $(this).next(".accordion-content").stop().slideUp();
+              $(this).closest(".accordion-outer").removeClass("is-open");
+            }
+          );
+        });
+    </script>
+    
+    <!--/****** SMOOTH SCROLL ******/-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          });
+        });
+      });
+    </script>
+    
+    <!-- CAMBIAR COLOR CUANDO PASA POR SECCION -->
+    <script>
+      const secciones = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll("nav ul li a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        secciones.forEach(section => {
+          const sectionTop = section.offsetTop - 70;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+
+   <!-- MOVER LOGOS DE YA CONFIAN DE LUGAR -->
+    <script>
+        $(window).on('resize', function() {
+        var windowsize = jQuery(window).width();
+        if (windowsize < 1080) {
+        jQuery(".ya-confian").insertAfter(jQuery(".paso-paso"));
+        } else {
+        jQuery(".ya-confian").insertAfter(jQuery(".ctas-home"));
+        }
+        }).trigger('resize');
+    </script>
+    <!-- AÑO AUTOMATICO FOOTER -->
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      function getURLParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+    
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+      }
+
+      function setCookie(name, value, days = 90) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+      }
+    
+      function irAWhatsApp(event) {
+        event.preventDefault();
+        
+        const campaign = getURLParameter('utm_campaign') || "";
+        const fbclid = getURLParameter('fbclid') || "";
+        const fbp = getCookie('_fbp') || "";
+        const userAgent = navigator.userAgent;
+        let fbc = getCookie('_fbc') || "";
+        
+        if (!fbc && fbclid) {
+          fbc = `fb.1.${Date.now()}.${fbclid}`;
+          setCookie('_fbc', fbc);
+        }
+    
+        const redirectURL = `http://137.184.68.197:3051/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
+        
+        // const redirectURL = `http://localhost:3003/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
+
+        // Abrir en la misma ventana para garantizar que el redirect se complete
+        window.location.href = redirectURL;
+      }
+
+      function irACalendario(event) {
+        event.preventDefault();
+        abrirModalAgendar();
+      }
+
+      function contactarPorWhatsApp(event) {
+        if (event) event.preventDefault();
+        var numero = '5491162377270';
+        var mensaje = 'Hola, me gustaría saber más de Sorby';
+        window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(mensaje), '_blank');
+      }
+
+      // ─── Modal de Agendamiento Inline ──────────────────────────────────────
+      // Base URL automática: localhost si estás en local, producción si no
+      var SORBY_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
+        ? 'http://localhost:3003'
+        : 'https://api.sorbydata.com';
+
+      // Flujo único: el usuario elige horario, completa datos, y recién
+      // después de agendar se le pregunta la categoría de negocio.
+      // (Antes había A/B test cat-pre vs cat-post — quedó B como ganadora.)
+      // Limpiar asignación vieja del A/B en localStorage de visitantes recurrentes.
+      try { localStorage.removeItem('sorby_ab_cat_position'); } catch (_) {}
+
+      // Registrar visita (fire-and-forget, no bloquea nada)
+      try { fetch(SORBY_API + '/api/agendar/landing-visit', { method: 'POST' }); } catch (_) {}
+
+      var _slotsData = null; // Cache de slots
+      var _selectedDay = null;
+      var _selectedSlot = null;
+      var _tracked = {}; // evitar duplicados por sesión
+      var _categoriaSeleccionada = null; // 1=Constructora 2=Estudio 3=Desarrolladora 4=Profesional 5=Proveedor
+
+      // ── Funnel URL + FB Pixel tracking ─────────────────────────────
+      // Cambia la URL en cada paso (history.pushState, sin recargar) y
+      // dispara el evento estándar de Meta para que cada etapa sea
+      // medible como conversión en Ads Manager.
+      var _funnelBaseUrl = location.pathname + location.search + location.hash;
+      var _funnelFiredFb = {}; // dedupe FB events por apertura
+      function _funnelReset() { _funnelFiredFb = {}; }
+      function _funnelStep(slug, fbEvent, fbParams) {
+        try {
+          var url = slug ? ('/agendar' + (slug === '/' ? '' : slug)) : _funnelBaseUrl;
+          if (location.pathname + location.search !== url) {
+            history.pushState({ funnel: slug || null }, '', url);
+          }
+        } catch (_) {}
+        if (fbEvent && typeof fbq === 'function' && !_funnelFiredFb[fbEvent + ':' + (slug || '')]) {
+          _funnelFiredFb[fbEvent + ':' + (slug || '')] = true;
+          try {
+            if (fbEvent.indexOf('Custom:') === 0) {
+              fbq('trackCustom', fbEvent.slice(7), fbParams || {});
+            } else {
+              fbq('track', fbEvent, fbParams || {});
+            }
+          } catch (_) {}
+        }
+        // Clarity: dispara un evento custom por cada paso del funnel para
+        // poder filtrar sesiones por "llegó a X" y armar funnels visuales.
+        _clarity('funnel_' + (fbParams && fbParams.funnel_step || slug || 'unknown'));
+      }
+
+      // ── Helper Clarity (no-op si todavía no se cargó el snippet) ──
+      function _clarity(eventName, data) {
+        try {
+          if (typeof window.clarity !== 'function') return;
+          if (data && typeof data === 'object') {
+            for (var k in data) {
+              if (Object.prototype.hasOwnProperty.call(data, k)) {
+                window.clarity('set', k, String(data[k]));
+              }
+            }
+          }
+          if (eventName) window.clarity('event', eventName);
+        } catch (_) {}
+      }
+      // Back button → cerrar modal / volver a estado base
+      window.addEventListener('popstate', function() {
+        var modal = document.getElementById('modalAgendar');
+        if (modal && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      function _trackStep(step) {
+        if (_tracked[step]) return; // solo una vez por apertura
+        _tracked[step] = true;
+        // mode: no-cors — es fire-and-forget, no necesitamos leer la respuesta
+        fetch(SORBY_API + '/api/agendar/track', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            step: step,
+            fbc: getCookie('_fbc') || '',
+            fbp: getCookie('_fbp') || '',
+            userAgent: navigator.userAgent
+          })
+        }).catch(function() {});
+      }
+
+      function abrirModalAgendar() {
+        document.getElementById('modalAgendar').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        _trackStep('open');
+        _funnelReset();
+        _categoriaSeleccionada = null;
+        mostrarStep(1);
+        _funnelStep('/horario', 'ViewContent', { content_name: 'agendar_horario', funnel_step: 'horario' });
+        // Pre-cargar slots en background
+        if (!_slotsData) { cargarSlots(); }
+      }
+
+      var _categoriaNombres = {
+        1: 'constructora',
+        2: 'estudio_arquitectura',
+        3: 'desarrolladora',
+        4: 'profesional_independiente',
+        5: 'proveedor_materiales'
+      };
+
+      // Categoría seleccionada después de agendar (paso CatB).
+      function seleccionarCategoriaPost(cat) {
+        _clarity('seleccion_categoria', { categoria: _categoriaNombres[cat] || cat });
+        _categoriaSeleccionada = cat;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, momento: 'post_booking' });
+        try {
+          fetch(SORBY_API + '/api/agendar/track', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              step: 'category_post',
+              categoria: _categoriaNombres[cat] || cat,
+              email: (document.getElementById('modalEmail') || {}).value || '',
+              datetime: (_selectedSlot && _selectedSlot.iso) || null,
+              fbc: getCookie('_fbc') || '',
+              fbp: getCookie('_fbp') || '',
+              userAgent: navigator.userAgent
+            })
+          }).catch(function() {});
+        } catch (_) {}
+        mostrarStep(3);
+      }
+
+      function omitirCategoriaPost(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'seleccion_categoria_skip', momento: 'post_booking' });
+        mostrarStep(3);
+      }
+
+      function cerrarModalAgendar() {
+        var modalEl = document.getElementById('modalAgendar');
+        var estabaAbierto = modalEl && modalEl.classList.contains('active');
+        // Trackear abandono con el step en el que estaba (sólo si el flujo no
+        // llegó a éxito — listo / listo_asap son cierres legítimos).
+        if (estabaAbierto && _currentStep && _currentStep !== '3' && _currentStep !== '3b' && _currentStep !== 'CatB') {
+          _trackStep('close_step_' + _currentStep);
+        }
+        if (modalEl) modalEl.classList.remove('active');
+        document.body.style.overflow = '';
+        // Volver a la URL original sin disparar popstate
+        try {
+          if (location.pathname !== _funnelBaseUrl.split('?')[0].split('#')[0]) {
+            history.pushState({}, '', _funnelBaseUrl);
+          }
+        } catch (_) {}
+      }
+
+      var _currentStep = null;
+
+      function mostrarStep(n) {
+        document.querySelectorAll('.modal-step').forEach(function(el) { el.classList.remove('active'); });
+        document.getElementById('modalStep' + n).classList.add('active');
+        _currentStep = String(n);
+        // 🔭 Tracking granular: registrar la vista efectiva de cada step.
+        // Esto separa "tocó píldora" (track 'select') de "el form se renderizó
+        // y el usuario lo vio realmente" (track 'view_datos').
+        if (n === 2) _trackStep('view_datos');
+        else if (n === 3) _trackStep('view_listo');
+        else if (n === '3b' || n === 3.1) _trackStep('view_listo_asap');
+        else if (n === 'CatB') _trackStep('view_cat_post');
+      }
+
+      function modalVolver(n) {
+        // Reset selected bar when going back to calendar
+        if (n === 1) {
+          document.getElementById('modalSelectedBar').classList.remove('visible');
+        }
+        mostrarStep(n);
+      }
+
+      var _calPage = 0;
+      var DAYS_PER_PAGE = 5;
+      var _activeTab = 0;
+      var _isAsap = false;
+
+      // ── Skeleton: show/hide ──
+      function showSkeleton() {
+        var sk = document.getElementById('modalSkeleton');
+        var skm = document.getElementById('modalSkeletonMobile');
+        if (sk) sk.classList.remove('hidden');
+        if (skm) skm.classList.remove('hidden');
+      }
+      function hideSkeleton() {
+        var sk = document.getElementById('modalSkeleton');
+        var skm = document.getElementById('modalSkeletonMobile');
+        if (sk) sk.classList.add('hidden');
+        if (skm) skm.classList.add('hidden');
+      }
+
+      function cargarSlots() {
+        var calEl = document.getElementById('modalCalendar');
+        var mobileSlots = document.getElementById('modalMobileSlots');
+        showSkeleton();
+        calEl.innerHTML = '';
+        mobileSlots.innerHTML = '';
+
+        fetch(SORBY_API + '/api/agendar/slots')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            hideSkeleton();
+            if (!data.ok || !data.slots || !data.slots.length) {
+              calEl.innerHTML = '<div class="modal-no-slots">No hay horarios disponibles. Intentá más tarde.</div>';
+              mobileSlots.innerHTML = '<div class="modal-mobile-empty">No hay horarios disponibles.</div>';
+              return;
+            }
+            _slotsData = data.slots.filter(function(d) { return d.slots.length > 0; });
+            _calPage = 0;
+            _activeTab = 0;
+            renderCalendar();
+          })
+          .catch(function() {
+            hideSkeleton();
+            calEl.innerHTML = '<div class="modal-no-slots">Error cargando horarios. Intentá más tarde.</div>';
+            document.getElementById('modalMobileSlots').innerHTML = '<div class="modal-mobile-empty">Error cargando horarios.</div>';
+          });
+      }
+
+      function renderCalendar() {
+        if (!_slotsData || !_slotsData.length) return;
+        renderDesktopCalendar();
+        renderMobileTabs();
+        renderMobileSlots();
+      }
+
+      // ── Slot selection (shared) ──
+      function seleccionarSlot(day, slot, pillEl) {
+        document.querySelectorAll('.modal-slot-pill').forEach(function(p) { p.classList.remove('selected'); });
+        pillEl.classList.add('selected');
+        _selectedSlot = slot;
+        _selectedDay = day;
+        _isAsap = false;
+        _trackStep('select');
+
+        // Mostrar fallback visible en desktop por si el salto inmediato no renderiza a tiempo.
+        var selectedBar = document.getElementById('modalSelectedBar');
+        var selectedLabel = document.getElementById('selLabel');
+        if (selectedBar && selectedLabel) {
+          selectedLabel.textContent = (slot && slot.time ? slot.time : 'Horario seleccionado') + ' - ' + (day && day.label ? day.label : '');
+          selectedBar.classList.add('visible');
+        }
+
+        // Ir directo al formulario.
+        try {
+          irADatos();
+        } catch (err) {
+          console.error('[modal-agendar] Error navegando a datos:', err);
+          var errEl = document.getElementById('modalError1');
+          if (errEl) {
+            errEl.textContent = 'Se seleccionó el horario, pero hubo un problema al abrir el formulario. Tocá "Confirmar" abajo.';
+            errEl.style.display = 'block';
+          }
+        }
+      }
+
+      // ── Desktop: 5-col grid ──
+      function renderDesktopCalendar() {
+        var calEl = document.getElementById('modalCalendar');
+        var navEl = document.getElementById('modalCalNav');
+        calEl.innerHTML = '';
+
+        var start = _calPage * DAYS_PER_PAGE;
+        var daysToShow = _slotsData.slice(start, start + DAYS_PER_PAGE);
+
+        daysToShow.forEach(function(day) {
+          var col = document.createElement('div');
+          col.className = 'modal-cal-day';
+
+          var parts = day.label.split(' ');
+          var header = document.createElement('div');
+          header.className = 'modal-cal-day-header';
+          header.innerHTML = '<span class="cal-day-name">' + parts[0] + '</span><span class="cal-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          col.appendChild(header);
+
+          var slotsContainer = document.createElement('div');
+          slotsContainer.className = 'modal-cal-slots';
+
+          day.slots.forEach(function(slot) {
+            var pill = document.createElement('div');
+            pill.className = 'modal-slot-pill';
+            pill.textContent = slot.time;
+            pill.addEventListener('click', function() { seleccionarSlot(day, slot, pill); });
+            slotsContainer.appendChild(pill);
+          });
+
+          col.appendChild(slotsContainer);
+          calEl.appendChild(col);
+        });
+
+        var totalPages = Math.ceil(_slotsData.length / DAYS_PER_PAGE);
+        if (totalPages > 1) {
+          navEl.style.display = 'flex';
+          document.getElementById('calPrevBtn').disabled = _calPage === 0;
+          document.getElementById('calNextBtn').disabled = _calPage >= totalPages - 1;
+          document.getElementById('calPageInfo').textContent = (_calPage + 1) + ' / ' + totalPages;
+        } else {
+          navEl.style.display = 'none';
+        }
+      }
+
+      function calPrev() { if (_calPage > 0) { _calPage--; renderDesktopCalendar(); } }
+      function calNext() {
+        var totalPages = Math.ceil(_slotsData.length / DAYS_PER_PAGE);
+        if (_calPage < totalPages - 1) { _calPage++; renderDesktopCalendar(); }
+      }
+
+      // ── Mobile: tab strip + slot grid ──
+      function renderMobileTabs() {
+        var tabsEl = document.getElementById('modalDayTabs');
+        tabsEl.innerHTML = '';
+
+        _slotsData.forEach(function(day, i) {
+          var parts = day.label.split(' ');
+          var tab = document.createElement('div');
+          tab.className = 'modal-day-tab' + (i === _activeTab ? ' active' : '');
+          tab.innerHTML = '<span class="tab-day-name">' + parts[0] + '</span><span class="tab-day-num">' + parts[1] + ' ' + parts[2] + '</span>';
+          tab.addEventListener('click', function() { selectMobileTab(i); });
+          tabsEl.appendChild(tab);
+        });
+
+        var activeTabEl = tabsEl.children[_activeTab];
+        if (activeTabEl) {
+          activeTabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+
+      function selectMobileTab(index) {
+        _activeTab = index;
+        var tabs = document.querySelectorAll('.modal-day-tab');
+        tabs.forEach(function(t, i) { t.classList.toggle('active', i === index); });
+        renderMobileSlots();
+        var tabsEl = document.getElementById('modalDayTabs');
+        if (tabsEl.children[index]) {
+          tabsEl.children[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      }
+
+      function renderMobileSlots() {
+        var container = document.getElementById('modalMobileSlots');
+        container.innerHTML = '';
+
+        if (!_slotsData || !_slotsData[_activeTab]) return;
+        var day = _slotsData[_activeTab];
+
+        if (!day.slots.length) {
+          container.innerHTML = '<div class="modal-mobile-empty">Sin horarios disponibles este día</div>';
+          return;
+        }
+
+        day.slots.forEach(function(slot) {
+          var pill = document.createElement('div');
+          pill.className = 'modal-slot-pill';
+          pill.textContent = slot.time;
+          pill.addEventListener('click', function() { seleccionarSlot(day, slot, pill); });
+          container.appendChild(pill);
+        });
+      }
+
+      // ── Quick action: primer horario ──
+      function elegirProximo() {
+        if (!_slotsData || !_slotsData.length) return;
+        _selectedDay = _slotsData[0];
+        _selectedSlot = _slotsData[0].slots[0];
+        _isAsap = false;
+        irADatos();
+      }
+
+      // ── Confirm bar → ir a datos ──
+      function irADatos() {
+        if (!_selectedSlot || !_selectedDay) {
+          var errEl = document.getElementById('modalError1');
+          if (errEl) {
+            errEl.textContent = 'Primero elegí un horario.';
+            errEl.style.display = 'block';
+          }
+          return;
+        }
+
+        var badgeText = document.getElementById('badgeText');
+        var slotBadge = document.getElementById('modalSlotBadge');
+        var submitBtn = document.getElementById('modalSubmitBtn');
+        var selectedBar = document.getElementById('modalSelectedBar');
+        var errEl = document.getElementById('modalError1');
+
+        if (errEl) errEl.style.display = 'none';
+        if (badgeText) badgeText.textContent = _selectedSlot.time + ' — ' + _selectedDay.label;
+        if (slotBadge) slotBadge.style.display = '';
+        if (submitBtn) {
+          submitBtn.innerHTML = 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+          submitBtn.disabled = true;
+        }
+        if (selectedBar) selectedBar.classList.remove('visible');
+
+        mostrarStep(2);
+        // 🔑 Paso clave: usuario eligió horario y ve el form de datos.
+        _funnelStep('/datos', 'InitiateCheckout', {
+          content_name: 'agendar_datos',
+          funnel_step: 'datos',
+          datetime: (_selectedSlot && _selectedSlot.iso) || null
+        });
+        validarForm();
+
+        var nombreInput = document.getElementById('modalNombre');
+        if (nombreInput && typeof nombreInput.focus === 'function') {
+          setTimeout(function() { nombreInput.focus(); }, 30);
+        }
+      }
+
+      // ── Fallback: contactenme ASAP ──
+      function quieroContacto() {
+        _isAsap = true;
+        _selectedDay = null;
+        _selectedSlot = null;
+        document.getElementById('modalSlotBadge').innerHTML = '<i class="fab fa-whatsapp" style="color:#25D366;margin-right:6px"></i> Te contactamos lo antes posible';
+        document.getElementById('modalSubmitBtn').innerHTML = 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>';
+        mostrarStep(2);
+        _funnelStep('/datos-asap', 'InitiateCheckout', {
+          content_name: 'agendar_datos_asap',
+          funnel_step: 'datos_asap'
+        });
+        validarForm();
+      }
+
+      // ── Form validation: enable/disable submit ──
+      function validarForm() {
+        var nombre = document.getElementById('modalNombre').value.trim();
+        var email = document.getElementById('modalEmail').value.trim();
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var btn = document.getElementById('modalSubmitBtn');
+        btn.disabled = !(nombre.length > 0 && emailOk);
+      }
+
+      // ── Submit booking ──
+      function enviarBooking() {
+        // 🔭 Tracking granular: registrar TODO intento de submit, incluso si
+        // la validación local falla. Permite cuantificar abandono en form.
+        _trackStep('submit_attempt');
+        var nombre = document.getElementById('modalNombre').value.trim();
+        var email = document.getElementById('modalEmail').value.trim();
+        var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
+        var empresa = document.getElementById('modalEmpresa').value.trim();
+        var errEl = document.getElementById('modalError2');
+
+        if (!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          _trackStep('submit_validation_error');
+          errEl.textContent = 'Completá nombre y email válido';
+          errEl.style.display = 'block';
+          return false;
+        }
+        errEl.style.display = 'none';
+
+        var btn = document.getElementById('modalSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<div class="modal-spinner"></div> Agendando...';
+
+        var CATEGORIA_LABELS = {
+          1: 'Constructora',
+          2: 'Estudio de arquitectura',
+          3: 'Desarrolladora',
+          4: 'Profesional independiente',
+          5: 'Proveedor de materiales / Corralón'
+        };
+        var body = {
+          name: nombre,
+          email: email,
+          phone: telefono || undefined,
+          empresa: empresa || undefined,
+          categoria: _categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined,
+          fbc: getCookie('_fbc') || '',
+          fbp: getCookie('_fbp') || '',
+          utm_campaign: getURLParameter('utm_campaign') || '',
+          userAgent: navigator.userAgent
+        };
+
+        if (_isAsap) {
+          body.asap = true;
+          body.datetime = _slotsData && _slotsData[0] ? _slotsData[0].slots[0].iso : new Date(Date.now() + 86400000).toISOString();
+        } else {
+          body.datetime = _selectedSlot.iso;
+        }
+
+        fetch(SORBY_API + '/api/agendar/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data.ok) {
+            _trackStep('submit_backend_error');
+            // Tag de Clarity para poder buscar grabaciones donde el backend
+            // devolvió error (CORS, 4xx/5xx con ok:false, etc.).
+            _clarity('submit_backend_error', { booking_error: data.error || 'unknown' });
+            errEl.textContent = data.error || 'Error al agendar. Intentá de nuevo.';
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = _isAsap
+              ? 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>'
+              : 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+            return;
+          }
+
+          if (_isAsap) {
+            mostrarStep('3b');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'contacto_asap' });
+            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' });
+            try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}
+            // 🎯 Clarity: marcar sesión como convertida (lead ASAP).
+            _clarity('contacto_asap', { converted: 'asap' });
+          } else {
+            var resumenTxt = data.fecha + ' a las ' + data.hora + ' hs';
+            document.getElementById('modalResumenFecha').textContent = resumenTxt;
+            generarICS();
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'demo_agendada_inline' });
+            // 🎯 Conversión: demo agendada. Schedule = evento estándar de Meta para citas.
+            _funnelStep('/listo', 'Lead', {
+              content_name: 'demo_agendada',
+              funnel_step: 'listo',
+              datetime: (_selectedSlot && _selectedSlot.iso) || null
+            });
+            try {
+              fbq('track', 'Schedule', {
+                content_name: 'demo_agendada',
+                datetime: (_selectedSlot && _selectedSlot.iso) || null
+              });
+            } catch (_) {}
+            // 🎯 Clarity: marcar sesión como convertida (demo agendada).
+            // Permite filtrar grabaciones por converted=demo vs no-converted.
+            _clarity('demo_agendada', {
+              converted: 'demo',
+              datetime: (_selectedSlot && _selectedSlot.iso) || ''
+            });
+            // Después de agendar, pedimos la categoría de negocio.
+            var resEl = document.getElementById('modalCatBResumen');
+            if (resEl) resEl.textContent = resumenTxt;
+            mostrarStep('CatB');
+          }
+
+          // Trigger browser autocomplete save
+          try {
+            var iframe = document.createElement('iframe');
+            iframe.name = 'autocomplete_frame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            var form = document.getElementById('modalForm');
+            var origTarget = form.target;
+            var origAction = form.action;
+            form.target = 'autocomplete_frame';
+            form.action = 'about:blank';
+            form.submit();
+            form.target = origTarget || '';
+            form.action = origAction || '';
+            setTimeout(function() { iframe.remove(); }, 500);
+          } catch(e) {}
+        })
+        .catch(function() {
+          _trackStep('submit_network_error');
+          _clarity('submit_network_error');
+          errEl.textContent = 'Error de conexión. Intentá de nuevo.';
+          errEl.style.display = 'block';
+          btn.disabled = false;
+          btn.innerHTML = _isAsap
+            ? 'Contactenme <i class="fab fa-whatsapp" style="margin-left:6px;font-size:.85em"></i>'
+            : 'Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i>';
+        });
+
+        return false;
+      }
+
+      // ── .ics file generation for "Add to Calendar" ──
+      function generarICS() {
+        if (!_selectedSlot) return;
+        var dt = new Date(_selectedSlot.iso);
+        var dtEnd = new Date(dt.getTime() + 15 * 60000);
+        var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+        var fmt = function(d) {
+          return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+        };
+        var ics = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Sorby//Demo//ES',
+          'BEGIN:VEVENT',
+          'DTSTART:' + fmt(dt),
+          'DTEND:' + fmt(dtEnd),
+          'SUMMARY:Demo Sorby',
+          'DESCRIPTION:Reunión de 15 minutos con el equipo de Sorby',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+        var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var link = document.getElementById('modalAddCal');
+        if (link) link.href = url;
+      }
+    </script>
+    <script>
+      // ─── Configuración de CTAs ────────────────────────────────────────────────
+      function configurarCTAs() {
+        // 1. Todos los botones con clase .cta-whatsapp → agenda directa
+        document.querySelectorAll('.cta-whatsapp').forEach(function (el) {
+          el.href = '#';
+          el.setAttribute('onclick', 'irACalendario(event)');
+          el.innerHTML = '<i class="fa fa-calendar" style="margin-right: 5px; font-size: .9em;"></i>Agendá gratis';
+        });
+
+        // 2. Nav item "Probalo en 1 minuto" → "Agendá gratis"
+        var navLink = document.querySelector('#mainNavList a[href="#proba-sorby"]');
+        if (navLink) navLink.textContent = 'Agendá gratis';
+
+        // 3. Sección #proba-sorby — textos
+        var seccion = document.getElementById('proba-sorby');
+        if (seccion) {
+          var h2span = seccion.querySelector('h2.pre-titulo span');
+          if (h2span) h2span.textContent = 'Agenda tu demo';
+          var h3 = seccion.querySelector('h3');
+          if (h3) h3.innerHTML = 'Agendá una <span>demo gratis:</span>';
+          var p = seccion.querySelector('.contenido p');
+          if (p) p.innerHTML = 'Hablá con el equipo directo. <span>Demo de 15 min, gratis y sin compromiso</span>';
+        }
+
+        // 4. FAQ #7 — link inline dentro del texto de respuesta
+        document.querySelectorAll('.accordion-heading').forEach(function (heading) {
+          if (/probarlo sin registrarme/i.test(heading.textContent)) {
+            var content = heading.nextElementSibling;
+            if (content && content.querySelector('p')) {
+              content.querySelector('p').innerHTML =
+                'Sí. <a href="#" onclick="irACalendario(event)"><strong>Agendá una demo gratuita de 15 minutos</strong></a> ' +
+                'y el equipo te muestra cómo funciona para tu caso. Gratis, sin registro y sin compromiso.';
+            }
+          }
+        });
+
+        // 5. Link "Probalo en 1 minuto" en sección de características → agenda directa
+        document.querySelectorAll('a[href="#proba-sorby"]').forEach(function (el) {
+          if (/Probalo en 1 minuto/i.test(el.textContent)) {
+            el.href = '#';
+            el.setAttribute('onclick', 'irACalendario(event)');
+            el.innerHTML = '<img class="cta-gratis" src="img/gratis.png" alt="">' +
+              '<i class="fa fa-calendar" style="margin-right: 5px;"></i> Agendá gratis';
+          }
+        });
+      }
+
+      // ─── Inicialización ───────────────────────────────────────────────────────
+      configurarCTAs();
+    </script>
+    <script src="/__/firebase/9.22.1/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.22.1/firebase-analytics-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script>
+      const analytics = firebase.analytics();
+
+      // Trackear clicks en todos los botones de WhatsApp
+      document.querySelectorAll('.cta-whatsapp').forEach(boton => {
+        boton.addEventListener('click', () => {
+          analytics.logEvent('go_to_admin', { name: 'proba_sorby' });
+        });
+      });
+    </script>
+    
+</body>
+</html>
