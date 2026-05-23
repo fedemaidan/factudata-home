@@ -3038,11 +3038,97 @@
         }
       }
 
-      /* Desktop: hide mobile-only elements */
+      /* Desktop: usamos el MISMO patrón que mobile (un día por vez con tabs)
+         Esconde la grilla de 5 días, muestra tabs + slots del día activo. */
       @media (min-width: 769px) {
-        .modal-day-tabs { display: none; }
-        .modal-mobile-slots { display: none; }
-        .modal-skeleton-mobile { display: none; }
+        /* Esconder grilla desktop y mostrar el patrón "tabs + un día" */
+        .modal-calendar { display: none !important; }
+        .modal-cal-nav  { display: none !important; }
+        .modal-skeleton { display: none !important; }
+
+        /* Tabs horizontales — versión desktop más espaciada */
+        .modal-day-tabs {
+          display: flex;
+          gap: 0;
+          border-bottom: 2px solid #f0f0f0;
+          margin-bottom: 16px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .modal-day-tabs::-webkit-scrollbar { display: none; }
+        .modal-day-tab {
+          flex: 1;
+          min-width: 100px;
+          padding: 12px 14px;
+          font-family: "Quicksand", sans-serif;
+          color: #888;
+          border-bottom: 3px solid transparent;
+          cursor: pointer;
+          text-align: center;
+          white-space: nowrap;
+          transition: all 0.15s;
+          font-weight: 600;
+        }
+        .modal-day-tab .tab-day-name {
+          display: block; font-size: 0.78em;
+          color: #00B2D4; text-transform: uppercase; letter-spacing: 0.5px;
+          margin-bottom: 2px;
+        }
+        .modal-day-tab .tab-day-num { display: block; font-size: 1.15em; }
+        .modal-day-tab.active {
+          color: #1E4469;
+          border-bottom-color: #00B2D4;
+          background: #f0fbfd;
+        }
+
+        /* Slots del día activo — grid 3 columnas para usar el ancho */
+        .modal-mobile-slots {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          padding: 12px 0 16px;
+        }
+        .modal-mobile-slots .modal-slot-pill {
+          height: 52px;
+          font-size: 1.15em;
+          border: 2px solid #e0e0e0;
+          border-radius: 10px;
+          font-family: "Quicksand", sans-serif;
+          font-weight: 600;
+          color: #1E4469;
+          background: #fff;
+          cursor: pointer;
+          display: flex; align-items: center; justify-content: center;
+          transition: all 0.15s;
+        }
+        .modal-mobile-slots .modal-slot-pill:hover {
+          border-color: #00B2D4;
+          background: #f0fbfd;
+        }
+        .modal-mobile-slots .modal-slot-pill.selected {
+          background: #00B2D4;
+          color: #fff;
+          border-color: #00B2D4;
+        }
+        .modal-mobile-empty {
+          text-align: center; padding: 30px; color: #888;
+          font-family: "Quicksand", sans-serif;
+        }
+
+        /* Skeleton mobile también para desktop */
+        .modal-skeleton-mobile {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          padding: 12px 0;
+        }
+        .modal-skeleton-mobile-pill {
+          height: 52px;
+          background: #edf1f4;
+          border-radius: 10px;
+          animation: skeleton-pulse 1.4s ease-in-out infinite;
+        }
       }
 
       /* ── Step 0: Categorización ── */
