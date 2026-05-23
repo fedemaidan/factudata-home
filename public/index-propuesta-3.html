@@ -528,6 +528,61 @@
         height: auto;
         max-height: 360px; /* antes 460 — más balance con el texto */
         filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ────────────────────────────────────────────────
+         Burbujas flotantes con módulos alrededor del personaje
+         Solo desktop — refuerzan la idea de "todo conectado por WhatsApp"
+         ──────────────────────────────────────────────── */
+      .hero-image { position: relative; }
+      .hero-module-bubbles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .mod-bubble {
+        position: absolute;
+        width: 54px; height: 54px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18),
+                    inset 0 1px 0 rgba(255,255,255,0.4);
+        opacity: 0;
+        animation:
+          bubble-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+          bubble-float 5s ease-in-out infinite;
+      }
+      .mod-bubble.mod-bubble-wa {
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        color: #fff;
+        width: 62px; height: 62px;
+        font-size: 28px;
+        box-shadow: 0 8px 26px rgba(37,211,102,0.5),
+                    inset 0 1px 0 rgba(255,255,255,0.3);
+      }
+
+      /* Posiciones alrededor del personaje */
+      .mod-bubble-wa { top: -10px; right: 8%;        animation-delay: 0s, 0.6s;   }
+      .mod-bubble-1  { top:  6%;  left: -2%;         animation-delay: 0.15s, 0.9s;  }
+      .mod-bubble-2  { top: 22%;  right: -4%;        animation-delay: 0.30s, 1.2s;  }
+      .mod-bubble-3  { top: 40%;  left: -6%;         animation-delay: 0.45s, 1.5s;  }
+      .mod-bubble-4  { bottom: 32%; right: -2%;      animation-delay: 0.60s, 1.8s;  }
+      .mod-bubble-5  { bottom: 18%; left: -4%;       animation-delay: 0.75s, 2.1s;  }
+      .mod-bubble-6  { bottom:  2%; right: 10%;      animation-delay: 0.90s, 2.4s;  }
+      .mod-bubble-7  { bottom:  6%; left: 12%;       animation-delay: 1.05s, 2.7s;  }
+
+      @keyframes bubble-in {
+        from { opacity: 0; transform: scale(0.4); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      @keyframes bubble-float {
+        0%, 100% { transform: translateY(0)    rotate(0deg); }
+        50%      { transform: translateY(-8px) rotate(3deg); }
       }
 
       /* Quotes en 3 columnas */
@@ -1462,6 +1517,20 @@
       <div class="hero-image">
         <!-- Visible sólo en desktop por CSS. -->
         <img src="img/personaje-12.png" alt="Sorby — control de obras" />
+
+        <!-- Burbujas flotantes con los 8 módulos + WhatsApp (desktop only) -->
+        <div class="hero-module-bubbles" aria-hidden="true">
+          <span class="mod-bubble mod-bubble-wa" title="Todo desde WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </span>
+          <span class="mod-bubble mod-bubble-1" title="Gestión de Caja">💰</span>
+          <span class="mod-bubble mod-bubble-2" title="Presupuestos">📊</span>
+          <span class="mod-bubble mod-bubble-3" title="Reportes">📈</span>
+          <span class="mod-bubble mod-bubble-4" title="Acopio">🏗️</span>
+          <span class="mod-bubble mod-bubble-5" title="Notas de Pedido">📋</span>
+          <span class="mod-bubble mod-bubble-6" title="Stock & Herramientas">🔧</span>
+          <span class="mod-bubble mod-bubble-7" title="Plan de Cobro">💸</span>
+        </div>
       </div>
 
     </div>
