@@ -213,7 +213,7 @@
       list-style: none;
       margin: 0 auto 22px;
       max-width: 460px;
-      display: none; /* oculto en mobile — se muestra en desktop via media query */
+      display: block;
     }
     .hero-bullets li {
       display: flex; align-items: flex-start; gap: 10px;
@@ -290,6 +290,12 @@
     .hero-sub-secondary strong {
       color: #FFFFFF;
       font-weight: 800;
+    }
+    .hero-wa-icon {
+      color: #25D366;
+      font-size: 1.05em;
+      vertical-align: -1px;
+      margin: 0 1px;
     }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -1431,7 +1437,7 @@
         <h1 id="hero-h1">Tu obra bajo control, <em>donde estés</em>.</h1>
 
         <p class="hero-sub" id="hero-sub">
-          Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.
+          Gastos, stock, presupuesto y avance — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.
           <span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>
         </p>
 
@@ -4290,7 +4296,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       constructora: {
         teaser: 'Si la obra me dio o no, me di cuenta cuando ya terminó.',
         h1: 'Tu obra bajo control, <em>donde estés</em>.',
-        sub: 'Gastos, stock, presupuesto y avance — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>',
+        sub: 'Gastos, stock, presupuesto y avance — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Foto al ticket o audio al bot → cargado en segundos',
           'Stock, presupuesto por rubro y avance en tiempo real',
@@ -4305,7 +4311,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       estudio: {
         teaser: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.',
         h1: 'Lo que pasa en la obra, <em>ordenado solo</em>.',
-        sub: 'Gastos, pedidos y avances — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente. <strong>Vos decidís.</strong></span>',
+        sub: 'Gastos, pedidos y avances — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Cargá gastos hablándole al bot (modo audio)',
           'Certificados de avance con aprobación del comitente, por link',
@@ -4335,7 +4341,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       corralon: {
         teaser: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.',
         h1: 'Acopios, cuentas corrientes y multi-sucursal, <em>en un solo lugar</em>.',
-        sub: 'Acopios, CC y multi-sucursal — <strong>desde WhatsApp</strong>.<span class="hero-sub-secondary">El equipo lo opera. <strong>Vos decidís.</strong></span>',
+        sub: 'Acopios, CC y multi-sucursal — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">El equipo lo opera. <strong>Vos decidís.</strong></span>',
         bullets: [
           'Acopios con clientes y proveedores',
           'Cuenta corriente de cada cliente al día',
