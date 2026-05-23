@@ -211,14 +211,34 @@
 
     .hero-bullets {
       list-style: none;
-      margin: 0 auto 22px;
+      margin: 14px auto 18px;
       max-width: 460px;
       display: block;
     }
+    .hero-bullets-q li {
+      font-style: italic;
+      color: rgba(255,255,255,0.92);
+      font-weight: 500;
+    }
+    .hero-bullets.hero-bullets-q li::before {
+      content: attr(data-icon);
+      color: inherit;
+      font-size: 1.25em;
+      font-style: normal;
+      line-height: 1.2;
+      width: 1.6em;
+      text-align: center;
+      flex-shrink: 0;
+    }
     .hero-bullets li {
       display: flex; align-items: flex-start; gap: 10px;
-      padding: 6px 0; font-size: 14px;
-      color: rgba(255,255,255,0.9);
+      padding: 7px 0; font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.45;
+    }
+    .hero-bullets li strong {
+      color: #FFFFFF;
+      font-weight: 700;
     }
     .hero-bullets li::before {
       content: '✓'; color: var(--verde);
@@ -556,6 +576,56 @@
         animation:
           bubble-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
           bubble-float 5s ease-in-out infinite;
+        cursor: default;
+        pointer-events: auto; /* habilitar hover individual aunque el contenedor sea pointer-events:none */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .mod-bubble:hover {
+        transform: scale(1.15) !important;
+        box-shadow: 0 10px 26px rgba(0,0,0,0.25),
+                    inset 0 1px 0 rgba(255,255,255,0.5);
+        animation-play-state: paused;
+        z-index: 10;
+      }
+
+      /* Tooltip con el nombre del módulo */
+      .mod-bubble::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(4px);
+        background: var(--azul);
+        color: #fff;
+        font-size: 11.5px;
+        font-weight: 700;
+        padding: 5px 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        font-family: 'Quicksand', sans-serif;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      }
+      .mod-bubble::before {
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 3px);
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: var(--azul);
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        pointer-events: none;
+      }
+      .mod-bubble:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .mod-bubble:hover::before {
+        opacity: 1;
       }
       .mod-bubble.mod-bubble-wa {
         background: linear-gradient(135deg, #25D366, #128C7E);
@@ -564,6 +634,12 @@
         font-size: 28px;
         box-shadow: 0 8px 26px rgba(37,211,102,0.5),
                     inset 0 1px 0 rgba(255,255,255,0.3);
+      }
+      .mod-bubble.mod-bubble-wa::after {
+        background: #25D366;
+      }
+      .mod-bubble.mod-bubble-wa::before {
+        border-top-color: #25D366;
       }
 
       /* Posiciones alrededor del personaje */
@@ -1491,16 +1567,16 @@
 
         <h1 id="hero-h1">Tu obra bajo control, <em>donde estés</em>.</h1>
 
+        <ul class="hero-bullets hero-bullets-q" id="hero-bullets">
+          <li data-icon="💰">¿Cuánto tenés en la caja de cada obra?</li>
+          <li data-icon="🏗️">¿Cuánto te queda acopiado?</li>
+          <li data-icon="📊">¿Cómo avanzan la obra, el presupuesto y los márgenes?</li>
+        </ul>
+
         <p class="hero-sub" id="hero-sub">
-          Gastos, stock, presupuesto y avance — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.
+          Todo esto <strong>desde WhatsApp <i class="fab fa-whatsapp hero-wa-icon"></i></strong>.
           <span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>
         </p>
-
-        <ul class="hero-bullets" id="hero-bullets">
-          <li>Foto al ticket o audio al bot → cargado en segundos</li>
-          <li>Stock y herramientas con trazabilidad por obra</li>
-          <li>Desvíos de presupuesto detectados antes del cierre</li>
-        </ul>
 
         <div class="hero-ctas">
           <button class="btn btn-primary" onclick="abrirModalAgendar()">
@@ -1520,16 +1596,16 @@
 
         <!-- Burbujas flotantes con los 8 módulos + WhatsApp (desktop only) -->
         <div class="hero-module-bubbles" aria-hidden="true">
-          <span class="mod-bubble mod-bubble-wa" title="Todo desde WhatsApp">
+          <span class="mod-bubble mod-bubble-wa" data-label="Todo desde WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </span>
-          <span class="mod-bubble mod-bubble-1" title="Gestión de Caja">💰</span>
-          <span class="mod-bubble mod-bubble-2" title="Presupuestos">📊</span>
-          <span class="mod-bubble mod-bubble-3" title="Reportes">📈</span>
-          <span class="mod-bubble mod-bubble-4" title="Acopio">🏗️</span>
-          <span class="mod-bubble mod-bubble-5" title="Notas de Pedido">📋</span>
-          <span class="mod-bubble mod-bubble-6" title="Stock & Herramientas">🔧</span>
-          <span class="mod-bubble mod-bubble-7" title="Plan de Cobro">💸</span>
+          <span class="mod-bubble mod-bubble-1" data-label="Gestión de Caja">💰</span>
+          <span class="mod-bubble mod-bubble-2" data-label="Control de Presupuestos">📊</span>
+          <span class="mod-bubble mod-bubble-3" data-label="Reportes">📈</span>
+          <span class="mod-bubble mod-bubble-4" data-label="Acopio de Materiales">🏗️</span>
+          <span class="mod-bubble mod-bubble-5" data-label="Notas de Pedido">📋</span>
+          <span class="mod-bubble mod-bubble-6" data-label="Stock & Herramientas">🔧</span>
+          <span class="mod-bubble mod-bubble-7" data-label="Plan de Cobro">💸</span>
         </div>
       </div>
 
@@ -4365,11 +4441,11 @@ const menuToggle = document.querySelector('.menu-toggle');
       constructora: {
         teaser: 'Si la obra me dio o no, me di cuenta cuando ya terminó.',
         h1: 'Tu obra bajo control, <em>donde estés</em>.',
-        sub: 'Gastos, stock, presupuesto y avance — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>',
+        sub: 'Todo esto <strong>desde WhatsApp <i class="fab fa-whatsapp hero-wa-icon"></i></strong>.<span class="hero-sub-secondary">El equipo carga. <strong>Vos decidís.</strong></span>',
         bullets: [
-          'Foto al ticket o audio al bot → cargado en segundos',
-          'Stock, presupuesto por rubro y avance en tiempo real',
-          'Margen real por obra antes del cierre — no después'
+          { icon: '💰', text: '¿Cuánto tenés en la caja de cada obra?' },
+          { icon: '🏗️', text: '¿Cuánto te queda acopiado?' },
+          { icon: '📊', text: '¿Cómo avanzan la obra, el presupuesto y los márgenes?' }
         ],
         quotes: [
           { text: 'Si salieron 200 bolsas de cemento y eran 50, quiero saber quién lo autorizó.', author: 'Dueño de constructora · reunión de venta', solucion: 'Notas de pedido con trazabilidad: quién pidió qué, cuándo, y qué llegó realmente.' },
@@ -4380,11 +4456,11 @@ const menuToggle = document.querySelector('.menu-toggle');
       estudio: {
         teaser: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.',
         h1: 'Lo que pasa en la obra, <em>ordenado solo</em>.',
-        sub: 'Gastos, pedidos y avances — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente. <strong>Vos decidís.</strong></span>',
+        sub: 'Todo esto <strong>desde WhatsApp <i class="fab fa-whatsapp hero-wa-icon"></i></strong>.<span class="hero-sub-secondary">Sin armar planillas para el comitente. <strong>Vos decidís.</strong></span>',
         bullets: [
-          'Cargá gastos hablándole al bot (modo audio)',
-          'Certificados de avance con aprobación del comitente, por link',
-          'Presupuesto vs ejecutado por rubro en vivo — no enterarse al final'
+          { icon: '💸', text: '¿Cuánto gastó tu cliente este mes en obra?' },
+          { icon: '📋', text: '¿Cuánto certificaste y cuánto te falta?' },
+          { icon: '📦', text: '¿Qué pedidos quedaron pendientes con el proveedor?' }
         ],
         quotes: [
           { text: 'Me llega tarde de la obra y tenía gastos acumulados que ya no recordaba.', author: 'Arquitecta · reunión de venta', solucion: 'Bot de voz: cargás gastos hablándole al chat en el momento, sin escribir.' },
@@ -4395,11 +4471,11 @@ const menuToggle = document.querySelector('.menu-toggle');
       desarrolladora: {
         teaser: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.',
         h1: 'El control financiero <em>que los inversores te piden</em>.',
-        sub: 'Presupuesto, avance, cobros e info para socios — <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano. <strong>Vos decidís.</strong></span>',
+        sub: 'Todo esto <strong>en un panel</strong>.<span class="hero-sub-secondary">Sin armar reportes a mano. <strong>Vos decidís.</strong></span>',
         bullets: [
-          'Presupuesto por rubro con avance certificado en vivo',
-          'Plan de cobros con cuotas que se desbloquean al certificar',
-          'Reporte automático para inversores y caja multi-banco'
+          { icon: '💸', text: '¿Cuánto cobré y cuánto me falta por unidad?' },
+          { icon: '📊', text: '¿Cómo va el presupuesto vs lo ejecutado por rubro?' },
+          { icon: '📈', text: '¿Qué les muestro a mis socios e inversores hoy?' }
         ],
         quotes: [
           { text: 'Los socios me preguntan cómo va la obra y yo tengo que armar algo aparte cada vez.', author: 'Director financiero · reunión de venta', solucion: 'Reporte para inversores actualizado automáticamente, compartido por link.' },
@@ -4410,11 +4486,11 @@ const menuToggle = document.querySelector('.menu-toggle');
       corralon: {
         teaser: 'Saco materiales con remito 30, 60 y 90 días y recién cuando cierro sé cuánto debo.',
         h1: 'Acopios, cuentas corrientes y multi-sucursal, <em>en un solo lugar</em>.',
-        sub: 'Acopios, CC y multi-sucursal — <strong>desde <i class="fab fa-whatsapp hero-wa-icon"></i> WhatsApp</strong>.<span class="hero-sub-secondary">El equipo lo opera. <strong>Vos decidís.</strong></span>',
+        sub: 'Todo esto <strong>desde WhatsApp <i class="fab fa-whatsapp hero-wa-icon"></i></strong>.<span class="hero-sub-secondary">El equipo opera. <strong>Vos decidís.</strong></span>',
         bullets: [
-          'Acopios con clientes y proveedores',
-          'Cuenta corriente de cada cliente al día',
-          'Alerta automática si el precio del proveedor no coincide'
+          { icon: '💳', text: '¿Cuánto me debe cada cliente?' },
+          { icon: '🧾', text: '¿Cuánto le debo a cada proveedor?' },
+          { icon: '🏬', text: '¿Qué quedó acopiado en cada sucursal?' }
         ],
         quotes: [
           { text: 'Tengo que estar llamando a ver: este remito, ¿a qué factura corresponde?', author: 'Proveedora de materiales · reunión de venta', solucion: 'Acopios con remitos vinculados a facturas, todo en una vista.' },
@@ -4434,7 +4510,11 @@ const menuToggle = document.querySelector('.menu-toggle');
       document.getElementById('hero-sub').innerHTML = cfg.sub;
 
       document.getElementById('hero-bullets').innerHTML =
-        cfg.bullets.map(b => `<li>${b}</li>`).join('');
+        cfg.bullets.map(b => {
+          // Soporta objeto {icon, text} o string suelto (legacy)
+          if (typeof b === 'string') return `<li>${b}</li>`;
+          return `<li data-icon="${b.icon || ''}">${b.text}</li>`;
+        }).join('');
 
       document.getElementById('quotes-grid').innerHTML =
         cfg.quotes.map(q => `
