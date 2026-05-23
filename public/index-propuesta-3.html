@@ -3283,7 +3283,7 @@
           <p class="modal-sub modal-sub-only">15 min · online</p>
 
           <!-- Desktop: Skeleton loading -->
-          <div class="modal-skeleton" id="modalSkeleton">
+          <div class="modal-skeleton hidden" id="modalSkeleton">
             <div class="modal-skeleton-msg">Buscando los próximos horarios…</div>
             <div class="modal-skeleton-row">
               <div class="modal-skeleton-col"><div class="modal-skeleton-header"></div><div class="modal-skeleton-slots"><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div><div class="modal-skeleton-pill"></div></div></div>
@@ -3294,8 +3294,11 @@
             </div>
           </div>
 
-          <!-- Mobile: Skeleton loading -->
-          <div class="modal-skeleton-mobile" id="modalSkeletonMobile">
+          <!-- Mobile: Skeleton loading. Arranca con .hidden — sólo se
+               muestra mientras esperamos la respuesta del /slots. Si el
+               prefetch al cargar la página ya completó, el modal renderiza
+               la grilla directo sin pasar por skeleton. -->
+          <div class="modal-skeleton-mobile hidden" id="modalSkeletonMobile">
             <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
             <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
             <div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div><div class="modal-skeleton-mobile-pill"></div>
@@ -4208,8 +4211,10 @@ const menuToggle = document.querySelector('.menu-toggle');
         var calEl = document.getElementById('modalCalendar');
         var mobileSlots = document.getElementById('modalMobileSlots');
 
-        // Camino rápido: ya tenemos data del prefetch — render inmediato sin skeleton.
+        // Camino rápido: ya tenemos data del prefetch — render inmediato.
+        // Forzamos hideSkeleton por si algún flujo lo había dejado visible.
         if (_slotsData && _slotsData.length) {
+          hideSkeleton();
           _calPage = 0;
           _activeTab = 0;
           renderCalendar();
