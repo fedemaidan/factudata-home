@@ -3828,9 +3828,26 @@ const menuToggle = document.querySelector('.menu-toggle');
         }
       });
 
+      // Generador simple de UUIDs para event_id (dedup Pixel ↔ CAPI).
+      function _genEventId() {
+        try {
+          if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+        } catch (_) {}
+        return 'evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+      }
+
       function _trackStep(step) {
         if (_tracked[step]) return; // solo una vez por apertura
         _tracked[step] = true;
+        // event_id compartido: si el step mapea a un evento estándar de FB
+        // (Contact / StartTrial), disparamos también el Pixel cliente con
+        // el mismo eventID para deduplicación contra el CAPI del backend.
+        var eventId = _genEventId();
+        var pixelMap = { open: 'Contact', select: 'StartTrial' };
+        var pixelEvent = pixelMap[step];
+        if (pixelEvent) {
+          try { fbq('track', pixelEvent, {}, { eventID: eventId }); } catch (_) {}
+        }
         // mode: no-cors — es fire-and-forget, no necesitamos leer la respuesta
         fetch(SORBY_API + '/api/agendar/track', {
           method: 'POST',
@@ -3838,6 +3855,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({
             step: step,
+            eventId: eventId,
+            url: location.href,
             fbc: getCookie('_fbc') || '',
             fbp: getCookie('_fbp') || '',
             userAgent: navigator.userAgent
@@ -3853,8 +3872,9 @@ const menuToggle = document.querySelector('.menu-toggle');
         _categoriaSeleccionada = null;
         mostrarStep(1);
         _funnelStep('/horario', 'ViewContent', { content_name: 'agendar_horario', funnel_step: 'horario' });
-        // Pre-cargar slots en background
-        if (!_slotsData) { cargarSlots(); }
+        // Render desde caché si el prefetch ya respondió; si todavía está en vuelo
+        // o falló, cargarSlots() se engancha al promise existente y muestra el skeleton.
+        cargarSlots();
       }
 
       var _categoriaNombres = {
@@ -3957,49 +3977,96 @@ const menuToggle = document.querySelector('.menu-toggle');
         if (skm) skm.classList.add('hidden');
       }
 
+      // Promise compartida: se resuelve UNA sola vez por sesión. Permite
+      // pre-cachear los slots al cargar la página sin tener que esperar a
+      // que el usuario abra el modal. Si el fetch falla, se limpia para
+      // permitir reintento.
+      var _slotsPromise = null;
+      function _fetchSlotsOnce() {
+        if (_slotsPromise) return _slotsPromise;
+        _slotsPromise = fetch(SORBY_API + '/api/agendar/slots')
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            if (data && data.ok && data.slots) {
+              _slotsData = data.slots.filter(function(d) { return d.slots.length > 0; });
+            }
+            return data;
+          })
+          .catch(function(err) {
+            _slotsPromise = null; // permitir reintento en próxima apertura del modal
+            throw err;
+          });
+        return _slotsPromise;
+      }
+
+      function _applySlotsHint() {
+        try {
+          var hintEl = document.getElementById('modalNextSlotHint');
+          if (hintEl && _slotsData && _slotsData[0] && _slotsData[0].slots[0]) {
+            var firstDay = _slotsData[0];
+            var firstSlot = _slotsData[0].slots[0];
+            var dayName = _smartDayLabel(firstDay);
+            var parts = firstDay.label.split(' ');
+            hintEl.textContent = dayName + ' ' + parts[1] + ' ' + parts[2] + ' · ' + firstSlot.time + ' hs';
+          }
+        } catch (_) {}
+      }
+
       function cargarSlots() {
         var calEl = document.getElementById('modalCalendar');
         var mobileSlots = document.getElementById('modalMobileSlots');
-        showSkeleton();
-        calEl.innerHTML = '';
-        mobileSlots.innerHTML = '';
 
-        fetch(SORBY_API + '/api/agendar/slots')
-          .then(function(r) { return r.json(); })
+        // Camino rápido: ya tenemos data del prefetch — render inmediato sin skeleton.
+        if (_slotsData && _slotsData.length) {
+          _calPage = 0;
+          _activeTab = 0;
+          renderCalendar();
+          _applySlotsHint();
+          return;
+        }
+
+        showSkeleton();
+        if (calEl) calEl.innerHTML = '';
+        if (mobileSlots) mobileSlots.innerHTML = '';
+
+        _fetchSlotsOnce()
           .then(function(data) {
             hideSkeleton();
-            if (!data.ok || !data.slots || !data.slots.length) {
-              calEl.innerHTML = '<div class="modal-no-slots">No hay horarios disponibles. Intentá más tarde.</div>';
-              mobileSlots.innerHTML = '<div class="modal-mobile-empty">No hay horarios disponibles.</div>';
+            if (!data || !data.ok || !data.slots || !data.slots.length) {
+              if (calEl) calEl.innerHTML = '<div class="modal-no-slots">No hay horarios disponibles. Intentá más tarde.</div>';
+              if (mobileSlots) mobileSlots.innerHTML = '<div class="modal-mobile-empty">No hay horarios disponibles.</div>';
               return;
             }
-            _slotsData = data.slots.filter(function(d) { return d.slots.length > 0; });
             _calPage = 0;
             _activeTab = 0;
             renderCalendar();
-            // M3 — Actualizar el hint del CTA principal con el primer horario disponible
-            try {
-              var hintEl = document.getElementById('modalNextSlotHint');
-              if (hintEl && _slotsData[0] && _slotsData[0].slots[0]) {
-                var firstDay = _slotsData[0];
-                var firstSlot = _slotsData[0].slots[0];
-                var dayName = _smartDayLabel(firstDay);
-                var parts = firstDay.label.split(' ');
-                hintEl.textContent = dayName + ' ' + parts[1] + ' ' + parts[2] + ' · ' + firstSlot.time + ' hs';
-              }
-            } catch (_) {}
+            _applySlotsHint();
           })
           .catch(function() {
             hideSkeleton();
-            calEl.innerHTML = '<div class="modal-no-slots">Error cargando horarios. Intentá más tarde.</div>';
-            document.getElementById('modalMobileSlots').innerHTML = '<div class="modal-mobile-empty">Error cargando horarios.</div>';
-            // M3 — Si falla la carga, sugerir WhatsApp como alternativa en el botón principal
+            if (calEl) calEl.innerHTML = '<div class="modal-no-slots">Error cargando horarios. Intentá más tarde.</div>';
+            var ms = document.getElementById('modalMobileSlots');
+            if (ms) ms.innerHTML = '<div class="modal-mobile-empty">Error cargando horarios.</div>';
             try {
               var hintEl = document.getElementById('modalNextSlotHint');
               if (hintEl) hintEl.textContent = 'No pude cargar los horarios — probá WhatsApp ↓';
             } catch (_) {}
           });
       }
+
+      // ── Prefetch de slots al cargar la página ─────────────────────────
+      // Disparamos el fetch en background (con un pequeño delay para no
+      // competir con recursos críticos del render inicial). Cuando el
+      // usuario abra el modal, lo más probable es que la respuesta ya esté
+      // cacheada en _slotsData y el render sea instantáneo.
+      try {
+        var _kickPrefetch = function() { _fetchSlotsOnce().catch(function() {}); };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(_kickPrefetch, { timeout: 2000 });
+        } else {
+          setTimeout(_kickPrefetch, 800);
+        }
+      } catch (_) {}
 
       function renderCalendar() {
         if (!_slotsData || !_slotsData.length) return;
@@ -4322,6 +4389,9 @@ const menuToggle = document.querySelector('.menu-toggle');
           4: 'Profesional independiente',
           5: 'Proveedor de materiales / Corralón'
         };
+        // event_id único para deduplicar el Lead/Schedule entre Pixel (cliente)
+        // y el CAPI (backend). Mismo id en ambos lados.
+        var bookingEventId = _genEventId();
         var body = {
           name: nombre,
           email: email,
@@ -4331,8 +4401,23 @@ const menuToggle = document.querySelector('.menu-toggle');
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
           utm_campaign: getURLParameter('utm_campaign') || '',
-          userAgent: navigator.userAgent
+          userAgent: navigator.userAgent,
+          url: location.href,
+          eventId: bookingEventId
         };
+
+        // 🎯 Identificación en Clarity: el email es el id estable.
+        // Permite buscar grabaciones por email/nombre en el dashboard
+        // y stitch sessions del mismo usuario en distintas visitas.
+        try {
+          if (typeof window.clarity === 'function') {
+            window.clarity('identify', email, undefined, undefined, nombre || email);
+            window.clarity('set', 'email', email);
+            if (nombre) window.clarity('set', 'nombre', nombre);
+            if (empresa) window.clarity('set', 'empresa', empresa);
+            if (telefono) window.clarity('set', 'telefono', telefono);
+          }
+        } catch (_) {}
 
         if (_isAsap) {
           body.asap = true;
