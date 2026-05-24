@@ -2706,6 +2706,28 @@
       .modal-skeleton-pill:nth-child(4) { animation-delay: 0.45s; }
       @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
       .modal-skeleton.hidden, .modal-skeleton-mobile.hidden { display: none !important; }
+
+      /* Botón "Ver más horarios" — escape route cuando los 5 curados no
+         alcanzan. Global (no en media query) para que span 1/-1 funcione
+         tanto en grid 3-col mobile como en grid 3-col desktop. */
+      .modal-slot-more-btn {
+        grid-column: 1 / -1;
+        background: transparent;
+        border: 1px dashed #00B2D4;
+        color: #00B2D4;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 600;
+        font-size: 0.95em;
+        cursor: pointer;
+        margin-top: 4px;
+        transition: all 0.15s;
+      }
+      .modal-slot-more-btn:hover {
+        background: #f0fbfd;
+        border-style: solid;
+      }
       /* Phone hint */
       .modal-hint {
         font-size: 1.05em;
@@ -3344,25 +3366,15 @@
           <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
             <label for="modalNombre">Tu nombre *</label>
             <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_nombre')">
-            <label for="modalEmail">Tu email *</label>
+            <div class="modal-hint" style="margin:-4px 0 8px;color:#666;font-size:.85em">📌 Necesitamos email <strong>o</strong> WhatsApp para confirmar</div>
+            <label for="modalEmail">Tu email <span style="font-weight:400;color:#999">(opcional si dejás WhatsApp)</span></label>
             <input type="email" id="modalEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarForm()" onfocus="_trackStep('focus_email');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_email')">
-            <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <label for="modalTelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional si dejás email)</span></label>
             <input type="tel" id="modalTelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" oninput="validarForm()" onfocus="_trackStep('focus_telefono');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_telefono')">
             <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
             <label for="modalEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
             <input type="text" id="modalEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_empresa')">
             <div class="modal-error" id="modalError2" style="display:none"></div>
-
-            <!-- Bloque que aparece cuando hay WhatsApp pero no email -->
-            <div class="modal-wa-prompt" id="modalWaPrompt" style="display:none">
-              <div class="modal-wa-prompt-msg">
-                ¿Querés agendar desde acá? <strong>Completá el mail</strong>.<br>
-                <span>O agendá directamente por WhatsApp con todo lo que ya cargaste:</span>
-              </div>
-              <button type="button" class="modal-wa-prompt-btn" onclick="agendarPorWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
-              </button>
-            </div>
 
             <button type="submit" id="modalSubmitBtn" class="modal-btn modal-btn-primary btn-incomplete">Confirmar agendamiento <i class="fa fa-check" style="margin-left:6px;font-size:.85em"></i></button>
           </form>
@@ -3377,12 +3389,12 @@
             <h3>¡Listo! Tu demo está reservada</h3>
             <p class="modal-fecha-resumen-wrap"><i class="fa fa-calendar"></i> <span class="modal-fecha-resumen" id="modalResumenFecha"></span></p>
 
-            <div class="modal-next-steps">
-              <div class="modal-next-step-item">
+            <div class="modal-next-steps" id="modalNextSteps">
+              <div class="modal-next-step-item" id="modalNextStepWA" style="display:none">
                 <i class="fab fa-whatsapp"></i>
-                <span>Te llegará un <strong>WhatsApp en 5 minutos</strong> para confirmar.</span>
+                <span>Te llegará un <strong>WhatsApp con el link de Meet</strong> en unos minutos.</span>
               </div>
-              <div class="modal-next-step-item">
+              <div class="modal-next-step-item" id="modalNextStepEmail" style="display:none">
                 <i class="fa fa-envelope"></i>
                 <span>Y un <strong>email con el link de Meet</strong>.</span>
               </div>
@@ -4314,6 +4326,25 @@ const menuToggle = document.querySelector('.menu-toggle');
         }
       }
 
+      // ── Curado de slots ─────────────────────────────────────────────
+      // Mostramos pocos horarios por día (paradox of choice: 18 slots
+      // reduce booking rate ~15-20% vs 5 curados). Tomamos muestras bien
+      // espaciadas a lo largo del día — siempre incluye el primero y el
+      // último. El usuario puede expandir con "Ver más".
+      var SLOTS_VISIBLES = 5;
+      var _expandedDays = {}; // { [dayIndex]: true }
+      function _curarSlots(slots, maxCount) {
+        maxCount = maxCount || SLOTS_VISIBLES;
+        if (!slots || slots.length <= maxCount) return slots || [];
+        var step = (slots.length - 1) / (maxCount - 1);
+        var seen = {}, picked = [];
+        for (var i = 0; i < maxCount; i++) {
+          var idx = Math.round(i * step);
+          if (!seen[idx]) { seen[idx] = true; picked.push(slots[idx]); }
+        }
+        return picked;
+      }
+
       // ── Desktop: 5-col grid ──
       function renderDesktopCalendar() {
         var calEl = document.getElementById('modalCalendar');
@@ -4323,7 +4354,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         var start = _calPage * DAYS_PER_PAGE;
         var daysToShow = _slotsData.slice(start, start + DAYS_PER_PAGE);
 
-        daysToShow.forEach(function(day) {
+        daysToShow.forEach(function(day, idx) {
+          var globalIdx = start + idx;
           var col = document.createElement('div');
           col.className = 'modal-cal-day';
 
@@ -4337,7 +4369,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           var slotsContainer = document.createElement('div');
           slotsContainer.className = 'modal-cal-slots';
 
-          day.slots.forEach(function(slot) {
+          var slotsToRender = _expandedDays[globalIdx] ? day.slots : _curarSlots(day.slots);
+          slotsToRender.forEach(function(slot) {
             var pill = document.createElement('div');
             pill.className = 'modal-slot-pill';
             pill.textContent = slot.time;
@@ -4346,6 +4379,21 @@ const menuToggle = document.querySelector('.menu-toggle');
           });
 
           col.appendChild(slotsContainer);
+
+          var hidden = day.slots.length - slotsToRender.length;
+          if (hidden > 0) {
+            var moreBtn = document.createElement('button');
+            moreBtn.type = 'button';
+            moreBtn.className = 'modal-slot-more-btn';
+            moreBtn.textContent = '+ ' + hidden + ' horarios más';
+            moreBtn.addEventListener('click', function() {
+              _expandedDays[globalIdx] = true;
+              try { _trackStep && _trackStep('expandio_horarios'); } catch (_) {}
+              renderDesktopCalendar();
+            });
+            col.appendChild(moreBtn);
+          }
+
           calEl.appendChild(col);
         });
 
@@ -4423,13 +4471,28 @@ const menuToggle = document.querySelector('.menu-toggle');
           return;
         }
 
-        day.slots.forEach(function(slot) {
+        var slotsToRender = _expandedDays[_activeTab] ? day.slots : _curarSlots(day.slots);
+        slotsToRender.forEach(function(slot) {
           var pill = document.createElement('div');
           pill.className = 'modal-slot-pill';
           pill.textContent = slot.time;
           pill.addEventListener('click', function() { seleccionarSlot(day, slot, pill); });
           container.appendChild(pill);
         });
+
+        var hidden = day.slots.length - slotsToRender.length;
+        if (hidden > 0) {
+          var moreBtn = document.createElement('button');
+          moreBtn.type = 'button';
+          moreBtn.className = 'modal-slot-more-btn';
+          moreBtn.textContent = '+ ' + hidden + ' horarios más';
+          moreBtn.addEventListener('click', function() {
+            _expandedDays[_activeTab] = true;
+            try { _trackStep && _trackStep('expandio_horarios'); } catch (_) {}
+            renderMobileSlots();
+          });
+          container.appendChild(moreBtn);
+        }
       }
 
       // ── Quick action: primer horario ──
@@ -4498,22 +4561,18 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       // ── Form validation: enable/disable submit ──
+      // Email es opcional siempre que haya WhatsApp válido (y viceversa).
       function validarForm() {
         var nombre = document.getElementById('modalNombre').value.trim();
         var email = document.getElementById('modalEmail').value.trim();
+        var telefono = document.getElementById('modalTelefono').value.trim().replace(/\D/g, '');
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var telefonoOk = telefono.length >= 8 && telefono.length <= 15;
         var btn = document.getElementById('modalSubmitBtn');
 
-        // El botón siempre es clickeable: si el form está incompleto se ve "gris"
-        // pero deja disparar onsubmit → enviarBooking() decide qué mostrar.
-        var incomplete = !(nombre.length > 0 && emailOk);
+        var incomplete = !(nombre.length > 0 && (emailOk || telefonoOk));
         btn.disabled = false;
         btn.classList.toggle('btn-incomplete', incomplete);
-
-        // Mientras escribe NO mostramos el prompt de WhatsApp (confunde).
-        // Sólo aparece si clickea Confirmar con datos incompletos pero WA válido.
-        var waPrompt = document.getElementById('modalWaPrompt');
-        if (waPrompt && incomplete) waPrompt.style.display = 'none';
       }
 
       // ── Agendar por WhatsApp con info pre-llenada del form ──
@@ -4606,24 +4665,14 @@ const menuToggle = document.querySelector('.menu-toggle');
         var empresa = document.getElementById('modalEmpresa').value.trim();
         var errEl = document.getElementById('modalError2');
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        var telefonoOk = telefono.length >= 8;
+        var telefonoOk = telefono.length >= 8 && telefono.length <= 15;
 
-        if (!nombre || !emailOk) {
+        // Email O WhatsApp — necesitamos al menos uno para confirmar.
+        if (!nombre || (!emailOk && !telefonoOk)) {
           _trackStep('submit_validation_error');
-
-          // Si el usuario clickeó Confirmar con datos incompletos pero ya cargó
-          // un WhatsApp válido, ofrecerle el path de WhatsApp como alternativa.
-          var waPrompt = document.getElementById('modalWaPrompt');
-          if (telefonoOk && waPrompt) {
-            waPrompt.style.display = 'block';
-            _trackStep('mostro_wa_prompt');
-            // Scroll suave al prompt para que el usuario lo vea
-            try { waPrompt.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch(_) {}
-            errEl.style.display = 'none';
-            return false;
-          }
-
-          errEl.textContent = !nombre ? 'Completá tu nombre' : 'Completá un email válido para confirmar';
+          errEl.textContent = !nombre
+            ? 'Completá tu nombre'
+            : 'Dejanos tu email o WhatsApp para confirmar';
           errEl.style.display = 'block';
           return false;
         }
@@ -4645,8 +4694,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         var bookingEventId = _genEventId();
         var body = {
           name: nombre,
-          email: email,
-          phone: telefono || undefined,
+          email: emailOk ? email : undefined,
+          phone: telefonoOk ? telefono : undefined,
           empresa: empresa || undefined,
           categoria: _categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined,
           fbc: getCookie('_fbc') || '',
@@ -4714,6 +4763,16 @@ const menuToggle = document.querySelector('.menu-toggle');
           } else {
             var resumenTxt = data.fecha + ' a las ' + data.hora + ' hs';
             document.getElementById('modalResumenFecha').textContent = resumenTxt;
+            // Mostrar dinámicamente qué canales recibirán la confirmación
+            // según lo que cargó el usuario (email opcional).
+            try {
+              var hasEmail = !!body.email;
+              var hasPhone = !!body.phone;
+              var waEl = document.getElementById('modalNextStepWA');
+              var emEl = document.getElementById('modalNextStepEmail');
+              if (waEl) waEl.style.display = hasPhone ? '' : 'none';
+              if (emEl) emEl.style.display = hasEmail ? '' : 'none';
+            } catch (_) {}
             generarICS();
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'demo_agendada_inline' });
