@@ -4090,7 +4090,11 @@ const menuToggle = document.querySelector('.menu-toggle');
         _funnelReset();
         _categoriaSeleccionada = null;
         mostrarStep(1);
-        _funnelStep('/horario', 'ViewContent', { content_name: 'agendar_horario', funnel_step: 'horario' });
+        // ❌ ViewContent NO se dispara al abrir el modal. Movido a "eligió horario"
+        // para mejorar la calidad de la señal que Meta optimiza. Al abrir solo
+        // trackeamos pushState + Clarity (sin pixel) para mantener la atribución
+        // de paso interno del funnel.
+        _funnelStep('/horario', null, { content_name: 'agendar_horario', funnel_step: 'horario' });
         // Render desde caché si el prefetch ya respondió; si todavía está en vuelo
         // o falló, cargarSlots() se engancha al promise existente y muestra el skeleton.
         cargarSlots();
@@ -4542,6 +4546,14 @@ const menuToggle = document.querySelector('.menu-toggle');
           funnel_step: 'datos',
           datetime: (_selectedSlot && _selectedSlot.iso) || null
         });
+        // 🎯 ViewContent se dispara acá (movido desde abrir modal) para que Meta
+        // optimice por gente que llegó a elegir horario — señal de mayor calidad
+        // y filtra mejor el ruido de la audiencia upper-funnel.
+        try { fbq('track', 'ViewContent', {
+          content_name: 'agendar_horario_elegido',
+          funnel_step: 'horario_elegido',
+          datetime: (_selectedSlot && _selectedSlot.iso) || null
+        }); } catch (_) {}
         validarForm();
 
         var nombreInput = document.getElementById('modalNombre');
@@ -4562,6 +4574,13 @@ const menuToggle = document.querySelector('.menu-toggle');
           content_name: 'agendar_datos_asap',
           funnel_step: 'datos_asap'
         });
+        // 🎯 ViewContent también en ASAP — usuario de alta intención que progresó
+        // al paso de datos por la ruta de contacto inmediato. Misma lógica de
+        // calidad de señal que el flujo normal.
+        try { fbq('track', 'ViewContent', {
+          content_name: 'agendar_horario_elegido_asap',
+          funnel_step: 'horario_elegido_asap'
+        }); } catch (_) {}
         validarForm();
       }
 
