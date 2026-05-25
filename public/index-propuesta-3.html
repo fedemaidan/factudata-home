@@ -4105,6 +4105,13 @@ const menuToggle = document.querySelector('.menu-toggle');
       function seleccionarCategoriaPost(cat) {
         _clarity('seleccion_categoria', { categoria: _categoriaNombres[cat] || cat });
         _categoriaSeleccionada = cat;
+        var CATEGORIA_LABELS_POST = {
+          1: 'Constructora',
+          2: 'Estudio de arquitectura',
+          3: 'Desarrolladora',
+          4: 'Profesional independiente',
+          5: 'Proveedor de materiales / Corralón'
+        };
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'seleccion_categoria', categoria: _categoriaNombres[cat] || cat, momento: 'post_booking' });
         try {
@@ -4115,6 +4122,9 @@ const menuToggle = document.querySelector('.menu-toggle');
             body: JSON.stringify({
               step: 'category_post',
               categoria: _categoriaNombres[cat] || cat,
+              categoriaLabel: CATEGORIA_LABELS_POST[cat] || null,
+              sessionId: _sessionId,
+              phone: (document.getElementById('modalTelefono') || {}).value || '',
               email: (document.getElementById('modalEmail') || {}).value || '',
               datetime: (_selectedSlot && _selectedSlot.iso) || null,
               fbc: getCookie('_fbc') || '',
