@@ -3300,6 +3300,34 @@
       <div class="modal-agendar">
         <button class="modal-agendar-close" onclick="cerrarModalAgendar()">&times;</button>
 
+        <!-- PASO DatosA: variante A — datos primero, antes del calendario.
+             Los valores se sincronizan en blur a los inputs principales del
+             modalStep2 para que la submisión final reutilice el mismo flujo. -->
+        <div class="modal-step" id="modalStepDatosA">
+          <h3>Reservá tu demo</h3>
+          <p class="modal-sub">15 min · online · gratis. Te mostramos los horarios después.</p>
+          <form id="modalFormDatosA" autocomplete="on" onsubmit="return submitDatosA(event)">
+            <label for="modalDatosANombre">Tu nombre *</label>
+            <input type="text" id="modalDatosANombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarDatosA()" onfocus="_trackStep('focus_nombre_a');_trackStep('focus_form')" onblur="_syncDatosAtoMain();_enviarLeadParcial('blur_nombre_a')">
+            <div class="modal-hint" style="margin:-4px 0 8px;color:#666;font-size:.85em">📌 Necesitamos email <strong>o</strong> WhatsApp para confirmar</div>
+            <label for="modalDatosAEmail">Tu email <span style="font-weight:400;color:#999">(opcional si dejás WhatsApp)</span></label>
+            <input type="email" id="modalDatosAEmail" name="email" placeholder="Ej: juan@empresa.com" autocomplete="email" oninput="validarDatosA()" onfocus="_trackStep('focus_email_a');_trackStep('focus_form')" onblur="_syncDatosAtoMain();_enviarLeadParcial('blur_email_a')">
+            <label for="modalDatosATelefono">Tu WhatsApp <span style="font-weight:400;color:#999">(opcional si dejás email)</span></label>
+            <input type="tel" id="modalDatosATelefono" name="phone" placeholder="Ej: 1162948395" autocomplete="tel-national" oninput="validarDatosA()" onfocus="_trackStep('focus_telefono_a');_trackStep('focus_form')" onblur="_syncDatosAtoMain();_enviarLeadParcial('blur_telefono_a')">
+            <div class="modal-hint">Sin 0 ni 15. Ej: 1162948395</div>
+            <label for="modalDatosAEmpresa">Empresa <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="text" id="modalDatosAEmpresa" name="organization" placeholder="Ej: Constructora López" autocomplete="organization" onfocus="_trackStep('focus_empresa_a');_trackStep('focus_form')" onblur="_syncDatosAtoMain();_enviarLeadParcial('blur_empresa_a')">
+            <div class="modal-error" id="modalErrorDatosA" style="display:none"></div>
+            <button type="submit" id="modalDatosABtn" class="modal-btn modal-btn-primary btn-incomplete">Ver horarios disponibles <i class="fa fa-arrow-right" style="margin-left:6px;font-size:.85em"></i></button>
+          </form>
+          <div class="modal-wa-alt">
+            <span class="modal-wa-alt-label">¿Preferís hablar primero?</span>
+            <a href="#" class="modal-wa-alt-btn" onclick="contactarPorWhatsApp(event)">
+              <i class="fab fa-whatsapp"></i> Escribinos por WhatsApp
+            </a>
+          </div>
+        </div>
+
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
           <p class="modal-sub modal-sub-only">15 min · online</p>
@@ -3785,6 +3813,26 @@ const menuToggle = document.querySelector('.menu-toggle');
       // Limpiar asignación vieja del A/B en localStorage de visitantes recurrentes.
       try { localStorage.removeItem('sorby_ab_cat_position'); } catch (_) {}
 
+      // ─── A/B test: form-first (A) vs calendar-first (B) ───────────────
+      // Variante A: pedimos datos primero y captamos lead aunque no agende.
+      // Variante B: calendario primero (flujo histórico — se reactiva flippeando
+      // SORBY_AB_SPLIT_A_PCT a 50). Hoy A va al 100%. Override por
+      // ?ab=A|B (sticky en sessionStorage) o window.SORBY_AB_FORCE.
+      var SORBY_AB_SPLIT_A_PCT = 100;
+      var _variant = (function() {
+        try {
+          if (window.SORBY_AB_FORCE === 'A' || window.SORBY_AB_FORCE === 'B') return window.SORBY_AB_FORCE;
+          var qsAb = (new URLSearchParams(location.search)).get('ab');
+          if (qsAb === 'A' || qsAb === 'B') { sessionStorage.setItem('sorby_ab_variant', qsAb); return qsAb; }
+          var cached = sessionStorage.getItem('sorby_ab_variant');
+          if (cached === 'A' || cached === 'B') return cached;
+          var pick = Math.random() * 100 < SORBY_AB_SPLIT_A_PCT ? 'A' : 'B';
+          sessionStorage.setItem('sorby_ab_variant', pick);
+          return pick;
+        } catch (_) { return 'A'; }
+      })();
+      window.__sorbyVariant = _variant;
+
       // NOTA: la llamada a /landing-visit se hace MÁS ABAJO, después de
       // construir _attribution, para poder mandar UTMs/fbclid/referrer.
 
@@ -3970,6 +4018,7 @@ const menuToggle = document.querySelector('.menu-toggle');
           body: JSON.stringify({
             sessionId: _sessionId,
             attribution: _attribution,
+            variant: _variant,
             url: location.href,
             fbc: getCookie('_fbc') || '',
             fbp: getCookie('_fbp') || '',
@@ -4018,6 +4067,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             lastStep: _currentStep || undefined,
             sessionId: _sessionId,
             attribution: _attribution,
+            variant: _variant,
             name: nombre || undefined,
             email: emailOk ? email : undefined,
             phone: phoneOk ? telefono : undefined,
@@ -4079,6 +4129,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             eventId: eventId,
             sessionId: _sessionId,
             attribution: _attribution,
+            variant: _variant,
             url: location.href,
             fbc: getCookie('_fbc') || '',
             fbp: getCookie('_fbp') || '',
@@ -4091,17 +4142,101 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.getElementById('modalAgendar').classList.add('active');
         document.body.style.overflow = 'hidden';
         _trackStep('open');
+        _trackStep('open_var_' + _variant.toLowerCase());
         _funnelReset();
         _categoriaSeleccionada = null;
-        mostrarStep(1);
-        // ❌ ViewContent NO se dispara al abrir el modal. Movido a "eligió horario"
-        // para mejorar la calidad de la señal que Meta optimiza. Al abrir solo
-        // trackeamos pushState + Clarity (sin pixel) para mantener la atribución
-        // de paso interno del funnel.
-        _funnelStep('/horario', null, { content_name: 'agendar_horario', funnel_step: 'horario' });
-        // Render desde caché si el prefetch ya respondió; si todavía está en vuelo
-        // o falló, cargarSlots() se engancha al promise existente y muestra el skeleton.
+        // ❌ ViewContent NO se dispara al abrir el modal.
+        // Variante A: form-first → ViewContent al completar datos (submitDatosA).
+        // Variante B: calendar-first → ViewContent al elegir slot (irADatos).
+        if (_variant === 'A') {
+          mostrarStep('DatosA');
+          _funnelStep('/datos', null, { content_name: 'agendar_datos_a', funnel_step: 'datos_a' });
+          // Prefetch slots en background mientras tipean el form.
+          cargarSlots();
+          try { validarDatosA(); } catch (_) {}
+          var firstA = document.getElementById('modalDatosANombre');
+          if (firstA && typeof firstA.focus === 'function') setTimeout(function() { firstA.focus(); }, 30);
+        } else {
+          mostrarStep(1);
+          _funnelStep('/horario', null, { content_name: 'agendar_horario', funnel_step: 'horario' });
+          // Render desde caché si el prefetch ya respondió; si todavía está en vuelo
+          // o falló, cargarSlots() se engancha al promise existente y muestra el skeleton.
+          cargarSlots();
+        }
+      }
+
+      // ─── Variante A: form-first ──────────────────────────────────────
+      // Sincroniza los inputs del step DatosA hacia los inputs "canónicos"
+      // del step 2 para que enviarBooking() vea siempre el mismo source.
+      function _syncDatosAtoMain() {
+        try {
+          var map = [
+            ['modalDatosANombre',  'modalNombre'],
+            ['modalDatosAEmail',   'modalEmail'],
+            ['modalDatosATelefono','modalTelefono'],
+            ['modalDatosAEmpresa', 'modalEmpresa'],
+          ];
+          for (var i = 0; i < map.length; i++) {
+            var src = document.getElementById(map[i][0]);
+            var dst = document.getElementById(map[i][1]);
+            if (src && dst) dst.value = src.value;
+          }
+        } catch (_) {}
+      }
+
+      function validarDatosA() {
+        var n = (document.getElementById('modalDatosANombre').value || '').trim();
+        var e = (document.getElementById('modalDatosAEmail').value || '').trim();
+        var t = (document.getElementById('modalDatosATelefono').value || '').trim().replace(/\D/g, '');
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+        var telOk = t.length >= 8 && t.length <= 15;
+        var btn = document.getElementById('modalDatosABtn');
+        if (!btn) return;
+        var incomplete = !(n.length > 0 && (emailOk || telOk));
+        btn.disabled = false;
+        btn.classList.toggle('btn-incomplete', incomplete);
+      }
+
+      function submitDatosA(ev) {
+        if (ev && ev.preventDefault) ev.preventDefault();
+        _trackStep('submit_datos_a');
+        var nombre = (document.getElementById('modalDatosANombre').value || '').trim();
+        var email = (document.getElementById('modalDatosAEmail').value || '').trim();
+        var telefono = (document.getElementById('modalDatosATelefono').value || '').trim().replace(/\D/g, '');
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var telOk = telefono.length >= 8 && telefono.length <= 15;
+        var errEl = document.getElementById('modalErrorDatosA');
+        if (!nombre || (!emailOk && !telOk)) {
+          _trackStep('submit_datos_a_validation_error');
+          if (errEl) {
+            errEl.textContent = !nombre ? 'Completá tu nombre' : 'Dejanos tu email o WhatsApp';
+            errEl.style.display = 'block';
+          }
+          return false;
+        }
+        if (errEl) errEl.style.display = 'none';
+        _syncDatosAtoMain();
+
+        // 🎯 Variante A: el lead "se completó" ahora — ViewContent acá.
+        // Reemplaza el disparo histórico en slot pick (que se mantiene en B).
+        try { fbq('track', 'ViewContent', {
+          content_name: 'agendar_datos_completos_a',
+          funnel_step: 'datos_completos',
+          variant: 'A'
+        }); } catch (_) {}
+
+        // Snapshot inmediato del lead parcial: si abandona en el calendario,
+        // el SDR igual lo recibe en el CRM.
+        _enviarLeadParcial('datos_a_submit');
+
         cargarSlots();
+        mostrarStep(1);
+        _funnelStep('/horario', 'InitiateCheckout', {
+          content_name: 'agendar_horario_a',
+          funnel_step: 'horario_a',
+          variant: 'A'
+        });
+        return false;
       }
 
       var _categoriaNombres = {
@@ -4135,6 +4270,7 @@ const menuToggle = document.querySelector('.menu-toggle');
               categoria: _categoriaNombres[cat] || cat,             // slug (para Clarity/dataLayer compat)
               categoriaLabel: CATEGORIA_LABELS_POST[cat] || null,    // label legible → ContactoSDR.rubro
               sessionId: _sessionId,
+              variant: _variant,
               phone: (document.getElementById('modalTelefono') || {}).value || '',
               email: (document.getElementById('modalEmail') || {}).value || '',
               datetime: (_selectedSlot && _selectedSlot.iso) || null,
@@ -4184,7 +4320,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         // 🔭 Tracking granular: registrar la vista efectiva de cada step.
         // Esto separa "tocó píldora" (track 'select') de "el form se renderizó
         // y el usuario lo vio realmente" (track 'view_datos').
-        if (n === 2) _trackStep('view_datos');
+        if (n === 'DatosA') _trackStep('view_datos_a');
+        else if (n === 2) _trackStep('view_datos');
         else if (n === 3) _trackStep('view_listo');
         else if (n === '3b' || n === 3.1) _trackStep('view_listo_asap');
         else if (n === 'CatB') _trackStep('view_cat_post');
@@ -4560,14 +4697,15 @@ const menuToggle = document.querySelector('.menu-toggle');
           funnel_step: 'datos',
           datetime: (_selectedSlot && _selectedSlot.iso) || null
         });
-        // 🎯 ViewContent se dispara acá (movido desde abrir modal) para que Meta
-        // optimice por gente que llegó a elegir horario — señal de mayor calidad
-        // y filtra mejor el ruido de la audiencia upper-funnel.
-        try { fbq('track', 'ViewContent', {
-          content_name: 'agendar_horario_elegido',
-          funnel_step: 'horario_elegido',
-          datetime: (_selectedSlot && _selectedSlot.iso) || null
-        }); } catch (_) {}
+        // 🎯 ViewContent: en variante B sigue disparando acá (slot pick).
+        // En variante A ya disparó en submitDatosA → evitamos doble conteo.
+        if (_variant !== 'A') {
+          try { fbq('track', 'ViewContent', {
+            content_name: 'agendar_horario_elegido',
+            funnel_step: 'horario_elegido',
+            datetime: (_selectedSlot && _selectedSlot.iso) || null
+          }); } catch (_) {}
+        }
         validarForm();
 
         var nombreInput = document.getElementById('modalNombre');
@@ -4588,13 +4726,13 @@ const menuToggle = document.querySelector('.menu-toggle');
           content_name: 'agendar_datos_asap',
           funnel_step: 'datos_asap'
         });
-        // 🎯 ViewContent también en ASAP — usuario de alta intención que progresó
-        // al paso de datos por la ruta de contacto inmediato. Misma lógica de
-        // calidad de señal que el flujo normal.
-        try { fbq('track', 'ViewContent', {
-          content_name: 'agendar_horario_elegido_asap',
-          funnel_step: 'horario_elegido_asap'
-        }); } catch (_) {}
+        // 🎯 ViewContent también en ASAP — sólo si no es variante A (ya disparó).
+        if (_variant !== 'A') {
+          try { fbq('track', 'ViewContent', {
+            content_name: 'agendar_horario_elegido_asap',
+            funnel_step: 'horario_elegido_asap'
+          }); } catch (_) {}
+        }
         validarForm();
       }
 
@@ -4655,6 +4793,7 @@ const menuToggle = document.querySelector('.menu-toggle');
               eventId: waEventId,
               sessionId: _sessionId,
               attribution: _attribution,
+              variant: _variant,
               url: location.href,
               name: nombre || undefined,
               email: email || undefined,
@@ -4745,7 +4884,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           userAgent: navigator.userAgent,
           url: location.href,
           eventId: bookingEventId,
-          sessionId: _sessionId
+          sessionId: _sessionId,
+          variant: _variant
         };
 
         // 🎯 Identificación en Clarity: el email es el id estable.
