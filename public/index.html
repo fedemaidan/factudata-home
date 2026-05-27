@@ -5010,6 +5010,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             // Tag de Clarity para poder buscar grabaciones donde el backend
             // devolvió error (CORS, 4xx/5xx con ok:false, etc.).
             _clarity('submit_backend_error', { booking_error: data.error || 'unknown' });
+            if (_autoBookingVarA) _revertAutoBookUI();
             errEl.textContent = data.error || 'Error al agendar. Intentá de nuevo.';
             errEl.style.display = 'block';
             btn.disabled = false;
@@ -5094,6 +5095,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         .catch(function() {
           _trackStep('submit_network_error');
           _clarity('submit_network_error');
+          if (_autoBookingVarA) _revertAutoBookUI();
           errEl.textContent = 'Error de conexión. Intentá de nuevo.';
           errEl.style.display = 'block';
           btn.disabled = false;
