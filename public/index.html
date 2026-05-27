@@ -3413,8 +3413,18 @@
 
         <!-- PASO 2: Datos + Confirmación -->
         <div class="modal-step" id="modalStep2">
-          <h3>Completá tus datos</h3>
+          <h3 id="modalStep2Title">Completá tus datos</h3>
           <div class="modal-slot-badge" id="modalSlotBadge"><i class="fa fa-calendar-check"></i> <span id="badgeText"></span></div>
+
+          <!-- Variante A: pane de auto-booking. Se muestra cuando el usuario
+               ya cargó los datos en DatosA y solo le falta el slot — saltamos
+               el form y le mostramos un loader hasta que vuelve la confirmación. -->
+          <div class="modal-auto-book-pane" id="modalAutoBookPane" style="display:none;text-align:center;padding:32px 12px">
+            <div class="modal-spinner" style="width:42px;height:42px;border-width:4px;margin:0 auto 16px"></div>
+            <p style="font-weight:700;color:#1E4469;font-size:1.05em;margin:0 0 6px">Reservando tu demo…</p>
+            <p style="color:#5A6A7A;margin:0">Confirmamos en segundos.</p>
+          </div>
+
           <form id="modalForm" autocomplete="on" onsubmit="return enviarBooking()">
             <label for="modalNombre">Tu nombre *</label>
             <input type="text" id="modalNombre" name="name" placeholder="Ej: Juan Pérez" autocomplete="name" oninput="validarForm()" onfocus="_trackStep('focus_nombre');_trackStep('focus_form')" onblur="_enviarLeadParcial('blur_nombre')">
@@ -4702,6 +4712,22 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
 
       // ── Confirm bar → ir a datos ──
+      // Variante A: los datos ya están cargados (submitDatosA los persistió),
+      // así que saltamos el form y disparamos enviarBooking() directo, mostrando
+      // un loader. En variante B se renderiza el form como siempre.
+      var _autoBookingVarA = false;
+      function _revertAutoBookUI() {
+        _autoBookingVarA = false;
+        var pane = document.getElementById('modalAutoBookPane');
+        var form = document.getElementById('modalForm');
+        var backBtn = document.querySelector('#modalStep2 .modal-btn-back');
+        var title = document.getElementById('modalStep2Title');
+        if (pane) pane.style.display = 'none';
+        if (form) form.style.display = '';
+        if (backBtn) backBtn.style.display = '';
+        if (title) title.textContent = 'Completá tus datos';
+      }
+
       function irADatos() {
         if (!_selectedSlot || !_selectedDay) {
           var errEl = document.getElementById('modalError1');
@@ -4726,6 +4752,31 @@ const menuToggle = document.querySelector('.menu-toggle');
           submitBtn.disabled = true;
         }
         if (selectedBar) selectedBar.classList.remove('visible');
+
+        // Variante A: skip form, auto-book.
+        if (_variant === 'A') {
+          _syncDatosAtoMain(); // por las dudas (debería estar sincronizado ya)
+          var pane = document.getElementById('modalAutoBookPane');
+          var form = document.getElementById('modalForm');
+          var backBtn = document.querySelector('#modalStep2 .modal-btn-back');
+          var title = document.getElementById('modalStep2Title');
+          if (title) title.textContent = '¡Casi listo!';
+          if (form) form.style.display = 'none';
+          if (backBtn) backBtn.style.display = 'none';
+          if (pane) pane.style.display = '';
+          _autoBookingVarA = true;
+          mostrarStep(2);
+          _funnelStep('/auto-book', null, {
+            content_name: 'auto_book_a',
+            funnel_step: 'auto_book_a',
+            datetime: (_selectedSlot && _selectedSlot.iso) || null
+          });
+          _trackStep('auto_book_a');
+          // Pequeño delay para que el render del loader sea visible antes
+          // del fetch (UX: el usuario no ve un flash sin contexto).
+          setTimeout(function() { try { enviarBooking(); } catch (e) { console.error(e); _revertAutoBookUI(); } }, 30);
+          return;
+        }
 
         mostrarStep(2);
         // 🔑 Paso clave: usuario eligió horario y ve el form de datos.
@@ -4886,6 +4937,8 @@ const menuToggle = document.querySelector('.menu-toggle');
         // Email O WhatsApp — necesitamos al menos uno para confirmar.
         if (!nombre || (!emailOk && !telefonoOk)) {
           _trackStep('submit_validation_error');
+          // Variante A: revelar el form para que pueda corregir.
+          if (_autoBookingVarA) _revertAutoBookUI();
           errEl.textContent = !nombre
             ? 'Completá tu nombre'
             : 'Dejanos tu email o WhatsApp para confirmar';
