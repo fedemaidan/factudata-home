@@ -3293,6 +3293,31 @@
         #modalStep2:has(#modalWaPrompt[style*="block"]) {
           padding-bottom: 280px;
         }
+
+        /* Variante A: mismo tratamiento sticky para el botón "Ver horarios" */
+        #modalStepDatosA {
+          padding-bottom: 110px;
+        }
+        #modalStepDatosA #modalDatosABtn {
+          position: fixed;
+          left: 14px; right: 14px;
+          bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+          width: auto !important;
+          z-index: 100;
+          padding: 14px 18px;
+          font-size: 1.05em;
+          margin: 0;
+          background: linear-gradient(135deg, #2DC197 0%, #10B981 100%) !important;
+          box-shadow: 0 -2px 18px rgba(255,255,255,0.85),
+                      0 4px 16px rgba(45,193,151,0.5) !important;
+        }
+        #modalStepDatosA #modalDatosABtn:disabled,
+        #modalStepDatosA #modalDatosABtn.btn-incomplete {
+          background: #BDBDBD !important;
+          box-shadow: 0 -2px 18px rgba(255,255,255,0.85),
+                      0 2px 8px rgba(0,0,0,0.15) !important;
+          color: #FFFFFF !important;
+        }
       }
     </style>
 
@@ -4208,8 +4233,20 @@ const menuToggle = document.querySelector('.menu-toggle');
         var errEl = document.getElementById('modalErrorDatosA');
         if (!nombre || (!emailOk && !telOk)) {
           _trackStep('submit_datos_a_validation_error');
+          // UX: mandar foco al próximo campo obligatorio vacío en vez de
+          // sólo mostrar un cartel. Orden: nombre → email → teléfono.
+          var nextId = !nombre
+            ? 'modalDatosANombre'
+            : (!emailOk ? 'modalDatosAEmail' : 'modalDatosATelefono');
+          var nextEl = document.getElementById(nextId);
+          if (nextEl) {
+            try { nextEl.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (_) {}
+            setTimeout(function() { try { nextEl.focus({ preventScroll: true }); } catch (_) { nextEl.focus(); } }, 50);
+          }
           if (errEl) {
-            errEl.textContent = !nombre ? 'Completá tu nombre' : 'Dejanos tu email o WhatsApp';
+            errEl.textContent = !nombre
+              ? 'Completá tu nombre'
+              : 'Dejanos tu email o WhatsApp para confirmar';
             errEl.style.display = 'block';
           }
           return false;
