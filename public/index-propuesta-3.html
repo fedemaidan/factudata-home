@@ -4614,7 +4614,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         try {
           var waEventId = _genEventId();
           if (typeof fbq === 'function') {
-            fbq('track', 'Lead', { content_name: 'lead_whatsapp' }, { eventID: waEventId });
+            fbq('trackCustom', 'LeadWhatsApp', { content_name: 'lead_whatsapp' }, { eventID: waEventId });
           }
           // CAPI mirror vía /track con step custom → no incrementa stats, sólo manda señal a FB.
           fetch(SORBY_API + '/api/agendar/lead-wa', {
@@ -4764,7 +4764,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'contacto_asap' });
             // Lead = evento "padre" deduplicado con CAPI por bookingEventId.
-            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' }, bookingEventId);
+            _funnelStep('/listo-asap', 'Custom:LeadAsap', { content_name: 'contacto_asap', funnel_step: 'listo_asap' }, bookingEventId);
             // Contact = métrica de apoyo, sólo Pixel (sin eventID para no
             // colisionar con el dedup del Lead). Meta lo cuenta aparte.
             try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}

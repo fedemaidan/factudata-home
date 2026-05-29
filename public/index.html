@@ -3872,10 +3872,10 @@ const menuToggle = document.querySelector('.menu-toggle');
 
       // ─── A/B test: form-first (A) vs calendar-first (B) ───────────────
       // Variante A: pedimos datos primero y captamos lead aunque no agende.
-      // Variante B: calendario primero (flujo histórico — se reactiva flippeando
-      // SORBY_AB_SPLIT_A_PCT a 50). Hoy A va al 100%. Override por
+      // Variante B: calendario primero (flujo histórico). Override por
       // ?ab=A|B (sticky en sessionStorage) o window.SORBY_AB_FORCE.
-      var SORBY_AB_SPLIT_A_PCT = 100;
+      // 50 = split 50/50 entre datos-primero (A) y horario-primero (B).
+      var SORBY_AB_SPLIT_A_PCT = 50;
       var _variant = (function() {
         try {
           if (window.SORBY_AB_FORCE === 'A' || window.SORBY_AB_FORCE === 'B') return window.SORBY_AB_FORCE;
@@ -4887,12 +4887,13 @@ const menuToggle = document.querySelector('.menu-toggle');
           }
         } catch (_) {}
 
-        // 🎯 Lead a Meta (Pixel + CAPI con event_id compartido). El usuario
-        // se está yendo a WhatsApp con datos llenos — es un lead real.
+        // 🎯 Señal a Meta. El usuario se va a WhatsApp con datos llenos: es un
+        // lead, pero NO agendó. Lo mandamos como evento custom para que NO
+        // alimente la optimización de la campaña (que optimiza por Lead = agenda).
         try {
           var waEventId = _genEventId();
           if (typeof fbq === 'function') {
-            fbq('track', 'Lead', { content_name: 'lead_whatsapp' }, { eventID: waEventId });
+            fbq('trackCustom', 'LeadWhatsApp', { content_name: 'lead_whatsapp' }, { eventID: waEventId });
           }
           // CAPI mirror vía /track con step custom → no incrementa stats, sólo manda señal a FB.
           fetch(SORBY_API + '/api/agendar/lead-wa', {
@@ -5046,10 +5047,10 @@ const menuToggle = document.querySelector('.menu-toggle');
             mostrarStep('3b');
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'contacto_asap' });
-            // Lead = evento "padre" deduplicado con CAPI por bookingEventId.
-            _funnelStep('/listo-asap', 'Lead', { content_name: 'contacto_asap', funnel_step: 'listo_asap' }, bookingEventId);
-            // Contact = métrica de apoyo, sólo Pixel (sin eventID para no
-            // colisionar con el dedup del Lead). Meta lo cuenta aparte.
+            // ASAP = pidió contacto pero NO eligió horario → no es "agenda".
+            // Custom event para no alimentar la optimización de Lead.
+            _funnelStep('/listo-asap', 'Custom:LeadAsap', { content_name: 'contacto_asap', funnel_step: 'listo_asap' }, bookingEventId);
+            // Contact = métrica de apoyo, sólo Pixel.
             try { fbq('track', 'Contact', { content_name: 'contacto_asap' }); } catch (_) {}
             // 🎯 Clarity: marcar sesión como convertida (lead ASAP).
             _clarity('contacto_asap', { converted: 'asap' });
