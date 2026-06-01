@@ -4340,6 +4340,7 @@ const menuToggle = document.querySelector('.menu-toggle');
               categoriaLabel: CATEGORIA_LABELS_POST[cat] || null,    // label legible → ContactoSDR.rubro
               sessionId: _sessionId,
               variant: _variant,
+              attribution: _attribution,                            // para atribuir "eligió rubro" por fuente/campaña
               phone: (document.getElementById('modalTelefono') || {}).value || '',
               email: (document.getElementById('modalEmail') || {}).value || '',
               datetime: (_selectedSlot && _selectedSlot.iso) || null,
