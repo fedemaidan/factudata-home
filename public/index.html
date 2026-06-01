@@ -3825,8 +3825,8 @@ const menuToggle = document.querySelector('.menu-toggle');
       }
     
       function irAWhatsApp(event) {
-        event.preventDefault();
-        
+        if (event && typeof event.preventDefault === 'function') event.preventDefault();
+
         const campaign = getURLParameter('utm_campaign') || "";
         const fbclid = getURLParameter('fbclid') || "";
         const fbp = getCookie('_fbp') || "";
@@ -3838,24 +3838,26 @@ const menuToggle = document.querySelector('.menu-toggle');
           setCookie('_fbc', fbc);
         }
     
-        const redirectURL = `http://137.184.68.197:3051/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
-        
-        // const redirectURL = `http://localhost:3003/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
+        // Mismo host que el resto del landing (SORBY_API): prod = https://api.sorbydata.com,
+        // local = http://localhost:3003. Evita el IP hardcodeado.
+        const redirectURL = `${SORBY_API}/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}`;
 
         // Abrir en la misma ventana para garantizar que el redirect se complete
         window.location.href = redirectURL;
       }
 
+      // El agendamiento ahora sucede DENTRO de WhatsApp (el bot pregunta obras
+      // y propone horarios). Por eso todo CTA de "agendar" / "contactar" redirige
+      // a nuestra API (/api/lead/redirect_whatsapp) con toda la data de Meta
+      // (fbc/fbp/fbclid/utm/userAgent): así se crea el Lead atribuido y se
+      // reenvía a WhatsApp con el saludo inicial. Ya NO abrimos el modal/calendario
+      // on-page ni un wa.me suelto sin atribución.
       function irACalendario(event) {
-        event.preventDefault();
-        abrirModalAgendar();
+        return irAWhatsApp(event);
       }
 
       function contactarPorWhatsApp(event) {
-        if (event) event.preventDefault();
-        var numero = '5491162377270';
-        var mensaje = 'Hola, me gustaría saber más de Sorby';
-        window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(mensaje), '_blank');
+        return irAWhatsApp(event);
       }
 
       // ─── Modal de Agendamiento Inline ──────────────────────────────────────
