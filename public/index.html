@@ -1549,7 +1549,7 @@
       <a href="#" class="logo-link">
         <img src="img/logo-mixto-blanco.png" alt="Sorby Data" class="logo-img" />
       </a>
-      <button class="nav-cta" onclick="abrirModalAgendar()">
+      <button class="nav-cta" onclick="irAWhatsApp(event)">
         <i class="fa fa-calendar"></i> Agendá gratis
       </button>
     </div>
@@ -1582,7 +1582,7 @@
         </p>
 
         <div class="hero-ctas">
-          <button class="btn btn-primary" onclick="abrirModalAgendar()">
+          <button class="btn btn-primary" onclick="irAWhatsApp(event)">
             <i class="fa fa-calendar"></i> Agendá demo gratis
           </button>
         </div>
@@ -2176,7 +2176,7 @@
           <span>✓ 20% OFF pago único</span>
           <span>✓ Implementación incluida</span>
         </div>
-        <button class="btn btn-primary planes-cta-btn" onclick="abrirModalAgendar()">
+        <button class="btn btn-primary planes-cta-btn" onclick="irAWhatsApp(event)">
           <i class="fa fa-calendar"></i> Agendá tu demo y conocé los planes
         </button>
       </div>
@@ -2261,7 +2261,7 @@
     <div class="container">
       <h2>15 minutos. Gratis. Sin compromiso.</h2>
       <p>Te mostramos cómo Sorby se adapta a tu operación, en tiempo real con tus números.</p>
-      <button class="btn btn-primary" onclick="abrirModalAgendar()">
+      <button class="btn btn-primary" onclick="irAWhatsApp(event)">
         <i class="fa fa-calendar"></i> Agendá tu demo
       </button>
     </div>
@@ -2269,7 +2269,7 @@
 
   <!-- ═════════ STICKY CTA (mobile only) ═════════ -->
   <div class="sticky-cta">
-    <button class="btn btn-primary" onclick="abrirModalAgendar()">
+    <button class="btn btn-primary" onclick="irAWhatsApp(event)">
       <i class="fa fa-calendar"></i> Agendá demo gratis
     </button>
   </div>
@@ -5327,8 +5327,8 @@ const menuToggle = document.querySelector('.menu-toggle');
       p.addEventListener("click", () => { try { _clarity("perfil_seleccionado", { perfil: p.dataset.perfil }); _trackStep("perfil_" + p.dataset.perfil); } catch(e){} renderPerfil(p.dataset.perfil); });
     });
 
-    function handleDemo() { abrirModalAgendar(); return;
-      
+    function handleDemo() { irAWhatsApp(); return;
+
     }
 
     renderPerfil('constructora');
