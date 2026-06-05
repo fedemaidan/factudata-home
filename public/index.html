@@ -350,6 +350,26 @@
                     0 0 0 14px rgba(45,193,151,0);
       }
     }
+    /* CTA principal con color e ícono de WhatsApp */
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45),
+                  0 0 0 0 rgba(37,211,102,0.7);
+      animation: cta-pulse-glow-wa 2.6s ease-out infinite;
+    }
+    .btn-whatsapp:hover {
+      box-shadow: 0 6px 28px rgba(37,211,102,0.65);
+    }
+    @keyframes cta-pulse-glow-wa {
+      0%, 100% {
+        box-shadow: 0 4px 20px rgba(37,211,102,0.45),
+                    0 0 0 0    rgba(37,211,102,0.7);
+      }
+      50% {
+        box-shadow: 0 6px 28px rgba(37,211,102,0.6),
+                    0 0 0 14px rgba(37,211,102,0);
+      }
+    }
     .btn-secondary { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,0.4); }
     .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
 
@@ -1550,7 +1570,7 @@
         <img src="img/logo-mixto-blanco.png" alt="Sorby Data" class="logo-img" />
       </a>
       <button class="nav-cta" onclick="irAWhatsApp(event)">
-        <i class="fa fa-calendar"></i> Agendá gratis
+        <i class="fa fa-calendar"></i> Probá gratis
       </button>
     </div>
   </header>
@@ -1582,8 +1602,8 @@
         </p>
 
         <div class="hero-ctas">
-          <button class="btn btn-primary" onclick="irAWhatsApp(event)">
-            <i class="fa fa-calendar"></i> Agendá demo gratis
+          <button class="btn btn-primary btn-whatsapp" onclick="irAWhatsApp(event)">
+            <i class="fab fa-whatsapp"></i> Probá gratis por WhatsApp
           </button>
         </div>
 
@@ -2177,7 +2197,7 @@
           <span>✓ Implementación incluida</span>
         </div>
         <button class="btn btn-primary planes-cta-btn" onclick="irAWhatsApp(event)">
-          <i class="fa fa-calendar"></i> Agendá tu demo y conocé los planes
+          <i class="fa fa-calendar"></i> Probá gratis
         </button>
       </div>
     </div>
@@ -2262,7 +2282,7 @@
       <h2>15 minutos. Gratis. Sin compromiso.</h2>
       <p>Te mostramos cómo Sorby se adapta a tu operación, en tiempo real con tus números.</p>
       <button class="btn btn-primary" onclick="irAWhatsApp(event)">
-        <i class="fa fa-calendar"></i> Agendá tu demo
+        <i class="fa fa-calendar"></i> Probá gratis
       </button>
     </div>
   </section>
@@ -2270,7 +2290,7 @@
   <!-- ═════════ STICKY CTA (mobile only) ═════════ -->
   <div class="sticky-cta">
     <button class="btn btn-primary" onclick="irAWhatsApp(event)">
-      <i class="fa fa-calendar"></i> Agendá demo gratis
+      <i class="fa fa-calendar"></i> Probá gratis
     </button>
   </div>
 
@@ -5167,12 +5187,12 @@ const menuToggle = document.querySelector('.menu-toggle');
         document.querySelectorAll('.cta-whatsapp').forEach(function (el) {
           el.href = '#';
           el.setAttribute('onclick', 'irACalendario(event)');
-          el.innerHTML = '<i class="fa fa-calendar" style="margin-right: 5px; font-size: .9em;"></i>Agendá gratis';
+          el.innerHTML = '<i class="fa fa-calendar" style="margin-right: 5px; font-size: .9em;"></i>Probá gratis';
         });
 
         // 2. Nav item "Probalo en 1 minuto" → "Agendá gratis"
         var navLink = document.querySelector('#mainNavList a[href="#proba-sorby"]');
-        if (navLink) navLink.textContent = 'Agendá gratis';
+        if (navLink) navLink.textContent = 'Probá gratis';
 
         // 3. Sección #proba-sorby — textos
         var seccion = document.getElementById('proba-sorby');
@@ -5191,7 +5211,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             var content = heading.nextElementSibling;
             if (content && content.querySelector('p')) {
               content.querySelector('p').innerHTML =
-                'Sí. <a href="#" onclick="irACalendario(event)"><strong>Agendá una demo gratuita de 15 minutos</strong></a> ' +
+                'Sí. <a href="#" onclick="irACalendario(event)"><strong>Probá gratis una demo de 15 minutos</strong></a> ' +
                 'y el equipo te muestra cómo funciona para tu caso. Gratis, sin registro y sin compromiso.';
             }
           }
@@ -5203,7 +5223,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             el.href = '#';
             el.setAttribute('onclick', 'irACalendario(event)');
             el.innerHTML = '<img class="cta-gratis" src="img/gratis.png" alt="">' +
-              '<i class="fa fa-calendar" style="margin-right: 5px;"></i> Agendá gratis';
+              '<i class="fa fa-calendar" style="margin-right: 5px;"></i> Probá gratis';
           }
         });
       }
