@@ -3934,7 +3934,7 @@ const menuToggle = document.querySelector('.menu-toggle');
 
         // Mismo host que el resto del landing (SORBY_API): prod = https://api.sorbydata.com,
         // local = http://localhost:3003. Evita el IP hardcodeado.
-        const redirectURL = `${SORBY_API}/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}&lp=${encodeURIComponent(lp)}`;
+        const redirectURL = `${SORBY_API}/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}&lp=${encodeURIComponent(lp)}&utm_content=${encodeURIComponent(getURLParameter('utm_content') || "")}`;
 
         // Abrir en la misma ventana para garantizar que el redirect se complete
         window.location.href = redirectURL;
