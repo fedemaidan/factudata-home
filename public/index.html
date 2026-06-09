@@ -9,22 +9,22 @@
   <!-- ─────────────────────────────────────────────────────────────
        A/B SPLITTER · reparto de tráfico
          (A salió del test: convertía cero.)
+         (D2 salió del test: ya no recibe tráfico.)
          B  (indexB.html)  = 50%   ← "Tu obra bajo control, desde WhatsApp" (rubro rota)
-         D  (indexD.html)  = 25%   ← "¿Sabés si tus obras están ganando o perdiendo?" (se escribe)
-         D2 (indexD2.html) = 25%   ← misma copy que D pero estática
+         D  (indexD.html)  = 50%   ← "¿Sabés si tus obras están ganando o perdiendo?" (se escribe)
        - La variante se sortea una vez y se guarda en localStorage:
          el visitante que vuelve ve SIEMPRE la misma (no contamina el test).
+         (Quien tenía D2 guardada se reasigna a B/D al no estar más en el pool.)
        - Preserva utm_*/origen y agrega ?lp=<variante> para segmentar.
          (Se usa ?lp= y NO ?ab= para no pisar el A/B interno del flujo de WhatsApp.)
-       - QA: forzar con  /?force=A | /?force=B | /?force=D2
+       - QA: forzar con  /?force=B | /?force=D
        ───────────────────────────────────────────────────────────── -->
   <script>
   (function(){
     var KEY = 'sorby_lp';
     var VARIANTS = [
       { v:'B',  u:'indexB.html',  w:50 },
-      { v:'D',  u:'indexD.html',  w:25 },
-      { v:'D2', u:'indexD2.html', w:25 }
+      { v:'D',  u:'indexD.html',  w:50 }
     ];
     function find(v){ for (var i=0;i<VARIANTS.length;i++){ if (VARIANTS[i].v===v) return VARIANTS[i]; } return null; }
 
