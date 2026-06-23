@@ -4088,7 +4088,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       // FLOW_FORCE=null  → arranca el split 50/50. La fecha de este deploy es
       //                    la "fecha de corte" de data limpia (LandingStats es
       //                    por día). ← cambiar a null cuando quieras prender el A/B.
-      var FLOW_FORCE = 'wa';
+      var FLOW_FORCE = null;
       var _flow = (function() {
         try {
           var FKEY = 'sorby_flow';
