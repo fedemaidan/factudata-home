@@ -7,54 +7,34 @@
   <title>Sorby</title>
   <style>html,body{background:#1E4469;margin:0}</style>
   <!-- ─────────────────────────────────────────────────────────────
-       A/B SPLITTER · reparto de tráfico
-         (A salió del test: convertía cero.)
-         (D2 salió del test: ya no recibe tráfico.)
-         B  (indexB.html)  = 50%   ← "Tu obra bajo control, desde WhatsApp" (rubro rota)
-         D  (indexD.html)  = 50%   ← "¿Sabés si tus obras están ganando o perdiendo?" (se escribe)
-       - La variante se sortea una vez y se guarda en localStorage:
-         el visitante que vuelve ve SIEMPRE la misma (no contamina el test).
-         (Quien tenía D2 guardada se reasigna a B/D al no estar más en el pool.)
-       - Preserva utm_*/origen y agrega ?lp=<variante> para segmentar.
-         (Se usa ?lp= y NO ?ab= para no pisar el A/B interno del flujo de WhatsApp.)
-       - QA: forzar con  /?force=B | /?force=D
+       HERO FIJADO EN B (100%) · 23-jun-2026
+         El A/B del hero (B vs D) se cerró. Se fija B al 100% por
+         VOLUMEN DE CLICK. Decisión deliberada del equipo: va EN CONTRA
+         de la lectura del 14-jun (que favorecía D por conversión real
+         abajo del funnel). No es un bug.
+         - Variantes perdedoras (indexD.html / indexD2.html) redirigen a /.
+         - El split por ?lp= queda MUERTO. Se sigue seteando lp=B sólo
+           para no romper el threading del embudo (LandingStats usa lp:).
+         - Se preservan utm_*/fbclid/flow y cualquier otro query param.
+           (?flow=wa|web lo lee indexB para el NUEVO A/B de flujo.)
+         - QA: ?force= ya no parte tráfico (sólo existe B); se ignora.
        ───────────────────────────────────────────────────────────── -->
   <script>
   (function(){
-    var KEY = 'sorby_lp';
-    var VARIANTS = [
-      { v:'B',  u:'indexB.html',  w:50 },
-      { v:'D',  u:'indexD.html',  w:50 }
-    ];
-    function find(v){ for (var i=0;i<VARIANTS.length;i++){ if (VARIANTS[i].v===v) return VARIANTS[i]; } return null; }
-
+    var DEST = 'indexB.html';
     var params = new URLSearchParams(window.location.search);
-    var chosen = null;
 
-    // 1) Forzar variante (QA): ?force=A|B|D2
-    var forced = (params.get('force') || '').toUpperCase();
-    if (find(forced)) chosen = find(forced);
+    // Limpiar localStorage del viejo splitter (por si un visitante recurrente
+    // tenía D/D2 guardada) — ya no se usa para repartir.
+    try { localStorage.setItem('sorby_lp', 'B'); } catch(e){}
 
-    // 2) Variante ya asignada (visitante recurrente)
-    if (!chosen) {
-      var saved = null;
-      try { saved = localStorage.getItem(KEY); } catch(e){}
-      if (find(saved)) chosen = find(saved);
-    }
-
-    // 3) Asignación nueva por peso
-    if (!chosen) {
-      var r = Math.random() * 100, acc = 0;
-      for (var i=0;i<VARIANTS.length;i++){ acc += VARIANTS[i].w; if (r < acc){ chosen = VARIANTS[i]; break; } }
-      if (!chosen) chosen = VARIANTS[0];
-    }
-
-    try { localStorage.setItem(KEY, chosen.v); } catch(e){}
-
-    params.set('lp', chosen.v);
+    // Threading del embudo: el dashboard segmenta por lp. Se fija B.
+    params.set('lp', 'B');
+    // ?force= ya no parte tráfico (sólo existe B). Lo descartamos.
     params.delete('force');
+
     var qs = params.toString();
-    window.location.replace(chosen.u + (qs ? ('?' + qs) : ''));
+    window.location.replace(DEST + (qs ? ('?' + qs) : ''));
   })();
   </script>
 </head>

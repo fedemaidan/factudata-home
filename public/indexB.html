@@ -3463,6 +3463,55 @@
           </div>
         </div>
 
+        <!-- PASO CalifWeb: A/B de flujo, rama `web`. Calificación (rubro +
+             obras) ANTES del calendario, a la misma profundidad que el bot.
+             Dispara StartTrial (rubro) y Lead (obras) por CAPI taggeados por flow. -->
+        <div class="modal-step" id="modalStepCalifWeb">
+          <h3>Contanos de tu obra</h3>
+          <p class="modal-sub">Así te mostramos una demo a tu medida. 15 min · online · gratis.</p>
+          <form id="modalFormCalifWeb" autocomplete="off" onsubmit="return submitCalifWeb(event)">
+            <label>¿A qué se dedica tu empresa? *</label>
+            <div class="calif-web-rubros" id="califWebRubros">
+              <button type="button" class="calif-web-rubro" data-rubro="constructora" onclick="seleccionarRubroWeb(this)">Constructora</button>
+              <button type="button" class="calif-web-rubro" data-rubro="desarrolladora" onclick="seleccionarRubroWeb(this)">Desarrolladora</button>
+              <button type="button" class="calif-web-rubro" data-rubro="estudio de arquitectura" onclick="seleccionarRubroWeb(this)">Estudio de arquitectura</button>
+              <button type="button" class="calif-web-rubro" data-rubro="corralón" onclick="seleccionarRubroWeb(this)">Corralón / proveedor de materiales</button>
+              <button type="button" class="calif-web-rubro" data-rubro="profesional independiente" onclick="seleccionarRubroWeb(this)">Profesional independiente</button>
+            </div>
+            <label for="modalCalifCantidad">¿Cuántas obras manejás hoy? *</label>
+            <input type="tel" id="modalCalifCantidad" name="cantidadObras" placeholder="Ej: 3" inputmode="numeric" oninput="validarCalifWeb()">
+            <label for="modalCalifTipo">¿Qué tipo de obras? <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="text" id="modalCalifTipo" name="tipoObras" placeholder="Ej: viviendas, edificios, locales">
+            <div class="modal-error" id="modalErrorCalifWeb" style="display:none"></div>
+            <button type="submit" id="modalCalifBtn" class="modal-btn modal-btn-primary btn-incomplete">Ver horarios disponibles <i class="fa fa-arrow-right" style="margin-left:6px;font-size:.85em"></i></button>
+          </form>
+          <div class="modal-wa-alt">
+            <span class="modal-wa-alt-label">¿Preferís hablar primero?</span>
+            <a href="#" class="modal-wa-alt-btn" onclick="contactarPorWhatsApp(event)">
+              <i class="fab fa-whatsapp"></i> Escribinos por WhatsApp
+            </a>
+          </div>
+        </div>
+        <style>
+          .calif-web-rubros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+          .calif-web-rubro {
+            flex: 1 1 calc(50% - 8px);
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fff;
+            font-family: "Quicksand", sans-serif;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #1E4469;
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+            text-align: center;
+          }
+          .calif-web-rubro:hover { border-color: #00B2D4; }
+          .calif-web-rubro.active { border-color: #00B2D4; background: rgba(0,178,212,0.08); }
+        </style>
+
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
           <p class="modal-sub modal-sub-only">15 min · online</p>
@@ -3915,6 +3964,14 @@ const menuToggle = document.querySelector('.menu-toggle');
       function irAWhatsApp(event) {
         if (event && typeof event.preventDefault === 'function') event.preventDefault();
 
+        // A/B de flujo: la rama `web` NO va a WhatsApp — abre el form de
+        // calificación + calendario embebido on-page.
+        if (window.__sorbyFlow === 'web') {
+          _trackStep('cta_click_web'); // Click agendar (funnel, taggeado por flow)
+          abrirModalAgendar();
+          return;
+        }
+
         const campaign = getURLParameter('utm_campaign') || "";
         const fbclid = getURLParameter('fbclid') || "";
         const fbp = getCookie('_fbp') || "";
@@ -3934,7 +3991,7 @@ const menuToggle = document.querySelector('.menu-toggle');
 
         // Mismo host que el resto del landing (SORBY_API): prod = https://api.sorbydata.com,
         // local = http://localhost:3003. Evita el IP hardcodeado.
-        const redirectURL = `${SORBY_API}/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}&lp=${encodeURIComponent(lp)}&utm_content=${encodeURIComponent(getURLParameter('utm_content') || "")}`;
+        const redirectURL = `${SORBY_API}/api/lead/redirect_whatsapp?fbc=${encodeURIComponent(fbc)}&fbclid=${encodeURIComponent(fbclid)}&utm_campaign=${encodeURIComponent(campaign)}&fbp=${encodeURIComponent(fbp)}&userAgent=${encodeURIComponent(userAgent)}&lp=${encodeURIComponent(lp)}&utm_content=${encodeURIComponent(getURLParameter('utm_content') || "")}&flow=wa`;
 
         // Abrir en la misma ventana para garantizar que el redirect se complete
         window.location.href = redirectURL;
@@ -3985,6 +4042,46 @@ const menuToggle = document.querySelector('.menu-toggle');
         } catch (_) { return 'A'; }
       })();
       window.__sorbyVariant = _variant;
+
+      // ─── A/B de FLUJO de conversión: wa vs web ────────────────────────
+      // Dimensión PROPIA (?flow=wa|web), separada de ?lp= (A/B del hero) y de
+      // ?ab= (A/B viejo form-vs-calendar). Una sola variable a la vez:
+      //   wa  = flujo actual: CTA → WhatsApp → bot de agendamiento.
+      //   web = CTA → form de calificación (rubro + obras) → calendario embebido.
+      // Override por ?flow= (QA + Meta). Si no viene, sorteo 50/50 sticky en
+      // localStorage: un visitante recurrente ve SIEMPRE la misma rama (no
+      // contamina el test) y no hace falta duplicar el adset en Meta.
+      // ── ROLLOUT EN 2 FASES (kill switch) ──────────────────────────────
+      // FLOW_FORCE='wa'  → TODO el tráfico real va por la rama de control
+      //                    (flujo actual de WhatsApp). Sirve para validar el
+      //                    deploy en prod SIN arrancar el test. El override
+      //                    ?flow=web sigue funcionando para QA.
+      // FLOW_FORCE=null  → arranca el split 50/50. La fecha de este deploy es
+      //                    la "fecha de corte" de data limpia (LandingStats es
+      //                    por día). ← cambiar a null cuando quieras prender el A/B.
+      var FLOW_FORCE = 'wa';
+      var _flow = (function() {
+        try {
+          var FKEY = 'sorby_flow';
+          // El override por query (QA + Meta) SIEMPRE gana, incluso con FLOW_FORCE.
+          var q = (new URLSearchParams(location.search)).get('flow');
+          if (q === 'wa' || q === 'web') { try { localStorage.setItem(FKEY, q); } catch (_) {} return q; }
+          // Rollout forzado: mandar todo a una rama sin sortear.
+          if (FLOW_FORCE === 'wa' || FLOW_FORCE === 'web') return FLOW_FORCE;
+          var saved = null; try { saved = localStorage.getItem(FKEY); } catch (_) {}
+          if (saved === 'wa' || saved === 'web') return saved;
+          var pick = Math.random() < 0.5 ? 'wa' : 'web';
+          try { localStorage.setItem(FKEY, pick); } catch (_) {}
+          return pick;
+        } catch (_) { return 'wa'; }
+      })();
+      window.__sorbyFlow = _flow;
+
+      // Estado de la rama web: rubro + obras que captura el form de
+      // calificación ANTES del calendario (se mandan al /book).
+      var _rubroWeb = null;        // string del rubro (ej. 'constructora')
+      var _cantidadObrasWeb = null; // string (ej. '3')
+      var _tipoObrasWeb = null;     // string (ej. 'viviendas')
 
       // NOTA: la llamada a /landing-visit se hace MÁS ABAJO, después de
       // construir _attribution, para poder mandar UTMs/fbclid/referrer.
@@ -4172,6 +4269,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             sessionId: _sessionId,
             attribution: _attribution,
             variant: _variant,
+            flow: _flow,
             lp: getURLParameter('lp') || '',
             url: location.href,
             fbc: getCookie('_fbc') || '',
@@ -4222,6 +4320,7 @@ const menuToggle = document.querySelector('.menu-toggle');
             sessionId: _sessionId,
             attribution: _attribution,
             variant: _variant,
+            flow: _flow,
             name: nombre || undefined,
             email: emailOk ? email : undefined,
             phone: phoneOk ? telefono : undefined,
@@ -4261,34 +4360,42 @@ const menuToggle = document.querySelector('.menu-toggle');
         } catch (_) {}
       }
 
-      function _trackStep(step) {
+      function _trackStep(step, extra) {
         if (_tracked[step]) return; // solo una vez por apertura
         _tracked[step] = true;
         // event_id compartido: si el step mapea a un evento estándar de FB
         // (Contact / StartTrial), disparamos también el Pixel cliente con
         // el mismo eventID para deduplicación contra el CAPI del backend.
         var eventId = _genEventId();
-        var pixelMap = { open: 'Contact', select: 'StartTrial' };
+        // Pixel cliente para los pasos de la rama web también (rubro→StartTrial,
+        // obras→Lead) para que dedupliquen contra el CAPI server-side.
+        var pixelMap = { open: 'Contact', select: 'StartTrial', rubro_web: 'StartTrial', obras_web: 'Lead' };
         var pixelEvent = pixelMap[step];
         if (pixelEvent) {
           try { fbq('track', pixelEvent, {}, { eventID: eventId }); } catch (_) {}
+        }
+        var payload = {
+          step: step,
+          eventId: eventId,
+          sessionId: _sessionId,
+          attribution: _attribution,
+          variant: _variant,
+          flow: _flow,
+          url: location.href,
+          fbc: getCookie('_fbc') || '',
+          fbp: getCookie('_fbp') || '',
+          userAgent: navigator.userAgent
+        };
+        // Datos extra del step (p.ej. rubro/cantidadObras/tipoObras de la rama web).
+        if (extra && typeof extra === 'object') {
+          for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) payload[k] = extra[k]; }
         }
         // mode: no-cors — es fire-and-forget, no necesitamos leer la respuesta
         fetch(SORBY_API + '/api/agendar/track', {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            step: step,
-            eventId: eventId,
-            sessionId: _sessionId,
-            attribution: _attribution,
-            variant: _variant,
-            url: location.href,
-            fbc: getCookie('_fbc') || '',
-            fbp: getCookie('_fbp') || '',
-            userAgent: navigator.userAgent
-          })
+          body: JSON.stringify(payload)
         }).catch(function() {});
       }
 
@@ -4299,6 +4406,17 @@ const menuToggle = document.querySelector('.menu-toggle');
         _trackStep('open_var_' + _variant.toLowerCase());
         _funnelReset();
         _categoriaSeleccionada = null;
+
+        // ─── Rama web del A/B de flujo ──────────────────────────────────
+        // Arranca con el form de CALIFICACIÓN (rubro + obras) ANTES del
+        // calendario, a la misma profundidad que el bot. Recién después de
+        // calificar se muestra el calendario (modalStep1).
+        if (_flow === 'web') {
+          mostrarStep('CalifWeb');
+          _funnelStep('/calificacion', null, { content_name: 'calificacion_web', funnel_step: 'calificacion' });
+          cargarSlots(); // prefetch de slots mientras califica
+          return;
+        }
         // ❌ ViewContent NO se dispara al abrir el modal.
         // Variante A: form-first → ViewContent al completar datos (submitDatosA).
         // Variante B: calendar-first → ViewContent al elegir slot (irADatos).
@@ -4317,6 +4435,58 @@ const menuToggle = document.querySelector('.menu-toggle');
           // o falló, cargarSlots() se engancha al promise existente y muestra el skeleton.
           cargarSlots();
         }
+      }
+
+      // ─── Rama web del A/B de flujo: calificación rubro + obras ────────
+      // Calificación idéntica al bot: calificado = rubro ≠ 'profesional
+      // independiente'. No bloqueamos al no calificado (puede agendar igual,
+      // como en el bot), sólo no disparamos CAPI para él (lo decide el backend).
+      function seleccionarRubroWeb(btn) {
+        try {
+          var rubro = btn.getAttribute('data-rubro');
+          _rubroWeb = rubro;
+          var els = document.querySelectorAll('#califWebRubros .calif-web-rubro');
+          els.forEach(function(el) { el.classList.toggle('active', el === btn); });
+          // Funnel "Respondió rubro" + CAPI StartTrial (el backend filtra por
+          // calificación). Sólo dispara una vez por apertura (dedupe en _trackStep).
+          _trackStep('rubro_web', { rubro: rubro });
+          validarCalifWeb();
+        } catch (_) {}
+      }
+
+      function validarCalifWeb() {
+        var cant = (document.getElementById('modalCalifCantidad').value || '').replace(/\D/g, '');
+        var btn = document.getElementById('modalCalifBtn');
+        if (!btn) return;
+        var incomplete = !(_rubroWeb && cant.length > 0);
+        btn.classList.toggle('btn-incomplete', incomplete);
+      }
+
+      function submitCalifWeb(ev) {
+        if (ev && ev.preventDefault) ev.preventDefault();
+        var cant = (document.getElementById('modalCalifCantidad').value || '').replace(/\D/g, '');
+        var tipo = (document.getElementById('modalCalifTipo').value || '').trim();
+        var errEl = document.getElementById('modalErrorCalifWeb');
+        if (!_rubroWeb) {
+          if (errEl) { errEl.textContent = 'Elegí a qué se dedica tu empresa'; errEl.style.display = 'block'; }
+          return false;
+        }
+        if (!cant) {
+          if (errEl) { errEl.textContent = 'Decinos cuántas obras manejás'; errEl.style.display = 'block'; }
+          var c = document.getElementById('modalCalifCantidad');
+          if (c) { try { c.focus(); } catch (_) {} }
+          return false;
+        }
+        if (errEl) errEl.style.display = 'none';
+        _cantidadObrasWeb = cant;
+        _tipoObrasWeb = tipo || null;
+        // Funnel "Respondió obras" + CAPI Lead (el backend filtra por calificación).
+        _trackStep('obras_web', { rubro: _rubroWeb, cantidadObras: _cantidadObrasWeb, tipoObras: _tipoObrasWeb || undefined });
+        // Avanzar al calendario (ya prefetcheado al abrir el modal).
+        mostrarStep(1);
+        _funnelStep('/horario', null, { content_name: 'agendar_horario', funnel_step: 'horario' });
+        cargarSlots();
+        return false;
       }
 
       // ─── Variante A: form-first ──────────────────────────────────────
@@ -5087,7 +5257,12 @@ const menuToggle = document.querySelector('.menu-toggle');
           email: emailOk ? email : undefined,
           phone: telefonoOk ? telefono : undefined,
           empresa: empresa || undefined,
-          categoria: _categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined,
+          // Rama web: el rubro lo eligió el form de calificación (pre-calendario);
+          // si no, cae al post-booking (_categoriaSeleccionada).
+          categoria: _rubroWeb || (_categoriaSeleccionada ? CATEGORIA_LABELS[_categoriaSeleccionada] : undefined),
+          // Obras capturadas por el form de calificación (rama web) → al calendario.
+          cantidadObras: _cantidadObrasWeb || undefined,
+          tipoObras: _tipoObrasWeb || undefined,
           fbc: getCookie('_fbc') || '',
           fbp: getCookie('_fbp') || '',
           utm_campaign: _attribution.utm_campaign || getURLParameter('utm_campaign') || '',
@@ -5096,7 +5271,8 @@ const menuToggle = document.querySelector('.menu-toggle');
           url: location.href,
           eventId: bookingEventId,
           sessionId: _sessionId,
-          variant: _variant
+          variant: _variant,
+          flow: _flow
         };
 
         // 🎯 Identificación en Clarity: el email es el id estable.
@@ -5191,9 +5367,16 @@ const menuToggle = document.querySelector('.menu-toggle');
               datetime: (_selectedSlot && _selectedSlot.iso) || ''
             });
             // Después de agendar, pedimos la categoría de negocio.
-            var resEl = document.getElementById('modalCatBResumen');
-            if (resEl) resEl.textContent = resumenTxt;
-            mostrarStep('CatB');
+            // Rama web: el rubro ya se preguntó en el form de calificación
+            // (pre-calendario) → saltamos el paso post-booking y mostramos la
+            // confirmación final directamente, sin volver a pedir el rubro.
+            if (_flow === 'web') {
+              mostrarStep(3);
+            } else {
+              var resEl = document.getElementById('modalCatBResumen');
+              if (resEl) resEl.textContent = resumenTxt;
+              mostrarStep('CatB');
+            }
           }
 
           // Trigger browser autocomplete save
