@@ -3463,28 +3463,21 @@
           </div>
         </div>
 
-        <!-- PASO CalifWeb: A/B de flujo, rama `web`. Calificación (rubro +
-             obras) ANTES del calendario, a la misma profundidad que el bot.
-             Dispara StartTrial (rubro) y Lead (obras) por CAPI taggeados por flow. -->
-        <div class="modal-step" id="modalStepCalifWeb">
-          <h3>Contanos de tu obra</h3>
-          <p class="modal-sub">Así te mostramos una demo a tu medida. 15 min · online · gratis.</p>
-          <form id="modalFormCalifWeb" autocomplete="off" onsubmit="return submitCalifWeb(event)">
-            <label>¿A qué se dedica tu empresa? *</label>
-            <div class="calif-web-rubros" id="califWebRubros">
-              <button type="button" class="calif-web-rubro" data-rubro="constructora" onclick="seleccionarRubroWeb(this)">Constructora</button>
-              <button type="button" class="calif-web-rubro" data-rubro="desarrolladora" onclick="seleccionarRubroWeb(this)">Desarrolladora</button>
-              <button type="button" class="calif-web-rubro" data-rubro="estudio de arquitectura" onclick="seleccionarRubroWeb(this)">Estudio de arquitectura</button>
-              <button type="button" class="calif-web-rubro" data-rubro="corralón" onclick="seleccionarRubroWeb(this)">Corralón / proveedor de materiales</button>
-              <button type="button" class="calif-web-rubro" data-rubro="profesional independiente" onclick="seleccionarRubroWeb(this)">Profesional independiente</button>
-            </div>
-            <label for="modalCalifCantidad">¿Cuántas obras manejás hoy? *</label>
-            <input type="tel" id="modalCalifCantidad" name="cantidadObras" placeholder="Ej: 3" inputmode="numeric" oninput="validarCalifWeb()">
-            <label for="modalCalifTipo">¿Qué tipo de obras? <span style="font-weight:400;color:#999">(opcional)</span></label>
-            <input type="text" id="modalCalifTipo" name="tipoObras" placeholder="Ej: viviendas, edificios, locales">
-            <div class="modal-error" id="modalErrorCalifWeb" style="display:none"></div>
-            <button type="submit" id="modalCalifBtn" class="modal-btn modal-btn-primary btn-incomplete">Ver horarios disponibles <i class="fa fa-arrow-right" style="margin-left:6px;font-size:.85em"></i></button>
-          </form>
+        <!-- PASO CalifWebRubro: A/B de flujo, rama `web` · wizard paso 1/2.
+             Sólo rubro, con auto-avance al tocar. Calificación a la misma
+             profundidad que el bot. Dispara StartTrial (CAPI) por flow. -->
+        <div class="modal-step" id="modalStepCalifWebRubro">
+          <h3 class="calif-web-h3">Contanos de tu obra</h3>
+          <p class="modal-sub modal-sub-only">Paso 1 de 2 · 15 min · online · gratis</p>
+          <label class="calif-web-q">¿A qué se dedica tu empresa?</label>
+          <div class="calif-web-rubros" id="califWebRubros">
+            <button type="button" class="calif-web-rubro" data-rubro="constructora" onclick="seleccionarRubroWeb(this)">Constructora</button>
+            <button type="button" class="calif-web-rubro" data-rubro="desarrolladora" onclick="seleccionarRubroWeb(this)">Desarrolladora</button>
+            <button type="button" class="calif-web-rubro" data-rubro="estudio de arquitectura" onclick="seleccionarRubroWeb(this)">Estudio de arq.</button>
+            <button type="button" class="calif-web-rubro" data-rubro="corralón" onclick="seleccionarRubroWeb(this)">Corralón / materiales</button>
+            <button type="button" class="calif-web-rubro calif-web-rubro-wide" data-rubro="profesional independiente" onclick="seleccionarRubroWeb(this)">Profesional independiente</button>
+          </div>
+          <div class="calif-web-hint"><i class="fa fa-hand-pointer"></i> Tocá tu rubro y seguís solo</div>
           <div class="modal-wa-alt">
             <span class="modal-wa-alt-label">¿Preferís hablar primero?</span>
             <a href="#" class="modal-wa-alt-btn" onclick="contactarPorWhatsApp(event)">
@@ -3492,28 +3485,64 @@
             </a>
           </div>
         </div>
+
+        <!-- PASO CalifWebObras: wizard paso 2/2 · obras + CTA fijo abajo.
+             Dispara Lead (CAPI) por flow al avanzar al calendario. -->
+        <div class="modal-step" id="modalStepCalifWebObras">
+          <div class="calif-web-head2">
+            <button type="button" class="calif-web-back" onclick="volverARubroWeb()" aria-label="Cambiar rubro"><i class="fa fa-arrow-left"></i></button>
+            <h3 class="calif-web-h3" style="margin:0">Tu obra</h3>
+          </div>
+          <p class="modal-sub-only" style="margin:2px 0 12px">Paso 2 de 2</p>
+          <button type="button" class="calif-web-rubro-chip calif-web-chip-edit" id="califWebRubroChip" onclick="volverARubroWeb()" aria-label="Cambiar rubro"><i class="fa fa-building"></i> <span id="califWebRubroChipLabel"></span> <i class="fa fa-pen calif-web-chip-pen"></i></button>
+          <form id="modalFormCalifWeb" autocomplete="off" onsubmit="return submitCalifWeb(event)">
+            <label for="modalCalifCantidad">¿Cuántas obras manejás hoy? *</label>
+            <input type="tel" id="modalCalifCantidad" name="cantidadObras" placeholder="Ej: 3" inputmode="numeric" oninput="validarCalifWeb()">
+            <label for="modalCalifTipo">Tipo de obras <span style="font-weight:400;color:#999">(opcional)</span></label>
+            <input type="text" id="modalCalifTipo" name="tipoObras" placeholder="Viviendas, edificios…">
+            <div class="modal-error" id="modalErrorCalifWeb" style="display:none"></div>
+            <div class="calif-web-footer">
+              <button type="submit" id="modalCalifBtn" class="modal-btn modal-btn-primary btn-incomplete">Ver horarios <i class="fa fa-arrow-right" style="margin-left:6px;font-size:.85em"></i></button>
+            </div>
+          </form>
+        </div>
         <style>
-          .calif-web-rubros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+          .calif-web-h3 { font-family: "Switzer-Variable"; color: #1E4469; font-size: 1.9em; text-align: center; margin-bottom: 2px; }
+          .calif-web-q { display:block; font-size: 1.25em; font-weight: 600; color: #1E4469; margin: 6px 0 10px; }
+          .calif-web-rubros { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
           .calif-web-rubro {
-            flex: 1 1 calc(50% - 8px);
-            padding: 12px 14px;
-            border: 2px solid #e0e0e0;
+            padding: 11px 10px;
+            border: 1.5px solid #e0e0e0;
             border-radius: 10px;
             background: #fff;
             font-family: "Quicksand", sans-serif;
-            font-size: 1.25em;
+            font-size: 1.05em;
             font-weight: 600;
             color: #1E4469;
             cursor: pointer;
             transition: border-color .15s, background .15s;
             text-align: center;
+            line-height: 1.2;
           }
+          .calif-web-rubro-wide { grid-column: 1 / -1; }
           .calif-web-rubro:hover { border-color: #00B2D4; }
           .calif-web-rubro.active { border-color: #00B2D4; background: rgba(0,178,212,0.08); }
+          .calif-web-hint { display:flex; align-items:center; justify-content:center; gap:6px; font-size:.95em; color:#5A6A7A; margin: 4px 0 2px; }
+          .calif-web-head2 { display:flex; align-items:center; gap:10px; }
+          .calif-web-back { background:none; border:none; cursor:pointer; color:#5A6A7A; font-size:1.3em; padding:4px 6px; line-height:1; }
+          .calif-web-rubro-chip { display:inline-flex; align-items:center; gap:6px; font-size:1.05em; font-weight:600; padding:6px 12px; background:rgba(0,178,212,0.1); color:#0E7C90; border:none; border-radius:999px; margin-bottom:16px; font-family:"Quicksand",sans-serif; }
+          .calif-web-chip-edit { cursor:pointer; border:1.5px solid transparent; transition:border-color .15s, background .15s; }
+          .calif-web-chip-edit:hover { border-color:#00B2D4; background:rgba(0,178,212,0.16); }
+          .calif-web-chip-pen { font-size:.8em; opacity:.7; margin-left:2px; }
+          .calif-web-chip-cal { margin: 0 0 12px; }
+          .calif-web-footer { position: sticky; bottom: 0; background:#fff; padding-top: 12px; margin-top: 6px; }
         </style>
 
         <!-- PASO 1: Elegir horario (CALENDARIO PRIMERO) -->
         <div class="modal-step active" id="modalStep1">
+          <!-- Rama web: chip-resumen clickeable para corregir rubro/obras antes
+               de elegir horario. Oculto por default; se muestra sólo en flow=web. -->
+          <button type="button" class="calif-web-rubro-chip calif-web-chip-edit calif-web-chip-cal" id="modalStep1ResumenWeb" onclick="volverACalifObras()" style="display:none" aria-label="Cambiar rubro u obras"><i class="fa fa-building"></i> <span id="modalStep1ResumenWebLabel"></span> <i class="fa fa-pen calif-web-chip-pen"></i></button>
           <p class="modal-sub modal-sub-only">15 min · online</p>
 
           <!-- Desktop: Skeleton loading. Arranca con .hidden — sólo aparece
@@ -4080,6 +4109,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       // Estado de la rama web: rubro + obras que captura el form de
       // calificación ANTES del calendario (se mandan al /book).
       var _rubroWeb = null;        // string del rubro (ej. 'constructora')
+      var _rubroWebLabel = null;   // label legible (ej. 'Corralón / materiales')
       var _cantidadObrasWeb = null; // string (ej. '3')
       var _tipoObrasWeb = null;     // string (ej. 'viviendas')
 
@@ -4412,7 +4442,7 @@ const menuToggle = document.querySelector('.menu-toggle');
         // calendario, a la misma profundidad que el bot. Recién después de
         // calificar se muestra el calendario (modalStep1).
         if (_flow === 'web') {
-          mostrarStep('CalifWeb');
+          mostrarStep('CalifWebRubro');
           _funnelStep('/calificacion', null, { content_name: 'calificacion_web', funnel_step: 'calificacion' });
           cargarSlots(); // prefetch de slots mientras califica
           return;
@@ -4447,11 +4477,28 @@ const menuToggle = document.querySelector('.menu-toggle');
           _rubroWeb = rubro;
           var els = document.querySelectorAll('#califWebRubros .calif-web-rubro');
           els.forEach(function(el) { el.classList.toggle('active', el === btn); });
+          // Mostrar el rubro elegido como chip (clickeable) en el paso 2.
+          _rubroWebLabel = (btn.textContent || rubro).trim();
+          var chip = document.getElementById('califWebRubroChipLabel');
+          if (chip) chip.textContent = _rubroWebLabel;
           // Funnel "Respondió rubro" + CAPI StartTrial (el backend filtra por
           // calificación). Sólo dispara una vez por apertura (dedupe en _trackStep).
           _trackStep('rubro_web', { rubro: rubro });
           validarCalifWeb();
+          // Auto-avance al paso 2 (obras). Pequeño delay para que se vea el
+          // highlight de la opción tocada.
+          setTimeout(function() {
+            mostrarStep('CalifWebObras');
+            var c = document.getElementById('modalCalifCantidad');
+            if (c && typeof c.focus === 'function') setTimeout(function() { try { c.focus({ preventScroll: true }); } catch (_) { c.focus(); } }, 30);
+          }, 180);
         } catch (_) {}
+      }
+
+      // Volver del paso 2 (obras) al paso 1 (rubro) del wizard web.
+      function volverARubroWeb() {
+        mostrarStep('CalifWebRubro');
+        _funnelStep('/calificacion', null, { content_name: 'calificacion_web', funnel_step: 'calificacion' });
       }
 
       function validarCalifWeb() {
@@ -4484,9 +4531,21 @@ const menuToggle = document.querySelector('.menu-toggle');
         _trackStep('obras_web', { rubro: _rubroWeb, cantidadObras: _cantidadObrasWeb, tipoObras: _tipoObrasWeb || undefined });
         // Avanzar al calendario (ya prefetcheado al abrir el modal).
         mostrarStep(1);
+        // Rama web: chip-resumen clickeable en el calendario para corregir rubro/obras.
+        var resW = document.getElementById('modalStep1ResumenWeb');
+        var resL = document.getElementById('modalStep1ResumenWebLabel');
+        if (resL) resL.textContent = (_rubroWebLabel || _rubroWeb || '') + ' · ' + _cantidadObrasWeb + ' obra' + (_cantidadObrasWeb === '1' ? '' : 's');
+        if (resW) resW.style.display = 'inline-flex';
         _funnelStep('/horario', null, { content_name: 'agendar_horario', funnel_step: 'horario' });
         cargarSlots();
         return false;
+      }
+
+      // Rama web: volver del calendario al paso de obras (que a su vez tiene
+      // back al rubro). Permite corregir lo elegido antes de tomar un horario.
+      function volverACalifObras() {
+        mostrarStep('CalifWebObras');
+        _funnelStep('/calificacion', null, { content_name: 'calificacion_web', funnel_step: 'calificacion' });
       }
 
       // ─── Variante A: form-first ──────────────────────────────────────
