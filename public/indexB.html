@@ -4085,7 +4085,7 @@ const menuToggle = document.querySelector('.menu-toggle');
       //                    (flujo actual de WhatsApp). Sirve para validar el
       //                    deploy en prod SIN arrancar el test. El override
       //                    ?flow=web sigue funcionando para QA.
-      // FLOW_FORCE=null  → arranca el split 50/50. La fecha de este deploy es
+      // FLOW_FORCE=null  → arranca el split 80/20 (wa/web). La fecha de este deploy es
       //                    la "fecha de corte" de data limpia (LandingStats es
       //                    por día). ← cambiar a null cuando quieras prender el A/B.
       var FLOW_FORCE = null;
@@ -4099,7 +4099,7 @@ const menuToggle = document.querySelector('.menu-toggle');
           if (FLOW_FORCE === 'wa' || FLOW_FORCE === 'web') return FLOW_FORCE;
           var saved = null; try { saved = localStorage.getItem(FKEY); } catch (_) {}
           if (saved === 'wa' || saved === 'web') return saved;
-          var pick = Math.random() < 0.5 ? 'wa' : 'web';
+          var pick = Math.random() < 0.8 ? 'wa' : 'web';
           try { localStorage.setItem(FKEY, pick); } catch (_) {}
           return pick;
         } catch (_) { return 'wa'; }
