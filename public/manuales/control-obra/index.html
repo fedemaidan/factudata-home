@@ -65,14 +65,15 @@
       <a href="#mapa">3 · Mapa del módulo</a>
       <a href="#crear">4 · Crear una obra</a>
       <a href="#ejecucion">5 · Ejecución</a>
-      <a href="#cronograma">6 · Cronograma</a>
-      <a href="#certificados">7 · Certificados</a>
-      <a href="#cobros">8 · Cobros</a>
-      <a href="#manoobra">9 · Mano de obra</a>
-      <a href="#reportes">10 · Reportes</a>
-      <a href="#cartera">11 · Cartera</a>
-      <a href="#faq">12 · Problemas</a>
-      <a href="#glosario">13 · Glosario</a>
+      <a href="#gastos">6 · Cargar gastos</a>
+      <a href="#cronograma">7 · Cronograma</a>
+      <a href="#certificados">8 · Certificados</a>
+      <a href="#cobros">9 · Cobros</a>
+      <a href="#manoobra">10 · Mano de obra</a>
+      <a href="#reportes">11 · Reportes</a>
+      <a href="#cartera">12 · Cartera</a>
+      <a href="#faq">13 · Problemas</a>
+      <a href="#glosario">14 · Glosario</a>
     </nav>
 
     <main class="doc">
@@ -226,13 +227,85 @@
         <p>Detalle de la tarea &rarr; <strong>Proveedor / contrato</strong>. Elegís el contratista, el costo del contrato y cómo se devenga el pago: por avance físico o por certificado.</p>
 
         <h3>Imputar gastos</h3>
-        <p><strong>Imputar gasto</strong> asocia un egreso de caja a una tarea, y podés repartirlo entre varias por porcentaje. Si te equivocaste en varios, <strong>Re-imputar masiva</strong> los corrige en lote.</p>
+        <p>Los gastos son un tema en sí mismo, con dos caminos posibles. Lo vemos en la sección que sigue.</p>
+      </section>
+
+      <section id="gastos">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">06</p><h2>Cargar gastos</h2></div>
+        </div>
+        <p><strong>Imputar</strong> es decirle al sistema a qué tarea corresponde un gasto. Hay dos caminos y terminan en el mismo lugar: un egreso en la caja, pegado a una tarea de la obra, que suma al <em>gastado</em> y mueve el margen.</p>
+
+        <div class="cards">
+          <div class="card"><p class="tagx">Camino 1</p><h4>Desde WhatsApp</h4><p>Mandás el gasto y lo imputamos nosotros. Es el camino del día a día, el que usa la gente que está en la obra.</p></div>
+          <div class="card"><p class="tagx">Camino 2</p><h4>Desde la web</h4><p>Tomás un gasto ya cargado en la caja y lo asignás vos. Sirve para ordenar, corregir o repartir entre tareas.</p></div>
+        </div>
+
+        <h3>Desde WhatsApp</h3>
+        <p>Es lo más rápido y no requiere entrar a la app:</p>
+        <ol>
+          <li>Le mandás el gasto al bot: un mensaje como <em>“pagué 80 mil de hierro para la losa”</em>, o directamente <strong>la foto del comprobante</strong>.</li>
+          <li>Leemos el monto, el proveedor y la categoría, y proponemos <strong>a qué tarea</strong> corresponde.</li>
+          <li>Buscamos la obra del <strong>proyecto</strong> al que estás cargando el gasto —cada proyecto tiene su obra— y buscamos la tarea por nombre.</li>
+          <li>Si la encontramos, el gasto queda <strong>imputado a esa tarea</strong> y te lo confirmamos como <span class="k">Rubro › Tarea</span>.</li>
+          <li>Si no la encontramos, <strong>te preguntamos</strong> a cuál va.</li>
+        </ol>
+        <p><strong>Un ejemplo real.</strong> Le escribís esto y listo:</p>
+        <div class="chat">
+          <div class="burbuja yo">
+            <span class="quien">Vos</span>
+            gaste 150mil en materiales en limpieza final en la obra tigre
+          </div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            Los datos del comprobante son:
+            <div class="ficha">
+              <div class="f"><span>Proyecto</span><span>Tigre</span></div>
+              <div class="f"><span>Fecha</span><span>2026-07-22</span></div>
+              <div class="f"><span>Categoría</span><span>Materiales</span></div>
+              <div class="f destacado"><span>🏗 Sub-rubro</span><span>Varios › Limpieza final</span></div>
+              <div class="f"><span>Total</span><span>$ 150.000</span></div>
+              <div class="f"><span>Moneda</span><span>ARS</span></div>
+            </div>
+          </div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            ¿Los datos son correctos?<br>
+            1. ✅ Sí &nbsp; 2. 📝 No, quiero corregirlo &nbsp; 3. 📷 Confirmar y actualizar foto &nbsp; 4. ❌ Cancelar
+          </div>
+        </div>
+        <p>Mirá la línea <strong>Sub-rubro</strong>: de <em>“en limpieza final”</em> sacamos la tarea, y de <em>“en la obra tigre”</em>, el proyecto. Contestás <strong>1</strong> y el gasto queda cargado e imputado. Si algo salió mal, con <strong>2</strong> lo corregís sin volver a escribir todo.</p>
+        <div class="nota ok"><p><b>Preferimos preguntar antes que errar</b>Si el nombre no coincide con ninguna tarea de la obra, no adivinamos: te preguntamos. Un gasto mal imputado te ensucia el margen de dos tareas a la vez, así que prevenimos.</p></div>
+        <div class="nota"><p><b>Para que acierte más seguido</b>Ponele a las tareas nombres parecidos a como las nombrás hablando. Si en la obra le decís “la losa”, que la tarea no se llame “Ejecución de entrepiso H°A° nivel +3.00”. Y si tenés las categorías configuradas, también podemos imputar por ahí.</p></div>
+
+        <h3>Desde la web</h3>
+        <p>Cuando abrís un gasto para editarlo —haya entrado por WhatsApp, por mail o lo hayas cargado a mano— en el bloque <strong>Clasificación</strong> tenés el interruptor <strong>Imputar a Control de Obra</strong>. Lo tildás y se despliega la lista de tareas de la obra, cada una con su casillero de porcentaje.</p>
+
+        <p><strong>Un ejemplo:</strong> una factura de mano de obra de $1.500.000 que cubrió dos frentes.</p>
+        <div class="reparto">
+          <div class="reparto-hd">
+            <b>Imputar a Control de Obra</b>
+            <span>Repartí el gasto entre sub-rubros (debe sumar 100%)</span>
+          </div>
+          <ul>
+            <li class="activa"><span>Demolición · Demolición de muros según plano</span><span class="pct">60 %</span></li>
+            <li class="activa"><span>Albañilería General · Revoque grueso de muros</span><span class="pct">40 %</span></li>
+            <li><span>Instalación Sanitaria · Desmonte de cañerías obsoletas</span><span class="pct">0 %</span></li>
+            <li><span>Instalación Eléctrica · Desarmado de bocas existentes</span><span class="pct">0 %</span></li>
+            <li class="suma"><span>Suma</span><span class="pct">100 % ✓</span></li>
+          </ul>
+        </div>
+        <p>Con eso, $900.000 se van al gastado de <em>Demolición de muros</em> y $600.000 al de <em>Revoque grueso</em>. Si el gasto fuera de una sola tarea, le ponés <strong>100</strong> a esa y listo. Los porcentajes <strong>tienen que sumar 100</strong>: te lo marcamos abajo mientras cargás.</p>
+
+        <p>También podés hacerlo al revés, desde la obra: en <strong>Ejecución &rarr; Imputar gasto</strong> te listamos los egresos de la caja para que elijas cuál asignar. Y si ya cargaste muchos sin imputar, <strong>Re-imputar masiva</strong> los corrige en lote en vez de uno por uno.</p>
+        <div class="nota warn"><p><b>El gasto tiene que estar en la caja correcta</b>Solo podés imputar egresos del proyecto al que pertenece la obra. Si no aparece el que buscás, fijate que se haya cargado en esa caja.</p></div>
       </section>
 
       <section id="cronograma">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
-          <div><p class="eyebrow">06</p><h2>Cronograma</h2></div>
+          <div><p class="eyebrow">07</p><h2>Cronograma</h2></div>
         </div>
         <p>La vista de tiempos. Cada tarea tiene fecha de inicio, duración y fecha de fin, y podés encadenarlas con <strong>dependencias</strong>: una arranca cuando termina la anterior. Si movés la primera, recalculamos las que siguen.</p>
         <p>Las tareas cuya fecha de fin ya pasó sin estar completas quedan marcadas como <strong>atrasadas</strong> y te las mostramos en las alertas del Resumen.</p>
@@ -245,7 +318,7 @@
       <section id="certificados">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
-          <div><p class="eyebrow">07</p><h2>Certificados</h2></div>
+          <div><p class="eyebrow">08</p><h2>Certificados</h2></div>
         </div>
         <p>Un certificado convierte avance en dinero cobrable. Lo armás desde <strong>Ejecución &rarr; Armar certificado</strong>, que junta las tareas con avance sin certificar, o a mano desde la pestaña Certificados.</p>
         <div class="nota"><p><b>Cómo lo calculamos</b>El monto de cada línea es <strong>(avance nuevo − avance anterior) ÷ 100 × contrato de la tarea</strong>. Certificás sobre el contrato con el cliente, proporcional a lo ejecutado. Nunca sobre el total ni sobre la composición del cobro.</p></div>
@@ -264,12 +337,21 @@
           <img src="../img/control-obra/certificados.jpg" alt="Pestaña Certificados con la lista y sus estados" loading="lazy" width="1280" height="759">
           <figcaption><b>Certificados</b><span>Cada fila muestra su estado y su antigüedad. Los botones de la derecha cambian según dónde esté el certificado en el circuito.</span></figcaption>
         </figure>
+
+        <h3>Registrar el cobro de un certificado</h3>
+        <p>Cuando el cliente te paga, tocás <strong>Cobrar</strong> en la fila del certificado. Podés hacerlo desde la pestaña Certificados o desde la hoja <strong>Cobranzas</strong>, sin entrar a la obra.</p>
+        <ul>
+          <li>Solo se cobran los certificados <strong>aprobados</strong>. Si todavía está en revisión, primero hay que aprobarlo.</li>
+          <li>Se cobra el <strong>neto</strong>: el bruto menos las retenciones y menos la amortización del anticipo, si la obra tiene esos conceptos configurados.</li>
+          <li>Podés registrar un <strong>cobro parcial</strong>. El saldo queda pendiente y te lo seguimos mostrando en Cobranzas hasta que entre completo.</li>
+        </ul>
+        <p>Al confirmarlo generamos el <strong>ingreso en la caja</strong> del proyecto de la obra, identificado como <span class="k">Cobro · Certificado N</span> y ya imputado a la obra. No tenés que cargar nada a mano en la caja.</p>
       </section>
 
       <section id="cobros">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
-          <div><p class="eyebrow">08</p><h2>Cobros</h2></div>
+          <div><p class="eyebrow">09</p><h2>Cobros</h2></div>
         </div>
         <p>Acá manejás cómo te paga el cliente. Una obra puede tener <strong>ninguno, uno o varios planes de cobro</strong>: por ejemplo, uno por cada unidad vendida. Podés crear uno nuevo ya asociado a la obra, vincular uno existente o desvincularlo sin borrarlo.</p>
         <figure>
@@ -277,12 +359,21 @@
           <figcaption><b>Cobros</b><span>Cada plan muestra su total, lo cobrado y lo pendiente, con la barra de avance del cobro.</span></figcaption>
         </figure>
         <div class="nota ok"><p><b>Esto es importante</b>Los certificados y los planes de cobro <strong>se suman</strong>: pueden cobrar plata distinta, como inversores por certificación y compradores por plan. Por eso te mostramos el pendiente desglosado por fuente, y no los restamos entre sí.</p></div>
+
+        <h3>Registrar el cobro de una cuota</h3>
+        <p>Cada plan tiene su calendario de cuotas, con su vencimiento. Cuando entra la plata, tocás <strong>Cobrar</strong> en la cuota. Igual que con los certificados, lo podés hacer desde la obra o desde la hoja <strong>Cobranzas</strong>, que te junta todo lo que tenés por cobrar de todas las obras.</p>
+        <ul>
+          <li>Podés cobrar la cuota <strong>completa o una parte</strong>. Si es parcial, queda como <em>cobrada parcial</em> y el saldo te sigue apareciendo como pendiente.</li>
+          <li>Generamos el <strong>ingreso en la caja</strong> automáticamente, igual que con los certificados.</li>
+          <li>Las cuotas vencidas sin cobrar se marcan en rojo en Cobranzas, así ves de un vistazo qué reclamar.</li>
+        </ul>
+        <div class="nota"><p><b>Dos formas de cobrar, un solo lugar para mirarlas</b>Un certificado se cobra por avance ejecutado; una cuota, por calendario. Las dos terminan como ingreso en la misma caja, y las dos te aparecen juntas en <strong>Cobranzas</strong>.</p></div>
       </section>
 
       <section id="manoobra">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
-          <div><p class="eyebrow">09</p><h2>Mano de obra</h2></div>
+          <div><p class="eyebrow">10</p><h2>Mano de obra</h2></div>
         </div>
         <p>Todo lo que sale de tu caja hacia los contratistas. Son tres bloques.</p>
 
@@ -290,7 +381,9 @@
         <p>Calculamos lo devengado a cada contratista según el avance —o lo certificado, según cómo configuraste su contrato— y te proponemos la orden ya armada. Tocás <strong>Generar orden</strong> y queda en borrador.</p>
 
         <h3>Órdenes de pago</h3>
-        <p>Pagos puntuales a un contratista, con su circuito de control:</p>
+        <p>Una orden de pago es <strong>un pago puntual a un contratista</strong>, con un circuito de aprobación para que nadie desembolse solo. Por dentro es una lista de <strong>líneas</strong>: una por cada tarea que le estás pagando, con su monto. El total de la orden es la suma de esas líneas.</p>
+        <p>La armás de dos maneras: tocando <strong>Nueva orden</strong> —elegís el contratista y cargás las líneas— o dejando que la generemos nosotros desde una sugerencia por avance.</p>
+        <p>Después recorre este circuito. Tocá un estado para ver qué significa:</p>
         <div class="flow" data-flow="orden">
           <button class="step" aria-pressed="true" data-i="0">Borrador</button><span class="arrow">&rarr;</span>
           <button class="step" aria-pressed="false" data-i="1">Aprobada</button><span class="arrow">&rarr;</span>
@@ -298,6 +391,14 @@
           <button class="step bad" aria-pressed="false" data-i="3">Anulada</button>
         </div>
         <div class="flow-detail" id="d-orden"></div>
+        <div class="nota ok"><p><b>Pagar la orden ya imputa el gasto</b>Cuando la marcás como pagada generamos el egreso en la caja del proyecto —como <span class="k">Mano de obra · nombre del contratista</span>— y lo repartimos entre las tareas de la orden, en proporción a lo que cargaste en cada línea. No tenés que imputarlo aparte: el gastado de esas tareas se actualiza solo.</p></div>
+
+        <h3>¿Orden de pago o plan de pago?</h3>
+        <p>Se confunden seguido, pero resuelven cosas distintas:</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Una vez</p><h4>Orden de pago</h4><p>Le pagás algo puntual al contratista: lo que devengó este mes, un adelanto suelto. Se arma, se aprueba y se paga.</p></div>
+          <div class="card"><p class="tagx">Un calendario</p><h4>Plan de pago</h4><p>Acordaste pagarle en cuotas. Armás el plan una vez y después vas pagando cuota por cuota, con sus vencimientos.</p></div>
+        </div>
 
         <h3>Planes de pago a proveedores</h3>
         <p>Para pagar en cuotas, con anticipo, refuerzos, periódicas o por avance. Hay tres maneras de armarlo, según a qué quede atado:</p>
@@ -320,7 +421,7 @@
       <section id="reportes">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
-          <div><p class="eyebrow">10</p><h2>Reportes</h2></div>
+          <div><p class="eyebrow">11</p><h2>Reportes</h2></div>
         </div>
         <p><strong>Conforme de obra.</strong> Emitís el acta de conformidad cuando cerrás la obra.</p>
         <p><strong>Inconvenientes.</strong> Registrás los problemas que van apareciendo y los vas marcando como resueltos. Los que quedan pendientes te los mostramos en las alertas del Resumen.</p>
@@ -329,7 +430,7 @@
       <section id="cartera">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
-          <div><p class="eyebrow">11</p><h2>Cartera</h2></div>
+          <div><p class="eyebrow">12</p><h2>Cartera</h2></div>
         </div>
         <p>Tres vistas que cruzan todas tus obras, para trabajar por tarea en vez de obra por obra.</p>
         <div class="tabla-wrap">
@@ -347,7 +448,7 @@
       <section id="faq">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
-          <div><p class="eyebrow">12</p><h2>Cuando algo no sale</h2></div>
+          <div><p class="eyebrow">13</p><h2>Cuando algo no sale</h2></div>
         </div>
         <div>
           <details><summary>Importé mi planilla y quedó todo en $0</summary><div class="ans"><p class="causa">Casi siempre es que en el archivo los importes no están en una columna reconocible, o la fila mezcla varios datos en una misma celda.</p><p>Fijate que haya una columna con el importe (“Total”, “Importe”, “Monto”) o bien cantidad y precio unitario por separado. Si tu planilla es rara, cargá los rubros a mano y seguí: la obra igual sirve.</p></div></details>
@@ -370,7 +471,7 @@
       <section id="glosario">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
-          <div><p class="eyebrow">13</p><h2>Glosario</h2></div>
+          <div><p class="eyebrow">14</p><h2>Glosario</h2></div>
         </div>
         <div class="buscador"><input id="q" type="search" placeholder="Buscar: margen, imputar, certificado…" aria-label="Buscar término" autocomplete="off"></div>
         <dl class="glos" id="glos">
