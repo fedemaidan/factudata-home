@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Control de Obra · Sorby</title>
+  <meta name="description" content="Cómo controlar una obra con Sorby: cargar avance y costos, certificar para cobrarle al cliente, pagar a proveedores y seguir el margen tarea por tarea.">
+  <link rel="canonical" href="https://sorbydata.com/manuales/control-obra/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Manual de Control de Obra · Sorby">
+  <meta property="og:description" content="Avance, costos, certificados, cobros y pagos a proveedores: la guía completa del módulo Control de Obra.">
+  <meta property="og:url" content="https://sorbydata.com/manuales/control-obra/">
+  <meta property="og:image" content="https://sorbydata.com/manuales/img/control-obra/resumen.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.cdnfonts.com/css/codec-cold" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/manual.css">
+</head>
+<body>
+
+  <div class="site-bar">
+    <div class="site-bar-in">
+      <a href="../../" aria-label="Ir al inicio de Sorby">
+        <img src="../../img/logo-mixto-blanco.png" alt="Sorby Data">
+      </a>
+      <nav>
+        <a href="../../">Inicio</a>
+        <a href="../">Manuales</a>
+        <a class="cta" href="../../">Probá gratis</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="portada">
+    <div class="portada-in">
+      <p class="migas"><a href="../">Manuales</a> · Obra</p>
+      <div class="portada-head">
+        <h1>Control de Obra</h1>
+        <p class="lede">Te ayudamos a tener el control total de tu obra: lo que le vendiste al cliente, lo que llevás ejecutado, lo que ya cobraste y lo que te está costando. Sin planillas, sin sorpresas.</p>
+      </div>
+
+      <div class="lados">
+        <div class="lado cobrar">
+          <h3>Lo que cobrás</h3>
+          <div class="cadena"><b>Contrato</b><i>&rarr;</i><b>Certificados</b><i>&rarr;</i><b>Planes de cobro</b><i>&rarr;</i><b>Cobrado</b></div>
+        </div>
+        <div class="menos">menos</div>
+        <div class="lado gastar">
+          <h3>Lo que gastás</h3>
+          <div class="cadena"><b>Costo</b><i>&rarr;</i><b>Órdenes y planes de pago</b><i>&rarr;</i><b>Gastado</b></div>
+        </div>
+      </div>
+      <p class="igual">= tu margen, calculado solo</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="toc" aria-label="Índice">
+      <p class="eyebrow" style="padding:.4rem .8rem">Índice</p>
+      <a href="#intro" class="on">1 · Introducción</a>
+      <a href="#antes">2 · Antes de empezar</a>
+      <a href="#mapa">3 · Mapa del módulo</a>
+      <a href="#crear">4 · Crear una obra</a>
+      <a href="#ejecucion">5 · Ejecución</a>
+      <a href="#cronograma">6 · Cronograma</a>
+      <a href="#certificados">7 · Certificados</a>
+      <a href="#cobros">8 · Cobros</a>
+      <a href="#manoobra">9 · Mano de obra</a>
+      <a href="#reportes">10 · Reportes</a>
+      <a href="#cartera">11 · Cartera</a>
+      <a href="#faq">12 · Problemas</a>
+      <a href="#glosario">13 · Glosario</a>
+    </nav>
+
+    <main class="doc">
+
+      <section id="intro">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">01</p><h2>Introducción</h2></div>
+        </div>
+        <p>Toda obra tiene dos caras que funcionan como un espejo. De un lado registrás lo que le vendiste al cliente y vas certificando el avance para cobrarlo. Del otro, lo que te sale hacerlo —el contratista y los materiales— y vas pagando. La diferencia entre las dos es tu margen, y lo calculamos nosotros.</p>
+        <h3>Cómo se organiza una obra</h3>
+        <p>En tres niveles. La <strong>tarea</strong> es donde vive todo: su contrato, su avance, su costo, sus gastos y su margen.</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Nivel 1</p><h4>Obra</h4><p>El proyecto completo, con su contrato total, su cronograma y su cartera de cobros y pagos.</p></div>
+          <div class="card"><p class="tagx">Nivel 2</p><h4>Rubro</h4><p>Un agrupador de tareas afines. Por ejemplo, <em>Estructura</em> o <em>Terminaciones</em>.</p></div>
+          <div class="card"><p class="tagx">Nivel 3</p><h4>Tarea</h4><p>La unidad de trabajo: <em>Losa de techo</em>. Acá cargás avance, costos y gastos, y certificás.</p></div>
+        </div>
+      </section>
+
+      <section id="antes">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">02</p><h2>Antes de empezar</h2></div>
+        </div>
+        <p>Para que le saques provecho desde el día uno, conviene tener listo:</p>
+        <ul>
+          <li>Al menos un <strong>proyecto o caja</strong> en la empresa: es donde se registran los ingresos y los egresos.</li>
+          <li>Tus <strong>proveedores</strong> cargados. No es obligatorio, pero te ahorra tipear: aparecen solos al asignar contratos y armar planes de pago.</li>
+          <li>Si vas a crear la obra desde un presupuesto, tené el <strong>presupuesto profesional</strong> ya cargado.</li>
+          <li>El permiso <span class="k">VER_PLANES_PAGO</span> activado para quien tenga que ver la hoja general de pagos.</li>
+        </ul>
+        <div class="nota"><p><b>Cómo activamos el permiso</b>Entrá a <strong>Configuración general de la empresa &rarr; Acciones</strong> y tildá <span class="k">VER_PLANES_PAGO</span>. Sin eso, el ítem “Planes de pago” no aparece en el menú.</p></div>
+      </section>
+
+      <section id="mapa">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">03</p><h2>Mapa del módulo</h2></div>
+        </div>
+        <p>El <strong>listado de obras</strong> es la puerta de entrada: te muestra los números de toda tu cartera —obras activas, contrato total, cobrado y pendiente— el botón para crear una obra y un switch para ver las archivadas.</p>
+        <figure>
+          <img src="../img/control-obra/listado.jpg" alt="Listado de obras con los indicadores de la cartera" loading="lazy" width="1280" height="759">
+          <figcaption><b>Listado</b><span>Los cuatro indicadores de arriba resumen toda tu cartera; abajo, cada obra con su avance y su margen.</span></figcaption>
+        </figure>
+        <p>Dentro de cada obra hay siete vistas. Tocá cada una para ver qué resuelve:</p>
+        <div class="tabs" role="tablist" aria-label="Pestañas de una obra">
+          <button class="tab" role="tab" aria-selected="true" data-p="p1">Resumen</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p2">Ejecución</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p3">Cronograma</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p4">Certificados</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p5">Cobros</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p6">Mano de obra</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="p7">Reportes</button>
+        </div>
+        <div class="panel on" id="p1" role="tabpanel"><h4>Resumen · la foto de la obra</h4>
+          <p>Vas a ver los dos lados enfrentados: lo que cobrás —contrato, certificado y cobrado— y lo que gastás —costo de referencia desglosado en proveedor y directo, gastado real y márgenes.</p>
+          <p>También la <strong>composición del cobro</strong>: cuánto esperás cobrar por certificación y cuánto por planes, con una señal de cobertura, las alertas de la obra y la curva de avance.</p></div>
+        <div class="panel" id="p2" role="tabpanel"><h4>Ejecución · el corazón</h4>
+          <p>La grilla con contrato, avance, certificado, costo, gastado y margen de cada tarea. Desde acá registrás avance, cargás costos, imputás gastos y armás certificados.</p></div>
+        <div class="panel" id="p3" role="tabpanel"><h4>Cronograma · los tiempos</h4>
+          <p>Fechas de inicio y fin, duración y dependencias entre tareas. Las que vencieron sin terminarse te las marcamos como atrasadas.</p></div>
+        <div class="panel" id="p4" role="tabpanel"><h4>Certificados · valorizar el avance</h4>
+          <p>Cada certificado convierte avance en dinero cobrable y sigue su circuito de aprobación con el cliente.</p></div>
+        <div class="panel" id="p5" role="tabpanel"><h4>Cobros · cómo te paga el cliente</h4>
+          <p>Los planes de cobro de la obra. Puede tener ninguno, uno o varios: por ejemplo, uno por cada unidad vendida.</p></div>
+        <div class="panel" id="p6" role="tabpanel"><h4>Mano de obra · cómo pagás</h4>
+          <p>Órdenes sugeridas por avance, órdenes de pago con su circuito de aprobación, y planes de pago a proveedores en cuotas.</p></div>
+        <div class="panel" id="p7" role="tabpanel"><h4>Reportes · cierre y seguimiento</h4>
+          <p>El conforme de obra para el cierre y el registro de inconvenientes durante la ejecución.</p></div>
+
+        <figure>
+          <img src="../img/control-obra/resumen.jpg" alt="Pestaña Resumen con los dos lados de la obra y la composición del cobro" loading="lazy" width="1280" height="759">
+          <figcaption><b>Resumen</b><span>Los dos lados enfrentados: a la izquierda lo que cobrás, a la derecha lo que gastás con el costo desglosado en proveedor y directo.</span></figcaption>
+        </figure>
+        <p>Y fuera de la obra tenés tres <strong>hojas de cartera</strong> que cruzan todo: Cobranzas, Pagos y Planes de pago.</p>
+      </section>
+
+      <section id="crear">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
+          <div><p class="eyebrow">04</p><h2>Crear una obra</h2></div>
+        </div>
+        <p>Entrá a <strong>Control de Obra</strong> y tocá <strong>Nueva obra</strong>. Te vamos a pedir tres cosas: el <strong>origen</strong> —de dónde salen los rubros y tareas—, el <strong>perfil de obra</strong> —que define la indexación CAC, la retención y el anticipo por defecto— y, si querés, el <strong>proyecto</strong> al que se asocia.</p>
+        <h3>Las tres formas de armarla</h3>
+        <div class="cards">
+          <div class="card"><p class="tagx">Opción A</p><h4>Desde un presupuesto profesional</h4><p>Elegís uno ya armado y la obra hereda sus rubros, título y proyecto. Es el camino más rápido si ya cotizaste ahí.</p></div>
+          <div class="card"><p class="tagx">Opción B</p><h4>Desde categorías</h4><p>Armamos la estructura con las categorías de tu empresa y sumamos los presupuestos del proyecto. Después borrás lo que no aplique.</p></div>
+          <div class="card"><p class="tagx">Opción C</p><h4>Carga manual</h4><p>Ponés un título y cargás vos los rubros y tareas, con su nombre y su monto.</p></div>
+        </div>
+        <div class="nota"><p><b>Ojo con el monto</b>El monto de cada tarea es el contrato <em>con el cliente</em>, o sea lo que vas a cobrar. El costo se carga aparte, en Ejecución.</p></div>
+      </section>
+
+      <section id="ejecucion">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">05</p><h2>Ejecución</h2></div>
+        </div>
+        <p>Es donde vive el día a día. Tocá cualquier tarea y se abre su <strong>detalle</strong>: arriba el resumen de números —contrato, costo, gastado, certificado y márgenes— y abajo una sección por cada cosa que podés hacer.</p>
+        <figure>
+          <img src="../img/control-obra/ejecucion.jpg" alt="Pestaña Ejecución con la grilla de tareas, costos y márgenes" loading="lazy" width="1280" height="759">
+          <figcaption><b>Ejecución</b><span>Fijate en la columna <em>Costo est/contr</em>: muestra el costo de referencia y aclara si viene de un contrato o de un estimado.</span></figcaption>
+        </figure>
+
+        <h3>Registrar el avance</h3>
+        <p>Detalle de la tarea &rarr; <strong>Avance físico &rarr; Registrar</strong>. Es el porcentaje realmente ejecutado en obra. No puede ser menor a lo que ya certificaste.</p>
+
+        <h3>Cargar el costo: proveedor + directo</h3>
+        <p>El costo de una tarea se parte en dos partes que <strong>se suman</strong>: lo que hace un contratista y lo que comprás vos.</p>
+        <ul>
+          <li><strong>Costo estimado (proveedor)</strong>: la parte que ejecuta un contratista. Si después le asignás un contrato, ese valor manda sobre el estimado.</li>
+          <li><strong>Costo directo (materiales u otros)</strong>: lo que comprás y vas imputando suelto.</li>
+        </ul>
+        <p>La suma de las dos es el <strong>costo de referencia</strong>, y contra él medimos el margen y el sobrecosto. Probalo acá:</p>
+
+        <div class="calc">
+          <div class="calc-in">
+            <p class="eyebrow">Simulá una tarea</p>
+            <div class="field"><label for="c1">Contrato con el cliente</label><input id="c1" type="number" min="0" step="1000" value="100000"></div>
+            <div class="field"><label for="c2">Costo proveedor</label><input id="c2" type="number" min="0" step="1000" value="60000"></div>
+            <div class="field"><label for="c3">Costo directo (materiales)</label><input id="c3" type="number" min="0" step="1000" value="40000"></div>
+            <div class="field"><label for="c4">Gastado hasta hoy</label><input id="c4" type="number" min="0" step="1000" value="95000"></div>
+          </div>
+          <div class="calc-out">
+            <p class="eyebrow">Resultado</p>
+            <div class="row"><span class="lbl">Costo de referencia</span><span class="val" id="o1">—</span></div>
+            <div class="row"><span class="lbl">Gastado</span><span class="val" id="o2">—</span></div>
+            <div class="row total"><span class="lbl">Margen esperado</span><span class="val" id="o3">—</span></div>
+            <span class="pill ok" id="o4">—</span>
+            <p class="lbl" id="o5" style="font-size:var(--fs-xs)"></p>
+          </div>
+        </div>
+        <div class="nota warn"><p><b>Por qué te conviene cargar el costo directo</b>Si no lo cargás, los materiales que imputes van a superar el costo de referencia y la tarea te va a aparecer en rojo, como si te hubieras excedido, cuando en realidad estaba todo previsto. Poné el costo directo en cero en la simulación y mirá qué pasa.</p></div>
+
+        <h3>Estimar costos en masa</h3>
+        <p>El botón <strong>Estimar costos</strong> completa todas las tareas de una. Elegís la dirección —costo a partir del contrato menos un porcentaje, o contrato a partir del costo más un markup— y si querés respetar lo ya cargado.</p>
+
+        <h3>Asignar un proveedor</h3>
+        <p>Detalle de la tarea &rarr; <strong>Proveedor / contrato</strong>. Elegís el contratista, el costo del contrato y cómo se devenga el pago: por avance físico o por certificado.</p>
+
+        <h3>Imputar gastos</h3>
+        <p><strong>Imputar gasto</strong> asocia un egreso de caja a una tarea, y podés repartirlo entre varias por porcentaje. Si te equivocaste en varios, <strong>Re-imputar masiva</strong> los corrige en lote.</p>
+      </section>
+
+      <section id="cronograma">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">06</p><h2>Cronograma</h2></div>
+        </div>
+        <p>La vista de tiempos. Cada tarea tiene fecha de inicio, duración y fecha de fin, y podés encadenarlas con <strong>dependencias</strong>: una arranca cuando termina la anterior. Si movés la primera, recalculamos las que siguen.</p>
+        <p>Las tareas cuya fecha de fin ya pasó sin estar completas quedan marcadas como <strong>atrasadas</strong> y te las mostramos en las alertas del Resumen.</p>
+        <figure>
+          <img src="../img/control-obra/cronograma.jpg" alt="Pestaña Cronograma con las barras de cada tarea en el tiempo" loading="lazy" width="1280" height="759">
+          <figcaption><b>Cronograma</b><span>Cada barra es una tarea. Las rojas están atrasadas; el ancho es su duración y la posición, su ventana de ejecución.</span></figcaption>
+        </figure>
+      </section>
+
+      <section id="certificados">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">07</p><h2>Certificados</h2></div>
+        </div>
+        <p>Un certificado convierte avance en dinero cobrable. Lo armás desde <strong>Ejecución &rarr; Armar certificado</strong>, que junta las tareas con avance sin certificar, o a mano desde la pestaña Certificados.</p>
+        <div class="nota"><p><b>Cómo lo calculamos</b>El monto de cada línea es <strong>(avance nuevo − avance anterior) ÷ 100 × contrato de la tarea</strong>. Certificás sobre el contrato con el cliente, proporcional a lo ejecutado. Nunca sobre el total ni sobre la composición del cobro.</p></div>
+        <p>Cada certificado recorre este circuito. Tocá un estado para ver qué podés hacer:</p>
+        <div class="flow" data-flow="cert">
+          <button class="step" aria-pressed="true" data-i="0">Borrador</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="1">En revisión</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="2">Aprobado</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="3">Cobrado</button><span class="arrow">·</span>
+          <button class="step bad" aria-pressed="false" data-i="4">Rechazado</button><span class="arrow">·</span>
+          <button class="step bad" aria-pressed="false" data-i="5">Anulado</button>
+        </div>
+        <div class="flow-detail" id="d-cert"></div>
+        <p>Te avisamos cuando un certificado lleva demasiados días esperando aprobación, o cuando está aprobado hace rato y todavía no lo cobraste.</p>
+        <figure>
+          <img src="../img/control-obra/certificados.jpg" alt="Pestaña Certificados con la lista y sus estados" loading="lazy" width="1280" height="759">
+          <figcaption><b>Certificados</b><span>Cada fila muestra su estado y su antigüedad. Los botones de la derecha cambian según dónde esté el certificado en el circuito.</span></figcaption>
+        </figure>
+      </section>
+
+      <section id="cobros">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
+          <div><p class="eyebrow">08</p><h2>Cobros</h2></div>
+        </div>
+        <p>Acá manejás cómo te paga el cliente. Una obra puede tener <strong>ninguno, uno o varios planes de cobro</strong>: por ejemplo, uno por cada unidad vendida. Podés crear uno nuevo ya asociado a la obra, vincular uno existente o desvincularlo sin borrarlo.</p>
+        <figure>
+          <img src="../img/control-obra/cobros.jpg" alt="Pestaña Cobros con el plan de cobro asociado a la obra" loading="lazy" width="1280" height="759">
+          <figcaption><b>Cobros</b><span>Cada plan muestra su total, lo cobrado y lo pendiente, con la barra de avance del cobro.</span></figcaption>
+        </figure>
+        <div class="nota ok"><p><b>Esto es importante</b>Los certificados y los planes de cobro <strong>se suman</strong>: pueden cobrar plata distinta, como inversores por certificación y compradores por plan. Por eso te mostramos el pendiente desglosado por fuente, y no los restamos entre sí.</p></div>
+      </section>
+
+      <section id="manoobra">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">09</p><h2>Mano de obra</h2></div>
+        </div>
+        <p>Todo lo que sale de tu caja hacia los contratistas. Son tres bloques.</p>
+
+        <h3>Órdenes sugeridas por avance</h3>
+        <p>Calculamos lo devengado a cada contratista según el avance —o lo certificado, según cómo configuraste su contrato— y te proponemos la orden ya armada. Tocás <strong>Generar orden</strong> y queda en borrador.</p>
+
+        <h3>Órdenes de pago</h3>
+        <p>Pagos puntuales a un contratista, con su circuito de control:</p>
+        <div class="flow" data-flow="orden">
+          <button class="step" aria-pressed="true" data-i="0">Borrador</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="1">Aprobada</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="2">Pagada</button><span class="arrow">·</span>
+          <button class="step bad" aria-pressed="false" data-i="3">Anulada</button>
+        </div>
+        <div class="flow-detail" id="d-orden"></div>
+
+        <h3>Planes de pago a proveedores</h3>
+        <p>Para pagar en cuotas, con anticipo, refuerzos, periódicas o por avance. Hay tres maneras de armarlo, según a qué quede atado:</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Dentro de la obra</p><h4>Plan de obra</h4><p>Desde <em>Mano de obra &rarr; Nuevo plan de pago</em>. Queda asociado a esa obra y los pagos se imputan a las tareas del proveedor.</p></div>
+          <div class="card"><p class="tagx">Atado a una tarea</p><h4>Plan por tarea</h4><p>En el asistente general, al elegir obra aparece <em>Tarea (opcional)</em>. Si elegís una, todos los pagos del plan se imputan ahí.</p></div>
+          <div class="card"><p class="tagx">Sin obra</p><h4>Plan suelto</h4><p>Desde la hoja Planes de pago, dejás Obra vacío y elegís un proyecto o caja destino. Sirve para gastos generales.</p></div>
+        </div>
+        <p>Ya creado el plan, cada cuota recorre su propio circuito:</p>
+        <div class="flow" data-flow="cuota">
+          <button class="step" aria-pressed="true" data-i="0">Pendiente</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="1">Aprobada</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="2">Pagada</button><span class="arrow">·</span>
+          <button class="step" aria-pressed="false" data-i="3">Revertida</button>
+        </div>
+        <div class="flow-detail" id="d-cuota"></div>
+        <div class="nota warn"><p><b>Un límite a tener en cuenta</b>La modalidad <strong>“por avance”</strong> solo está disponible cuando el plan pertenece a una obra, porque necesita tareas contra las cuales devengar. En un plan suelto cargás las cuotas a mano o periódicas.</p></div>
+      </section>
+
+      <section id="reportes">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">10</p><h2>Reportes</h2></div>
+        </div>
+        <p><strong>Conforme de obra.</strong> Emitís el acta de conformidad cuando cerrás la obra.</p>
+        <p><strong>Inconvenientes.</strong> Registrás los problemas que van apareciendo y los vas marcando como resueltos. Los que quedan pendientes te los mostramos en las alertas del Resumen.</p>
+      </section>
+
+      <section id="cartera">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">11</p><h2>Cartera</h2></div>
+        </div>
+        <p>Tres vistas que cruzan todas tus obras, para trabajar por tarea en vez de obra por obra.</p>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th>Hoja</th><th>Qué te muestra</th><th>Qué podés hacer</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Cobranzas</strong></td><td>Todo lo que tenés por cobrar —certificados y cuotas— con el pendiente y lo vencido.</td><td>Filtrar por obra y vencimiento, y cobrar directo sin entrar a la obra.</td></tr>
+              <tr><td><strong>Pagos</strong></td><td>Órdenes pendientes, separando lo aprobado a desembolsar de lo que sigue en borrador.</td><td>Aprobar y pagar órdenes de cualquier obra.</td></tr>
+              <tr><td><strong>Planes de pago</strong></td><td>Todos los planes de la empresa, de obras y sueltos, con proveedor, total, pagado y pendiente.</td><td>Crear planes nuevos y entrar al detalle de cada uno.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
+          <div><p class="eyebrow">12</p><h2>Cuando algo no sale</h2></div>
+        </div>
+        <div>
+          <details><summary>No veo un botón o un campo nuevo</summary><div class="ans"><p class="causa">El navegador te está mostrando una versión cacheada.</p><p>Recargá forzando con <strong>Cmd/Ctrl + Shift + R</strong>.</p></div></details>
+          <details><summary>Una tarea marca sobrecosto aunque estaba todo previsto</summary><div class="ans"><p class="causa">Los materiales no estaban cargados como costo esperado.</p><p>Cargá el <strong>costo directo</strong> de la tarea: el costo de referencia pasa a incluirlos y el rojo desaparece.</p></div></details>
+          <details><summary>No me deja eliminar una tarea</summary><div class="ans"><p class="causa">Tiene avance ya certificado.</p><p>Anulá primero el certificado que la incluye, o dejá la tarea sin avance certificado.</p></div></details>
+          <details><summary>El avance no baja de cierto porcentaje</summary><div class="ans"><p class="causa">El mínimo posible es lo que ya certificaste.</p><p>Si necesitás corregir para abajo, anulá antes el certificado correspondiente.</p></div></details>
+          <details><summary>El Resumen dice “falta asignar”</summary><div class="ans"><p class="causa">Lo declarado por certificación más lo de los planes no cubre el contrato total.</p><p>Ajustá la composición del cobro o asociá un plan que cubra la diferencia.</p></div></details>
+          <details><summary>No puedo activar el permiso de planes de pago</summary><div class="ans"><p class="causa">El permiso no estaba disponible en la lista de acciones.</p><p>Entrá a <strong>Configuración general de la empresa</strong> y tildá <span class="k">VER_PLANES_PAGO</span>.</p></div></details>
+          <details><summary>Al crear un plan suelto me pide un proyecto</summary><div class="ans"><p class="causa">Un plan sin obra necesita saber en qué caja registrar los egresos.</p><p>Elegí un <strong>proyecto o caja destino</strong> y seguís.</p></div></details>
+          <details><summary>“Generar por avance” da error en un plan suelto</summary><div class="ans"><p class="causa">Esa modalidad devenga contra las tareas de una obra, y un plan suelto no tiene.</p><p>Cargá las cuotas a mano o usá cuotas periódicas.</p></div></details>
+          <details><summary>El buscador de proveedores aparece vacío</summary><div class="ans"><p class="causa">Todavía no tenés proveedores en el catálogo de la empresa.</p><p>Escribí el nombre a mano —funciona igual— o cargá el proveedor para tenerlo la próxima.</p></div></details>
+          <details><summary>Avance alto pero gastado muy bajo</summary><div class="ans"><p class="causa">Lo más probable es que haya gastos sin imputar a la obra.</p><p>Usá <strong>Imputar gasto</strong> o <strong>Re-imputar masiva</strong> desde Ejecución.</p></div></details>
+        </div>
+      </section>
+
+      <section id="glosario">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">13</p><h2>Glosario</h2></div>
+        </div>
+        <div class="buscador"><input id="q" type="search" placeholder="Buscar: margen, imputar, certificado…" aria-label="Buscar término" autocomplete="off"></div>
+        <dl class="glos" id="glos">
+          <div class="term"><dt>Obra</dt><dd>El proyecto de construcción que seguís, dividido en rubros y tareas.</dd></div>
+          <div class="term"><dt>Rubro</dt><dd>Agrupador de tareas afines dentro de la obra.</dd></div>
+          <div class="term"><dt>Tarea</dt><dd>La unidad de trabajo, con su contrato, avance, costo y margen.</dd></div>
+          <div class="term"><dt>Perfil de obra</dt><dd>Preset que define indexación CAC, retención y anticipo por defecto.</dd></div>
+          <div class="term"><dt>Contrato (cliente)</dt><dd>Lo que le cobrás al cliente por la tarea: el precio de venta.</dd></div>
+          <div class="term"><dt>Avance físico</dt><dd>Porcentaje realmente ejecutado en obra.</dd></div>
+          <div class="term"><dt>Certificado</dt><dd>Documento que valoriza el avance para poder cobrárselo al cliente.</dd></div>
+          <div class="term"><dt>Costo estimado</dt><dd>La parte del costo de la tarea que ejecuta un contratista.</dd></div>
+          <div class="term"><dt>Costo directo</dt><dd>Materiales y gastos sueltos que se imputan aparte del proveedor.</dd></div>
+          <div class="term"><dt>Costo de referencia</dt><dd>El costo esperado total de la tarea: proveedor más directo.</dd></div>
+          <div class="term"><dt>Contrato de proveedor</dt><dd>El acuerdo con el contratista: su costo y cómo se devenga el pago.</dd></div>
+          <div class="term"><dt>Imputar</dt><dd>Asociar un gasto de caja a una tarea de la obra.</dd></div>
+          <div class="term"><dt>Gastado</dt><dd>Lo efectivamente imputado a la tarea.</dd></div>
+          <div class="term"><dt>Margen esperado</dt><dd>Contrato del cliente menos costo de referencia. Es proyectado.</dd></div>
+          <div class="term"><dt>Margen realizado</dt><dd>Certificado menos gastado. Es lo que ya ocurrió.</dd></div>
+          <div class="term"><dt>Sobrecosto</dt><dd>Cuando el gastado supera el costo de referencia de la tarea.</dd></div>
+          <div class="term"><dt>Orden de pago</dt><dd>Pago puntual a un contratista, con su circuito de aprobación.</dd></div>
+          <div class="term"><dt>Plan de cobro</dt><dd>Cómo te paga el cliente: cuotas, unidades, anticipos.</dd></div>
+          <div class="term"><dt>Plan de pago</dt><dd>Cómo le pagás a un proveedor: cuotas, anticipo, por avance.</dd></div>
+          <div class="term"><dt>Plan suelto</dt><dd>Plan de pago que no pertenece a una obra; se imputa a la caja de un proyecto.</dd></div>
+          <div class="term"><dt>Proyecto / caja</dt><dd>Dónde se registran los ingresos y egresos.</dd></div>
+          <div class="term"><dt>Composición del cobro</dt><dd>Cómo se reparte lo que esperás cobrar entre certificación y planes.</dd></div>
+          <div class="term"><dt>Cobertura</dt><dd>Señal de si lo asignado alcanza, falta o excede el contrato.</dd></div>
+          <div class="term"><dt>Conforme de obra</dt><dd>Acta de conformidad que se emite al cierre.</dd></div>
+          <div class="term"><dt>Inconveniente</dt><dd>Problema registrado durante la obra, con seguimiento hasta resolverlo.</dd></div>
+        </dl>
+        <p class="vacio" id="sin" hidden>No encontramos términos con esa búsqueda.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie">
+    <div class="pie-in">
+      <img src="../../img/logo-mixto-blanco.png" alt="Sorby Data">
+      <span><a href="../">Ver todos los manuales</a> · <a href="../../">sorbydata.com</a></span>
+    </div>
+  </footer>
+
+  <script type="application/json" id="flujos">
+  {
+    "cert": [
+      ["Borrador", "Todavía no salió de tu lado. Podés editar sus líneas y montos, o enviarlo al cliente para que lo revise."],
+      ["En revisión", "Ya lo enviaste y está esperando respuesta. Desde acá se aprueba o se rechaza. Si pasan muchos días, te lo marcamos."],
+      ["Aprobado", "El cliente lo aceptó y ya es cobrable. Registrás el cobro, total o parcial, o lo anulás si hubo un error."],
+      ["Cobrado", "El dinero entró y quedó registrado en la caja. Si fue parcial, el saldo te sigue apareciendo en Cobranzas."],
+      ["Rechazado", "El cliente no lo aceptó. El avance vuelve a quedar disponible para que lo certifiques de nuevo, corregido."],
+      ["Anulado", "Se dio de baja después de aprobado. Queda en el historial y libera el avance que había certificado."]
+    ],
+    "orden": [
+      ["Borrador", "Recién generada, propuesta por el avance o cargada a mano. Todavía no compromete plata: revisala antes de aprobar."],
+      ["Aprobada", "Validada internamente y lista para desembolsar. Te aparece en la hoja de Pagos como pendiente."],
+      ["Pagada", "Registramos el egreso en la caja del proyecto y lo imputamos a las tareas del contratista."],
+      ["Anulada", "Se dio de baja un pago ya hecho. Revierte el efecto en la caja y queda registrado."]
+    ],
+    "cuota": [
+      ["Pendiente", "La cuota está cargada con su fecha de vencimiento, pero todavía no se autorizó a pagar."],
+      ["Aprobada", "Autorizada para desembolsar. Es el paso previo obligatorio antes de registrar el pago."],
+      ["Pagada", "Genera el egreso en la caja. Si el plan está atado a una obra o tarea, el gasto se imputa ahí; si es suelto, cae en la caja del proyecto."],
+      ["Revertida", "Deshacés un pago registrado por error y la cuota vuelve a quedar por pagar."]
+    ]
+  }
+  </script>
+  <script src="../assets/manual.js"></script>
+</body>
+</html>
