@@ -84,11 +84,11 @@
         </div>
         <p>Toda obra tiene dos caras que funcionan como un espejo. De un lado registrás lo que le vendiste al cliente y vas certificando el avance para cobrarlo. Del otro, lo que te sale hacerlo —el contratista y los materiales— y vas pagando. La diferencia entre las dos es tu margen, y lo calculamos nosotros.</p>
         <h3>Cómo se organiza una obra</h3>
-        <p>En tres niveles. La <strong>tarea</strong> es donde vive todo: su contrato, su avance, su costo, sus gastos y su margen.</p>
+        <p>En tres niveles. La <strong>tarea</strong> —que en la app aparece como <strong>sub-rubro</strong>— es donde vive todo: su contrato, su avance, su costo, sus gastos y su margen.</p>
         <div class="cards">
           <div class="card"><p class="tagx">Nivel 1</p><h4>Obra</h4><p>El proyecto completo, con su contrato total, su cronograma y su cartera de cobros y pagos.</p></div>
           <div class="card"><p class="tagx">Nivel 2</p><h4>Rubro</h4><p>Un agrupador de tareas afines. Por ejemplo, <em>Estructura</em> o <em>Terminaciones</em>.</p></div>
-          <div class="card"><p class="tagx">Nivel 3</p><h4>Tarea</h4><p>La unidad de trabajo: <em>Losa de techo</em>. Acá cargás avance, costos y gastos, y certificás.</p></div>
+          <div class="card"><p class="tagx">Nivel 3</p><h4>Tarea / Sub-rubro</h4><p>La unidad de trabajo: <em>Losa de techo</em>. Acá cargás avance, costos y gastos, y certificás.</p></div>
         </div>
       </section>
 
@@ -101,7 +101,8 @@
         <ul>
           <li>Al menos un <strong>proyecto o caja</strong> en la empresa: es donde se registran los ingresos y los egresos.</li>
           <li>Tus <strong>proveedores</strong> cargados. No es obligatorio, pero te ahorra tipear: aparecen solos al asignar contratos y armar planes de pago.</li>
-          <li>Si vas a crear la obra desde un presupuesto, tené el <strong>presupuesto profesional</strong> ya cargado.</li>
+          <li>El presupuesto de la obra. Puede ser un <strong>presupuesto profesional</strong> ya cargado, o directamente tu <strong>planilla</strong> en Excel, PDF o fotos: la subís y armamos la obra sola.</li>
+          <li>Tus <strong>categorías y subcategorías</strong> configuradas. Tampoco es obligatorio, pero si están, al importar reconocemos a qué categoría va cada tarea y después el bot puede imputar los gastos solo.</li>
           <li>El permiso <span class="k">VER_PLANES_PAGO</span> activado para quien tenga que ver la hoja general de pagos.</li>
         </ul>
         <div class="nota"><p><b>Cómo activamos el permiso</b>Entrá a <strong>Configuración general de la empresa &rarr; Acciones</strong> y tildá <span class="k">VER_PLANES_PAGO</span>. Sin eso, el ítem “Planes de pago” no aparece en el menú.</p></div>
@@ -156,13 +157,25 @@
           <div><p class="eyebrow">04</p><h2>Crear una obra</h2></div>
         </div>
         <p>Entrá a <strong>Control de Obra</strong> y tocá <strong>Nueva obra</strong>. Te vamos a pedir tres cosas: el <strong>origen</strong> —de dónde salen los rubros y tareas—, el <strong>perfil de obra</strong> —que define la indexación CAC, la retención y el anticipo por defecto— y, si querés, el <strong>proyecto</strong> al que se asocia.</p>
-        <h3>Las tres formas de armarla</h3>
+        <h3>Las cuatro formas de armarla</h3>
         <div class="cards">
-          <div class="card"><p class="tagx">Opción A</p><h4>Desde un presupuesto profesional</h4><p>Elegís uno ya armado y la obra hereda sus rubros, título y proyecto. Es el camino más rápido si ya cotizaste ahí.</p></div>
-          <div class="card"><p class="tagx">Opción B</p><h4>Desde categorías</h4><p>Armamos la estructura con las categorías de tu empresa y sumamos los presupuestos del proyecto. Después borrás lo que no aplique.</p></div>
-          <div class="card"><p class="tagx">Opción C</p><h4>Carga manual</h4><p>Ponés un título y cargás vos los rubros y tareas, con su nombre y su monto.</p></div>
+          <div class="card"><p class="tagx">Opción A</p><h4>Desde un archivo</h4><p>Subís tu presupuesto en Excel, PDF o fotos y armamos la obra sola, con sus rubros y montos. No hace falta que pase por Presupuesto Profesional.</p></div>
+          <div class="card"><p class="tagx">Opción B</p><h4>Desde un presupuesto profesional</h4><p>Elegís uno ya armado y la obra hereda sus rubros, título y proyecto. Es el camino más rápido si ya cotizaste ahí.</p></div>
+          <div class="card"><p class="tagx">Opción C</p><h4>Desde categorías</h4><p>Armamos la estructura con las categorías de tu empresa y sumamos los presupuestos del proyecto. Después borrás lo que no aplique.</p></div>
+          <div class="card"><p class="tagx">Opción D</p><h4>Carga manual</h4><p>Ponés un título y cargás vos los rubros y tareas, con su nombre y su monto.</p></div>
         </div>
         <div class="nota"><p><b>Ojo con el monto</b>El monto de cada tarea es el contrato <em>con el cliente</em>, o sea lo que vas a cobrar. El costo se carga aparte, en Ejecución.</p></div>
+
+        <h3>Cómo funciona el import desde archivo</h3>
+        <p>Elegís <strong>Desde archivo</strong>, subís tu planilla y esperás unos segundos: leemos el archivo y creamos la obra directamente. Sirve tanto una planilla detallada (con cantidades y precios unitarios) como una <strong>de resumen</strong>, con una fila por rubro y su importe total.</p>
+        <p>Además de la estructura y los montos, aprovechamos lo que el archivo traiga:</p>
+        <ul>
+          <li><strong>Avance inicial.</strong> Si hay una columna de avance o ejecutado, cada tarea arranca con ese porcentaje. Ideal para cargar una obra que ya está en curso.</li>
+          <li><strong>Categorías.</strong> Intentamos reconocer a qué categoría y subcategoría de tu empresa corresponde cada tarea, para que después el bot pueda imputar los gastos solo. Sólo usamos nombres que ya existen en tu configuración: ante la duda lo dejamos vacío, y lo imputás a mano.</li>
+        </ul>
+        <div class="nota ok"><p><b>No toca la caja</b>Importar un presupuesto no genera ningún movimiento de caja. Es sólo la estructura de la obra: lo que ya se pagó en un proyecto que venías llevando por afuera se registra aparte.</p></div>
+        <div class="nota warn"><p><b>Revisá los totales la primera vez</b>Al terminar te mostramos las observaciones de lo que no pudimos interpretar. Descartamos las filas de cierre (“Subtotal…”, “Total…”) para no contar la misma plata dos veces, pero conviene comparar el total de la obra contra el de tu planilla. Si no coinciden, muchas veces el que está desactualizado es el subtotal del archivo.</p></div>
+        <div class="nota"><p><b>Ningún rubro queda vacío</b>Si un rubro viene sin tareas —típico de las planillas de resumen—, le creamos una con el mismo nombre y su importe. Es necesario porque la <em>tarea</em> es la unidad que se certifica y donde se imputan los gastos: un rubro sin tareas no se podría usar.</p></div>
       </section>
 
       <section id="ejecucion">
@@ -337,6 +350,10 @@
           <div><p class="eyebrow">12</p><h2>Cuando algo no sale</h2></div>
         </div>
         <div>
+          <details><summary>Importé mi planilla y quedó todo en $0</summary><div class="ans"><p class="causa">Casi siempre es que en el archivo los importes no están en una columna reconocible, o la fila mezcla varios datos en una misma celda.</p><p>Fijate que haya una columna con el importe (“Total”, “Importe”, “Monto”) o bien cantidad y precio unitario por separado. Si tu planilla es rara, cargá los rubros a mano y seguí: la obra igual sirve.</p></div></details>
+          <details><summary>El total de la obra no coincide con el de mi planilla</summary><div class="ans"><p class="causa">Lo más común es que el subtotal del archivo esté desactualizado: si alguien editó un rubro y el subtotal era un número escrito a mano en vez de una fórmula, quedó viejo.</p><p>Nosotros sumamos los rubros, así que ese total es el correcto. Compará la suma de los rubros de tu planilla contra su celda de subtotal y vas a ver la diferencia.</p></div></details>
+          <details><summary>Aparecieron rubros de más, como “Subtotal” o “Total”</summary><div class="ans"><p class="causa">Son las filas de cierre de la planilla, que no son trabajo a ejecutar sino la suma de las de arriba.</p><p>Las descartamos automáticamente para no contar la misma plata dos veces. Si igual se te coló alguna, borrala desde el menú del rubro en Ejecución.</p></div></details>
+          <details><summary>El archivo tenía avance pero las tareas arrancaron en 0</summary><div class="ans"><p class="causa">Sólo tomamos el avance cuando viene en una columna clara (“Avance”, “% Ejec.”, “Ejecutado”) y con un valor entre 0 y 100.</p><p>Nunca lo deducimos de los montos: preferimos que arranque en 0 y lo cargues vos, antes que inventar un avance y que después certifiques de más.</p></div></details>
           <details><summary>No veo un botón o un campo nuevo</summary><div class="ans"><p class="causa">El navegador te está mostrando una versión cacheada.</p><p>Recargá forzando con <strong>Cmd/Ctrl + Shift + R</strong>.</p></div></details>
           <details><summary>Una tarea marca sobrecosto aunque estaba todo previsto</summary><div class="ans"><p class="causa">Los materiales no estaban cargados como costo esperado.</p><p>Cargá el <strong>costo directo</strong> de la tarea: el costo de referencia pasa a incluirlos y el rojo desaparece.</p></div></details>
           <details><summary>No me deja eliminar una tarea</summary><div class="ans"><p class="causa">Tiene avance ya certificado.</p><p>Anulá primero el certificado que la incluye, o dejá la tarea sin avance certificado.</p></div></details>
@@ -359,7 +376,7 @@
         <dl class="glos" id="glos">
           <div class="term"><dt>Obra</dt><dd>El proyecto de construcción que seguís, dividido en rubros y tareas.</dd></div>
           <div class="term"><dt>Rubro</dt><dd>Agrupador de tareas afines dentro de la obra.</dd></div>
-          <div class="term"><dt>Tarea</dt><dd>La unidad de trabajo, con su contrato, avance, costo y margen.</dd></div>
+          <div class="term"><dt>Tarea / Sub-rubro</dt><dd>La unidad de trabajo, con su contrato, avance, costo y margen. En la app la vas a ver como “sub-rubro”.</dd></div>
           <div class="term"><dt>Perfil de obra</dt><dd>Preset que define indexación CAC, retención y anticipo por defecto.</dd></div>
           <div class="term"><dt>Contrato (cliente)</dt><dd>Lo que le cobrás al cliente por la tarea: el precio de venta.</dd></div>
           <div class="term"><dt>Avance físico</dt><dd>Porcentaje realmente ejecutado en obra.</dd></div>
@@ -368,7 +385,10 @@
           <div class="term"><dt>Costo directo</dt><dd>Materiales y gastos sueltos que se imputan aparte del proveedor.</dd></div>
           <div class="term"><dt>Costo de referencia</dt><dd>El costo esperado total de la tarea: proveedor más directo.</dd></div>
           <div class="term"><dt>Contrato de proveedor</dt><dd>El acuerdo con el contratista: su costo y cómo se devenga el pago.</dd></div>
-          <div class="term"><dt>Imputar</dt><dd>Asociar un gasto de caja a una tarea de la obra.</dd></div>
+          <div class="term"><dt>Importar</dt><dd>Crear la obra subiendo tu planilla (Excel, PDF o fotos), en vez de cargarla a mano.</dd></div>
+        <div class="term"><dt>Planilla de resumen</dt><dd>Presupuesto con una fila por rubro y su importe total, sin cantidades ni precios unitarios.</dd></div>
+        <div class="term"><dt>Fila de cierre</dt><dd>Las líneas “Subtotal” o “Total” de una planilla: son la suma de las de arriba, no trabajo a ejecutar. Al importar se descartan.</dd></div>
+        <div class="term"><dt>Imputar</dt><dd>Asociar un gasto de caja a una tarea de la obra.</dd></div>
           <div class="term"><dt>Gastado</dt><dd>Lo efectivamente imputado a la tarea.</dd></div>
           <div class="term"><dt>Margen esperado</dt><dd>Contrato del cliente menos costo de referencia. Es proyectado.</dd></div>
           <div class="term"><dt>Margen realizado</dt><dd>Certificado menos gastado. Es lo que ya ocurrió.</dd></div>
