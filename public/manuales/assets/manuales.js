@@ -26,6 +26,13 @@
 
   window.MANUALES = [
     {
+      area: "Corralón",
+      titulo: "Corralón",
+      resumen: "Vendé, entregá y cobrá desde WhatsApp: cuenta corriente, remitos por foto, acopios, retiros y devoluciones.",
+      slug: "corralon",
+      icono: S.arcos
+    },
+    {
       area: "Obra",
       titulo: "Control de Obra",
       resumen: "Seguí una obra de punta a punta: avance, costos, certificados, cobros y pagos a proveedores.",

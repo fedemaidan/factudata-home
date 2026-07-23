@@ -245,6 +245,43 @@ details[open] summary::after{content:"\2212";}
 .term[hidden]{display:none;}
 .vacio{font-size:var(--fs-sm); color:var(--ink-soft);}
 
+/* ── KPIs (recreación de tablero) ────────────────────── */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.7rem;}
+.kpi{background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:.9rem 1rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.15rem;}
+.kpi .kpi-lbl{font-size:var(--fs-xs); color:var(--ink-soft); font-weight:600;}
+/* OJO: los números van en --cuerpo (Quicksand), NO en --titulo.
+   Codec Cold no trae glifos de dígitos: los 0-9 salen como círculos
+   tachados. Vale para cualquier cifra del manual, no solo acá. */
+.kpi .kpi-val{font-family:var(--cuerpo); font-weight:700; font-size:var(--fs-xl);
+  font-variant-numeric:tabular-nums; line-height:1.1;}
+.kpi.warn .kpi-val{color:var(--bad);} .kpi.ok .kpi-val{color:var(--ok);}
+.kpi.money .kpi-val{color:var(--accent);}
+
+/* ── Lista mock (recreación de listados de la app) ───── */
+.lista{background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  overflow:hidden; box-shadow:var(--shadow); max-width:66ch;}
+.lista .lista-hd{background:var(--surface-2); padding:.65rem 1rem; border-bottom:1px solid var(--line);
+  font-size:var(--fs-xs); font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
+.lista-row{display:flex; justify-content:space-between; align-items:center; gap:1rem;
+  padding:.7rem 1rem; border-bottom:1px solid var(--line); font-size:var(--fs-sm);}
+.lista-row:last-child{border-bottom:0;}
+.lista-row .li-main{display:flex; flex-direction:column; gap:.1rem; min-width:0;}
+.lista-row .li-sub{font-size:var(--fs-xs); color:var(--ink-soft);}
+.lista-row .li-val{font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.tag-estado{font-size:var(--fs-xs); font-weight:700; letter-spacing:.04em; padding:.14rem .55rem;
+  border-radius:var(--r-pill); border:1px solid; white-space:nowrap;}
+.tag-estado.pend{color:#B4740A; border-color:rgba(180,116,10,.4); background:rgba(180,116,10,.08);}
+.tag-estado.parc{color:var(--teal); border-color:rgba(0,151,178,.4); background:rgba(0,151,178,.08);}
+.tag-estado.ok{color:var(--ok); border-color:rgba(30,158,124,.4); background:rgba(30,158,124,.08);}
+.btn-mock{font-family:var(--cuerpo); font-size:var(--fs-xs); font-weight:700; color:#FFF;
+  background:var(--accent); border:0; border-radius:var(--r-sm); padding:.35rem .8rem; white-space:nowrap;}
+
+/* ── Menú de opciones del bot (recreación) ───────────── */
+.opts{list-style:none; margin:.5rem 0 0; padding:0; display:flex; flex-direction:column; gap:.3rem;}
+.opts li{display:flex; gap:.5rem; align-items:baseline; font-size:var(--fs-sm);}
+.opts .num{font-weight:700; color:var(--accent); flex-shrink:0;}
+
 /* ── Hub de manuales ─────────────────────────────────── */
 .hub{max-width:1160px; margin:0 auto; padding:3rem 1.5rem 5rem;
   display:flex; flex-direction:column; gap:2.75rem;}
