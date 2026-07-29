@@ -109,7 +109,7 @@
         <ul>
           <li>Que tu empresa esté configurada como <strong>corralón</strong>. Es lo que activa el tablero de corralón, las ventas a cuenta corriente, los acopios y las entregas. Lo dejamos listo nosotros al darte de alta.</li>
           <li>Tus <strong>clientes</strong> cargados. No es obligatorio: si vendés a uno que no existe, el bot te lo ofrece dar de alta ahí mismo, sin cortar la venta.</li>
-          <li>Tus <strong>sucursales</strong>, si tenés más de una. El bot te va a preguntar en cuál se hace cada venta; si tenés una sola, ni te pregunta.</li>
+          <li>Tus <strong>sucursales</strong>, si tenés más de una. El bot te va a preguntar en cuál se hace cada venta o acopio; si tenés una sola, ni te pregunta.</li>
         </ul>
         <div class="nota"><p><b>Si no ves estas opciones</b>Quiere decir que a tu usuario todavía no le activamos los permisos del corralón (ventas, cobros, acopios, entregas). Escribinos y los prendemos: es un tilde de nuestro lado.</p></div>
         <div class="nota ok"><p><b>No necesitás entrar a la web para operar</b>Todo el día a día —vender, entregar, cobrar, cargar un retiro— lo hacés desde WhatsApp. La web te sirve para <em>mirar</em>: el tablero, la cuenta de cada cliente y las ventas por entregar.</p></div>
@@ -142,7 +142,7 @@
         <p>Arriba a la derecha tenés <strong>Cobros</strong> y <strong>Nueva venta</strong> para cargar desde la web cuando te queda más cómodo que por WhatsApp.</p>
 
         <h3>La ficha del cliente (web)</h3>
-        <p>Desde <strong>Clientes</strong> entrás a cualquiera y ves su <strong>saldo</strong> y toda su <strong>cuenta corriente</strong>: cada venta con lo que queda pendiente y cada cobro que le registraste. Abajo, tres botones: <span class="k">Editar</span>, <span class="k">Devolución</span> y <span class="k">Registrar cobro</span>.</p>
+        <p>Desde <strong>Clientes</strong> entrás a cualquiera y ves su <strong>saldo</strong> y toda su <strong>cuenta corriente</strong>: cada venta con lo que queda pendiente y cada cobro que le registraste. Abajo, tres botones: <span class="k">Editar</span>, <span class="k">Devolución</span> y <span class="k">Registrar cobro</span>. En <span class="k">Editar</span> también cargás los <strong>alias</strong> del cliente (otros nombres con los que aparece en los remitos), para que el bot lo reconozca al cargar por foto.</p>
         <div class="nota"><p><b>El saldo se lee así</b>Un número en <strong>positivo</strong> es lo que el cliente <em>te debe</em>. En <strong>negativo</strong>, es plata <em>a favor</em> del cliente (por ejemplo, quedó de una devolución o un pago de más).</p></div>
 
         <h3>Lo que hacés desde WhatsApp</h3>
@@ -229,6 +229,37 @@
         </div>
         <div class="nota warn"><p><b>Revisá siempre el resumen antes de confirmar</b>La lectura automática puede equivocarse en una cantidad o un precio. Ahí lo corregís escribiendo el cambio (<em>“el cemento a 5500”</em>, <em>“son 40 no 50”</em>). Si leyó algo mal y no lo podés corregir, cancelás con <b>x</b> y lo cargás por texto.</p></div>
         <div class="nota"><p><b>Las opciones dependen de tu corralón</b>Estas tres son las típicas. Si en tu caso hay una sola posible, el bot no pregunta y va directo a leer. Si no pudo leer el documento te avisa: <em>“❌ No pude leer el comprobante. Probá de nuevo o cargá la venta por texto.”</em> — probá con una foto más nítida y derecha.</p></div>
+        <div class="nota"><p><b>Si en el remito el cliente figura distinto</b>A veces el papel trae al cliente con otro nombre —una abreviatura o cómo lo conocen en la obra—. Cargale esos <strong>alias</strong> en su ficha, en la web (campo <em>“Alias / otros nombres”</em>), y el bot lo reconoce igual la próxima vez, sin que tengas que corregirlo a mano.</p></div>
+
+        <h3>El IVA lo calculamos nosotros</h3>
+        <p>Cuando el papel es una <strong>factura que discrimina el IVA</strong> (trae Neto, IVA y Total abajo), los precios de cada renglón suelen venir <em>sin</em> IVA, pero el total es <em>con</em> IVA. Si cargáramos los precios tal cual, al descontarlos del acopio o de la venta te quedarías corto —el IVA te lo comerías vos—. Por eso lo resolvemos solos: leemos el Neto y el Total, sacamos el porcentaje de IVA y se lo aplicamos a cada ítem, de forma que la suma <strong>cierre exacto</strong> con el total del papel.</p>
+        <div class="chat">
+          <div class="burbuja yo"><span class="quien">Vos</span><em>(mandás la foto de la factura A)</em></div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            📋 Confirmar acopio:
+            <div class="ficha">
+              <div class="f"><span>🧾 Neto</span><span>$3.974.628,10</span></div>
+              <div class="f"><span>IVA (21%)</span><span>$834.671,90</span></div>
+              <div class="f destacado"><span>Total</span><span>$4.809.300</span></div>
+              <div class="f"><span>Lista de precios <em>(con IVA)</em></span><span>SALIGNA 1x1 — $233,80<br>SALIGNA 1x4 — $750,90<br>Alambre N°16 — $4.800</span></div>
+            </div>
+            <span style="display:block;margin-top:.5rem">1. ✅ Confirmar &nbsp; 2. ❌ Cancelar</span>
+            <span style="display:block;margin-top:.35rem"><em>Para cambiar el IVA: “sacale el IVA” o “poné 10,5”.</em></span>
+          </div>
+          <div class="burbuja yo"><span class="quien">Vos</span>sacale el iva</div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            📋 Confirmar acopio:
+            <div class="ficha">
+              <div class="f"><span>Lista de precios <em>sin IVA</em></span><span>SALIGNA 1x1 — $193,22<br>SALIGNA 1x4 — $620,58<br>Alambre N°16 — $3.966,94</span></div>
+              <div class="f destacado"><span>Monto</span><span>$3.974.628,10</span></div>
+            </div>
+            <span style="display:block;margin-top:.5rem">1. ✅ Confirmar &nbsp; 2. ❌ Cancelar</span>
+          </div>
+        </div>
+        <div class="nota"><p><b>Si el papel no trae el IVA discriminado</b>Cuando no podemos deducirlo (no vienen Neto y Total por separado) dejamos los precios tal cual y te avisamos. Siempre lo fijás por texto en el resumen: <em>“poné 21”</em>, <em>“poné 10,5”</em> o <em>“sacale el IVA”</em>.</p></div>
+        <div class="nota ok"><p><b>Vale para ventas y para acopios</b>El mismo cálculo corre cuando cargás una <a href="#vender">venta a cuenta corriente</a> por foto y cuando <a href="#acopio">creás un acopio</a>. En el acopio, si sacás o cambiás el IVA, el <strong>monto</strong> también se ajusta para quedar en la misma base que la lista de precios.</p></div>
       </section>
 
       <!-- 5 · VENDER -->
@@ -254,12 +285,15 @@
             <span style="display:block;margin-top:.5rem">1. ✅ Confirmar &nbsp; 2. ❌ Cancelar</span>
           </div>
           <div class="burbuja yo"><span class="quien">Vos</span>1</div>
+          <div class="burbuja bot"><span class="quien">Sorby</span>💳 ¿La venta ya está <b>paga</b>?<br><br>Respondé el medio (<b>efectivo</b> / <b>transferencia</b> / <b>cheque</b>) o <b>no</b> si queda en cuenta corriente.</div>
+          <div class="burbuja yo"><span class="quien">Vos</span>no</div>
           <div class="burbuja bot"><span class="quien">Sorby</span>✅ Venta a CC registrada.<br>• Cliente: <b>Diego Roca</b><br>• Total: <b>$1.000.000</b><br>• Código: <b>4A80D1</b><br><br>Quedó <b>Pendiente</b> en la cuenta corriente del cliente.</div>
         </div>
         <ul>
           <li><strong>Si el cliente no existe</strong>, te avisa <em>“🔍 No encontré al cliente Diego Roca. Vamos a darlo de alta.”</em> y lo crea sin cortar la venta.</li>
           <li><strong>Si tenés varias sucursales</strong> y ninguna asignada a tu usuario, antes del resumen te pregunta en cuál se hizo.</li>
           <li><strong>En el resumen podés corregir</strong> en vez de confirmar: escribís el cambio (<em>“el cemento a 21000”</em>) y rehacemos las cuentas.</li>
+          <li><strong>Al confirmar te pregunta si ya está paga.</strong> Si respondés un medio (efectivo, transferencia, cheque…), registramos el cobro en el momento y la venta nace cobrada; si decís <em>no</em>, queda pendiente en la cuenta corriente y la cobrás después.</li>
         </ul>
         <div class="nota"><p><b>También la cargás por foto</b>Si tenés el remito en papel, sacale la foto y elegí la opción <b>1️⃣ Venta a cuenta corriente</b>. Ver <a href="#foto">Cargar por foto o PDF</a>.</p></div>
 
@@ -305,6 +339,16 @@
           <li>Marcar una entrega la deja <strong>entregada por completo</strong>. Si estaba <em>parcial</em>, la termina.</li>
           <li>Para <strong>ver lo pendiente sin entregar nada</strong>, pedís la lista igual (<em>“qué me falta entregar de Diego”</em>) y respondés <em>cancelar</em>.</li>
         </ul>
+
+        <h3>Guardar el remito firmado</h3>
+        <p>Cuando entregás <strong>una sola</strong> venta, después de marcarla el bot te ofrece adjuntar el <strong>remito firmado</strong> que te trae de vuelta el chofer. Es opcional: mandás la foto (o el PDF) y queda pegado a esa venta, o escribís <em>no</em> y la entrega igual queda registrada.</p>
+        <div class="chat">
+          <div class="burbuja yo"><span class="quien">Vos</span>entregué la 1</div>
+          <div class="burbuja bot"><span class="quien">Sorby</span>✅ Entrega registrada para <b>Diego Roca</b> (#1).<br><br>📎 ¿Tenés el <b>remito firmado</b>? Mandá la foto (o el PDF) para adjuntarlo, o escribí <b>no</b>.</div>
+          <div class="burbuja yo"><span class="quien">Vos</span><em>(mandás la foto del remito firmado)</em></div>
+          <div class="burbuja bot"><span class="quien">Sorby</span>✅ Comprobante de entrega adjuntado.</div>
+        </div>
+        <div class="nota"><p><b>Dónde lo ves después</b>El remito queda guardado en esa venta. Lo abrís desde la web, en el detalle de la venta, con el botón <span class="k">Ver comprobante</span>. Cuando entregás <strong>varias juntas</strong> no te lo pedimos —no sabríamos a cuál va—: en ese caso lo subís desde la web.</p></div>
 
         <h3>Los estados de la entrega</h3>
         <p>Cada venta con mercadería recorre estos estados. Tocá uno para ver qué significa:</p>
@@ -411,6 +455,8 @@
           <div class="burbuja bot"><span class="quien">Sorby</span>📋 Confirmar devolución a la venta contado:<br>• 1 Ferro ANGOSTO "M" @$14.500 <em>(escribiste “ferro angosto”)</em><br><br>1. ✅ Confirmar &nbsp; 2. ❌ Cancelar</div>
         </div>
         <div class="nota ok"><p><b>No tenés que escribir el nombre exacto</b>El bot busca el material aunque escribas un pedazo: <em>“pastina”</em> encuentra <em>“PASTINA WEBER x 2 KGS”</em>. Si hay más de uno parecido, te pregunta cuál es. Si leyó bien pero cambió el nombre, te lo aclara con un <em>“escribiste …”</em> para que revises.</p></div>
+        <div class="nota warn"><p><b>Devolver a un acopio es deshacer un retiro</b>Ojo con este que confunde: la devolución contra un acopio es el evento <em>inverso</em> a un retiro. Solo puede reintegrar hasta lo que el cliente había sacado antes de ese acopio.<br><br>• Si había <strong>retirado</strong> material, devolver se lo re-acredita al saldo del acopio: el saldo <strong>sube</strong>.<br>• Si al acopio <strong>no le sacaste nada</strong>, devolver material <strong>no cambia el saldo</strong> —no hay retiro que revertir—. Te lo avisamos en la confirmación con un <em>“Saldo del acopio: X → X (no cambia)”</em>.<br>• Si devolvés <strong>más de lo que se había retirado</strong>, solo se reintegra la parte retirada; el resto no mueve el saldo.</p></div>
+        <div class="nota"><p><b>No es lo mismo que devolver contra una venta</b>La devolución contra un acopio <em>no toca</em> el stock del depósito ni la cuenta corriente: solo mueve el saldo del acopio. La devolución contra una venta, en cambio, repone el material al stock (y, si querés, le acredita la plata a favor en la cuenta).</p></div>
       </section>
 
       <!-- 10 · CUENTA CORRIENTE -->
@@ -481,10 +527,13 @@
           <div class="term"><dt>Cobro parcial</dt><dd>El cliente pagó una parte. El resto sigue apareciendo como pendiente.</dd></div>
           <div class="term"><dt>Acopio</dt><dd>Plata que el cliente deja adelantada para retirar material a precios congelados.</dd></div>
           <div class="term"><dt>Precio congelado</dt><dd>El precio fijado al armar el acopio: no cambia aunque suba la lista mientras el cliente retira.</dd></div>
+          <div class="term"><dt>IVA</dt><dd>Al cargar por foto una factura que discrimina el IVA, calculamos el porcentaje del Neto y el Total del papel y se lo aplicamos a cada ítem, para que la suma cierre con el total. Lo cambiás por texto: <em>“poné 10,5”</em> o <em>“sacale el IVA”</em>.</dd></div>
           <div class="term"><dt>Retiro / Desacopio</dt><dd>Cuando el cliente se lleva material de su acopio. Le descuenta del saldo.</dd></div>
           <div class="term"><dt>Recarga de acopio</dt><dd>Agregarle más plata a un acopio existente.</dd></div>
           <div class="term"><dt>Devolución</dt><dd>El cliente devuelve material. Vuelve al acopio, al stock, o le acreditás la plata a favor.</dd></div>
           <div class="term"><dt>Remito</dt><dd>El papel de la mercadería que entra o sale. Le sacás la foto y lo cargamos solo.</dd></div>
+          <div class="term"><dt>Comprobante de entrega</dt><dd>El remito firmado que el chofer trae de vuelta. Lo adjuntás al registrar la entrega (de una sola venta) y queda visible en la ficha de la venta, en la web.</dd></div>
+          <div class="term"><dt>Alias</dt><dd>Otros nombres con los que figura un cliente en sus remitos o facturas. Los cargás en su ficha (web) para que el bot lo reconozca al cargar por foto aunque el papel lo nombre distinto.</dd></div>
           <div class="term"><dt>Sucursal</dt><dd>El local donde se hace la venta. Si tenés varias, el bot te pregunta en cuál.</dd></div>
           <div class="term"><dt>Código de venta</dt><dd>El identificador corto de cada venta (por ejemplo, <em>4A80D1</em>), para distinguir dos parecidas.</dd></div>
         </dl>
