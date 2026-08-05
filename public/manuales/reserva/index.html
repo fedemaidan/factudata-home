@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Reserva de Obra · Sorby</title>
+  <meta name="description" content="Cómo apartar plata de una obra con la Reserva de Obra: crear reservas, asignar y desasignar fondos, gastar por WhatsApp, ver Mis reservas y el consolidado del dueño.">
+  <link rel="canonical" href="https://sorbydata.com/manuales/reserva/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Manual de Reserva de Obra · Sorby">
+  <meta property="og:description" content="Apartá plata de una obra sin moverla de la caja: crear reservas, asignar y desasignar, gastar por WhatsApp y seguir el saldo.">
+  <meta property="og:url" content="https://sorbydata.com/manuales/reserva/">
+  <meta property="og:image" content="https://sorbydata.com/img/logo-mixto-blanco.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.cdnfonts.com/css/codec-cold" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/manual.css">
+  <style>
+    /* Mockups de pantalla (no son capturas: reproducen lo importante en HTML). */
+    .mk{border:1px solid #e6e8ec;border-radius:14px;background:#fff;overflow-x:auto;font-size:.86rem;color:#2b3440}
+    .mk-top{display:flex;gap:.6rem;padding:.9rem;flex-wrap:wrap;border-bottom:1px solid #f0f2f4}
+    .mk-stat{flex:1;min-width:140px;border:1px solid #eef0f3;border-radius:12px;padding:.6rem .8rem}
+    .mk-stat small{color:#8a93a2;display:block;font-size:.72rem;margin-bottom:.15rem}
+    .mk-stat b{font-size:1.1rem;color:#1E4469;font-weight:700}
+    .mk table{width:100%;border-collapse:collapse;min-width:520px}
+    .mk th{background:#f6f7f9;text-align:left;font-size:.66rem;letter-spacing:.03em;color:#8a93a2;padding:.5rem .8rem;text-transform:uppercase}
+    .mk td{padding:.55rem .8rem;border-top:1px solid #f0f2f4;vertical-align:top}
+    .mk-sub{color:#8a93a2;font-size:.74rem}
+    .mk-chip{display:inline-block;border:1px solid #d7dbe0;border-radius:999px;padding:.05rem .55rem;font-size:.74rem;white-space:nowrap}
+    .mk-chip.ok{background:#e7f8f1;border-color:#bfe9d8;color:#0b7a56}
+    .mk-chip.bad{background:#fdeaea;border-color:#f4c7c7;color:#c0392b}
+    .mk-chip.g{background:#f4f6f8;color:#5b6775}
+    .mk-btns{display:flex;gap:.5rem;padding:.9rem;flex-wrap:wrap}
+    .mk-btn{border-radius:10px;padding:.45rem .85rem;font-size:.78rem;font-weight:700;border:1px solid #d7dbe0;white-space:nowrap}
+    .mk-btn.g1{background:#2DC197;border-color:#2DC197;color:#fff}
+    .mk-btn.g2{background:#e2493a;border-color:#e2493a;color:#fff}
+    .mk-btn.g3{color:#1E4469}
+    .mk-btn.g4{color:#b8791f;border-color:#e7c99a}
+    .mk-neg{color:#c0392b;font-weight:700}
+    .mk-pos{color:#1E4469;font-weight:700}
+    .mk-dialog{max-width:440px;margin:.2rem auto;border:1px solid #e9ebef;border-radius:16px;box-shadow:0 12px 34px rgba(20,40,70,.10);padding-bottom:.8rem}
+    .mk-dialog h5{margin:0;padding:1rem 1.1rem .4rem;font-family:'Codec Cold',system-ui,sans-serif;color:#1E4469;font-size:1.05rem}
+    .mk-field{margin:.5rem 1.1rem;border:1px solid #dfe3e8;border-radius:10px;padding:.55rem .7rem;color:#333a44;font-size:.84rem;background:#fff}
+    .mk-field.ph{color:#9aa3b0}
+    .mk-field.sel::after{content:"▾";float:right;color:#9aa3b0}
+    .mk-hint{margin:.05rem 1.1rem .5rem;color:#8a93a2;font-size:.74rem}
+    .mk-total b{font-size:1.6rem;color:#1E4469;font-weight:700;display:block;line-height:1.1}
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <div class="site-bar-in">
+      <a href="../../" aria-label="Ir al inicio de Sorby">
+        <img src="../../img/logo-mixto-blanco.png" alt="Sorby Data">
+      </a>
+      <nav>
+        <a href="../../">Inicio</a>
+        <a href="../">Manuales</a>
+        <a class="cta" href="../../">Probá gratis</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="portada">
+    <div class="portada-in">
+      <p class="migas"><a href="../">Manuales</a> · Finanzas</p>
+      <div class="portada-head">
+        <h1>Reserva de Obra</h1>
+        <p class="lede">Te ayudamos a apartar plata para una obra sin sacarla de la caja. La reservás, queda congelada para lo que la necesites, y cada gasto que cargás por WhatsApp la va descontando. Sin cuentas paralelas, sin planillas.</p>
+      </div>
+
+      <div class="lados">
+        <div class="lado cobrar">
+          <h3>Lo que apartás</h3>
+          <div class="cadena"><b>Asignás</b><i>&rarr;</i><b>Reponés</b><i>&rarr;</i><b>Ajustás</b></div>
+        </div>
+        <div class="menos">menos</div>
+        <div class="lado gastar">
+          <h3>Lo que se gasta</h3>
+          <div class="cadena"><b>Gastos de la reserva</b></div>
+        </div>
+      </div>
+      <p class="igual">= tu saldo disponible, congelado en la obra</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="toc" aria-label="Índice">
+      <p class="eyebrow" style="padding:.4rem .8rem">Índice</p>
+      <a href="#intro" class="on">1 · Qué es</a>
+      <a href="#vs-caja">2 · Reserva vs caja chica</a>
+      <a href="#vistas">3 · Las tres vistas</a>
+      <a href="#crear">4 · Crear una reserva</a>
+      <a href="#fondos">5 · Mover y desasignar fondos</a>
+      <a href="#whatsapp">6 · Gastar por WhatsApp</a>
+      <a href="#estados">7 · Estados</a>
+      <a href="#negativo">8 · Reservas en negativo</a>
+      <a href="#consolidado">9 · Mis reservas y el dueño</a>
+      <a href="#permisos">10 · Permisos y migración</a>
+      <a href="#faq">11 · Problemas</a>
+      <a href="#glosario">12 · Glosario</a>
+    </nav>
+
+    <main class="doc">
+
+      <section id="intro">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">01</p><h2>Qué es la Reserva de Obra</h2></div>
+        </div>
+        <p>La Reserva de Obra es <strong>plata que apartás dentro de una obra</strong>: la separás para un fin —comprar materiales, la caja de una persona, un frente puntual— y queda <strong>congelada</strong>. No se mueve de la caja del proyecto; simplemente marca que una parte del saldo ya tiene destino.</p>
+        <p>Una obra puede tener <strong>una o varias reservas</strong>, cada una con su nombre, su responsable y las personas que pueden gastar de ella.</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Tipo 1</p><h4>General de la obra</h4><p>Una reserva para toda la obra. La usás cuando querés apartar un monto sin atarlo a una persona.</p></div>
+          <div class="card"><p class="tagx">Tipo 2</p><h4>Por persona</h4><p>La caja de alguien puntual: cargás su reserva y esa persona gasta de ahí desde WhatsApp.</p></div>
+          <div class="card"><p class="tagx">Tipo 3</p><h4>Compartida por un grupo</h4><p>Varias personas gastan de la misma reserva —por ejemplo, “materiales urgentes”—. En la app la ves con el chip <strong>grupo</strong>.</p></div>
+        </div>
+        <div class="nota ok"><p><b>No mueve la caja</b>Asignar, reponer, ajustar o desasignar una reserva <strong>no genera ningún movimiento de caja</strong>. Lo único que descuenta plata de verdad es un <em>gasto</em> imputado a la reserva. Todo lo demás es apartar y devolver dentro de la misma obra.</p></div>
+      </section>
+
+      <section id="vs-caja">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">02</p><h2>Reserva no es caja chica</h2></div>
+        </div>
+        <p>Es la confusión más común, así que la despejamos de entrada. Se parecen —las dos son “plata para gastar”— pero funcionan al revés.</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Personal</p><h4>Caja chica</h4><p>Es una cuenta de fondos <strong>de cada persona</strong>. La plata se mueve de verdad: entra y sale de su caja. Sirve para el día a día del que está en obra.</p></div>
+          <div class="card"><p class="tagx">De la obra</p><h4>Reserva de Obra</h4><p>Es plata <strong>de la obra</strong> que se aparta sin moverse. Pertenece a la obra, no a la persona, y solo baja cuando se le imputa un gasto.</p></div>
+        </div>
+        <div class="nota"><p><b>La regla para no confundirlas</b>Si preguntás “¿cuánto tengo yo?”, es <strong>caja chica</strong>. Si preguntás “¿cuánto quedó apartado en esta obra?”, es <strong>reserva</strong>. Por eso una reserva siempre vive dentro de una obra y tiene un nombre.</p></div>
+      </section>
+
+      <section id="vistas">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">03</p><h2>Las tres vistas</h2></div>
+        </div>
+        <p>La Reserva de Obra se maneja desde tres pantallas. Tocá cada una para ver qué resuelve:</p>
+        <div class="tabs" role="tablist" aria-label="Vistas de reserva">
+          <button class="tab" role="tab" aria-selected="true" data-p="v1">Reservas por obra</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="v2">Mis reservas</button>
+          <button class="tab" role="tab" aria-selected="false" data-p="v3">Detalle</button>
+        </div>
+        <div class="panel on" id="v1" role="tabpanel"><h4>Reservas por obra · la vista del dueño</h4>
+          <p>El listado de todas las reservas de la empresa, con su responsable, participantes, saldo y estado. Desde acá creás una reserva nueva, asignás fondos y ves el <strong>impacto en la caja de cada obra</strong>.</p></div>
+        <div class="panel" id="v2" role="tabpanel"><h4>Mis reservas · la vista de la persona</h4>
+          <p>Lo que <strong>vos</strong> tenés reservado, con el total y el desglose por obra. Es la pantalla del participante: no necesita permisos especiales.</p></div>
+        <div class="panel" id="v3" role="tabpanel"><h4>Detalle · una reserva por dentro</h4>
+          <p>El movimiento a movimiento de una reserva: lo asignado, lo gastado, el saldo disponible, sus participantes y todo su historial.</p></div>
+        <figure>
+          <div class="mk">
+            <div class="mk-top">
+              <div class="mk-stat"><small>Total reservado ARS</small><b>$ 398.000</b></div>
+              <div class="mk-stat"><small>Total reservado USD</small><b>US$ 0</b></div>
+              <div class="mk-stat"><small>Obras con Reserva activa</small><b>3</b></div>
+            </div>
+            <table>
+              <thead><tr><th>Reserva / Obra</th><th>Responsable</th><th>Participantes</th><th>Saldo ARS</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Reserva de Obra · Tigre</strong><div class="mk-sub">Tigre</div></td><td>Facundo Ferro</td><td class="mk-sub">Facundo Ferro, Milagros Arce</td><td><span class="mk-chip">$ 51.000</span></td><td><span class="mk-chip ok">Activa</span></td></tr>
+                <tr><td><strong>Reserva para materiales urgentes</strong><div class="mk-sub">Tigre</div></td><td>Milagros Arce</td><td class="mk-sub">Facundo Ferro, Milagros Arce</td><td><span class="mk-chip bad">−$ 1.000</span><div class="mk-neg mk-sub">A cubrir $ 1.000</div></td><td><span class="mk-chip bad">Con saldo negativo</span></td></tr>
+                <tr><td><strong>reserva prueba tigre</strong><div class="mk-sub">Tigre</div></td><td>Milagros Arce</td><td class="mk-sub">Milagros Arce, Martin Bejarano</td><td><span class="mk-chip">$ 348.000</span></td><td><span class="mk-chip ok">Activa</span></td></tr>
+              </tbody>
+            </table>
+            <div class="mk-top" style="border-top:1px solid #f0f2f4;border-bottom:0;font-size:.74rem;color:#8a93a2">Impacto en la caja de cada obra (Disponible = Saldo − Reservado)</div>
+            <table>
+              <thead><tr><th>Obra</th><th>Saldo total caja</th><th>Reservado</th><th>Disponible real</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Tigre</strong><div class="mk-sub">3 reservas</div></td><td>$ 2.500.000</td><td style="color:#b8791f">$ 398.000</td><td class="mk-pos">$ 2.102.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption><b>Reservas por obra</b><span>Arriba, el total reservado y cuántas obras tienen reserva. En el medio, cada reserva con su saldo y estado. Abajo, el impacto en la caja de cada obra.</span></figcaption>
+        </figure>
+      </section>
+
+      <section id="crear">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
+          <div><p class="eyebrow">04</p><h2>Crear una reserva</h2></div>
+        </div>
+        <p>Desde <strong>Reservas por obra &rarr; Nueva reserva</strong>. Te pedimos cuatro cosas:</p>
+        <ol>
+          <li><strong>Obra / Proyecto.</strong> Elegila primero: define de qué caja se aparta la plata y qué personas pueden participar.</li>
+          <li><strong>Nombre de la reserva.</strong> Lo prellenamos como <em>Reserva de Obra · &lt;obra&gt;</em>, pero podés cambiarlo. Con varias reservas en la misma obra, <strong>el nombre es lo que las distingue</strong> —también cuando el bot pregunta por WhatsApp—.</li>
+          <li><strong>Responsable.</strong> Quién queda a cargo. Es un dato de referencia, no cambia quién puede gastar.</li>
+          <li><strong>Participantes.</strong> Las personas que pueden gastar de la reserva (rol <em>operador</em>).</li>
+        </ol>
+        <figure>
+          <div class="mk-dialog">
+            <h5>Nueva Reserva de Obra</h5>
+            <div class="mk-field sel">Tigre</div>
+            <div class="mk-field">Reserva de Obra · Tigre</div>
+            <div class="mk-hint">Con varias reservas en la misma obra, el nombre es lo que las distingue (también en WhatsApp).</div>
+            <div class="mk-field ph sel">Responsable</div>
+            <div class="mk-hint">Elegí primero la obra.</div>
+            <div class="mk-field ph sel">Participantes</div>
+            <div class="mk-hint">Pueden gastar de esta reserva (rol operador).</div>
+            <div class="mk-btns" style="justify-content:flex-end;padding-right:1.1rem"><span class="mk-btn g3">Cancelar</span><span class="mk-btn g1">Crear reserva</span></div>
+          </div>
+          <figcaption><b>Nueva reserva</b><span>Hasta que no elegís la obra, Responsable y Participantes quedan en espera: solo listamos personas con acceso a esa obra.</span></figcaption>
+        </figure>
+        <div class="nota"><p><b>Solo personas con acceso a la obra</b>En Responsable y Participantes te mostramos únicamente a quienes tienen acceso a la obra elegida. Si querés sumarlas a todas de una, usá <strong>“Todos los usuarios con acceso a la obra”</strong>. ¿No aparece alguien? Primero dale acceso a la obra.</p></div>
+        <div class="nota warn"><p><b>El nombre no se puede repetir en la misma obra</b>Dos reservas de la misma obra no pueden llamarse igual: es lo que permite distinguirlas después, sobre todo cuando el bot te pregunta de cuál sale un gasto. Si te avisa que ya existe, poné un nombre distinto.</p></div>
+        <div class="nota ok"><p><b>Crear no asigna plata</b>Una reserva nace en cero. Para ponerle fondos usás <strong>Asignar fondos</strong> (desde el listado) o <strong>Agregar fondos</strong> (dentro de la reserva). Lo vemos ahora.</p></div>
+      </section>
+
+      <section id="fondos">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">05</p><h2>Mover y desasignar fondos</h2></div>
+        </div>
+        <p>Dentro de una reserva tenés todo lo que necesitás para manejar su plata. Arriba, tres números: <strong>Reserva asignada</strong>, <strong>Gastos registrados</strong> y <strong>Saldo disponible</strong>. Abajo, los botones para operar.</p>
+        <figure>
+          <div class="mk">
+            <div class="mk-top">
+              <div class="mk-stat"><small>Reserva asignada</small><b style="color:#0b7a56">$ 2.660.000</b></div>
+              <div class="mk-stat"><small>Gastos registrados</small><b style="color:#c0392b">−$ 2.609.000</b></div>
+              <div class="mk-stat"><small>Saldo disponible</small><b>$ 51.000</b></div>
+            </div>
+            <div class="mk-btns">
+              <span class="mk-btn g1">＋ Agregar fondos</span>
+              <span class="mk-btn g2">－ Registrar gasto</span>
+              <span class="mk-btn g3">⚖ Ajuste / Arqueo</span>
+              <span class="mk-btn g4">🔓 Desasignar fondos</span>
+            </div>
+          </div>
+          <figcaption><b>Detalle de la reserva</b><span>Los tres recuadros resumen la reserva; los botones —Agregar fondos, Registrar gasto, Ajuste, Desasignar— operan sobre ella. Todo su historial queda listado abajo.</span></figcaption>
+        </figure>
+
+        <h3>Los tipos de movimiento</h3>
+        <p>Cada operación queda registrada en el historial con su tipo. Ninguna de las del ledger toca la caja de la obra:</p>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th>Movimiento</th><th>Qué hace</th><th>¿Mueve la caja?</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Asignación</strong></td><td>Aparta plata: suma al reservado de la obra.</td><td>No</td></tr>
+              <tr><td><strong>Reposición</strong></td><td>Vuelve a cargar la reserva. Igual que asignar, con otra etiqueta.</td><td>No</td></tr>
+              <tr><td><strong>Ajuste / Arqueo</strong></td><td>Corrige el saldo por una diferencia de arqueo. Puede ser positivo o negativo.</td><td>No</td></tr>
+              <tr><td><strong>Desasignación</strong></td><td>Devuelve fondos reservados al disponible de la obra.</td><td>No</td></tr>
+              <tr><td><strong>Egreso</strong></td><td>Un gasto real imputado a la reserva. Es lo único que descuenta plata de verdad.</td><td>Sí</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nota"><p><b>Cómo se calcula el saldo</b>El <strong>saldo disponible</strong> de una reserva es <em>Reserva asignada + Ajustes − Gastos registrados</em>. Y el <strong>disponible real de la obra</strong> es <em>Saldo de la caja − Reservado</em>: cuánto de la caja quedó libre para lo que no está apartado.</p></div>
+
+        <h3>Desasignar fondos</h3>
+        <p>Cuando apartaste de más, <strong>Desasignar fondos</strong> devuelve esa plata al disponible de la obra. Elegís moneda y monto; te mostramos el <strong>máximo desasignable</strong> y no te dejamos pasarte.</p>
+        <figure>
+          <div class="mk-dialog">
+            <h5>Desasignar fondos</h5>
+            <div class="mk-field sel">ARS</div>
+            <div class="mk-field ph">Monto</div>
+            <div class="mk-field ph">Observación</div>
+            <div class="mk-hint"><strong>Máximo desasignable: $ 51.000</strong></div>
+            <div class="mk-hint">Devuelve fondos reservados al disponible de la obra. No genera movimientos de caja.</div>
+            <div class="mk-btns" style="justify-content:flex-end;padding-right:1.1rem"><span class="mk-btn g3">Cancelar</span><span class="mk-btn g1" style="background:#6e56cf;border-color:#6e56cf">Guardar</span></div>
+          </div>
+          <figcaption><b>Desasignar fondos</b><span>El “Máximo desasignable” es lo que hay reservado sin gastar. Devolver fondos no genera movimientos de caja: solo libera lo que estaba apartado.</span></figcaption>
+        </figure>
+        <div class="nota warn"><p><b>No podés dejar la reserva en negativo desasignando</b>Solo se devuelve lo que está reservado sin gastar. Un saldo negativo nunca sale de desasignar: viene siempre de gastos que superaron lo asignado (lo vemos más abajo).</p></div>
+      </section>
+
+      <section id="whatsapp">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">06</p><h2>Gastar por WhatsApp</h2></div>
+        </div>
+        <p>La reserva se gasta desde donde estés. Le mandás el gasto al bot y lo imputamos contra la reserva correcta. La clave está en <strong>de qué reserva sale</strong>:</p>
+        <ul>
+          <li>Si participás en <strong>una sola</strong> reserva de esa obra, la imputamos directo.</li>
+          <li>Si participás en <strong>varias</strong>, te mostramos un menú y elegís. <strong>Nunca decidimos por vos.</strong></li>
+        </ul>
+        <div class="chat">
+          <div class="burbuja yo">
+            <span class="quien">Vos</span>
+            Gasté 200mil pesos de la reserva en materiales al corralón Gómez para el proyecto Tigre
+          </div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            🔒 <b>¿De qué reserva sale este gasto?</b><br><br>
+            1. Reserva de Obra · Tigre (saldo $51.000)<br>
+            2. Reserva para materiales urgentes (saldo $299.000)<br>
+            0. Ninguna (sale del saldo general)<br><br>
+            Respondé con el número o el nombre.
+          </div>
+          <div class="burbuja yo"><span class="quien">Vos</span>2</div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            Los datos del gasto son:
+            <div class="ficha">
+              <div class="f"><span>Proyecto</span><span>Tigre</span></div>
+              <div class="f"><span>Proveedor</span><span>Corralón Gómez</span></div>
+              <div class="f"><span>Categoría</span><span>Materiales</span></div>
+              <div class="f"><span>Caja chica</span><span>No</span></div>
+              <div class="f destacado"><span>🔒 Reserva de Obra</span><span>Sí · materiales urgentes</span></div>
+              <div class="f"><span>Total</span><span>$ 200.000</span></div>
+            </div>
+          </div>
+          <div class="burbuja bot">
+            <span class="quien">Sorby</span>
+            ¿Los datos son correctos?<br>
+            1. ✅ Sí &nbsp; 2. 📝 No, corregir &nbsp; 3. 📷 Confirmar y actualizar foto &nbsp; 4. ❌ Cancelar
+          </div>
+        </div>
+        <div class="nota ok"><p><b>Con varias reservas, siempre preguntamos</b>Aunque tengas configurado “sale de la reserva” por defecto, si participás en más de una reserva de la obra te preguntamos <strong>de cuál</strong>. La intención no dice cuál, y no queremos descontarle a la equivocada. Podés responder con el número, con el nombre, o <strong>0</strong> para que salga del saldo general.</p></div>
+        <div class="nota"><p><b>“Ver reservas” desde el chat</b>Escribile <em>“ver reservas”</em> al bot y te lista lo que tenés reservado, agrupado por obra, con los saldos y las que quedaron en negativo.</p></div>
+      </section>
+
+      <section id="estados">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">07</p><h2>Estados de una reserva</h2></div>
+        </div>
+        <p>Cada reserva muestra un estado que resume cómo viene. Tocá uno para ver qué significa:</p>
+        <div class="flow" data-flow="estado">
+          <button class="step" aria-pressed="true" data-i="0">Sin movimientos</button><span class="arrow">&rarr;</span>
+          <button class="step" aria-pressed="false" data-i="1">Activa</button><span class="arrow">&rarr;</span>
+          <button class="step bad" aria-pressed="false" data-i="2">Con saldo negativo</button><span class="arrow">·</span>
+          <button class="step" aria-pressed="false" data-i="3">Inactiva</button><span class="arrow">·</span>
+          <button class="step" aria-pressed="false" data-i="4">Pendiente de arqueo</button>
+        </div>
+        <div class="flow-detail" id="d-estado"></div>
+      </section>
+
+      <section id="negativo">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">08</p><h2>Reservas en negativo</h2></div>
+        </div>
+        <p>Una reserva puede quedar <strong>en negativo</strong>: se gastó más de lo que se había reservado. Es válido y no te lo bloqueamos —a veces el gasto es urgente y la reposición viene después—.</p>
+        <p>Cuando pasa, te lo mostramos en rojo con el monto <strong>“A cubrir”</strong>: en el listado, en Mis reservas y en el chat del bot.</p>
+        <div class="nota warn"><p><b>Cómo se cubre un negativo</b>Reponiendo la reserva, o transfiriendo entre las cajas de proyecto. La reserva no se transfiere sola entre obras: el bache se cubre a nivel caja y después la reserva vuelve a cero o a positivo.</p></div>
+      </section>
+
+      <section id="consolidado">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">09</p><h2>Mis reservas y el consolidado del dueño</h2></div>
+        </div>
+        <p><strong>Mis reservas</strong> es la vista de la persona: tu total reservado y el desglose por obra, con lo asignado, lo gastado y lo disponible de cada una. Las compartidas aparecen con el chip <strong>grupo</strong>, y las que quedaron en negativo, marcadas.</p>
+        <figure>
+          <div class="mk">
+            <div class="mk-top mk-total" style="display:block">
+              <small style="color:#8a93a2;font-size:.74rem">Total disponible en mis reservas (ARS)</small>
+              <b>$ 350.000</b>
+              <small style="color:#8a93a2;font-size:.74rem">Asignado $ 2.960.000 · Gastado $ 2.610.000</small>
+            </div>
+            <table>
+              <thead><tr><th>Reserva</th><th>Obra</th><th>Asignado</th><th>Gastado</th><th>Disponible</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Reserva de Obra · Tigre</strong> <span class="mk-chip g">grupo</span></td><td>Tigre</td><td>$ 2.660.000</td><td>$ 2.609.000</td><td class="mk-pos">$ 51.000</td></tr>
+                <tr><td><strong>Reserva para materiales urgentes</strong> <span class="mk-chip g">grupo</span></td><td>Tigre</td><td>$ 300.000</td><td>$ 1.000</td><td class="mk-pos">$ 299.000</td></tr>
+                <tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>$ 2.960.000</strong></td><td><strong>$ 2.610.000</strong></td><td><strong>$ 350.000</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption><b>Mis reservas</b><span>Arriba, tu total disponible con lo asignado y lo gastado. Abajo, una fila por reserva; el chip “grupo” marca las compartidas.</span></figcaption>
+        </figure>
+        <p>Para el dueño, en <strong>Reservas por obra</strong> está además el <strong>impacto en la caja de cada obra</strong>: cuánto tiene la caja, cuánto está reservado y cuánto queda <em>disponible real</em> para lo que no está apartado.</p>
+        <div class="nota warn"><p><b>Esta vista está en revisión</b>La forma de mostrar el consolidado del dueño (el impacto en caja y el detalle por reserva) puede cambiar en las próximas versiones. Tomá esta sección como referencia de lo que hace, no de cómo se va a ver.</p></div>
+      </section>
+
+      <section id="permisos">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
+          <div><p class="eyebrow">10</p><h2>Permisos y migración</h2></div>
+        </div>
+        <p>Quién puede hacer qué:</p>
+        <ul>
+          <li><span class="k">GESTIONAR_RESERVAS_OBRA</span> — crear reservas, asignar, desasignar, ajustar, editar participantes y renombrar. Es el permiso de gestión, y no hay atajo de administrador: si no lo tenés, no ves esos botones ni podés operar.</li>
+          <li><span class="k">VER_RESERVAS_OBRA</span> — deja al gestor ver las reservas de las obras que tiene asignadas.</li>
+          <li><strong>Participante</strong> — si sos parte de una reserva, la ves y gastás de ella aunque no tengas ningún permiso global. Para eso está <strong>Mis reservas</strong>.</li>
+        </ul>
+        <div class="nota"><p><b>Vengo de la caja chica “trazable”</b>La Reserva de Obra reemplaza a ese modo. Las empresas nuevas ya nacen sin él, y la migración de una empresa que lo usaba se hace acompañada, revisando el plan antes de aplicar nada: no se tocan los movimientos históricos.</p></div>
+      </section>
+
+      <section id="faq">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
+          <div><p class="eyebrow">11</p><h2>Cuando algo no sale</h2></div>
+        </div>
+        <div>
+          <details><summary>El bot me pregunta de qué reserva sale el gasto</summary><div class="ans"><p class="causa">Participás en más de una reserva de esa obra.</p><p>Es a propósito: no elegimos por vos para no descontarle a la reserva equivocada. Respondé con el número, el nombre, o <strong>0</strong> si querés que salga del saldo general.</p></div></details>
+          <details><summary>Reservé plata y la caja de la obra no bajó</summary><div class="ans"><p class="causa">Así tiene que ser: reservar congela, no mueve.</p><p>La caja recién baja cuando imputás un <strong>gasto</strong> a la reserva. Asignar, reponer, ajustar y desasignar no generan movimientos de caja.</p></div></details>
+          <details><summary>No veo mi reserva en la caja de la obra</summary><div class="ans"><p class="causa">O no figurás como participante de esa reserva, o tu teléfono quedó guardado en otro formato.</p><p>Fijate en <strong>Mis reservas</strong>: si ahí aparece, sos participante. Si no, pedile a quien gestiona que te agregue.</p></div></details>
+          <details><summary>No me deja desasignar el monto que quiero</summary><div class="ans"><p class="causa">Estás intentando devolver más de lo que hay reservado sin gastar.</p><p>El tope es el <strong>máximo desasignable</strong> que te mostramos en el diálogo. Desasignar nunca puede dejar la reserva en negativo.</p></div></details>
+          <details><summary>Mi reserva quedó en negativo</summary><div class="ans"><p class="causa">Se gastó más de lo que estaba reservado. Es válido.</p><p>Se cubre reponiendo la reserva o transfiriendo entre las cajas de proyecto. Mientras tanto te mostramos el monto “A cubrir”.</p></div></details>
+          <details><summary>No aparece una persona para agregarla como participante</summary><div class="ans"><p class="causa">Esa persona no tiene acceso a la obra de la reserva.</p><p>Solo listamos personas con acceso a esa obra. Dale acceso a la obra primero y después la vas a poder sumar.</p></div></details>
+          <details><summary>No me deja crear la reserva: dice que el nombre ya existe</summary><div class="ans"><p class="causa">Ya hay otra reserva con ese nombre en la misma obra.</p><p>El nombre es lo que las distingue. Poné uno distinto —por ejemplo, la persona o el fin de la reserva—.</p></div></details>
+          <details><summary>No veo “Nueva reserva” ni los botones de gestión</summary><div class="ans"><p class="causa">No tenés el permiso de gestión.</p><p>La gestión de reservas requiere <span class="k">GESTIONAR_RESERVAS_OBRA</span>. Pedile a un administrador que te lo active en la configuración de la empresa.</p></div></details>
+          <details><summary>No veo un botón o un cambio nuevo</summary><div class="ans"><p class="causa">El navegador te está mostrando una versión cacheada.</p><p>Recargá forzando con <strong>Cmd/Ctrl + Shift + R</strong>.</p></div></details>
+        </div>
+      </section>
+
+      <section id="glosario">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
+          <div><p class="eyebrow">12</p><h2>Glosario</h2></div>
+        </div>
+        <div class="buscador"><input id="q" type="search" placeholder="Buscar: desasignar, reservado, participante…" aria-label="Buscar término" autocomplete="off"></div>
+        <dl class="glos" id="glos">
+          <div class="term"><dt>Reserva de Obra</dt><dd>Plata de una obra apartada sin moverse de la caja. Congela una parte del saldo para un fin.</dd></div>
+          <div class="term"><dt>Caja chica</dt><dd>Cuenta de fondos personal de cada usuario, donde la plata sí se mueve. No es lo mismo que la reserva.</dd></div>
+          <div class="term"><dt>Participante</dt><dd>Persona habilitada en una reserva. Según su rol, puede gastar, gestionar o solo ver.</dd></div>
+          <div class="term"><dt>Responsable</dt><dd>Quién queda a cargo de la reserva. Es un dato de referencia.</dd></div>
+          <div class="term"><dt>Operador</dt><dd>Rol del participante que puede gastar de la reserva.</dd></div>
+          <div class="term"><dt>Lector</dt><dd>Rol que solo puede ver la reserva, sin gastar.</dd></div>
+          <div class="term"><dt>Asignar fondos</dt><dd>Apartar plata en la reserva. Suma al reservado; no mueve la caja.</dd></div>
+          <div class="term"><dt>Reposición</dt><dd>Volver a cargar la reserva. Igual que asignar, con otra etiqueta.</dd></div>
+          <div class="term"><dt>Ajuste / Arqueo</dt><dd>Corrección del saldo por una diferencia de arqueo. Puede ser positivo o negativo.</dd></div>
+          <div class="term"><dt>Desasignar</dt><dd>Devolver fondos reservados al disponible de la obra. No puede dejar la reserva en negativo.</dd></div>
+          <div class="term"><dt>Reservado</dt><dd>Cuánta plata de la obra está apartada: asignado más ajustes menos gastos.</dd></div>
+          <div class="term"><dt>Saldo disponible</dt><dd>Lo que queda para gastar en la reserva: reserva asignada más ajustes menos gastos.</dd></div>
+          <div class="term"><dt>Disponible real</dt><dd>Lo que queda libre en la caja de la obra: saldo de la caja menos lo reservado.</dd></div>
+          <div class="term"><dt>Reserva en negativo</dt><dd>Cuando los gastos superaron lo reservado. Se muestra con el monto “A cubrir”.</dd></div>
+          <div class="term"><dt>Egreso de reserva</dt><dd>Un gasto real imputado a la reserva. Es lo único que descuenta plata de verdad.</dd></div>
+          <div class="term"><dt>Consolidado del dueño</dt><dd>La vista del dueño con el impacto de las reservas en la caja de cada obra.</dd></div>
+          <div class="term"><dt>Impacto en la caja</dt><dd>Cuánto de la caja de una obra está reservado y cuánto queda disponible real.</dd></div>
+        </dl>
+        <p class="vacio" id="sin" hidden>No encontramos términos con esa búsqueda.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie">
+    <div class="pie-in">
+      <img src="../../img/logo-mixto-blanco.png" alt="Sorby Data">
+      <span><a href="../">Ver todos los manuales</a> · <a href="../../">sorbydata.com</a></span>
+    </div>
+  </footer>
+
+  <script type="application/json" id="flujos">
+  {
+    "estado": [
+      ["Sin movimientos", "La reserva se creó pero todavía no tiene fondos ni gastos. Asignale plata para empezar a usarla."],
+      ["Activa", "Tiene fondos y saldo disponible. Es el estado normal: se puede gastar, reponer y desasignar."],
+      ["Con saldo negativo", "Los gastos superaron lo reservado. No la bloqueamos; te mostramos el monto a cubrir. Se cubre reponiendo o transfiriendo entre cajas."],
+      ["Inactiva", "La reserva se archivó y ya no se usa. Queda en el historial para consulta."],
+      ["Pendiente de arqueo", "Marcada a mano para revisar sus números antes de seguir operando."]
+    ]
+  }
+  </script>
+  <script src="../assets/manual.js"></script>
+</body>
+</html>

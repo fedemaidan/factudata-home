@@ -48,6 +48,13 @@
     },
     {
       area: "Finanzas",
+      titulo: "Reserva de Obra",
+      resumen: "Apartá plata para una obra sin moverla de la caja: reservas por persona o grupo, gasto por WhatsApp y saldo siempre a la vista.",
+      slug: "reserva",
+      icono: S.pin
+    },
+    {
+      area: "Finanzas",
       titulo: "Caja chica",
       resumen: "Registrá los gastos del día a día de la obra y mantené la caja siempre cuadrada.",
       slug: null,
