@@ -64,16 +64,17 @@
       <a href="#antes">2 · Antes de empezar</a>
       <a href="#mapa">3 · Mapa del módulo</a>
       <a href="#crear">4 · Crear una obra</a>
-      <a href="#ejecucion">5 · Ejecución</a>
-      <a href="#gastos">6 · Cargar gastos</a>
-      <a href="#cronograma">7 · Cronograma</a>
-      <a href="#certificados">8 · Certificados</a>
-      <a href="#cobros">9 · Cobros</a>
-      <a href="#manoobra">10 · Mano de obra</a>
-      <a href="#reportes">11 · Reportes</a>
-      <a href="#cartera">12 · Cartera</a>
-      <a href="#faq">13 · Problemas</a>
-      <a href="#glosario">14 · Glosario</a>
+      <a href="#completar">5 · Completar la obra</a>
+      <a href="#ejecucion">6 · Ejecución</a>
+      <a href="#gastos">7 · Cargar gastos</a>
+      <a href="#cronograma">8 · Cronograma</a>
+      <a href="#certificados">9 · Certificados</a>
+      <a href="#cobros">10 · Cobros</a>
+      <a href="#manoobra">11 · Mano de obra</a>
+      <a href="#reportes">12 · Reportes</a>
+      <a href="#cartera">13 · Cartera</a>
+      <a href="#faq">14 · Problemas</a>
+      <a href="#glosario">15 · Glosario</a>
     </nav>
 
     <main class="doc">
@@ -107,6 +108,7 @@
           <li>El permiso <span class="k">VER_PLANES_PAGO</span> activado para quien tenga que ver la hoja general de pagos.</li>
         </ul>
         <div class="nota"><p><b>Cómo activamos el permiso</b>Entrá a <strong>Configuración general de la empresa &rarr; Acciones</strong> y tildá <span class="k">VER_PLANES_PAGO</span>. Sin eso, el ítem “Planes de pago” no aparece en el menú.</p></div>
+        <div class="nota ok"><p><b>Nada de esto te frena</b>Podés crear la obra igual y completar lo que falte después: dentro de la obra te vamos mostrando qué le falta y cómo resolverlo, con herramientas para cargar de a muchas tareas juntas. Lo vemos en <a href="#completar">Completar la obra</a>.</p></div>
       </section>
 
       <section id="mapa">
@@ -131,7 +133,8 @@
         </div>
         <div class="panel on" id="p1" role="tabpanel"><h4>Resumen · la foto de la obra</h4>
           <p>Vas a ver los dos lados enfrentados: lo que cobrás —contrato, certificado y cobrado— y lo que gastás —costo de referencia desglosado en proveedor y directo, gastado real y márgenes.</p>
-          <p>También la <strong>composición del cobro</strong>: cuánto esperás cobrar por certificación y cuánto por planes, con una señal de cobertura, las alertas de la obra y la curva de avance.</p></div>
+          <p>También la <strong>composición del cobro</strong>: cuánto esperás cobrar por certificación y cuánto por planes, con una señal de cobertura y las alertas de la obra.</p>
+          <p>Y la <strong>curva de la obra</strong>, que cruza lo que planificaste con lo que pasó: el avance proyectado por el cronograma contra lo que llevás certificado y cobrado. Es la forma más rápida de ver si vas adelante o atrás sin comparar planillas.</p></div>
         <div class="panel" id="p2" role="tabpanel"><h4>Ejecución · el corazón</h4>
           <p>La grilla con contrato, avance, certificado, costo, gastado y margen de cada tarea. Desde acá registrás avance, cargás costos, imputás gastos y armás certificados.</p></div>
         <div class="panel" id="p3" role="tabpanel"><h4>Cronograma · los tiempos</h4>
@@ -157,7 +160,24 @@
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
           <div><p class="eyebrow">04</p><h2>Crear una obra</h2></div>
         </div>
-        <p>Entrá a <strong>Control de Obra</strong> y tocá <strong>Nueva obra</strong>. Te vamos a pedir tres cosas: el <strong>origen</strong> —de dónde salen los rubros y tareas—, el <strong>perfil de obra</strong> —que define la indexación CAC, la retención y el anticipo por defecto— y, si querés, el <strong>proyecto</strong> al que se asocia.</p>
+        <p>Entrá a <strong>Control de Obra</strong> y tocá <strong>Nueva obra</strong>. Se abre un asistente que ocupa toda la pantalla y te lleva paso por paso.</p>
+        <p>No te pedimos que cargues datos: te preguntamos <strong>cómo querés controlar la obra</strong>. Son las decisiones que después son caras de cambiar, y por eso van primero. Las fechas, los contratos y las categorías se completan después, con las herramientas de la sección que sigue.</p>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th>Paso</th><th>Qué decidís</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1 · Origen</strong></td><td>De dónde salen los rubros y las tareas. Las cuatro formas están abajo.</td></tr>
+              <tr><td><strong>2 · Estructura</strong></td><td>Si la obra trabaja con <strong>un nivel</strong> (sólo rubros) o con <strong>dos</strong> (rubros y sub-rubros). Te mostramos la estructura de ejemplo de cada una.</td></tr>
+              <tr><td><strong>3 · Qué controlás</strong></td><td>Si seguís los <strong>egresos</strong>, los <strong>ingresos</strong>, o los dos. Si sólo te interesa el costo, la obra no te va a llenar la pantalla con cobros.</td></tr>
+              <tr><td><strong>4 · Financiación</strong></td><td>Cómo entra la plata y qué hacemos con los cobros que ya están en la caja.</td></tr>
+              <tr><td><strong>5 · Ejecución</strong></td><td>Si el trabajo lo hace <strong>tu propia gente</strong> o <strong>contratistas</strong>. Es sólo el valor por defecto: después lo cambiás tarea por tarea.</td></tr>
+              <tr><td><strong>6 · Revisar</strong></td><td>La obra armada antes de guardarla: cuántas tareas quedaron, el contrato total, el costo y el margen esperado.</td></tr>
+              <tr><td><strong>7 · Condiciones</strong></td><td>Anticipo, retención e indexación.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nota"><p><b>Si no estás seguro, seguí</b>Casi todo tiene un valor razonable puesto de antemano, y todo se puede cambiar después. El asistente está para que sepas que la decisión existe, no para trabarte.</p></div>
+
         <h3>Las cuatro formas de armarla</h3>
         <div class="cards">
           <div class="card"><p class="tagx">Opción A</p><h4>Desde un archivo</h4><p>Subís tu presupuesto en Excel, PDF o fotos y armamos la obra sola, con sus rubros y montos. No hace falta que pase por Presupuesto Profesional.</p></div>
@@ -166,6 +186,22 @@
           <div class="card"><p class="tagx">Opción D</p><h4>Carga manual</h4><p>Ponés un título y cargás vos los rubros y tareas, con su nombre y su monto.</p></div>
         </div>
         <div class="nota"><p><b>Ojo con el monto</b>El monto de cada tarea es el contrato <em>con el cliente</em>, o sea lo que vas a cobrar. El costo se carga aparte, en Ejecución.</p></div>
+
+        <h3>Cómo se financia la obra</h3>
+        <p>Es el paso 4, y tiene dos preguntas.</p>
+        <p>La primera es <strong>por dónde entra la plata</strong>. Los dos mecanismos conviven, así que marcás los que uses —o los dos:</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Contra avance</p><h4>Por certificados</h4><p>Registrás el avance, armás el certificado, lo aprobás y lo cobrás. Necesita el contrato cargado por tarea.</p></div>
+          <div class="card"><p class="tagx">Por calendario</p><h4>Por planes de cobro</h4><p>Cuotas pactadas, independientes del avance. Una obra puede tener varios: uno por inversor, o uno de honorarios aparte.</p></div>
+        </div>
+        <p>Si marcás los dos, te preguntamos <strong>qué parte del contrato va por cada vía</strong>. Lo ponés en porcentaje —al dar de alta uno piensa “70/30”— y nosotros lo pasamos a pesos sobre el contrato de la obra. Con eso podemos decirte si entre los certificados y los planes está cubierto todo el contrato, y separar el pendiente de cobro por fuente.</p>
+        <div class="nota"><p><b>Por qué lo guardamos en pesos y no en porcentaje</b>Los montos se negocian. Si guardáramos el porcentaje, corregir el contrato de una tarea movería sola la composición del cobro y nadie se enteraría. Guardado en pesos, tu decisión queda firme, y la editás cuando quieras desde <strong>Resumen</strong>. Si todavía no cargaste los contratos, te avisamos y queda pendiente hasta que haya montos.</p></div>
+
+        <p>La segunda pregunta es <strong>qué hacemos con los cobros que ya están cargados en la caja del proyecto</strong>:</p>
+        <ul>
+          <li><strong>Traerlos a la obra.</strong> Los enganchamos y cuentan como cobrado. Es lo que querés si la obra arranca de cero y venías registrando en la caja.</li>
+          <li><strong>Empezar de cero.</strong> No tocamos nada de la caja. Es lo que querés si el proyecto viene de <em>otra etapa</em> y esos cobros no son de esta obra: meterlos te inflaría el cobrado real.</li>
+        </ul>
 
         <h3>Cómo funciona el import desde archivo</h3>
         <p>Elegís <strong>Desde archivo</strong>, subís tu planilla y esperás unos segundos: leemos el archivo y creamos la obra directamente. Sirve tanto una planilla detallada (con cantidades y precios unitarios) como una <strong>de resumen</strong>, con una fila por rubro y su importe total.</p>
@@ -177,12 +213,67 @@
         <div class="nota ok"><p><b>No toca la caja</b>Importar un presupuesto no genera ningún movimiento de caja. Es sólo la estructura de la obra: lo que ya se pagó en un proyecto que venías llevando por afuera se registra aparte.</p></div>
         <div class="nota warn"><p><b>Revisá los totales la primera vez</b>Al terminar te mostramos las observaciones de lo que no pudimos interpretar. Descartamos las filas de cierre (“Subtotal…”, “Total…”) para no contar la misma plata dos veces, pero conviene comparar el total de la obra contra el de tu planilla. Si no coinciden, muchas veces el que está desactualizado es el subtotal del archivo.</p></div>
         <div class="nota"><p><b>Ningún rubro queda vacío</b>Si un rubro viene sin tareas —típico de las planillas de resumen—, le creamos una con el mismo nombre y su importe. Es necesario porque la <em>tarea</em> es la unidad que se certifica y donde se imputan los gastos: un rubro sin tareas no se podría usar.</p></div>
+
+        <h3>La obra no arranca vacía</h3>
+        <p>Si la asociaste a un proyecto, al crearla enganchamos los <strong>gastos ya cargados</strong> en esa caja a las tareas que les corresponden. El <em>gastado</em> refleja lo real desde el primer día, en vez de arrancar en cero y tener que cargar el pasado a mano.</p>
+        <p>Sólo enganchamos lo que reconocemos con confianza. Lo que queda ambiguo te lo listamos para que lo resuelvas con <strong>Re-imputar masiva</strong>, y te decimos cuántos movimientos enganchamos y por cuánta plata.</p>
+        <p>Con los <strong>cobros</strong> hacemos lo mismo, pero sólo si elegiste “traerlos a la obra” en el paso de financiación.</p>
+      </section>
+
+      <section id="completar">
+        <div class="sec-head">
+          <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
+          <div><p class="eyebrow">05</p><h2>Completar la obra</h2></div>
+        </div>
+        <p>Una obra recién creada casi nunca está completa: faltan fechas, faltan contratos, faltan categorías. Es normal, y no hace falta que lo resuelvas todo junto ni en orden. Esta sección es para eso, y también sirve para las obras que ya venías llevando.</p>
+
+        <h3>El panel de pendientes</h3>
+        <p>Arriba de <strong>Ejecución</strong> te mostramos qué le falta a la obra, con el botón para resolverlo al lado. Nada de buscar dónde se arregla cada cosa:</p>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th>Lo que falta</th><th>Por qué importa</th></tr></thead>
+            <tbody>
+              <tr><td>Tareas <strong>sin categoría</strong></td><td>Los gastos de la caja no se imputan solos hasta que la tengan.</td></tr>
+              <tr><td>Tareas <strong>sin contrato</strong></td><td>No se pueden certificar ni suman al total de la obra.</td></tr>
+              <tr><td>Tareas <strong>sin fechas</strong></td><td>No aparecen en el cronograma ni detectamos si se atrasan.</td></tr>
+              <tr><td>Tareas <strong>sin costo</strong></td><td>Sin costo no hay margen que calcular.</td></tr>
+              <tr><td>Gastos <strong>sin imputar</strong></td><td>Están en la caja pero no suman al gastado de ninguna tarea.</td></tr>
+              <tr><td>Avance <strong>sin certificar</strong></td><td>Ejecutaste más de lo que le facturaste al cliente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Editar en planilla</h3>
+        <p>El botón <strong>Editar en planilla</strong> de Ejecución te abre todas las tareas en una grilla, para cargar contrato, costo, avance y fechas sin entrar tarea por tarea. Está pensado para las obras grandes, donde abrir cincuenta veces el detalle no es una opción.</p>
+        <ul>
+          <li>Los <strong>números van en formato argentino</strong> —punto de miles, coma decimal— y las fechas con calendario, no escritas a mano.</li>
+          <li>Podés <strong>ordenar y filtrar</strong> por cualquier columna. El filtro más útil es el de vacíos: te deja sólo lo que falta completar.</li>
+          <li>Podés <strong>copiar y pegar desde Excel</strong>: seleccionás la celda donde empieza, pegás un rango y cae en las celdas que corresponden. Números y fechas se interpretan como los escribís acá.</li>
+        </ul>
+        <div class="nota warn"><p><b>Cuando un monto no cierra, te frenamos</b>Si un contrato es de otro orden de magnitud que el resto de la obra —cien veces más grande que lo habitual—, paramos antes de guardar y te mostramos cuánto se desvía. Casi siempre es un dígito de más al tipear o una celda corrida en el Excel. Si el monto está bien, confirmás y sigue de largo: hay obras donde una tarea realmente vale eso.</p></div>
+
+        <h3>Contratos y responsables en lote</h3>
+        <p>Marcás varias tareas juntas y les asignás el mismo proveedor —o las marcás como <strong>mano de obra propia</strong>— de una sola vez. Sirve cuando un mismo contratista se lleva medio rubro.</p>
+
+        <h3>La planilla de la obra, en Excel</h3>
+        <p>El botón <strong>Excel</strong> baja toda la obra a una planilla: una fila por tarea, con contrato, costos, avance y fechas. La corregís con las herramientas que ya sabés usar y la volvés a subir.</p>
+        <p>También trae el <strong>gastado real</strong> y lo <strong>certificado</strong>, pero como referencia: esas dos columnas no se re-importan, porque salen de la caja y de los certificados y no de lo que se escriba en la planilla.</p>
+        <ol>
+          <li>Bajás el archivo y lo editás.</li>
+          <li>Lo subís y <strong>te mostramos qué cambiaría</strong>, campo por campo, con el valor de antes al lado.</li>
+          <li>Recién ahí lo aplicás.</li>
+        </ol>
+        <div class="nota"><p><b>La primera columna es la que une todo</b>La columna <strong>ID</strong> vincula cada fila con su tarea. Por eso podés ordenar, filtrar y hasta renombrar una tarea sin perder el vínculo — pero si la borrás, esa fila no se va a poder aplicar. Las filas que no subas <strong>quedan como están</strong>: nunca borramos una tarea por no estar en el archivo.</p></div>
+
+        <h3>Completar las categorías</h3>
+        <p>Si la obra quedó con tareas sin categoría, <strong>Re-mapear categorías</strong> las rellena desde el catálogo de tu empresa, comparando por nombre. Igual que con el Excel, primero te mostramos qué se completaría y vos aplicás.</p>
+        <div class="nota ok"><p><b>Los prefijos y los nombres repetidos ya no molestan</b>Si tu presupuesto trae las tareas como <em>“1.2 Albañilería”</em>, ignoramos el número para comparar. Y cuando un rubro tiene una sola tarea que se llama igual que él, entendemos que hablás de esa tarea. Eran las dos razones más comunes por las que los gastos no se enganchaban solos.</p></div>
       </section>
 
       <section id="ejecucion">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
-          <div><p class="eyebrow">05</p><h2>Ejecución</h2></div>
+          <div><p class="eyebrow">06</p><h2>Ejecución</h2></div>
         </div>
         <p>Es donde vive el día a día. Tocá cualquier tarea y se abre su <strong>detalle</strong>: arriba el resumen de números —contrato, costo, gastado, certificado y márgenes— y abajo una sección por cada cosa que podés hacer.</p>
         <figure>
@@ -226,6 +317,18 @@
         <h3>Asignar un proveedor</h3>
         <p>Detalle de la tarea &rarr; <strong>Proveedor / contrato</strong>. Elegís el contratista, el costo del contrato y cómo se devenga el pago: por avance físico o por certificado.</p>
 
+        <h3>Cuando el trabajo lo hace tu propia gente</h3>
+        <p>No toda tarea la ejecuta un contratista. Cada una puede marcarse como <strong>contratada</strong> o como <strong>mano de obra propia</strong> —por administración—, y el valor por defecto lo elegiste al crear la obra.</p>
+        <p>Una tarea propia funciona igual que cualquier otra: tiene contrato, avance, costo y margen, y le imputás los gastos que le correspondan —jornales, materiales—. La diferencia es que <strong>no tiene proveedor</strong>, así que no aparece en las órdenes sugeridas por avance ni te la marcamos como si le faltara el contratista.</p>
+
+        <h3>Que el avance salga solo de lo pagado</h3>
+        <p>Cada tarea elige cómo se calcula su avance:</p>
+        <div class="cards">
+          <div class="card"><p class="tagx">Por defecto</p><h4>Manual</h4><p>Lo cargás vos: es el porcentaje que ves en obra. Cuando lo registrás te mostramos al lado, como referencia, cuánto llevás gastado sobre el costo.</p></div>
+          <div class="card"><p class="tagx">Automático</p><h4>Por lo pagado</h4><p>El avance sale de lo gastado sobre el costo estimado. Sirve para las tareas que se pagan contra entrega, donde no tiene sentido salir a medir.</p></div>
+        </div>
+        <div class="nota"><p><b>El dato económico se muestra, no se aplica solo</b>Aunque lo gastado diga 70%, si la tarea es manual no le tocamos el avance: te lo sugerimos para que decidas vos. Pagar no es lo mismo que ejecutar —un anticipo grande no significa que la obra avanzó—, y de ese número dependen los certificados.</p></div>
+
         <h3>Imputar gastos</h3>
         <p>Los gastos son un tema en sí mismo, con dos caminos posibles. Lo vemos en la sección que sigue.</p>
       </section>
@@ -233,7 +336,7 @@
       <section id="gastos">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
-          <div><p class="eyebrow">06</p><h2>Cargar gastos</h2></div>
+          <div><p class="eyebrow">07</p><h2>Cargar gastos</h2></div>
         </div>
         <p><strong>Imputar</strong> es decirle al sistema a qué tarea corresponde un gasto. Hay dos caminos y terminan en el mismo lugar: un egreso en la caja, pegado a una tarea de la obra, que suma al <em>gastado</em> y mueve el margen.</p>
 
@@ -298,14 +401,19 @@
         </div>
         <p>Con eso, $900.000 se van al gastado de <em>Demolición de muros</em> y $600.000 al de <em>Revoque grueso</em>. Si el gasto fuera de una sola tarea, le ponés <strong>100</strong> a esa y listo. Los porcentajes <strong>tienen que sumar 100</strong>: te lo marcamos abajo mientras cargás.</p>
 
-        <p>También podés hacerlo al revés, desde la obra: en <strong>Ejecución &rarr; Imputar gasto</strong> te listamos los egresos de la caja para que elijas cuál asignar. Y si ya cargaste muchos sin imputar, <strong>Re-imputar masiva</strong> los corrige en lote en vez de uno por uno.</p>
+        <p>También podés hacerlo al revés, desde la obra: en <strong>Ejecución &rarr; Imputar gasto</strong> te listamos los egresos de la caja para que elijas cuál asignar.</p>
+
+        <h3>Cuando son muchos y atrasados</h3>
+        <p>Si venías cargando gastos sin imputar, <strong>Re-imputar masiva</strong> los resuelve en lote. No te los tira de a uno: los <strong>agrupamos por lo que tienen en común</strong> —el proveedor, la categoría, la descripción— y te proponemos una tarea para todo el grupo. Aceptás y resolvés veinte movimientos de una.</p>
+        <p>Cuando un grupo podría ir a más de una tarea te lo marcamos como <strong>ambiguo</strong> y no elegimos por vos: preferimos que lo mires antes de aplicar.</p>
+        <div class="nota ok"><p><b>Podés dejarlo aprendido</b>Al resolver un grupo que tiene proveedor, podés guardarlo <strong>como regla</strong>: de ahí en más, los gastos de ese proveedor se imputan solos a esa tarea. Es la forma de no volver a hacer el mismo trabajo el mes que viene. Sin proveedor no hay regla que guardar, porque no habría con qué reconocer al gasto siguiente.</p></div>
         <div class="nota warn"><p><b>El gasto tiene que estar en la caja correcta</b>Solo podés imputar egresos del proyecto al que pertenece la obra. Si no aparece el que buscás, fijate que se haya cargado en esa caja.</p></div>
       </section>
 
       <section id="cronograma">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
-          <div><p class="eyebrow">07</p><h2>Cronograma</h2></div>
+          <div><p class="eyebrow">08</p><h2>Cronograma</h2></div>
         </div>
         <p>La vista de tiempos. Cada tarea tiene fecha de inicio, duración y fecha de fin, y podés encadenarlas con <strong>dependencias</strong>: una arranca cuando termina la anterior. Si movés la primera, recalculamos las que siguen.</p>
         <p><b>Dónde se cargan las fechas.</b> El Cronograma es sólo la vista; las fechas se cargan por tarea. Tocá una tarea —acá mismo o en <strong>Ejecución</strong>— y elegí <strong>Editar tarea</strong>: ahí definís <strong>inicio</strong>, <strong>duración</strong> y <strong>fin</strong>. Con la duración cargada, el fin se calcula solo. Y si la tarea depende de otra, dejá el inicio vacío: arranca sola cuando termina la anterior.</p>
@@ -314,12 +422,29 @@
           <img src="../img/control-obra/cronograma.jpg" alt="Pestaña Cronograma con las barras de cada tarea en el tiempo" loading="lazy" width="1280" height="759">
           <figcaption><b>Cronograma</b><span>Cada barra es una tarea. Las rojas están atrasadas; el ancho es su duración y la posición, su ventana de ejecución.</span></figcaption>
         </figure>
+
+        <h3>Qué tarea aguanta una demora y cuál no</h3>
+        <p>No todas las demoras cuestan lo mismo. Calculamos, para cada tarea, cuántos días se puede correr <strong>sin mover la fecha de fin de la obra</strong>: es su <strong>holgura</strong>.</p>
+        <p>Las que tienen holgura cero forman el <strong>camino crítico</strong> —te las marcamos con un borde más marcado—. Si una de esas se atrasa un día, la obra entera termina un día después. Las demás te dan aire, y saber cuánto es la diferencia entre reacomodar el trabajo y perder la fecha.</p>
+        <p>Con eso te damos también la <strong>fecha de fin proyectada</strong>: cuándo termina la obra si todo sigue como viene hoy.</p>
+
+        <h3>Ver de qué depende cada tarea</h3>
+        <p>Las dependencias se ven dibujadas entre las barras, y además escritas con palabras en el detalle de cada tarea. Si pasás el mouse por una, <strong>se resaltan las que dependen de ella</strong>: antes de tocar nada ya ves a quién le vas a mover el piso.</p>
+
+        <h3>Mover una tarea</h3>
+        <p>Arrastrás la barra a su fecha nueva y <strong>las que dependían de ella se corren solas</strong>. Es la razón de encadenarlas: si tuvieras que reacomodar a mano todo lo que viene atrás, no serviría de nada.</p>
+        <p>Antes de aplicar el cambio te mostramos <strong>qué va a pasar</strong>: cuántas tareas se mueven, cuántos días cada una y si la fecha de fin de la obra cambia. Si no te convence, cancelás y no se toca nada.</p>
+
+        <h3>La línea base</h3>
+        <p>Cuando el cronograma ya refleja el plan que acordaste, tocá <strong>Aprobar cronograma</strong>. Guardamos las fechas de ese momento como <strong>línea base</strong>: el plan original contra el cual comparar todo lo que venga después.</p>
+        <p>A partir de ahí, cada tarea te muestra <strong>cuántos días se corrió respecto del plan aprobado</strong>. Sin línea base no hay desvío que medir: cada corrección de fecha reescribe la historia y al final del mes nadie se acuerda de cuándo se había prometido cada cosa.</p>
+        <div class="nota"><p><b>Se puede volver a aprobar</b>Si el plan cambió de verdad —no es que te atrasaste, es que se acordó otra cosa— tocá <strong>Re-aprobar</strong> y la línea base pasa a ser la nueva. Usalo con criterio: si la re-aprobás cada vez que algo se corre, el desvío siempre va a dar cero.</p></div>
       </section>
 
       <section id="certificados">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
-          <div><p class="eyebrow">08</p><h2>Certificados</h2></div>
+          <div><p class="eyebrow">09</p><h2>Certificados</h2></div>
         </div>
         <p>Un certificado convierte avance en dinero cobrable. Lo armás desde <strong>Ejecución &rarr; Armar certificado</strong>, que junta las tareas con avance sin certificar, o a mano desde la pestaña Certificados.</p>
         <div class="nota"><p><b>Cómo lo calculamos</b>El monto de cada línea es <strong>(avance nuevo − avance anterior) ÷ 100 × contrato de la tarea</strong>. Certificás sobre el contrato con el cliente, proporcional a lo ejecutado. Nunca sobre el total ni sobre la composición del cobro.</p></div>
@@ -352,7 +477,7 @@
       <section id="cobros">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
-          <div><p class="eyebrow">09</p><h2>Cobros</h2></div>
+          <div><p class="eyebrow">10</p><h2>Cobros</h2></div>
         </div>
         <p>Acá manejás cómo te paga el cliente. Una obra puede tener <strong>ninguno, uno o varios planes de cobro</strong>: por ejemplo, uno por cada unidad vendida. Podés crear uno nuevo ya asociado a la obra, vincular uno existente o desvincularlo sin borrarlo.</p>
         <figure>
@@ -360,6 +485,7 @@
           <figcaption><b>Cobros</b><span>Cada plan muestra su total, lo cobrado y lo pendiente, con la barra de avance del cobro.</span></figcaption>
         </figure>
         <div class="nota ok"><p><b>Esto es importante</b>Los certificados y los planes de cobro <strong>se suman</strong>: pueden cobrar plata distinta, como inversores por certificación y compradores por plan. Por eso te mostramos el pendiente desglosado por fuente, y no los restamos entre sí.</p></div>
+        <p>Justamente porque se suman, conviene declarar la <strong>composición del cobro</strong>: qué parte del contrato va por cada vía. Si usás las dos, te lo preguntamos al crear la obra, y lo editás cuando quieras desde <strong>Resumen</strong>. Con eso te avisamos si entre certificados y planes quedó plata <em>sin asignar</em> —o asignada dos veces—, que es el error más fácil de cometer y el más difícil de ver.</p>
 
         <h3>Registrar el cobro de una cuota</h3>
         <p>Cada plan tiene su calendario de cuotas, con su vencimiento. Cuando entra la plata, tocás <strong>Cobrar</strong> en la cuota. Igual que con los certificados, lo podés hacer desde la obra o desde la hoja <strong>Cobranzas</strong>, que te junta todo lo que tenés por cobrar de todas las obras.</p>
@@ -374,7 +500,7 @@
       <section id="manoobra">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
-          <div><p class="eyebrow">10</p><h2>Mano de obra</h2></div>
+          <div><p class="eyebrow">11</p><h2>Mano de obra</h2></div>
         </div>
         <p>Todo lo que sale de tu caja hacia los contratistas. Son tres bloques.</p>
 
@@ -422,7 +548,7 @@
       <section id="reportes">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M118.89,80.21h41.47a73.35,73.35,0,0,0-146.67,0H55.16a73.36,73.36,0,0,0-41.47,64.41H55.16A73.38,73.38,0,0,0,13.69,209H160.36a73.4,73.4,0,0,0-41.47-64.42h41.47A73.38,73.38,0,0,0,118.89,80.21Z"/></svg></span>
-          <div><p class="eyebrow">11</p><h2>Reportes</h2></div>
+          <div><p class="eyebrow">12</p><h2>Reportes</h2></div>
         </div>
         <p><strong>Conforme de obra.</strong> Emitís el acta de conformidad cuando cerrás la obra.</p>
         <p><strong>Inconvenientes.</strong> Registrás los problemas que van apareciendo y los vas marcando como resueltos. Los que quedan pendientes te los mostramos en las alertas del Resumen.</p>
@@ -431,7 +557,7 @@
       <section id="cartera">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M87.13,25.56h-.22a79.7,79.7,0,0,0,0,159.39h79.91V105.26A79.69,79.69,0,0,0,87.13,25.56ZM87,163.62a58.37,58.37,0,1,1,58.36-58.38A58.38,58.38,0,0,1,87,163.62Z"/><path d="M120.79,105.24v0a33.76,33.76,0,1,1-67.52,0v0a33.76,33.76,0,0,1,67.52,0Z"/></svg></span>
-          <div><p class="eyebrow">12</p><h2>Cartera</h2></div>
+          <div><p class="eyebrow">13</p><h2>Cartera</h2></div>
         </div>
         <p>Tres vistas que cruzan todas tus obras, para trabajar por tarea en vez de obra por obra.</p>
         <div class="tabla-wrap">
@@ -449,13 +575,19 @@
       <section id="faq">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M162.58,85.71l-16.61-2a7.33,7.33,0,0,1-5.2-11.37l9.35-13.89a7.33,7.33,0,0,0-9.27-10.7L125.77,55a7.34,7.34,0,0,1-10.52-6.76l.36-16.74a7.34,7.34,0,0,0-13.59-4L93.28,41.78a7.34,7.34,0,0,1-12.51,0L72,27.52a7.33,7.33,0,0,0-13.58,4l.35,16.74A7.33,7.33,0,0,1,48.27,55L33.2,47.72a7.33,7.33,0,0,0-9.27,10.7l9.34,13.89a7.33,7.33,0,0,1-5.19,11.37l-16.61,2a7.34,7.34,0,0,0-2,14l15.37,6.63a7.33,7.33,0,0,1,1.78,12.37L13.72,129.42A7.33,7.33,0,0,0,19.6,142.3l16.51-2.73A7.33,7.33,0,0,1,44.3,149l-5,15.95a7.33,7.33,0,0,0,11.91,7.66L63.57,161.4a7.34,7.34,0,0,1,12,3.53l4.37,16.15a7.34,7.34,0,0,0,14.16,0l4.38-16.15a7.33,7.33,0,0,1,12-3.53l12.42,11.23A7.33,7.33,0,0,0,134.8,165L129.75,149a7.33,7.33,0,0,1,8.18-9.45l16.51,2.73a7.34,7.34,0,0,0,5.89-12.88l-12.88-10.69a7.33,7.33,0,0,1,1.78-12.37l15.37-6.63A7.34,7.34,0,0,0,162.58,85.71Z"/></svg></span>
-          <div><p class="eyebrow">13</p><h2>Cuando algo no sale</h2></div>
+          <div><p class="eyebrow">14</p><h2>Cuando algo no sale</h2></div>
         </div>
         <div>
           <details><summary>Importé mi planilla y quedó todo en $0</summary><div class="ans"><p class="causa">Casi siempre es que en el archivo los importes no están en una columna reconocible, o la fila mezcla varios datos en una misma celda.</p><p>Fijate que haya una columna con el importe (“Total”, “Importe”, “Monto”) o bien cantidad y precio unitario por separado. Si tu planilla es rara, cargá los rubros a mano y seguí: la obra igual sirve.</p></div></details>
           <details><summary>El total de la obra no coincide con el de mi planilla</summary><div class="ans"><p class="causa">Lo más común es que el subtotal del archivo esté desactualizado: si alguien editó un rubro y el subtotal era un número escrito a mano en vez de una fórmula, quedó viejo.</p><p>Nosotros sumamos los rubros, así que ese total es el correcto. Compará la suma de los rubros de tu planilla contra su celda de subtotal y vas a ver la diferencia.</p></div></details>
           <details><summary>Aparecieron rubros de más, como “Subtotal” o “Total”</summary><div class="ans"><p class="causa">Son las filas de cierre de la planilla, que no son trabajo a ejecutar sino la suma de las de arriba.</p><p>Las descartamos automáticamente para no contar la misma plata dos veces. Si igual se te coló alguna, borrala desde el menú del rubro en Ejecución.</p></div></details>
           <details><summary>El archivo tenía avance pero las tareas arrancaron en 0</summary><div class="ans"><p class="causa">Sólo tomamos el avance cuando viene en una columna clara (“Avance”, “% Ejec.”, “Ejecutado”) y con un valor entre 0 y 100.</p><p>Nunca lo deducimos de los montos: preferimos que arranque en 0 y lo cargues vos, antes que inventar un avance y que después certifiques de más.</p></div></details>
+          <details><summary>Me frenó al guardar un contrato: “revisá estos montos”</summary><div class="ans"><p class="causa">Ese monto es de otro orden de magnitud que el resto de la obra: más de cien veces la tarea típica.</p><p>Casi siempre es un dígito de más al tipear, o una celda corrida al pegar desde Excel. Fijate el número que te mostramos y cuántas veces se desvía. Si está bien —pasa, hay tareas que valen eso—, confirmá y se guarda igual.</p></div></details>
+          <details><summary>Moví una tarea y se corrieron otras</summary><div class="ans"><p class="causa">Esas tareas dependen de la que moviste.</p><p>Es a propósito: para eso se encadenan. Antes de aplicar te mostramos cuáles se mueven y cuántos días; si no querés que pase, cancelá ahí y sacá la dependencia desde el detalle de la tarea.</p></div></details>
+          <details><summary>Subí la planilla de Excel y una fila no se aplicó</summary><div class="ans"><p class="causa">A esa fila le falta el <strong>ID</strong>, la primera columna.</p><p>Suele pasar con las filas agregadas a mano en el Excel. Desde la planilla no creamos tareas nuevas: agregala desde la obra, volvé a bajar el archivo y ahí ya viene con su ID.</p></div></details>
+          <details><summary>Recién creé la obra y el gastado ya tiene plata</summary><div class="ans"><p class="causa">Enganchamos los gastos que ya estaban cargados en la caja del proyecto.</p><p>Es lo que querés casi siempre: el gastado refleja lo real desde el día uno. Si esos movimientos eran de otra etapa y no de esta obra, desimputalos desde el detalle de la tarea.</p></div></details>
+          <details><summary>Una tarea la hace mi propia gente, no un contratista</summary><div class="ans"><p class="causa">Está marcada como contratada y por eso te pide proveedor.</p><p>Marcala como <strong>mano de obra propia</strong>, sola o junto con otras desde la asignación en lote. Sigue teniendo contrato, avance, costo y margen; simplemente no espera un contratista.</p></div></details>
+          <details><summary>El cronograma no me muestra el desvío</summary><div class="ans"><p class="causa">Todavía no aprobaste el cronograma, así que no hay línea base contra la cual comparar.</p><p>Cuando las fechas reflejen el plan acordado, tocá <strong>Aprobar cronograma</strong>. A partir de ahí cada tarea te muestra cuántos días se corrió respecto de ese plan.</p></div></details>
           <details><summary>No veo un botón o un campo nuevo</summary><div class="ans"><p class="causa">El navegador te está mostrando una versión cacheada.</p><p>Recargá forzando con <strong>Cmd/Ctrl + Shift + R</strong>.</p></div></details>
           <details><summary>Una tarea marca sobrecosto aunque estaba todo previsto</summary><div class="ans"><p class="causa">Los materiales no estaban cargados como costo esperado.</p><p>Cargá el <strong>costo directo</strong> de la tarea: el costo de referencia pasa a incluirlos y el rojo desaparece.</p></div></details>
           <details><summary>No me deja eliminar una tarea</summary><div class="ans"><p class="causa">Tiene avance ya certificado.</p><p>Anulá primero el certificado que la incluye, o dejá la tarea sin avance certificado.</p></div></details>
@@ -472,7 +604,7 @@
       <section id="glosario">
         <div class="sec-head">
           <span class="shape"><svg viewBox="0 0 174.05 217.56" aria-hidden="true"><path d="M156.35,71a40.84,40.84,0,0,0-28.41-12.23,40.92,40.92,0,0,0-81.82,0,40.91,40.91,0,0,0,0,81.81,40.92,40.92,0,0,0,81.82,0A40.92,40.92,0,0,0,156.35,71Zm-24.1,33.76-34.5,5.64-5.64,34.5H81.94l-5.63-34.5-34.5-5.64V94.61L76.31,89l5.63-34.5H92.11L97.75,89l34.5,5.64Z"/></svg></span>
-          <div><p class="eyebrow">14</p><h2>Glosario</h2></div>
+          <div><p class="eyebrow">15</p><h2>Glosario</h2></div>
         </div>
         <div class="buscador"><input id="q" type="search" placeholder="Buscar: margen, imputar, certificado…" aria-label="Buscar término" autocomplete="off"></div>
         <dl class="glos" id="glos">
@@ -500,8 +632,15 @@
           <div class="term"><dt>Plan de pago</dt><dd>Cómo le pagás a un proveedor: cuotas, anticipo, por avance.</dd></div>
           <div class="term"><dt>Plan suelto</dt><dd>Plan de pago que no pertenece a una obra; se imputa a la caja de un proyecto.</dd></div>
           <div class="term"><dt>Proyecto / caja</dt><dd>Dónde se registran los ingresos y egresos.</dd></div>
-          <div class="term"><dt>Composición del cobro</dt><dd>Cómo se reparte lo que esperás cobrar entre certificación y planes.</dd></div>
+          <div class="term"><dt>Composición del cobro</dt><dd>Cómo se reparte lo que esperás cobrar entre certificación y planes. Se declara al crear la obra y se edita desde Resumen.</dd></div>
           <div class="term"><dt>Cobertura</dt><dd>Señal de si lo asignado alcanza, falta o excede el contrato.</dd></div>
+          <div class="term"><dt>Panel de pendientes</dt><dd>El resumen de lo que le falta a la obra —categorías, contratos, fechas, costos, gastos sin imputar— con el botón para resolverlo al lado. Está arriba de Ejecución.</dd></div>
+          <div class="term"><dt>Mano de obra propia</dt><dd>Tarea que ejecuta tu propia gente, por administración, en vez de un contratista. No tiene proveedor.</dd></div>
+          <div class="term"><dt>Avance por lo pagado</dt><dd>Modo en que el avance de una tarea se calcula solo, a partir de lo gastado sobre el costo estimado.</dd></div>
+          <div class="term"><dt>Camino crítico</dt><dd>Las tareas sin holgura: si una se atrasa un día, la obra termina un día después.</dd></div>
+          <div class="term"><dt>Holgura</dt><dd>Cuántos días se puede correr una tarea sin mover la fecha de fin de la obra.</dd></div>
+          <div class="term"><dt>Línea base</dt><dd>Las fechas del cronograma al momento de aprobarlo. Es el plan original contra el que se mide el desvío.</dd></div>
+          <div class="term"><dt>Planilla de la obra</dt><dd>El Excel con una fila por tarea que se baja, se corrige y se vuelve a subir. La columna ID es la que mantiene el vínculo.</dd></div>
           <div class="term"><dt>Conforme de obra</dt><dd>Acta de conformidad que se emite al cierre.</dd></div>
           <div class="term"><dt>Inconveniente</dt><dd>Problema registrado durante la obra, con seguimiento hasta resolverlo.</dd></div>
         </dl>
